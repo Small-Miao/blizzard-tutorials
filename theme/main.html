@@ -14,51 +14,29 @@
 
             SphinxRtdTheme.Navigation.enable({{ 'true' if config.theme.sticky_navigation else 'false' }});
 
-            // Make section headings without URLs behave like expandable tree toggles.
-            $('.wy-menu li > a').each(function() {
+            // Let heading-only sections trigger the theme's native tree toggle.
+            var $toggleLinks = $('.wy-menu li > a').filter(function() {
                 var $link = $(this);
-                var $item = $link.parent('li');
-                var $children = $item.children('ul');
                 var href = $link.attr('href');
-                var isToggleOnly = !href || href === '#';
 
-                if (!$children.length || !isToggleOnly) {
-                    return;
-                }
-
-                $link.attr({
-                    href: '#',
-                    role: 'button',
-                    'aria-expanded': $item.hasClass('current') ? 'true' : 'false'
-                });
-
-                if (!$link.children('.toctree-expand').length) {
-                    $link.prepend('<span class="toctree-expand"></span>');
-                }
-
-                if (!$item.hasClass('current')) {
-                    $children.hide();
-                }
+                return $link.parent('li').children('ul').length > 0 && (!href || href === '#');
             });
 
-            $('.wy-menu li > a[href="#"]').click(function(e) {
+            $toggleLinks.each(function() {
+                $(this).attr({
+                    href: '#',
+                    role: 'button'
+                });
+            }).on('click', function(e) {
                 var $link = $(this);
-                var $item = $link.parent('li');
-                var $children = $item.children('ul');
+                var $toggle = $link.children('.toctree-expand');
 
-                if (!$children.length) {
+                if (!$toggle.length) {
                     return;
                 }
 
                 e.preventDefault();
-                $item.toggleClass('current');
-                $children.stop(true, true).slideToggle(150);
-                $link.attr('aria-expanded', $item.hasClass('current') ? 'true' : 'false');
-            });
-
-            // Ensure all ancestors of the active page stay expanded.
-            $('.wy-menu li.current').each(function() {
-                $(this).children('ul').show();
+                $toggle.trigger('click');
             });
         };
     </script>
