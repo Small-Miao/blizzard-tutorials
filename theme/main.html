@@ -14,9 +14,51 @@
 
             SphinxRtdTheme.Navigation.enable({{ 'true' if config.theme.sticky_navigation else 'false' }});
 
-            // expand sections properly when element is clicked (as opposed to clicking icon directly)
-            $('.wy-menu li a[href="#"]').click(function() {
-                $(this).find('>.toctree-expand').trigger('click');
+            // Make section headings without URLs behave like expandable tree toggles.
+            $('.wy-menu li > a').each(function() {
+                var $link = $(this);
+                var $item = $link.parent('li');
+                var $children = $item.children('ul');
+                var href = $link.attr('href');
+                var isToggleOnly = !href || href === '#';
+
+                if (!$children.length || !isToggleOnly) {
+                    return;
+                }
+
+                $link.attr({
+                    href: '#',
+                    role: 'button',
+                    'aria-expanded': $item.hasClass('current') ? 'true' : 'false'
+                });
+
+                if (!$link.children('.toctree-expand').length) {
+                    $link.prepend('<span class="toctree-expand"></span>');
+                }
+
+                if (!$item.hasClass('current')) {
+                    $children.hide();
+                }
+            });
+
+            $('.wy-menu li > a[href="#"]').click(function(e) {
+                var $link = $(this);
+                var $item = $link.parent('li');
+                var $children = $item.children('ul');
+
+                if (!$children.length) {
+                    return;
+                }
+
+                e.preventDefault();
+                $item.toggleClass('current');
+                $children.stop(true, true).slideToggle(150);
+                $link.attr('aria-expanded', $item.hasClass('current') ? 'true' : 'false');
+            });
+
+            // Ensure all ancestors of the active page stay expanded.
+            $('.wy-menu li.current').each(function() {
+                $(this).children('ul').show();
             });
         };
     </script>
