@@ -1,81 +1,81 @@
-# Trigger Editor Interface
+# 触发编辑器界面
 
-The Trigger Editor is a construction-site for triggers, actions, events, and all the other elements that make up the logic of the trigger system. The moment you start working in the Trigger Editor, the logic you build will be made active in the map immedaitely, enforcing rules, building mechanics, and creating gameplay.
+触发编辑器是构建触发器、动作、事件以及组成整个触发系统逻辑的其他元素的工作区。从你开始在触发编辑器中工作起，所构建的逻辑就会立即在地图中生效，用来施加规则、搭建机制并形成玩法。
 
-## The Interface
+## 界面
 
-[![Trigger Editor Interface View](./resources/033_Trigger_Editor_Interface1.png)](./resources/033_Trigger_Editor_Interface1.png)
-*Trigger Editor Interface View*
+[![触发编辑器界面视图](./resources/033_Trigger_Editor_Interface1.png)](./resources/033_Trigger_Editor_Interface1.png)
+*触发编辑器界面视图*
 
-The Trigger Editor offers a clean, ordered representation of all the logic elements active in a project. Any developers with programming experience will note the resemblance to a standard text editor. The lynchpin of this interface is the Triggers Panel, shown below.
+触发编辑器会以清晰、有序的方式展示项目中所有已启用的逻辑元素。有编程经验的开发者会注意到，它和标准文本编辑器有几分相似。这个界面的核心是下面展示的“触发器面板”。
 
-[![Triggers Panel](./resources/033_Trigger_Editor_Interface2.png)](./resources/033_Trigger_Editor_Interface2.png)
-*Triggers Panel*
+[![触发器面板](./resources/033_Trigger_Editor_Interface2.png)](./resources/033_Trigger_Editor_Interface2.png)
+*触发器面板*
 
-Inside the Triggers Panel you'll find a list of all the active trigger elements in a project. As well as providing an overview, this will be your primary means of navigating your project. Selecting an element in this panel will display its information in the middle of your screen, inside the Trigger Content Panel.
+在触发器面板中，你会看到项目内所有活动触发元素的列表。它不仅提供总览，也是你浏览整个项目的主要方式。在此面板中选中某个元素后，其中间内容会显示在屏幕中央的“触发内容面板”中。
 
-![Trigger Content Panel](./resources/033_Trigger_Editor_Interface3.png)
-*Trigger Content Panel*
+![触发内容面板](./resources/033_Trigger_Editor_Interface3.png)
+*触发内容面板*
 
-Depending on the type of element you've selected, this panel can take on a number of different layouts.
+根据你选中的元素类型不同，这个面板会呈现出多种不同布局。
 
 ![](./resources/033_Trigger_Editor_Interface4.png)
-*Variable Content -- Definition Content -- Trigger Content*
+*变量内容 -- 定义内容 -- 触发器内容*
 
-When the Use Subviews option is enabled, this view will also introduce a Trigger Content Panel Subview, which shows the fields of an element alongside any available tooltips.
+启用“使用子视图”选项后，这里还会出现“触发内容面板子视图”，用于显示元素字段以及相应的提示信息。
 
-[![Trigger Content Panel Subview](./resources/033_Trigger_Editor_Interface5.png)](./resources/033_Trigger_Editor_Interface5.png)
-*Trigger Content Panel Subview*
+[![触发内容面板子视图](./resources/033_Trigger_Editor_Interface5.png)](./resources/033_Trigger_Editor_Interface5.png)
+*触发内容面板子视图*
 
-As your project grows, you'll find another manageability option available in the form of the Trigger Explorer. Enabling this will append a viewer to the Triggers Panel showing a breakdown of the components inside the currently selected element. You can use this to scan through a larger project's components as quickly as possible.
+随着项目规模增长，你还可以使用另一个便于管理的功能：触发器浏览器。启用后，它会在触发器面板旁附加一个查看区，拆解当前选中元素内部的组成部分。借助它，你可以尽可能快速地扫描大型项目中的组件。
 
-[![Trigger Explorer](./resources/033_Trigger_Editor_Interface6.png)](./resources/033_Trigger_Editor_Interface6.png)
-*Trigger Explorer*
+[![触发器浏览器](./resources/033_Trigger_Editor_Interface6.png)](./resources/033_Trigger_Editor_Interface6.png)
+*触发器浏览器*
 
-Projects can grow to include libraries, which are collections of trigger elements shared between multiple maps. All of the standard, pre-made elements are also included in a map via libraries. You can find a list of all the libraries currently in a map in the Libraries Panel.
+项目还可以包含库。库是可在多张地图之间共享的触发元素集合。所有标准预制元素也都是通过库加入地图的。你可以在“库面板”中查看当前地图中所有库的列表。
 
-![Libraries Panel](./resources/033_Trigger_Editor_Interface7.png)
-*Libraries Panel*
+![库面板](./resources/033_Trigger_Editor_Interface7.png)
+*库面板*
 
-The segment of the Main Toolbar available from this module is the Trigger Bar.
+此模块在主工具栏中对应的部分称为触发器栏。
 
-![Trigger Bar](./resources/033_Trigger_Editor_Interface8.png)
-*Trigger Bar*
+![触发器栏](./resources/033_Trigger_Editor_Interface8.png)
+*触发器栏*
 
-All of the Trigger Editor's viewing and creation options are made available here for your convenience. Below you'll find a table that breaks down the options available from the Trigger Bar.
+触发编辑器中的各种查看和创建选项都集中在这里，方便你随时使用。下表对触发器栏提供的选项进行了说明。
 
-| Action                   | Effect                                                                                                                                                                |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Back                     | Reverts commands backward through the Trigger Editor history.                                                                                                         |
-| Forward                  | Reverts commands forwards through the Trigger Editor history.                                                                                                         |
-| View Raw Data            | Changes the view from plain-language to raw script identifiers and Galaxy function calls.                                                                             |
-| Show Libraries           | Toggles the Libraries Panel on or off.                                                                                                                                |
-| Use Subviews             | Toggles the Trigger Content Panel Subview on or off.                                                                                                                  |
-| New Element              | Creates a new element of the type that is currently selected.                                                                                                         |
-| New Folder               | Creates a folder in the Triggers Panel.                                                                                                                               |
-| New Comment              | Creates a comment at the current cursor location.                                                                                                                     |
-| New Trigger              | Creates a trigger in the Triggers Panel.                                                                                                                              |
-| New Event                | Creates an event in the Trigger Content Panel.                                                                                                                        |
-| New Condition            | Creates a condition in the Trigger Content Panel.                                                                                                                     |
-| New Action               | Creates an action in the Trigger Content Panel.                                                                                                                       |
-| New Condition Definition | Creates a condition definition in the Triggers Panel.                                                                                                                 |
-| New Action Definition    | Creates an action definition in the Triggers Panel.                                                                                                                   |
-| New Function             | Creates a function in the Triggers Panel.                                                                                                                             |
-| New Parameter            | Creates a parameter in an active definition within the Trigger Content Panel.                                                                                         |
-| New Preset Type          | Creates a preset in the Triggers Panel.                                                                                                                               |
-| New Preset Value         | Creates a value in an active preset within the Trigger Content Panel.                                                                                                 |
-| New Record               | Creates a record in the Triggers Panel.                                                                                                                               |
-| New Sub-function type    | Creates a sub-function in a currently active function within the Trigger Content Panel. For this, you must have the Sub-functions flag checked in 'Function Options.' |
-| New Variable             | Creates a Global variable in the Triggers Panel or a Local Variable in the Trigger Content Panel depending on cursor position.                                        |
+| 操作 | 作用 |
+| --- | --- |
+| 后退 | 沿着触发编辑器历史向后撤销命令。 |
+| 前进 | 沿着触发编辑器历史向前恢复命令。 |
+| 查看原始数据 | 将视图从自然语言切换为原始脚本标识符和 Galaxy 函数调用。 |
+| 显示库 | 切换库面板的显示状态。 |
+| 使用子视图 | 切换触发内容面板子视图的显示状态。 |
+| 新建元素 | 创建当前所选类型的新元素。 |
+| 新建文件夹 | 在触发器面板中新建文件夹。 |
+| 新建注释 | 在当前光标位置创建注释。 |
+| 新建触发器 | 在触发器面板中新建触发器。 |
+| 新建事件 | 在触发内容面板中新建事件。 |
+| 新建条件 | 在触发内容面板中新建条件。 |
+| 新建动作 | 在触发内容面板中新建动作。 |
+| 新建条件定义 | 在触发器面板中新建条件定义。 |
+| 新建动作定义 | 在触发器面板中新建动作定义。 |
+| 新建函数 | 在触发器面板中新建函数。 |
+| 新建参数 | 在触发内容面板中，为当前激活的定义新建参数。 |
+| 新建预设类型 | 在触发器面板中新建预设。 |
+| 新建预设值 | 在触发内容面板中，为当前激活的预设新建值。 |
+| 新建记录 | 在触发器面板中新建记录。 |
+| 新建子函数类型 | 在触发内容面板中，为当前激活的函数新建子函数。要使用此项，必须在“Function Options”中勾选 Sub-functions 标志。 |
+| 新建变量 | 根据光标位置，在触发器面板中新建全局变量，或在触发内容面板中新建局部变量。 |
 
-## Viewing Options
+## 查看选项
 
-Using the View Raw Data option will translate the plain-language statements of the Trigger Editor into the Galaxy function calls, as shown in the image below.
+使用“查看原始数据”后，触发编辑器中的自然语言语句会被转换成 Galaxy 函数调用，如下图所示。
 
-[![View Raw Data](./resources/033_Trigger_Editor_Interface9.png)](./resources/033_Trigger_Editor_Interface9.png)
-*View Raw Data*
+[![查看原始数据](./resources/033_Trigger_Editor_Interface9.png)](./resources/033_Trigger_Editor_Interface9.png)
+*查看原始数据*
 
-This can be useful if you'd like to move into script editing. Moreover, you can use the View Script option to look at the actual game scripts. Selecting this option will launch the Script Test window shown below.
+如果你想进一步接触脚本编辑，这个功能会很有用。此外，你还可以使用“查看脚本”选项直接查看实际的游戏脚本。选择后会打开下方所示的脚本测试窗口。
 
-[![Script Test Window via View Script](./resources/033_Trigger_Editor_Interface10.png)](./resources/033_Trigger_Editor_Interface10.png)
-*Script Test Window via View Script*
+[![通过“查看脚本”打开的脚本测试窗口](./resources/033_Trigger_Editor_Interface10.png)](./resources/033_Trigger_Editor_Interface10.png)
+*通过“查看脚本”打开的脚本测试窗口*

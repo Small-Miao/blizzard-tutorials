@@ -1,153 +1,153 @@
-# Create An Aura Ability
+# 创建一个光环技能
 
-An Aura refers to a common class of abilities used in games. Auras typically emanate from a single unit, bestowing beneficial effects on any friendly units in an area of effect around the aura-holder. Thematically, auras usually support the idea that the presence of a heroic unit can energize and enliven those around them. You can see an example of an aura effect in the image below.
+光环是一类游戏中很常见的技能。光环通常由单个单位向外发散，在一定作用范围内为友方单位赋予有益效果。就主题表现而言，光环常常用于体现某个英雄单位的存在能够鼓舞并强化周围同伴。你可以在下图中看到一个光环效果示例。
 
-[![WarCraft III's Endurance Aura](./resources/087_Create_an_Aura_Ability1.png)](./resources/087_Create_an_Aura_Ability1.png)
-*WarCraft III's Endurance Aura*
+[![《魔兽争霸 III》的耐久光环](./resources/087_Create_an_Aura_Ability1.png)](./resources/087_Create_an_Aura_Ability1.png)
+*《魔兽争霸 III》的耐久光环*
 
-In WarCraft III, the Tauren Chieftain's 'Endurance Aura' grants nearby allies a bonus to speed and attack rate. While this is a traditional application of an aura, there are many varieties and similar ideas in different games. Abstracting the key points of the concept gives something like the below.
+在《魔兽争霸 III》中，牛头人酋长的“耐久光环”会为附近友军提供移动速度和攻击速度加成。虽然这是光环的一种经典用法，但类似概念在不同游戏中还有很多变体。把这个概念抽象后，大致可以归纳为以下几点。
 
-  - Auras are passive, non-useable abilities that are hosted on a source unit.
-  - Auras create a change in units in an area around the source.
+  - 光环是被动、不可主动施放的技能，由某个来源单位持有。
+  - 光环会对来源单位周围一定范围内的单位产生变化。
 
-This abstraction produces a true definition of auras; they have no specific connection to positive or negative effects, nor are they found only on hero units. With this in mind, possible designs for an aura ability can be quite varied. A torch-bearing unit could possess a burning aura that applies damage over time to enemies. These auras could also be set to stack for however many of the torch bearers are grouped together. Alternatively, there may be a cursed artifact, a ring pulsing with a shrinking aura that scales down the size of any units that approach it. Any thief who draws close enough to steal the treasure would soon find themselves too small to carry it.
+这个抽象定义更贴近光环的本质：它并不一定只对应正面效果，也不一定只会出现在英雄单位身上。基于这一点，光环技能的设计可以非常多样。例如，举着火炬的单位可以拥有燃烧光环，对附近敌人施加持续伤害。这类光环甚至还可以设置为叠加，多个火炬单位聚在一起时效果更强。又或者，地图上可以有一件被诅咒的神器，一枚不断脉动、散发缩小光环的戒指，会让靠近它的单位体型变小。任何试图靠近并偷走宝物的盗贼，很快就会发现自己小到根本搬不动它。
 
-## Designing An Aura
+## 设计光环
 
-Auras clearly have the potential to add a lot of interesting play elements to a game. You'll find that learning to create an aura in the Editor is a very worthwhile exercise. Fortunately, having the key points of an aura figured out ahead of time allows you to introduce them very quickly.
+光环显然能为游戏增加很多有趣的玩法元素。学会在编辑器中创建一个光环，是一项非常值得练习的技能。幸运的是，只要事先理清光环的关键特征，实现起来其实会很快。
 
-The first important point to note here is that there are several possible ways to implement an aura. The method you'll learn from this article is a data-based option that you should find simple and intuitive. However, there is one upfront discrepancy with what has already been mentioned. In this case, the aura ability won't actually fit the definition of an ability within the StarCraft Editor. In the Editor, Abilities refer to changes that are made within the game and accessed using the command card interface. Examples of this include the marine's 'Stim Pack' or a zealot's 'Charge.' While it is possible to develop an aura in this way, the aura in this article will actually be implemented using two Behaviors and two Effects.
+这里首先要注意的一点是，光环有多种实现方式。本文将介绍一种基于数据的做法，它相对简单直观。不过，这种实现方式和前面提到的“技能”定义存在一个表面上的差异。在这个例子里，光环实际上并不会按照《星际争霸 II》编辑器里严格意义上的 `Ability` 来实现。在编辑器中，`Ability` 通常指通过命令卡界面访问、会在游戏中触发某种行为的内容，例如陆战队员的“兴奋剂包”或狂热者的“冲锋”。虽然光环也可以用那类方式制作，但本文中的光环会使用两个行为和两个效果来完成。
 
-Behaviors alter the properties of units and are hosted within a unit directly. This fits well with the definition of auras outlined above. You'll use a Behavior to grant the aura to a source unit, which will in turn transmit a second, property-changing Behavior to each of the aura's recipients. This pair of Effects will be used to find the aura recipients and apply the property-changing Behavior respectively.
+行为会直接改变单位的属性，并挂载在单位本身上，这和前文给出的光环定义非常契合。你将使用一个行为把光环赋予来源单位，而它又会把第二个、负责改动属性的行为传递给每一个受到光环影响的单位。那一对效果则分别用于查找光环接收者，以及把改变属性的行为施加到这些接收者身上。
 
-Talking through the aura's mechanics like this has helped get an idea of its general design. This design will be explained and expanded upon in the following sections, but for now it is provided below. Keep a note of this plan as a reference. Many creative alterations like those mentioned in the introduction to this article can be built using this general scheme.
+像这样先把光环机制讲清楚，有助于形成整体设计思路。这个设计会在后文中继续说明和展开，不过现在先把结构列出来，便于你随时参照。文章开头提到的那些创意变体，很多都可以在这个通用框架上实现。
 
-  - Unit -- Hosts the aura
-      - Behavior (Buff) -- Grants the aura to source Unit
-          - Effect (Search Area) -- Finds the aura recipients around the Unit
-              - Effect (Apply Behavior) -- Applies the buff to the found recipients
-                  - Behavior (Buff) -- Applies the aura's property changes to the recipients
+  - 单位 -- 持有光环
+      - 行为（增益） -- 赋予来源单位光环
+          - 效果（搜索区域） -- 查找单位周围的光环接收者
+              - 效果（应用行为） -- 将增益施加到找到的接收者身上
+                  - 行为（增益） -- 对接收者施加光环的属性变化
 
-To design a specific implementation of an aura, you'll need to pick a source Unit and a specific buff Behavior. For the purposes of this demo, you'll make a speed aura that doubles the movement speed of all its recipients. This aura will be granted to the marine unit. The design plan will be as follows.
+要设计一个具体的光环实现，你需要选定一个来源单位，以及一个具体的增益行为。为了演示，本例将制作一个速度光环，使所有接收者的移动速度翻倍。这个光环会赋予陆战队员。设计方案如下。
 
-  - Marine -- Hosts the speed aura
-      - Speed Aura -- Grants the speed aura to the marine
-          - Speed Aura Search Area Effect -- Finds allied units around the marine
-              - Speed Aura Apply Behavior Effect -- Applies the speed buff to allied units
-                  - Speed Buff -- Doubles the unit's speed
+  - 陆战队员 -- 持有速度光环
+      - 速度光环 -- 赋予陆战队员速度光环
+          - 速度光环搜索区域效果 -- 查找陆战队员周围的友方单位
+              - 速度光环应用行为效果 -- 将速度增益施加给友方单位
+                  - 速度增益 -- 使单位速度翻倍
 
-To begin putting this design together, open the demo map provided with this tutorial. The map should look as shown in the image below.
+要开始搭建这套设计，请打开本教程附带的演示地图。地图应如下图所示。
 
-[![Map Preparation](./resources/087_Create_an_Aura_Ability2.png)](./resources/087_Create_an_Aura_Ability2.png)
-*Map Preparation*
+[![地图准备](./resources/087_Create_an_Aura_Ability2.png)](./resources/087_Create_an_Aura_Ability2.png)
+*地图准备*
 
-Move to the Data Editor to begin constructing the aura's logic.
+接下来切换到数据编辑器，开始构建光环逻辑。
 
-## Search Area Effect
+## 搜索区域效果
 
-It's important to note that you don't need to build your aura in the same order as laid out in the plan. As such, the best place to start here is the 'Search Area' Effect, which will locate allies around the aura-host. Create a new effect and set its properties to those shown below.
+需要注意的是，你不必严格按照设计方案列出的顺序来制作光环。因此，此处最合适的起点是“搜索区域”效果，因为它负责查找光环持有者周围的友军。新建一个效果，并将其属性设置为下图所示的内容。
 
-![Search Area Effect Creation](./resources/087_Create_an_Aura_Ability3.png)
-*Search Area Effect Creation*
+![搜索区域效果创建](./resources/087_Create_an_Aura_Ability3.png)
+*搜索区域效果创建*
 
-Now select the newly created effect and open the field 'Search: Search Filters.' Set the 'Self' filter to Excluded, as shown below.
+然后选中新建的效果，打开 `Search: Search Filters` 字段。将 `Self` 过滤器设为 `Excluded`，如下图所示。
 
-[![Search Filters](./resources/087_Create_an_Aura_Ability4.png)](./resources/087_Create_an_Aura_Ability4.png)
-*Search Filters*
+[![搜索过滤器](./resources/087_Create_an_Aura_Ability4.png)](./resources/087_Create_an_Aura_Ability4.png)
+*搜索过滤器*
 
-This will prevent the effect from locating the caster or aura-hosting unit. Now set the fields 'Impact Location -- Value' to 'Target Unit' and 'Target: Launch Location -- Value' to 'Caster Unit.' The former sets the unit that will be found in the radius, while the latter will start the search at the position of the aura-host. Finally, you'll set the actual search area and size. You can do so by altering the 'Search: Areas -- Radius' field to 3. Then change the 'Search: Areas -- Arc' to 360. The search area is a full circle around the aura-host that stretches three map units in any direction. The fields of this effect will appear as in the image below.
+这样就能避免该效果把施法者或光环持有单位本身也算进去。接着，把 `Impact Location -- Value` 设为 `Target Unit`，把 `Target: Launch Location -- Value` 设为 `Caster Unit`。前者规定半径范围内要找的是哪类单位，后者则规定搜索从光环持有者的位置开始。最后设置实际的搜索范围和大小。将 `Search: Areas -- Radius` 改为 `3`，再把 `Search: Areas -- Arc` 改为 `360`。这样一来，搜索区域就是一个以光环持有者为中心、向任意方向延伸三格地图单位的完整圆形。该效果的字段应如下图所示。
 
-[![Search Area Effect Fields](./resources/087_Create_an_Aura_Ability5.png)](./resources/087_Create_an_Aura_Ability5.png)
-*Search Area Effect Fields*
+[![搜索区域效果字段](./resources/087_Create_an_Aura_Ability5.png)](./resources/087_Create_an_Aura_Ability5.png)
+*搜索区域效果字段*
 
-You'll note that, the 'Effect' field is not yet set. This starts the 'Apply Behavior' Effect onto the aura recipients.
+你会注意到，这里的 `Effect` 字段还没有设置。它将用于对光环接收者启动“应用行为”效果。
 
-## Buff Behavior -- Marine Speed Aura
+## 增益行为 -- 陆战队员速度光环
 
-Next, create the Behavior that serves as the aura source. Create a new behavior and set its properties to the following.
+接下来，创建作为光环来源的行为。新建一个行为，并将其属性设置为下列内容。
 
-![Aura Behavior Creation](./resources/087_Create_an_Aura_Ability6.png)
-*Aura Behavior Creation*
+![光环行为创建](./resources/087_Create_an_Aura_Ability6.png)
+*光环行为创建*
 
-Select the Behavior and set its 'Movement: Modification - Movement Speed Multiplier' field to 2. This applies a speed buff to the aura hosting-unit, in this case the marine. That way the source of the speed aura will be able to keep up when moving with the recipients of its bonus. Next, set the field 'Time Scale Source -- Value' and set it to Global. The time scale is a modification of how time is counted in the engine. Individual units may use their own scale, but in this case the Behavior will operate off Global or standard time.
+选中该行为，并将其 `Movement: Modification - Movement Speed Multiplier` 字段设为 `2`。这会对光环持有单位本身施加速度增益，在本例中也就是陆战队员。这样速度光环的来源单位在与受益单位一同行动时，自己也能跟得上。然后设置 `Time Scale Source -- Value` 字段为 `Global`。时间缩放决定引擎如何计算时间。单个单位可以使用自己的时间缩放，但在这里，这个行为应基于全局时间，也就是标准时间运行。
 
-As shown in the design, the aura begins its changes by first finding aura recipients using the search area Effect. This link is made by setting the 'Effect - Periodic' field to the 'Search Area - Marine Speed Aura' effect created in that last step. This process is shown below.
+按照设计思路，光环会先通过搜索区域效果查找接收者，再开始施加变化。这一步通过把 `Effect - Periodic` 字段设为上一步创建的 `Search Area - Marine Speed Aura` 效果来完成。如下图所示。
 
-[![Selecting the Aura's Search Effect](./resources/087_Create_an_Aura_Ability7.png)](./resources/087_Create_an_Aura_Ability7.png)
-*Selecting the Aura's Search Effect*
+[![选择光环的搜索效果](./resources/087_Create_an_Aura_Ability7.png)](./resources/087_Create_an_Aura_Ability7.png)
+*选择光环的搜索效果*
 
-Now, set the 'Period' to a value of 0.0625, this will cause the 'Effect -- Periodic,' and consequently the search effect, to happen 16 times per second. The completed aura behavior fields should look as shown below.
+接着，将 `Period` 设为 `0.0625`，这样 `Effect -- Periodic` 以及由它触发的搜索效果就会以每秒 16 次的频率执行。完成后的光环行为字段应如下图所示。
 
-[![Marine Speed Aura Fields](./resources/087_Create_an_Aura_Ability8.png)](./resources/087_Create_an_Aura_Ability8.png)
-*Marine Speed Aura Fields*
+[![陆战队员速度光环字段](./resources/087_Create_an_Aura_Ability8.png)](./resources/087_Create_an_Aura_Ability8.png)
+*陆战队员速度光环字段*
 
-## Buff Behavior - Speed Buff
+## 增益行为 -- 速度增益
 
-This component is the behavior responsible for the speed boost in the aura recipients. It too is a buff type and its creation window should look as follows.
+这个部分是负责给光环接收者提供速度提升的行为。它同样是一个增益类型，其创建窗口应如下所示。
 
-![Speed Buff Behavior Creation](./resources/087_Create_an_Aura_Ability9.png)
-*Speed Buff Behavior Creation*
+![速度增益行为创建](./resources/087_Create_an_Aura_Ability9.png)
+*速度增益行为创建*
 
-Once you've created the behavior, modify the field 'Modification -Movement Speed Multiplier' to a value of 2. This will create the speed boost in units hosting this behavior. Since each unit in the aura will individually receive this behavior, the boost will be handed out amongst the aura's entire search area through this speed buff behavior.
+创建完成后，将 `Modification -Movement Speed Multiplier` 字段改为 `2`。这样，任何持有该行为的单位都会获得速度加成。由于光环范围内的每个单位都会分别得到这个行为，整个搜索区域内的加速效果就会由这个速度增益行为分发出去。
 
-Also set the field 'Duration' to a value of 0.2. This is the lifetime of the modification in the unit, meaning that if a unit leaves the aura's area the boost will dissipate after 0.2 seconds. As a last step, set the 'Time Scale Source -- Value' to Global, as with the previous behavior. The completed fields for this behavior should match the following.
+同时，把 `Duration` 字段设为 `0.2`。这表示该修改在单位身上的持续时间，也就是说，如果某个单位离开了光环范围，它的加速效果会在 `0.2` 秒后消失。最后一步，与前一个行为一样，把 `Time Scale Source -- Value` 设为 `Global`。完成后的字段应与下图一致。
 
-[![Marine Speed Buff Fields](./resources/087_Create_an_Aura_Ability10.png)](./resources/087_Create_an_Aura_Ability10.png)
-*Marine Speed Buff Fields*
+[![陆战队员速度增益字段](./resources/087_Create_an_Aura_Ability10.png)](./resources/087_Create_an_Aura_Ability10.png)
+*陆战队员速度增益字段*
 
-## Apply Behavior Effect
+## 应用行为效果
 
-The final component is the effect that applies the speed boost buff to found allied units. This is an 'Apply Behavior' effect, and its creation screen should look as shown below.
+最后一个组成部分，是把速度增益施加到已找到友方单位身上的效果。这是一个“应用行为”效果，其创建界面应如下图所示。
 
-![Speed Buff Behavior Creation](./resources/087_Create_an_Aura_Ability11.png)
-*Speed Buff Behavior Creation*
+![速度增益行为创建](./resources/087_Create_an_Aura_Ability11.png)
+*速度增益行为创建*
 
-The only field that needs to be set here is 'Effect: Behavior.' Set it to the previously created the 'Marine Speed Buff.'
+这里唯一需要设置的字段是 `Effect: Behavior`。将它设为前面创建的 `Marine Speed Buff`。
 
-[![Setting the Behavior for Application](./resources/087_Create_an_Aura_Ability12.png)](./resources/087_Create_an_Aura_Ability12.png)
-*Setting the Behavior for Application*
+[![设置要应用的行为](./resources/087_Create_an_Aura_Ability12.png)](./resources/087_Create_an_Aura_Ability12.png)
+*设置要应用的行为*
 
-This effect will now be called on for every unit found by the 'Search Area -- Marine Speed Aura' effect. It then pushes the 'Marine Speed Buff' behavior onto each of those units, boosting their speed. At this point, the behavior's completed fields should look like the following.
+现在，每当 `Search Area -- Marine Speed Aura` 效果找到一个单位时，都会调用这个效果。随后它会把 `Marine Speed Buff` 行为施加给这些单位，从而提高它们的速度。到这一步，效果的完整字段应如下图所示。
 
-[![Apply Behavior Effect Fields](./resources/087_Create_an_Aura_Ability13.png)](./resources/087_Create_an_Aura_Ability13.png)
-*Apply Behavior Effect Fields*
+[![应用行为效果字段](./resources/087_Create_an_Aura_Ability13.png)](./resources/087_Create_an_Aura_Ability13.png)
+*应用行为效果字段*
 
-## Linking The Data Together
+## 连接这些数据
 
-Creating a large piece of data by first building each individual component is an efficient process, but it has left some holes in the connective part of the data. You can fix this now. Move back to the 'Search Area -- Marine Speed Aura' Effect and open its 'Areas -- Effect' field. Set this to the 'Apply Behavior -- Marine Speed Aura' Effect.
+先分别构建各个独立组件，是制作大型数据对象的一种高效流程，但这样也会暂时留下一些连接上的空缺。现在就来把它们补齐。回到 `Search Area -- Marine Speed Aura` 效果，打开它的 `Areas -- Effect` 字段，并将其设为 `Apply Behavior -- Marine Speed Aura` 效果。
 
 ![](./resources/087_Create_an_Aura_Ability14.png)
-*Linking Behavior Application Effect to the Search Effect*
+*将应用行为效果连接到搜索效果*
 
-You have now set the search effect to start the 'Apply Behavior' effect in each found, allied unit. To finish up, you'll need to set the aura into its source Unit, the marine. Thanks to the implementation method you've used for the aura, this is a simple process. Move to the 'Marine' in the units tab and open its 'Behaviors -- Behavior' field. Inside the pop up, hit the green + to add a behavior to the unit. Select the 'Marine Speed Aura' and hit 'Ok' through the two windows. This process is shown below.
+这样一来，搜索效果就会对每个找到的友方单位启动“应用行为”效果。最后，你还需要把这个光环设置到它的来源单位，也就是陆战队员身上。由于本文采用的光环实现方式，这一步很简单。切换到单位标签页中的 `Marine`，打开它的 `行为 -- Behavior` 字段。在弹窗中点击绿色 `+` 为单位添加一个行为，选择 `Marine Speed Aura`，然后在两个窗口中都点击 `Ok`。如下图所示。
 
-[![Adding the Aura to the Source Unit](./resources/087_Create_an_Aura_Ability15.png)](./resources/087_Create_an_Aura_Ability15.png)
-*Adding the Aura to the Source Unit*
+[![将光环添加到来源单位](./resources/087_Create_an_Aura_Ability15.png)](./resources/087_Create_an_Aura_Ability15.png)
+*将光环添加到来源单位*
 
-## Testing The Aura
+## 测试光环
 
-Your aura is now fully composed. You can confirm this by taking a look at the Data Navigator, which should give you a helpful look at the aura's whole data structure.
+现在，你的光环已经完整构建完毕。你可以查看数据导航器进行确认，它会很直观地展示整个光环的数据结构。
 
-[![Aura Data Structure](./resources/087_Create_an_Aura_Ability16.png)](./resources/087_Create_an_Aura_Ability16.png)
-*Aura Data Structure*
+[![光环数据结构](./resources/087_Create_an_Aura_Ability16.png)](./resources/087_Create_an_Aura_Ability16.png)
+*光环数据结构*
 
-You can see the following connections by looking at this visualization.
+通过这个可视化结构，你可以看出以下连接关系。
 
-  - Unit (Marine) -- Hosts the 'Marine Speed Aura' Behavior through its Behaviors -- Behavior field
+  - 单位（陆战队员） -- 通过它的 `行为 -- Behavior` 字段持有 `Marine Speed Aura` 行为
 
-  - Behavior (Marine Speed Aura) -- Applies the 'Search Area' effect with its Effect -- Periodic field
+  - 行为（Marine Speed Aura） -- 通过它的 `Effect -- Periodic` 字段施加 `Search Area` 效果
 
-  - Effect (Search Area - Marine Speed Aura) -- Applies the 'Apply Behavior' through the Areas -- Effect field
+  - 效果（Search Area - Marine Speed Aura） -- 通过 `Areas -- Effect` 字段施加 `Apply Behavior`
 
-  - Effect (Apply Behavior - Marine Speed Aura) -- Creates the 'Marine Speed Buff' via its Behavior field
+  - 效果（Apply Behavior - Marine Speed Aura） -- 通过它的 `Behavior` 字段创建 `Marine Speed Buff`
 
-  - Behavior (Marine Speed Buff) -- The end point of the aura
+  - 行为（Marine Speed Buff） -- 光环的最终落点
     
-    > This fits nicely with the design presented in the introduction to this article. Testing the project should result in the aura being created in the marine host and any units in a circular area of about two units around it. All affected units should move at about double their normal speed. They will also display a buff icon, highlighted below.
+    > 这与本文开头给出的设计结构完全吻合。测试该项目后，你应当会看到光环被创建在陆战队员宿主身上，并作用于其周围大约两格半径的圆形区域内的单位。所有受影响的单位都应以接近正常速度两倍的速度移动。同时，它们也会显示一个增益图标，如下所示。
 
-[![Apply Behavior Effect Fields](./resources/087_Create_an_Aura_Ability17.png)](./resources/087_Create_an_Aura_Ability17.png)
-*Apply Behavior Effect Fields*
+[![应用行为效果字段](./resources/087_Create_an_Aura_Ability17.png)](./resources/087_Create_an_Aura_Ability17.png)
+*应用行为效果字段*
 
-## Attachments
+## 附件
 
  * [087_Create_an_Aura_Ability.SC2Map](./maps/087_Create_an_Aura_Ability.SC2Map)

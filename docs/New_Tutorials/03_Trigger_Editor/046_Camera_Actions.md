@@ -1,57 +1,57 @@
-# Camera Actions
+# 摄像机动作
 
-The Editor's camera system offers a robust toolkit for controlling the way a player sees the game. What really unlocks this as a creative force is the addition of Camera Actions. With these you can animate cameras, transition between them, and apply a range of effects and filters. This sort of dynamic camera use allows you to incorporate a cinematic element into your project's storytelling or gameplay.
+编辑器的摄像机系统为控制玩家如何观察游戏提供了一整套强大工具。而真正让它成为创意手段的，是摄像机动作的加入。借助这些动作，你可以为摄像机制作动画、在不同镜头间切换，并施加各种效果与滤镜。这种动态摄像机用法，能让你的项目在叙事或玩法中融入电影化表现。
 
 ![](./resources/046_Camera_Actions1.png)
-*Creative Camera Angles in joecab's Optical Illusion Piece*
+*joecab 的 Optical Illusion 作品中的创意摄像机角度*
 
-## Camera Actions Listing
+## 摄像机动作列表
 
-You can access camera actions during action creation by navigating to the 'Camera' label. This will bring you to the following view.
+你可以在创建动作时进入 'Camera' 标签来访问摄像机动作，这会显示如下界面。
 
-[![Camera Actions](./resources/046_Camera_Actions2.png)](./resources/046_Camera_Actions2.png)
-*Camera Actions*
+[![摄像机动作](./resources/046_Camera_Actions2.png)](./resources/046_Camera_Actions2.png)
+*摄像机动作*
 
-The table below contains a breakdown of a selection of camera actions.
+下表对其中一部分摄像机动作进行了说明。
 
-| Action                                    | Effect                                                                                                                                                                                                                                                                                                                                                                                                |
+| 动作 | 作用 |
 | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Apply Camera Object                       | Sets a Camera as the main camera of a Player over a Duration of time, with an Initial Velocity and Decelerate setting for the transition.                                                                                                                                                                                                                                                             |
-| Apply Camera Property                     | Applies a Property to the Camera over a Duration of time, with an Initial Velocity and Decelerate setting for the transition. This will not change the camera object of that player.                                                                                                                                                                                                                  |
-| Follow Unit Group with Camera             | Toggles the follow status of a Player to Do/Do Not Do with their currently selected unit group. A camera on follow will maintain smooth, constant movement over its target.                                                                                                                                                                                                                           |
-| Lock Camera Input                         | Toggles the Lock status of a Player. This prevents the player from making any alterations to the camera. This is frequently used for cutscenes.                                                                                                                                                                                                                                                       |
-| Lock Camera Mouse Relative Mode On/Off    | Toggles the camera mouse relative mode to On/Off for a Player. This mode changes a player's mouse movements into what is effectively drag-scrolling behavior, similar to holding down the middle mouse button. It will also hide the mouse cursor. This is commonly used in conjunction with Turn Camera Mouse Rotation On/Off to create the kind of movement typically found in a first-person game. |
-| Make Camera Look At                       | Adjusts the camera for a Player to look at a target Point within a Region. This function will essentially trace the camera's target in the XY plane without disrupting any of its other features. Occurs over a Duration of time, with an Initial Velocity and Decelerate setting for the transition.                                                                                                 |
-| Make Camera Look At And Follow Actor      | Similar to a combination of Make Camera Look At and Follow Unit Group with Camera. It distinguishes itself from that combination by also accepting an Actor input.                                                                                                                                                                                                                                    |
-| Make Camera Look At And Follow Unit       | Similar to a combination of Make Camera Look At and Follow Unit Group with Camera. It distinguishes itself from that combination by also accepting a Unit input.                                                                                                                                                                                                                                      |
-| Pan Camera                                | Adjusts the camera for a Player to look at a target Point within a Region. This function will essentially trace movement in the isometric plane without disrupting any of its other features. Occurs over a Duration of time, with an Initial Velocity and Decelerate setting for the transition. If Smart panning is enabled, the camera will not pan if it is already looking at the target Point.  |
-| Restore Camera                            | Restores a camera to a previously saved configuration for a Player. Occurs over a Duration of time, with an Initial Velocity and Decelerate setting for the transition.                                                                                                                                                                                                                               |
-| Save Camera                               | Saves the current camera configurations for a Player.                                                                                                                                                                                                                                                                                                                                                 |
-| Set Camera Bounds                         | Sets the camera bounds for a group of Players to a Region. This will limit the camera's movement to inside those bounds. Selecting the Minimap parameter Do will resize it to fit the camera bounds. This is a frequent choice in the campaign for dividing a map into smaller areas that can be explored separately.                                                                                 |
-| Set Camera Mouse Rotation Speed           | Sets the Yaw or Pitch sensitivity of the camera for a Player. This is engaged when camera mouse rotation is turned on.                                                                                                                                                                                                                                                                                |
-| Set Camera Object Property                | Sets a Property of a Camera to a Value. Properties include Distance, Rotation, and Roll.                                                                                                                                                                                                                                                                                                              |
-| Set Camera Object Target                  | Sets the target of a Camera object to a Target within a Region.                                                                                                                                                                                                                                                                                                                                       |
-| Shake Camera                              | Shakes the camera for a Player. The shake is controlled along a Direction by a base Frequency that is disrupted with a Random value and lasts a Duration. If the Duration parameter is set to 0, it will shake the camera indefinitely until the Stop Shaking Camera action is used.                                                                                                                  |
-| Shake Camera Using Preset                 | Shakes the camera for a Player by selecting from a list of presets that set the Amplitude and Frequency. This shake supports a Blend In and Blend Out across its Duration.                                                                                                                                                                                                                            |
-| Stop Shaking Camera                       | Stops the camera shaking for a Player.                                                                                                                                                                                                                                                                                                                                                                |
-| Turn Camera Height Displacement On/Off    | Toggles the camera height displacement On/Off for a Player. This feature provides a height adjustment for any flying units that are currently being followed to ensure their visibility during camera zooms.                                                                                                                                                                                          |
-| Turn Camera Height Smoothing On/Off       | Toggles the camera height smoothing On/Off for a Player. This feature provides a smooth transition as the camera moves between terrain heights.                                                                                                                                                                                                                                                       |
-| Turn Camera Mouse Rotation On/Off         | Toggles the camera mouse rotation to On/Off for a Player. When this is turned on, it will make a player's drag-scroll camera movements rotate the camera in a free-look fashion rather than dragging the camera. This can be used in conjunction with Lock Camera Mouse Relative Mode On/Off to make the type of camera commonly seen in a first-person game.                                         |
-| Turn Camera Vertical Field of View On/Off | Toggles the vertical field of view to On/Off for a Player. By default, horizontal screen space is preserved between aspect ratios, while vertical space is cropped or expanded as necessary. When vertical field of view is turned on, the vertical screen space will be preserved between aspect ratios, while the horizontal space is cropped or expanded as necessary.                             |
-| Zoom Camera                               | Zoom the camera in on a location for a Player. The zoom proceeds from a DistanceFrom to a DistanceTo over a Duration.                                                                                                                                                                                                                                                                                 |
+| Apply Camera Object | 在一段 Duration 时间内，将某个 Camera 设为某个 Player 的主摄像机，并可设置过渡的 Initial Velocity 与 Decelerate。 |
+| Apply Camera Property | 在一段 Duration 时间内把某个 Property 应用于摄像机，并可设置 Initial Velocity 与 Decelerate。它不会改变该玩家当前使用的摄像机对象。 |
+| Follow Unit Group with Camera | 将某个 Player 对其当前选中单位组的跟随状态切换为 Do/Do Not Do。处于跟随状态的摄像机会平滑、持续地追随目标。 |
+| Lock Camera Input | 切换某个 Player 的锁定状态。被锁定后，玩家将无法对摄像机进行任何手动调整。这个动作常用于过场。 |
+| Lock Camera Mouse Relative Mode On/Off | 为某个 Player 打开或关闭摄像机鼠标相对模式。该模式会把鼠标移动变成类似按住中键拖拽滚屏的行为，同时也会隐藏鼠标光标。它通常会与 Turn Camera Mouse Rotation On/Off 搭配使用，以创建类似第一人称游戏中的视角控制。 |
+| Make Camera Look At | 在一段 Duration 时间内，让某个 Player 的摄像机朝向某个 Region 中的目标 Point，并可设置 Initial Velocity 与 Decelerate。它本质上会在不干扰其他属性的前提下，在 XY 平面上追踪摄像机目标。 |
+| Make Camera Look At And Follow Actor | 类似于 Make Camera Look At 和 Follow Unit Group with Camera 的组合，但它还接受一个 Actor 输入。 |
+| Make Camera Look At And Follow Unit | 类似于 Make Camera Look At 和 Follow Unit Group with Camera 的组合，但它还接受一个 Unit 输入。 |
+| Pan Camera | 在一段 Duration 时间内，让某个 Player 的摄像机朝向某个 Region 中的目标 Point，并可设置 Initial Velocity 与 Decelerate。它本质上会在等距平面上移动视角，而不影响其他摄像机特性。若启用 Smart panning，且摄像机已经朝向目标 Point，则不会再次平移。 |
+| Restore Camera | 在一段 Duration 时间内，将某个 Player 的摄像机恢复到此前保存的配置，并可设置 Initial Velocity 与 Decelerate。 |
+| Save Camera | 保存某个 Player 当前的摄像机配置。 |
+| Set Camera Bounds | 将一组 Players 的摄像机边界设置为某个 Region，从而把视角移动限制在该区域内。若 Minimap 参数选择 Do，小地图也会按摄像机边界调整大小。这在战役中经常用于把一张地图拆分成可分别探索的若干区域。 |
+| Set Camera Mouse Rotation Speed | 为某个 Player 设置摄像机的 Yaw 或 Pitch 灵敏度。该设置会在开启 camera mouse rotation 时生效。 |
+| Set Camera Object Property | 将某个 Camera 的某个 Property 设为指定 Value。属性包括 Distance、Rotation、Roll 等。 |
+| Set Camera Object Target | 将某个 Camera 对象的目标设置为某个 Region 中的 Target。 |
+| Shake Camera | 让某个 Player 的摄像机发生震动。震动沿某个 Direction，以基础 Frequency 为基础并叠加 Random 扰动，持续一个 Duration。若 Duration 参数设为 0，则会无限期震动，直到使用 Stop Shaking Camera 动作为止。 |
+| Shake Camera Using Preset | 通过从预设列表中选择 Amplitude 和 Frequency 配置，让某个 Player 的摄像机震动。该震动支持在 Duration 内进行 Blend In 和 Blend Out。 |
+| Stop Shaking Camera | 停止某个 Player 的摄像机震动。 |
+| Turn Camera Height Displacement On/Off | 为某个 Player 打开或关闭摄像机高度位移功能。该功能会对当前被跟随的飞行单位进行高度修正，以保证它们在摄像机缩放时仍清晰可见。 |
+| Turn Camera Height Smoothing On/Off | 为某个 Player 打开或关闭摄像机高度平滑功能。该功能会在摄像机跨越不同地形高度时提供平滑过渡。 |
+| Turn Camera Mouse Rotation On/Off | 为某个 Player 打开或关闭摄像机鼠标旋转。开启后，玩家的拖拽滚屏操作会变成自由视角旋转，而不是平移摄像机。它可与 Lock Camera Mouse Relative Mode On/Off 搭配使用，以实现典型第一人称游戏中的摄像机控制。 |
+| Turn Camera Vertical Field of View On/Off | 为某个 Player 打开或关闭垂直视野。默认情况下，不同宽高比之间会保留水平视野，而垂直空间会被裁切或扩展。开启垂直视野后，则会保留垂直空间，而水平空间根据需要裁切或扩展。 |
+| Zoom Camera | 让某个 Player 的摄像机对某个位置执行缩放，在一段 Duration 内从 DistanceFrom 过渡到 DistanceTo。 |
 
-## Using Camera Actions
+## 使用摄像机动作
 
-Examine the following sequence of camera actions.
+来看下面这一组摄像机动作序列。
 
-[![Camera Action Sequence](./resources/046_Camera_Actions3.png)](./resources/046_Camera_Actions3.png)
-*Camera Action Sequence*
+[![摄像机动作序列](./resources/046_Camera_Actions3.png)](./resources/046_Camera_Actions3.png)
+*摄像机动作序列*
 
-This sequence begins by removing the game UI and adding a group of marines. After that, a set of camera actions is used. A Pan Camera action places the camera at the centre of the marine pairing. This transition is made near-instantaneously by using an extremely small Duration value and no Deceleration. An Apply Camera Object action is then used to zoom the camera in by setting a small Distance value. Another Apply Camera Object then changes the camera's axis by setting the Rotation to an angle between the two marines. These properties are applied over the same near-instantaneous Duration as the previous action. The result of this action sequence is shown by the image below.
+这段序列先移除了游戏 UI，并创建了一组陆战队员。之后开始执行一系列摄像机动作。首先，Pan Camera 动作把摄像机移到这对陆战队员的中心。这个过渡通过极小的 Duration 值以及不使用 Deceleration 实现得几乎瞬间完成。接着，一个 Apply Camera Object 动作通过设置较小的 Distance 值来拉近摄像机。然后，另一个 Apply Camera Object 通过把 Rotation 设为两名陆战队员之间的角度来改变摄像机轴向。这些属性都以与前一个动作相同的近乎瞬时 Duration 应用。最终效果如下图所示。
 
-[![Custom Camera Settings with Actions](./resources/046_Camera_Actions4.png)](./resources/046_Camera_Actions4.png)
-*Custom Camera Settings with Actions*
+[![通过动作设置的自定义摄像机效果](./resources/046_Camera_Actions4.png)](./resources/046_Camera_Actions4.png)
+*通过动作设置的自定义摄像机效果*
 
-## Attachments
+## 附件
 
  * [046_Camera_Actions.SC2Map](./maps/046_Camera_Actions.SC2Map)

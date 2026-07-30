@@ -1,40 +1,40 @@
-# Finding Help
+# 寻求帮助
 
-Due to the expansive nature of game design, it's unlikely that there will ever be a single guide comprehensive enough to include everything you could want to know. This is usually best solved by interacting with a community. Reaching out to get educated and contribute can be very rewarding, as well as helping you solve your problems. Knowing where to find help in these situations is a big part of being a developer.
+由于游戏设计本身覆盖面极广，几乎不可能存在一份能囊括你所有疑问的单一指南。解决这一问题的最好方式，通常是与社区互动。主动寻求帮助、学习并回馈他人，会是非常有价值的经历，同时也能帮助你解决问题。知道该去哪里寻找帮助，是成为开发者的重要一环。
 
-## A Note On Attitude
+## 关于态度的一点提醒
 
-Before starting a discussion, try to keep in mind that you are asking for a favour from another individual. They are likely volunteering their time, so make the most of any time people give to answering your questions. You should, start out by preparing to ask for help. Carefully go over the problem and make sure the issue is not a product of frustration or exhaustion. Prepare any screenshots and information you may need to describe your problem as succinctly as possible.
+在开始讨论前，请记住你是在向别人请求帮助。对方很可能是在无偿贡献自己的时间，所以要尽量珍惜别人愿意花在你问题上的时间。你最好从“准备如何提问”开始。先仔细回顾问题本身，确认它不是单纯由挫败感或疲劳引起的误判。提前准备好截图和必要信息，以便尽可能简洁地说明问题。
 
-When asking for help, it is important to be polite and patient. While it can sometimes feel as though no one is paying you any attention, it is worth considering that it may take some time for others to assist you, especially if your problem is difficult. If it is a specific issue, it may take time for it to be found by others who have dealt with it before. If you feel you're receiving no help, it never hurts to explore in an effort to solve the problem for yourself.
+提问时，礼貌和耐心都很重要。有时你可能会感觉没人注意到你的问题，但也要意识到，其他人可能需要一些时间才能帮上忙，尤其是当问题本身比较困难的时候。如果这是一个很具体的问题，它可能需要等到曾经遇到并解决过它的人看到之后，才会得到回应。如果你觉得自己没有得到帮助，也不妨主动进一步探索，尝试自己解决问题。
 
-## Community Forums
+## 社区论坛
 
-Discussion forums can be excellent places to pick up the information you require. You can find Blizzard's official StarCraft II forums at <http://us.battle.net/sc2/en/forum/index>. There are several forums where you might find help, but you may want to start in the 'Development, Feedback and Discussion' section.
+讨论论坛往往是获取所需信息的好地方。你可以在 <http://us.battle.net/sc2/en/forum/index> 找到暴雪官方《星际争霸 II》论坛。那里有多个版块可供求助，不过你可能会希望先从 “Development, Feedback and Discussion” 版块开始。
 
 [![Blizzard's Official SC2 Forums](./resources/015_Finding_Help01.png)](./resources/015_Finding_Help01.png)
-*Blizzard's Official SC2 Forums*
+*暴雪官方 SC2 论坛*
 
-Note that these forums are divided into subforums with headings largely based on the Editor modules. Posting to the appropriate subforum can help ensure your questions find the most appropriate audience. You can also try searching community forums, perhaps the most notable of which is SC2Mapster. You can find it at the address <http://www.sc2mapster.com/forums>. There you'll want to target the 'Development' forums section. Like Blizzard's official forums, the forums there are divided into subforums.
+请注意，这些论坛通常会按照编辑器模块划分成多个子版块。将问题发到正确的子版块，能帮助你更快地找到最合适的受众。你也可以尝试搜索社区论坛，其中最知名的一个大概是 SC2Mapster，地址为 <http://www.sc2mapster.com/forums>。在那里你通常会想进入 “Development” 版块。和暴雪官方论坛一样，那里的论坛同样按主题拆分为不同子版块。
 
 [![SC2Mapster's Community Forums](./resources/015_Finding_Help02.png)](./resources/015_Finding_Help02.png)
-*SC2Mapster's Community Forums*
+*SC2Mapster 社区论坛*
 
-Whether the forums are official or not will not have any bearing on the quality of discussion, but if you have a software issue it may be best resolved on the official forums, where Blizzard employees are regular visitors. Some community sites, like SC2Mapster, also boast live chat over an IRC channel. These can be great places to ask questions with active users who can quickly guide you with your problem.
+论坛是否官方，并不一定决定讨论质量高低；但如果你遇到的是软件层面的问题，在暴雪官方论坛上往往更容易解决，因为暴雪员工也会经常浏览那里。一些社区网站，如 SC2Mapster，还提供基于 IRC 频道的实时聊天功能。这类地方很适合快速提问，活跃用户也能迅速给出方向。
 
-## Building Relationships
+## 建立关系
 
-Almost every developer needs help testing their games at some point. By volunteering to help others, you'll soon make friends. Having a strong network of developers is the best way to solve problems and learn. Later, you'll have help when the time comes to look for testers for your own project. Once you've begun to build your knowledge bank, volunteering to help with problems can help you build relationships amongst your community.
+几乎每位开发者在某个阶段都需要别人帮忙测试游戏。通过主动帮助其他人，你很快就能结交朋友。拥有一个强大的开发者网络，是解决问题和学习成长的最佳方式。等到你自己的项目需要测试者时，你也会因此更容易得到帮助。当你逐渐积累起知识储备后，主动帮别人解决问题，也会帮助你在社区中建立人际联系。
 
-## Expanding Your Search
+## 扩展你的搜索范围
 
-Another way to look for help when faced with a problem is to look for existing documentation or tutorials. You may want to focus your search on large community-based media sites. Services like YouTube boast a wealth of community tutorials built up over years.
+当你遇到问题时，另一种寻找帮助的方式是查找现有文档或教程。你可能会想把搜索重点放在大型社区媒体平台上。像 YouTube 这样的服务，经过多年积累，已经拥有非常丰富的社区教程资源。
 
-Existing StarCraft maps are perhaps the best sourcebook for educating yourself. Any maps whose status is set to 'Unlocked' may be opened, read, and changed by any Editor user. Remember to take note of the original user's wishes though, if you republish another person's work as your own you may face repercussions.
+现有的《星际争霸》地图可能是最好的自学资料库。任何状态设为 “Unlocked” 的地图，都可以由任何编辑器用户打开、阅读并修改。不过也请记得尊重原作者的意愿；如果你把别人的作品重新发布为自己的成果，可能会带来后果。
 
-Among the notable 'Unlocked' content available is Blizzard's own work made with the Editor. The entirety of the campaign has been made available to the general public for learning purposes, along with many Blizzard Arcade projects. Locate any projects via File ▶︎ Open ▶︎ Battle.net, then set the search source to 'Blizzard' and click 'Go.' This will deliver a full list of Blizzard published maps. The 'StarCraft Master,' 'Left 2 Die,' and 'Aiur Chef' maps in particular are worth investigating.
+在可供学习的 “Unlocked” 内容中，尤其值得关注的是暴雪自己使用编辑器制作的作品。整套战役都已向公众开放，供学习研究之用，另外还有许多暴雪 Arcade 项目。你可以通过 `文件 ▶︎ Open ▶︎ Battle.net` 找到这些项目，然后将搜索来源设为 `Blizzard`，点击 `Go`。这样就会列出全部由暴雪发布的地图。其中尤其值得研究的包括 `StarCraft Master`、`Left 2 Die` 和 `Aiur Chef`。
 
 [![One of Blizzard's Open Source Maps](./resources/015_Finding_Help03.png)](./resources/015_Finding_Help03.png)
-*One of Blizzard's Open Source Maps*
+*暴雪开放源地图之一*
 
-If your problem involves a more general concept, like math, physics, or design, don't hesitate to push your quest for knowledge out into those topics. More specialized websites, books, and other materials will help you learn these disciplines. You can then apply your new knowledge to game development. That way you can continue to enrich your designs with new and exciting sources of inspiration.
+如果你的问题涉及更一般性的概念，比如数学、物理或设计，也不要犹豫，把你的求知范围扩展到这些领域。更专业的网站、书籍和其他资料都能帮助你学习这些学科，然后你再把新知识应用到游戏开发中。这样你就能持续用新的、有趣的灵感来源丰富自己的设计。

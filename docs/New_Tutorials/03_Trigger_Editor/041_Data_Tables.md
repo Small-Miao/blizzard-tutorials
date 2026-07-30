@@ -1,12 +1,12 @@
-# Data Tables
+# 数据表
 
-As a project develops and scales, you'll soon find that it demands data organization beyond the use of simple variables, and beyond tools like folders, labels, and trigger libraries. For organizing large volumes of data, the Editor offers a pair of higher level data structures.
+随着项目不断发展和扩张，你很快就会发现，仅靠简单变量以及文件夹、标签、触发器库之类的工具，已经不足以组织数据。为了管理大量数据，编辑器提供了两种更高层级的数据结构。
 
-One such structure is the Array. This element is explained in more detail elsewhere in the manual, but as a refresher it's worth noting that any variable in the Editor may be transformed into an array. This will expand the variable beyond a single value into an array sized for any number of variables of a certain type, provided the size and type are defined in the Trigger Editor prior to play.
+其中一种是数组。手册其他地方已经更详细地介绍过它，不过这里还是简单回顾一下：编辑器中的任意变量都可以转换为数组。这样一来，这个变量就不再只是一个单值，而会变成一个可以容纳若干同类型变量的数组，前提是在游戏开始前就已经在触发编辑器中定义好它的大小和类型。
 
-Arrays have great utility, they are strongly typed and readily accessed. They are a mainstay of creating things with the Editor. Still, their construction is rigid. They can be made quickly, but must be well designed, since you can't change their structure during game time. For scenarios that require something more flexible, you can use the other higher level data structure, the Data Table.
+数组非常实用，它们类型明确、访问方便，是使用编辑器制作内容时的基础工具之一。不过，数组结构相对死板。它们虽然创建迅速，但必须事先设计周全，因为在游戏进行中你无法修改其结构。若场景需要更灵活的方案，就可以使用另一种高层数据结构：数据表。
 
-As their name implies, data tables order data into a table stored in the backend of a map. While you can't physically see this table, it takes the following abstract form.
+顾名思义，数据表会把数据组织成一张存储在地图后端的表。虽然你无法直接看到这张表，但它在概念上可以理解为下面这样的形式。
 
 | Name | Value |
 | ---- | ----- |
@@ -15,59 +15,59 @@ As their name implies, data tables order data into a table stored in the backend
 | Name | Value |
 | ...  | ...   |
 
-As shown above, a data table hosts data that has been entered into the table as a name-value pair. The Name classifies the data under a unique string that is set when the data is written to the table. This string serves as a handle for finding the data again, whether retrieving it for use or removing it from the table. The Value is the value of the table entry, just the same as a single variable has a value or an array component has a value. In addition to this, each entry has its own implicit Type; the type of data is set based on which trigger action is used to write the data to the table.
+如上所示，数据表通过“名称-值”对来存放数据。Name 是写入表时所指定的唯一字符串，用于给数据分类。这个字符串就像一个句柄，之后无论是再次读取数据还是把它从表中移除，都要依靠它来定位。Value 则是该表项实际存储的值，就像普通变量有值、数组元素也有值一样。此外，每个表项还带有一个隐式 Type；数据的类型取决于你当时使用的是哪种触发动作把它写入数据表。
 
-## Data Table Properties
+## 数据表的特性
 
-In contrast to arrays, the structure of data tables is not rigidly defined before game time. They may grow or shrink in size, having entries appended or removed during gameplay. Moreover, the data table itself has no type, it can contain any mixture of data types, the composition of which can be in constant flux.
+与数组不同，数据表的结构并不需要在游戏开始前固定定义。它可以在游戏过程中增长或缩小，表项可以被追加，也可以被删除。而且数据表本身没有单一类型限制，它可以同时包含混合的数据类型，并且组成内容可以持续变化。
 
-Data tables possess these properties because they do not consume a fixed, constant amount of memory, instead using something called Dynamic Memory Allocation. Under dynamic memory allocation, memory is declared and used by the table, then released when it is no longer needed. Fortunately, using the Editor means you don't really need to know the specifics of memory use. All you need to take away from this is that data tables are dynamic, while arrays are static.
+数据表之所以具备这些特性，是因为它不会占用固定且恒定的内存，而是采用一种称为动态内存分配的机制。动态内存分配意味着：需要时为表申请内存并使用，不再需要时再释放。好在使用编辑器时，你其实不必深入理解内存实现细节。你只需要记住一点：数据表是动态的，而数组是静态的。
 
-Another difference between data tables and arrays is the impact they have on performance. Since these structures operate as containers, you may already have realized that locating their contents will take the engine some amount of time. Not only is this correct, but it is a definable property. Every time a value from one these structures is used, there is a Search Time that describes how long it takes the Editor to find something in one of these containers as a product of how many things are in the container. Arrays have Linear Search Time. Every component added will linearly increase the search time. Making an array 10 times bigger, will increase the search time by 10 times too. By virtue of their name-value pairing, Data tables have Constant Search Time. Strange as it may sound, making a data table 10 times bigger will not affect its search time.
+数据表和数组之间还有一个重要区别，就是性能影响。既然它们都是容器，你大概已经能意识到，引擎在查找其内部内容时是需要花时间的。这不仅正确，而且这种开销是可以描述的。每当从这些结构中取值时，都存在一个“查找时间”，它表示编辑器在容器中找到目标所需时间会如何随容器内容量变化。数组的查找时间是线性的。每增加一个元素，查找时间就线性增长；数组大 10 倍，查找时间也会大约增加 10 倍。数据表则因为采用名称-值对的方式，拥有常数查找时间。听起来也许有些反直觉，但把数据表扩大 10 倍，并不会影响其查找时间。
 
-If this topic feels like an unwelcome glimpse into the back-end of the Editor, take heart. The important thing here is that you learn that data tables perform much better for 'large' collections of data. The exact definition of 'large' here depends on the specific project at hand, and for most 'small' amounts of data both structures will provide adequate results. As a rule of thumb for those with little experience, it is best to consider the other advantageous properties of a data structure well in advance of performance considerations. If you start seeing performance slippage in a game, adapting 'large' arrays into data tables is a clear way to seek improvements.
+如果这些内容让你觉得像是不情愿地窥探了编辑器后端，也不必担心。真正重要的是记住：面对“较大”的数据集合时，数据表的性能通常比数组更好。这里“较大”的具体界限取决于项目本身，而对于大多数“较小”的数据量，这两种结构通常都能胜任。对于经验不多的使用者，一个实用原则是：在真正考虑性能前，先优先关注数据结构在功能上的其他优势。如果你开始在游戏中观察到性能下滑，那么把“大型”数组改造成数据表，会是一条很明确的优化方向。
 
-As a last note, there is one drawback to dynamic memory allocation in the possibility of a Memory Leak. This occurs when memory is being allocated, but not being freed after use. Just as a leak in a boat will cause it to slowly take on water, a leaking data table will result in a project consuming more and more memory over time. This will cause the game to start to sink, slowing down or even crashing once no more memory resources are left to use. Keep in mind that data tables give more control during game time than arrays, but in more complex projects they can require some tidying up.
+最后还要提一点，动态内存分配也可能带来一个缺点：内存泄漏。它指的是内存已经被分配，但使用后没有被释放。正如船体漏水会让船一点点进水，一张发生泄漏的数据表也会让项目随时间消耗越来越多的内存。最终，游戏会像“下沉”一样变慢，甚至在没有可用内存资源后直接崩溃。记住，数据表在运行时给予你的控制力比数组更强，但在更复杂的项目里，它们也可能需要额外清理。
 
-## Data Table Actions
+## 数据表动作
 
-Data tables are constructed, used, and destroyed using of a set of trigger actions. These actions can be found during action creation by navigating to the 'Data Table' label, as shown below.
+数据表的创建、使用和销毁，都依赖一组触发动作。你可以在创建动作时进入 'Data Table' 标签找到它们，如下所示。
 
-[![Data Table Actions](./resources/041_Data_Tables1.png)](./resources/041_Data_Tables1.png)
-*Data Table Actions*
+[![数据表动作](./resources/041_Data_Tables1.png)](./resources/041_Data_Tables1.png)
+*数据表动作*
 
-Despite the length of this list, there are only three major actions. The length is due to one of the actions being made available in many versions. The actions are broken down in the table below.
+虽然这个列表看起来很长，但真正核心的动作只有三个。之所以显得多，是因为其中一个动作提供了许多不同版本。下表对这些动作进行了说明。
 
-| Action                  | Effect                                                                                                                                                                                                                                                                                                                                                        |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Clear Data Table        | Clears a data table, removing all of its entries. The data table is selected by specifying the Scope it is found in.                                                                                                                                                                                                                                          |
-| Remove Data Table Value | Removes a specific entry from a data table. The entry is selected by using its Name, and the Scope of the data table it is stored in.                                                                                                                                                                                                                         |
-| Save Data Table Value   | Adds an entry to a data table. The entry is written to the table by specifying its Name and Value pair, then selecting the Scope of the data table being written to. Almost every Editor data type has its own version of this action; there are 46 versions in total. Depending on the selected version, the data's Type is implicitly set within the table. |
+| 动作 | 作用 |
+| --- | --- |
+| Clear Data Table | 清空一个数据表，并移除其中所有表项。通过指定其所在的 Scope 来选择目标数据表。 |
+| Remove Data Table Value | 从数据表中移除一个指定表项。该表项通过其 Name 和所在数据表的 Scope 来定位。 |
+| Save Data Table Value | 向数据表中添加一个表项。写入时需要指定其 Name 和 Value，然后选择要写入的数据表 Scope。几乎每种编辑器数据类型都有自己的这个动作版本，总计 46 个版本。根据所选版本，数据的 Type 会被隐式写入表中。 |
 
-## Data Table Scope
+## 数据表作用域
 
-Every data table exists at a certain scope, either Global or Local. These scopes are used to target specific data tables for reading or writing data. Below is an example action, which writes the Point 'Unit Spawn' to the Global data table.
+每个数据表都存在于某个作用域中，要么是 Global，要么是 Local。读取或写入数据时，就靠这些作用域来定位具体数据表。下面的示例动作会把 Point 'Unit Spawn' 写入全局数据表。
 
-[![Writing Data to the Global Data Table](./resources/041_Data_Tables2.png)](./resources/041_Data_Tables2.png)
-*Writing Data to the Global Data Table*
+[![向全局数据表写入数据](./resources/041_Data_Tables2.png)](./resources/041_Data_Tables2.png)
+*向全局数据表写入数据*
 
-The Global data table has universal access, is singular, and always exists within a project. By contrast, Local data tables have their access tied to a single trigger. A Local data table is created once data is first written within a trigger using a Save Data Table Value action. The table will then receive any further data that is written at its scope until it is cleared. Similarly to Local variables, Local data tables are also cleared when their hosting trigger has concluded.
+全局数据表在项目中始终存在，只有一张，而且可以从任何位置访问。相对地，局部数据表只与单个触发器绑定。当你在某个触发器中第一次使用 Save Data Table Value 动作写入数据时，该触发器的局部数据表才会被创建。之后，在它被清空之前，凡是写入到这个作用域的数据都会进入同一张表。与局部变量类似，局部数据表也会在其所属触发器结束时被清空。
 
-As a result of data table scope, there are pseudo-limits on a user's ability to create and target data tables. At any location within a project's logic, only the Global table or the current trigger's Local table may be used directly. Values can be passed between triggers to access other Local scopes, which may be a key consideration in the program's design.
+由于数据表存在作用域，也就形成了某种“伪限制”，约束了用户创建和访问数据表的方式。在项目逻辑的任意位置，你只能直接访问全局数据表，或者当前触发器的局部数据表。若想访问其他触发器的局部作用域，则需要通过在触发器之间传值来实现；这往往会成为程序设计中的关键考量。
 
-The major advantage of scope is in insulating a project from memory leaks. Since Local scopes are eliminated after a trigger finishes, there is an automatic failsafe for removing or clearing data in Local data tables. The corollary to this, is that the Global data table is the main culprit for memory leaks, and you should watch it carefully if it's being used frequently in a project.
+作用域最大的好处之一，是能帮助项目隔离内存泄漏风险。因为局部作用域会在触发器结束后被销毁，所以局部数据表中的数据会自动获得一层保险机制，确保被移除或清空。反过来说，全局数据表才是内存泄漏的主要来源；如果项目中频繁使用它，就必须格外留意。
 
   
-VALUE FROM DATA TABLE FUNCTIONS -------------------------------
+从数据表取值的函数 -------------------------------
 
-Data is retrieved from data tables using a set of versioned Value From Data Table functions. You can access these during any field-filling by navigating to the 'Function' source and sorting by the 'Data Table' label, as shown below.
+从数据表中取值需要使用一组带版本的 Value From Data Table 函数。你可以在填写任意字段时，通过选择 'Function' 来源并按 'Data Table' 标签筛选来找到它们，如下所示。
 
 ![](./resources/041_Data_Tables3.png)
-*Value From Data Table Function for Points Data*
+*用于点数据的 Value From Data Table 函数*
 
-The above example shows the Value From Data Table function available for Points. This function is demonstrated in the following example.
+上面的示例展示了适用于 Point 数据的 Value From Data Table 函数。下例演示了它的使用方式。
 
 ![](./resources/041_Data_Tables4.png)
-*Reading Points Data from the Global Data Table*
+*从全局数据表读取点数据*
 
-Here, a Point has been retrieved from the Global data table, using its Name 'Unit Spawn.' It has then been set to a variable for further use.
+这里通过名称 'Unit Spawn' 从全局数据表中取出了一个 Point，然后将它赋给一个变量，以供后续使用。

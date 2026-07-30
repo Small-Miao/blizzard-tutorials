@@ -1,6 +1,6 @@
-# Cutscene Editor Introduction
+# 过场动画编辑器简介
 
-The Cutscene Editor is a set of tools that allows you to assemble, direct, and produce cutscenes using any assets available to the Editor. It serves as a studio where you can weave many elements together, including audio, visual, animation, effects, voiceover, and lighting. You can arrange set pieces that can fill many roles in your project, whether as storytelling cuts during a game, narrative cinematics for a campaign, menu screens, or even standalone films.
+过场动画编辑器是一组工具，用于利用编辑器可用的任意资源来组装、导演并制作过场动画。它就像一个工作室，你可以在其中把音频、画面、动画、效果、配音和光照等多种元素编织在一起。你可以搭建各种场景元素，让它们在项目中承担不同角色，无论是游戏过程中的叙事片段、战役剧情动画、菜单界面，还是独立短片都可以。
 
 ![](./resources/079_Cutscene_Editor_Introduction1.png)
-*Cinematic Cutscenes Building into Game Assets*
+*电影式过场动画构建为游戏资源*

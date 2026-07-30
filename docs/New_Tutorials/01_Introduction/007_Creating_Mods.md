@@ -1,52 +1,52 @@
-# Creating Mods
+# 创建模组
 
-Although map files are always the final product of the Editor, mod files are the real heart of any project. By separating data from the constructed map, mods allow for projects that can be more freely developed and shared. This relationship goes beyond ease of use. Mods expand the possibilities of projects to extents that have never been possible in a Blizzard Editor. The best way to discover this is by experimenting with the Editor's ability to construct, combine, and utilize mods.
+虽然地图文件始终是编辑器的最终产物，但模组文件才是真正构成项目核心的部分。通过把数据从已搭建的地图中分离出来，模组让项目能够更自由地开发和分享。这种关系不只是提高易用性而已。模组将项目的可能性扩展到了以往任何暴雪编辑器都无法实现的程度。理解这一点的最好方式，就是亲自尝试编辑器在构建、组合和使用模组方面的能力。
 
-## Building A Basic Mod
+## 创建一个基础模组
 
-Create a new document by navigating to File ▶︎ New. This launches the 'New Document' window, in which you should choose to create a 'Dependent Mod.' Click 'Next' to proceed to the 'Choose Dependencies' heading, select 'Custom,' then click 'OK.' Now use the Terrain Module to navigate to Mod ▶︎ Mod Info, launching the 'Mod Properties Window.' There, enter the title 'Tutorial Dependency' into the 'Name' field. You can also enter a description stating that, 'This is a tutorial dependency.' Use the image below as a guide.
+通过 `文件 ▶︎ 新建` 创建新文档。这会打开“新建文档”窗口，你应选择创建 “依赖模组”。点击 “Next” 进入 “选择依赖项”，选择 “Custom”，然后点击 “OK”。接着回到地形模块，前往 `模组 ▶︎ Mod Info`，打开“模组属性窗口”。在那里，在 “Name” 字段中输入标题 `教程依赖项`。你也可以在说明中填写 `这是一个教程依赖项。`。可参考下图操作。
 
 [![Mod Creation & Configuration Order](./resources/007_Creating_Mods01.png)](./resources/007_Creating_Mods01.png)
-*Mod Creation & Configuration Order*
+*模组创建与配置顺序*
 
-You have now created a simple mod. The 'Dependent Mod' is the basic mod type. Its name comes from the fact that any map inserted into a mod enters into a relationship known as a Dependency. When you selected 'Custom' under the 'Choose Dependencies' view and left it blank, the mod file was set to have no base dependencies. An empty mod is the best starting point for an entirely custom starting project. The only information in your mod is the few details included in the last step.
+现在你已经创建了一个简单模组。“依赖模组” 是最基础的模组类型。它之所以叫这个名字，是因为任何地图一旦插入模组中，就会与之形成一种称为 依赖项 的关系。当你在 “选择依赖项” 视图中选择 “Custom” 且保持空白时，这个模组文件就被设定为没有基础依赖项。一个空模组是开启完全自定义项目的最佳起点。此时模组中仅包含你上一步填写的少量信息。
 
-Save your mod to your preferred location under the name 'Tutorial Dependency.' StarCraft assigns the .SC2Mod file extension to mods.
+将模组保存到你希望的位置，名称设为 `教程依赖项`。StarCraft 会为模组分配 `.SC2Mod` 文件扩展名。
 
-## Adding Data To A Mod
+## 向模组中添加数据
 
-A mod's eventual purpose is to be a container for assets. You can learn more about this by populating your basic mod with some triggers. Note that a mod file will require a trigger library to hold its triggers. This is not the case for map files, which can support triggers that are outside of a library.
+模组最终的用途是作为资源容器。为了更直观地理解这一点，你可以先往这个基础模组里加入一些触发器。注意，模组文件需要一个触发器库来承载触发器；地图文件则不同，它们支持库外触发器。
 
-Move to the **Trigger Module**, here you'll create the Trigger Library. Do so by right-clicking on the **Triggers Panel** and navigating to Library ▶︎ New Library. The new library will appear in the List Panel. Rename it to Tutorial Library. Now add an action definition by selecting the Trigger Panel again, navigating to New ▶︎ New Action Definition. Rename this definition to 'Dependency Message.' In this action definition, add a new action via Actions ▶︎ Debug Message. Finally, change the text field of this action to, 'This is a message from the dependency.' You should end up with something that looks like the image below.
+切换到**触发模块**，在这里创建触发器库。方法是在**触发器面板**上右键，然后前往 `库 ▶︎ 新建库`。新建的库会出现在列表面板中。将它重命名为 `Tutorial Library`。然后再次选中触发器面板，前往 `新建 ▶︎ 动作定义`，添加一个动作定义，并将其重命名为 `依赖项消息`。在这个动作定义中，通过 `动作 ▶︎ 调试消息` 添加一个新动作。最后，把该动作的文本字段改为 `这是一条来自依赖项的消息。`。完成后应类似下图。
 
-[![Mod's Trigger Library](./resources/007_Creating_Mods02.png)](./resources/007_Creating_Mods02.png)
-*Mod's Trigger Library*
+[![模组的触发器库](./resources/007_Creating_Mods02.png)](./resources/007_Creating_Mods02.png)
+*模组的触发器库*
 
-## Using A Mod As A Dependency
+## 将模组作为依赖项使用
 
-Now that you've set up your mod file, you'll need to create a new map file to test it as a dependency. You can do so by navigating to File ▶︎ New ▶︎ Arcade Map. Click 'Reset to Defaults' on the terrain screen, and save this map as 'Tutorial Mod Test.'
+现在模组文件已经设置好，你需要再创建一个新地图文件来测试它作为依赖项的效果。方法是前往 `文件 ▶︎ 新建 ▶︎ Arcade 地图`。在地形界面点击 “重置为默认值”，然后将这张地图保存为 `Tutorial Mod Test`。
 
-To add a mod as a dependency to this map, navigate to File ▶︎ Dependencies. Based on the default map configuration, the 'Liberty (Mod)' standard dependency has already been included. Since you want to add a custom mod, select 'Add Other.'
+要为这张地图添加模组依赖项，请前往 `文件 ▶︎ 依赖项`。由于地图使用的是默认配置，标准依赖项 `Liberty (Mod)` 已经自动包含在内。因为你现在想添加的是自定义模组，所以请选择 “添加其他项”。
 
-[![Dependency Adding View](./resources/007_Creating_Mods03.png)](./resources/007_Creating_Mods03.png)
-*Dependency Adding View*
+[![添加依赖项视图](./resources/007_Creating_Mods03.png)](./resources/007_Creating_Mods03.png)
+*添加依赖项视图*
 
-This will launch a 'Choose Document' window that gives access to mod files both stored locally and on Battle.net. In this case, you've already saved the desired mod file locally. Find it using the supplied file browser and click 'OK,' after which you'll be sent back to dependency selection screen.
+这会打开“选择文档”窗口，在这里可以访问本地和 Battle.net 上存储的模组文件。在本例中，你要用的模组文件已经保存在本地。用内置文件浏览器找到它并点击 “OK”，之后你会回到依赖项选择界面。
 
-[![Custom Dependency Added](./resources/007_Creating_Mods04.png)](./resources/007_Creating_Mods04.png)
-*Custom Dependency Added*
+[![已添加自定义依赖项](./resources/007_Creating_Mods04.png)](./resources/007_Creating_Mods04.png)
+*已添加自定义依赖项*
 
-Finish adding the dependency by hitting 'OK,' then reopen the Trigger Module. Now is a good time to make sure you enable library viewing, which you can do from View ▶︎ Show Libraries. The trigger assets within your custom mode should be visible now and ready for use. In the List Panel at the top, you'll see that there are libraries of triggers titled Built-In, Liberty, and Tutorial Library.
+点击 “OK” 完成依赖项添加，然后重新打开触发模块。现在最好确认已启用库显示，可通过 `视图 ▶︎ 显示库` 打开。此时你自定义模组中的触发器资源应该已经可见并可供使用了。在顶部列表面板中，你会看到名为 内置、Liberty 和 Tutorial Library 的触发器库。
 
 ![Imported Library from Mod](./resources/007_Creating_Mods05.png)
-*Imported Library from Mod*
+*从模组导入的库*
 
-Test the dependency's functionality by adding a 'Dependency Message' action to the Melee Initialization trigger in the map. Right-click under the 'Actions' heading, then navigate to New ▶︎ New Action ▶︎ Dependency Message. Note that the imported action definition will show its source as 'Tutorial Library,' rather than the Blizzard libraries 'Built-in' or 'Liberty.' From here, delete all of the extraneous default melee actions. This will leave you with the following setup.
+为了测试依赖项是否生效，请在地图中的 `近战初始化` 触发器里加入一个 `依赖项消息` 动作。在 “Actions” 标题下右键，然后前往 `新建 ▶︎ 动作 ▶︎ 依赖项消息`。注意，导入的动作定义其来源会显示为 `Tutorial Library`，而不是暴雪提供的 `内置` 或 `Liberty` 库。接着，把多余的默认对战动作全部删除。这样你应该会得到如下设置。
 
-[![Dependency Action Definition in Use](./resources/007_Creating_Mods06.png)](./resources/007_Creating_Mods06.png)
-*Dependency Action Definition in Use*
+[![依赖项 Action Definition in Use](./resources/007_Creating_Mods06.png)](./resources/007_Creating_Mods06.png)
+*依赖项动作定义的使用方式*
 
-Running your document as a test should now deliver a result similar to the image below.
+现在运行“测试文档”，应当会得到与下图类似的结果。
 
-[![Output from Dependency Library](./resources/007_Creating_Mods07.png)](./resources/007_Creating_Mods07.png)
-*Output from Dependency Library*
+[![依赖项库输出结果](./resources/007_Creating_Mods07.png)](./resources/007_Creating_Mods07.png)
+*依赖项库输出结果*

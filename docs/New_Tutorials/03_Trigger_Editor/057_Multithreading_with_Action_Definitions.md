@@ -1,20 +1,20 @@
-# Multithreading With Action Definitions
+# 使用动作定义实现多线程
 
-Multithreading is a computer science term that refers to a processing unit's ability to execute multiple actions at once. Traditionally, the standard behavior of a computer program is to execute all of its actions sequentially, one after another. By disrupting this behavior, multithreading allows a processor to perform actions in parallel, handling many tasks at the same time, each in what's known as a Thread. Take the following example of a linear operation system.
+多线程是计算机科学中的一个术语，指处理单元能够同时执行多个动作的能力。传统上，计算机程序的标准行为是按顺序执行所有动作，一个接一个地完成。多线程打破了这种行为，让处理器能够并行处理多个任务，同时推进许多工作单元，而每一个工作单元都称为一个 Thread。先看下面这个线性运作系统的例子。
 
-> Task 1 Start
+> 任务 1 开始
 > 
 > ...
 > 
-> Task 1 Complete
+> 任务 1 完成
 > 
-> Task 2 Start
+> 任务 2 开始
 > 
 > ...
 > 
-> Task 2 Complete
+> 任务 2 完成
 > 
-> Task 3 Start
+> 任务 3 开始
 > 
 > ...
 > 
@@ -22,131 +22,131 @@ Multithreading is a computer science term that refers to a processing unit's abi
 > 
 > ...
 
-Each of these tasks take some time to complete, and the system is only capable of working on one at a time. A multithreaded system taking on the same tasks might look more like the setup below.
+这些任务都需要一定时间才能完成，而系统一次只能处理一个。若是同样的任务交给一个多线程系统，看起来可能更像下面这样。
 
-> Task 1 Start Task 2 Start
+> 任务 1 开始 任务 2 开始
 > 
 > ... ...
 > 
-> Task 1 Complete Task 2 Complete
+> 任务 1 完成 任务 2 完成
 > 
-> Task 3 Start Task 4 Start
+> 任务 3 开始 任务 4 开始
 > 
 > ... ...
 > 
-> ... Task 4 Complete
+> ... 任务 4 完成
 > 
-> ... Task 5 Start
+> ... 任务 5 开始
 
-In this scenario, multithreading has allowed a variety of shorter tasks to be organized into a separate thread. This has prevented the system from being gummed up by the long Task 3, allowing the entirely new Task 4 and Task 5 to be considered in the same time frame. Systems capable of multithreading have many advantages. For one, they can work efficiently by breaking large tasks into smaller chunks that can be worked on concurrently. In a gameplay context, multithreading is important for its performance advantages, but also for its ability to open up different ways of programming that can result in entirely new mechanics and gameplay.
+在这个场景中，多线程把多个较短任务安排进了独立线程，因此系统不会因为耗时很长的任务 3 而卡住，反而能在同一时间段内继续接纳全新的任务 4 和任务 5。具备多线程能力的系统有很多优势。其一，它可以把大任务切成更小的片段并发处理，从而更高效地工作。在游戏玩法语境下，多线程的重要性不仅在于性能优势，也在于它能开启不同的编程方式，从而带来全新的机制和玩法。
 
-## Processing In The Editor
+## 编辑器中的处理方式
 
-By now you are probably fairly familiar with the way logic in the Trigger Editor is executed. A trigger is called, then its internals, actions, and control statements are run sequentially. Then the trigger closes, proceeding on to the next in line. If a separate trigger or action definition is called from a source trigger, then linear control is passed, but ultimately it returns to its original source, running sequentially until exhausted.
+到现在为止，你应该已经相当熟悉触发编辑器里逻辑的执行方式了。一个触发器被调用，然后它内部的内容、动作和控制语句按顺序执行。等这个触发器结束后，才轮到下一个。如果一个源触发器调用了另一个触发器或动作定义，那么线性控制权会转移过去，但最终仍会回到原始来源，并继续顺序执行直到结束。
 
-As such, triggers in the Editor operate as a standard, linearly processed system. While this might not be accurate behind the scenes of the code, where things are optimized to make use of multi-core systems, ultimately this article concerns the front end tools of the Editor. After all, the front end of the Editor is designed to be an intuitive tool in which you can concentrate on designing and building your project, rather than its precise programming details.
+因此，就前端工具层面而言，编辑器中的触发器系统本质上仍然是线性处理的。后台代码如何利用多核系统做优化，也许并不完全如此，但本文关注的是编辑器的前端工具。毕竟，编辑器前端的设计目标，是让你专注于项目的设计与构建，而不是去纠结那些精确的底层编程细节。
 
-## Action-Definition Threads
+## 动作定义线程
 
-Still, the Editor is an inclusive system, and just as it offers an intuitive front end for a wide range of users, it also has support for multithreading to give advanced users the chance to make use of non-linear processing. Multithreading is accessed through the use of specially flagged action definitions. The flag option is shown below.
+尽管如此，编辑器仍然是一个兼容性很强的系统。它既为广泛用户群体提供了直观的前端，也为高级用户保留了多线程支持，使其能够利用非线性处理。多线程是通过带有特殊标记的动作定义来访问的。这个标记选项如下图所示。
 
 ![](./resources/057_Multithreading_with_Action_Definitions1.png)
-*Multithreading Option within Action Definition*
+*动作定义中的多线程选项*
 
-Setting the Create Thread flag within an action definition causes the definition to be moved into a separate thread and handled in parallel to the rest of the code whenever it is called. The operation of these action definition threads themselves can be tracked and examined through the Trigger Debugger.
+在动作定义中启用 `Create Thread` 标记后，每当该定义被调用时，它都会被移入一个独立线程，与其余代码并行处理。你还可以通过触发调试器来跟踪和检查这些动作定义线程的实际运行情况。
 
-## Using Multithreading
+## 使用多线程
 
-Open the demo map provided with this article and move into the Trigger Editor. Opening the 'Spawn Exploding Marine' action definition will present you with the following.
+打开本文附带的演示地图并进入触发编辑器。打开 `Spawn Exploding Marine` 动作定义后，你会看到如下内容。
 
-[![Demo Map View](./resources/057_Multithreading_with_Action_Definitions2.png)](./resources/057_Multithreading_with_Action_Definitions2.png)
-*Demo Map View*
+[![演示地图视图](./resources/057_Multithreading_with_Action_Definitions2.png)](./resources/057_Multithreading_with_Action_Definitions2.png)
+*演示地图视图*
 
-This definition creates a marine at the map's center, issues it a move command, scales it over the course of five seconds, and finishes by detonating it after five seconds. Turn your attention to the trigger calling this definition, as shown in the image below.
+这个定义会在地图中央创建一个陆战队员，给它下达移动命令，在五秒内逐渐放大其尺寸，并在五秒后引爆它。接着把注意力转向调用这个定义的触发器，如下图所示。
 
-[![Control Looping Trigger](./resources/057_Multithreading_with_Action_Definitions3.png)](./resources/057_Multithreading_with_Action_Definitions3.png)
-*Control Looping Trigger*
+[![控制循环触发器](./resources/057_Multithreading_with_Action_Definitions3.png)](./resources/057_Multithreading_with_Action_Definitions3.png)
+*控制循环触发器*
 
-This trigger starts immediately on opening the map and begins calling the 'Spawn Exploding Marine' action definition once every second. Logically this should result in about five active marines on the map, undergoing the moving, scaling, and exploding behavior. A trial of the map will give the result shown in the image below.
+这个触发器会在地图打开后立刻启动，并且每秒调用一次 `Spawn Exploding Marine` 动作定义。按逻辑来说，这应该会让地图上同时存在大约五个陆战队员，分别处于移动、放大和爆炸这一整套行为之中。实际测试地图时，你会得到如下图所示的结果。
 
-[![Single Marine in Motion](./resources/057_Multithreading_with_Action_Definitions4.png)](./resources/057_Multithreading_with_Action_Definitions4.png)
-*Single Marine in Motion*
+[![移动中的单个陆战队员](./resources/057_Multithreading_with_Action_Definitions4.png)](./resources/057_Multithreading_with_Action_Definitions4.png)
+*移动中的单个陆战队员*
 
-When testing this implementation, you will see that only a single Marine is spawned at a time, with a period of about six seconds between each spawn. This is due to the fact that the main thread, the looping trigger, will pass linear control to the action definition it is calling. From there, the action definition blocks all other triggers from running until it's finished. This behavior clearly shows the standard, linear processing behavior of the trigger system. To change this, move to the action definition and enable multithreading, as shown below.
+测试这一实现时，你会发现一次只会生成一个陆战队员，而且两次生成之间大约会相隔六秒。这是因为主线程，也就是那个循环触发器，会把线性控制权交给它正在调用的动作定义。从那一刻起，这个动作定义会阻塞其他所有触发器，直到自己执行完毕。这个行为清楚地展示了触发器系统的标准线性处理方式。要改变它，回到动作定义并启用多线程，如下图所示。
 
-[![Multithreaded Action Definition](./resources/057_Multithreading_with_Action_Definitions5.png)](./resources/057_Multithreading_with_Action_Definitions5.png)
-*Multithreaded Action Definition*
+[![多线程动作定义](./resources/057_Multithreading_with_Action_Definitions5.png)](./resources/057_Multithreading_with_Action_Definitions5.png)
+*多线程动作定义*
 
-If you test the newly multithreaded action definition, you should end up with something like the image below.
+如果你测试启用了多线程的新动作定义，结果应该会类似下图。
 
 ![](./resources/057_Multithreading_with_Action_Definitions6.png)
-*Many Marine Spawning Actions via Multithreading*
+*通过多线程产生的大量陆战队员生成动作*
 
-Now a new thread is opened for every call of the action definition. Since the thread takes about five seconds to run, the loop manages about five active threads, each separated by around a second. Knowing that the marines get larger the longer their thread has been open means that they serve as a great visualization of exactly how the system is managing many threads at once.
+现在，每一次调用这个动作定义都会开启一个新线程。由于每个线程大约运行五秒，因此这个循环会同时维持大约五个活动线程，每个线程的启动时间相隔约一秒。又因为陆战队员会随着线程持续时间越长而变得越大，所以它们也成了一个非常直观的可视化手段，能够展示系统究竟是如何同时管理多个线程的。
 
-## Implementation
+## 实现方式
 
-In actuality, the Editor's implementation of multithreading is kind of a pseudo or impure version of the concept. While a true multithreading implementation will be able to concurrently handle multiple tasks, the Editor instead handles them through a method known as Time-Slicing.
+实际上，编辑器对多线程的实现更像是一种伪多线程，或者说并不纯粹的多线程。真正的多线程实现能够并发处理多个任务，而编辑器采用的则是一种称为时间切片（Time-Slicing）的方法。
 
-In the Editor's version of time-slicing, a thread-enabled action definition will run as typically expected when called. Linear control will be passed to it, its statements will run sequentially, and then control will pass back to the original parent caller. The difference lies in what happens when it reaches a wait control statement. If it does, control is interrupted and then passed back to the parent thread until the wait has been resolved, at which point control will come back to the threaded definition.
+在编辑器的时间切片版本中，一个启用了线程的动作定义在被调用时，起初的运行方式和普通定义并没有区别。线性控制权会转移给它，它的语句会顺序执行，然后控制权再返回给原始的父调用者。差异出现在它遇到等待控制语句的时候。如果遇到等待，控制权就会被中断并交还给父线程，直到等待结束后，控制权才会回到这个线程化定义。
 
-This differs from a non-threaded definition, which will hold on to control until the wait resolves. As such, the Editor is 'faking' multithreading by very rapidly switching linear control. This allows it to avoid wait statements creating full stops in the code and, as a result, it gives the impression of non-linear processing.
+这与非线程化定义不同，后者会一直占有控制权，直到等待结束。也就是说，编辑器是通过极快地切换线性控制权来“模拟”多线程。这样就避免了等待语句把代码彻底卡住，因此从外观上看会给人一种非线性处理的印象。
 
-Still, giving users the ability to bypass wait statements like this means that the Editor's pseudo-multithreading boasts a lot of the utility that has been touted for the concept. It can still offer unique or more intuitive ways to program certain effects, and can serve as a valuable organizational tool. However, there is one important drawback: performance.
+即便如此，允许用户以这种方式绕过等待语句，依然使得编辑器的伪多线程具备了人们通常赋予这一概念的很多实用性。它仍然可以提供一些独特或更直观的编程方式，用来实现某些效果，也可以成为很有价值的组织工具。不过，这里有一个重要缺点：性能。
 
-Since no real parallel execution happens in the Editor's multithreading, there is no specific positive impact on performance. In fact, because of the added internal work of this option, multithreading in the Editor will usually have a negative impact on performance. This is important to keep in mind, since it disagrees with most of the general definitions of the concept.
+由于编辑器中的多线程并不存在真正的并行执行，因此它不会带来明确的正向性能收益。事实上，因为这一选项会引入额外的内部工作，编辑器中的多线程通常反而会对性能产生负面影响。这一点非常重要，因为它和大多数关于多线程的一般定义恰好相反。
 
-## Multithreading With Galaxy Script Triggers
+## 使用 Galaxy 脚本触发器实现多线程
 
-Galaxy offers some unique multithreading support through the TriggerExecute native function. When executing a trigger directly with this function, you can specify a parameter that sets the target trigger to run in its own thread. The drawback here is that triggers have no parameter inputs, making them less useful than action definitions in most cases.
+Galaxy 通过原生函数 `TriggerExecute` 提供了一种独特的多线程支持。直接使用这个函数执行某个触发器时，你可以指定一个参数，让目标触发器在自己的线程中运行。问题在于，触发器本身没有参数输入，因此在大多数情况下，它不如动作定义好用。
 
-## Multithreading Mechanics
+## 多线程机制
 
-If you're an advanced user, you can gain insight into multithreading by examining the Galaxy script implementation. Turn your attention back to the demo map and disable the 'Spawn Exploding Marine' trigger and action definition by highlighting them, then right-clicking and unchecking 'Enabled.' Now, look to the trigger 'Print Number' and its associated action definition. The trigger calls the action definition pictured below.
+如果你是高级用户，可以通过查看 Galaxy 脚本实现来理解多线程。把注意力重新放回演示地图，选中 `Spawn Exploding Marine` 触发器和动作定义，右键后取消勾选 `Enabled`，从而禁用它们。然后查看 `Print Number` 触发器及其对应的动作定义。该触发器会调用下图所示的动作定义。
 
-[![Print Number Action Definition](./resources/057_Multithreading_with_Action_Definitions7.png)](./resources/057_Multithreading_with_Action_Definitions7.png)
-*Print Number Action Definition*
+[![Print Number 动作定义](./resources/057_Multithreading_with_Action_Definitions7.png)](./resources/057_Multithreading_with_Action_Definitions7.png)
+*Print Number 动作定义*
 
-The action definition sends a simple debug message to the screen. Notice that it is not currently set to be multithreaded. You can use this trigger and definition as a simplest possible test trial for examining the multithreading implementation. To do so, run the map in windowed mode, then launch the Trigger Debugger. Once inside the debugger, move to the Triggers Tab and right-click the gt\_PrintNumber\_Func trigger, then select 'View Script.' This will show the standard action definition script as follows.
+这个动作定义只是向屏幕输出一条简单的调试消息。注意，它当前还没有启用多线程。你可以把这个触发器和定义当作最简单的实验样例，用来观察多线程实现。为此，请以窗口模式运行地图，然后启动触发调试器。进入调试器后，切换到 Triggers 标签，右键 `gt_PrintNumber_Func` 触发器，然后选择 `View Script`。这会显示该动作定义在标准模式下生成的脚本，如下所示。
 
-[![Standard 'Print Number' Script](./resources/057_Multithreading_with_Action_Definitions8.png)](./resources/057_Multithreading_with_Action_Definitions8.png)
-*Standard 'Print Number' Script*
+[![标准的 'Print Number' 脚本](./resources/057_Multithreading_with_Action_Definitions8.png)](./resources/057_Multithreading_with_Action_Definitions8.png)
+*标准的 'Print Number' 脚本*
 
-The script here is simple. It generates one void return function, the format of which matches that of the action definition in the GUI. This function is then called by the 'Print Number' trigger. Now, return to the Trigger Editor and enable multithreading in the 'Print Number' action definition by selecting the Create Thread flag. Repeating the same debug procedure will give the following result.
+这里的脚本很简单。它生成了一个返回 `void` 的函数，格式与 GUI 中的动作定义相对应。然后，这个函数会被 `Print Number` 触发器调用。现在回到触发编辑器，在 `Print Number` 动作定义中勾选 `Create Thread` 标记以启用多线程。重复同样的调试流程后，你会看到如下结果。
 
-[![Multithreaded 'Print Number' Script](./resources/057_Multithreading_with_Action_Definitions9.png)](./resources/057_Multithreading_with_Action_Definitions9.png)
-*Multithreaded 'Print Number' Script*
+[![启用多线程后的 'Print Number' 脚本](./resources/057_Multithreading_with_Action_Definitions9.png)](./resources/057_Multithreading_with_Action_Definitions9.png)
+*启用多线程后的 'Print Number' 脚本*
 
-In this case, the script is far more complex, consisting of many automatically generated components. A breakdown of these components is shown below.
+这一次，脚本复杂得多，由许多自动生成的组件构成。下面逐项拆解这些组件。
 
-1.  One global variable for each parameter of the action definition, matching its original type.
+1.  为动作定义的每个参数生成一个全局变量，类型与原参数一致。
     
     > int auto\_gf\_PrintNumber\_lp\_number
 
-2.  A global trigger variable with an initial value of Null.
+2.  一个初始值为 无 的全局 trigger 变量。
     
     trigger auto\_gf\_PrintNumber\_Trigger = null
 
-3.  A bool trigger function with two boolean parameters; this contains every action defined in the GUI and one implicitly generated local variable for each threaded action definition parameter.
+3.  一个带有两个 boolean 参数的 bool 触发器函数；其中包含 GUI 中定义的全部动作，以及为每个线程化动作定义参数隐式生成的一个局部变量。
     
     > bool auto\_gf\_PrintNumber\_TriggerFunc (bool testConds, bool runActions) {
     > 
     > int lp\_number = auto\_gf\_PrintNumber\_lp\_number;
 
-4.  A wrapper function that accepts the action definition's parameters.
+4.  一个接收动作定义参数的包装函数。
     
     > gf\_PrintNumber(123)
 
-Knowing these pieces, the mechanism acts as follows.
+理解了这些部件之后，整体机制如下。
 
-  - The wrapper function in 4 runs, first copying its parameter values to the global parameter variables in 1.
-  - The wrapper function then checks if the global trigger variable in 2 is null. If so, it creates a new trigger based on 3, and assigns it to 2.
-  - The function in 2 now executes in its own thread, obtaining the parameters from 1 and making local copies.
+  - 第 4 步中的包装函数先运行，首先把自己的参数值复制到第 1 步中的全局参数变量里。
+  - 接着，包装函数会检查第 2 步中的全局 trigger 变量是否为 null。如果是，就基于第 3 步创建一个新触发器，并把它赋值给第 2 步中的变量。
+  - 然后，第 2 步中的函数会在自己的线程中执行，从第 1 步取出参数，并复制出局部版本。
 
-Note that the global in 1 serves as temporary storage, so it could be accessed from the trigger. At this point, creating local versions allows the thread to operate in parallel, insulated from any cases where the variables change.
+注意，第 1 步中的全局变量只是临时存储，因此触发器需要通过它来读取参数。到了这一步，再创建局部副本，就能让该线程在并行运行时不受后续变量变化的影响。
 
-By now you can no doubt see the added complexity of the threaded version shown here. As a result of this increase in code size, multithreaded action definitions perform at a significant deficit when compared to their unthreaded variety.
+看到这里，你应该已经能明确感受到线程化版本额外增加的复杂度了。正是由于代码体量显著膨胀，多线程动作定义在性能上会明显落后于未线程化的版本。
 
-## Attachments
+## 附件
 
  * [057_Multithreading_with_Action_Definitions.SC2Map](./maps/057_Multithreading_with_Action_Definitions.SC2Map)

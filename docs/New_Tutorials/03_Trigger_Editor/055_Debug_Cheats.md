@@ -1,28 +1,26 @@
-# Debug Cheats
+# 调试作弊
 
-Cheat codes were originally intended as testing elements for developers. When games began to be ship with these codes still included, they became a favorite for players to experiment with and use as shortcuts past irksome obstacles. Although player-side cheats like GreedIsGood and Black Sheep Wall still exist in StarCraft II, there are many more cheats that you can enable to ease development and testing of your projects. Below you'll find a list of these debug cheats for easy reference.
+作弊码最初是为开发者准备的测试元素。后来，随着一些游戏在正式发布时仍保留了这些代码，它们也成了玩家乐于尝试、并用来跳过烦人障碍的捷径。虽然像 `GreedIsGood` 和 `Black Sheep Wall` 这样的玩家侧作弊码在《星际争霸 II》中依然存在，但你还可以启用更多作弊码，以便更轻松地开发和测试自己的项目。下面整理了一份这类调试作弊码列表，方便查阅。
 
-## Test Document Cheats
+## 测试文档作弊码
 
-When testing a document from the editor, the Test Document Cheats are available. These are special chat commands that allow for game-time actions like creating units and modifying resources. They save developers from having to hand design special triggers for commonly performed testing tasks. **See complete [list of debug cheats in StarCraft II](https://sc2mapster.wiki.gg/wiki/Debug_Commands)**.
+从编辑器测试文档时，可以使用测试文档作弊码。这些特殊聊天命令允许你在游戏过程中执行创建单位、修改资源等操作，省去了为常见测试任务手工设计专用触发器的麻烦。**请参阅完整的 [StarCraft II 调试作弊码列表](https://sc2mapster.wiki.gg/wiki/Debug_Commands)**。
 
-An example trial of some of these test document cheats is shown below.
+下图展示了其中一些测试文档作弊码的实际试用效果。
 
-[![Test Document Cheats](./resources/055_Debug_Cheats1.png)](./resources/055_Debug_Cheats1.png)
-*Test Document Cheats*
+[![测试文档作弊码](./resources/055_Debug_Cheats1.png)](./resources/055_Debug_Cheats1.png)
+*测试文档作弊码*
 
-It should be noted that there is no way to enable these cheats for multiplayer tests. Should you require something similar, you'll need to devise a custom solution. If some mixture between private and public testing is desired, it is recommended to limit access to cheats to yourself as the developer and trusted parties only. This can be done with secrecy, but a better method is to use player handles and make a check of them upon either entering the game or within the conditions of each cheat trigger. Doing so will ensure that only a hardcoded list of players has access to your equivalent of test document cheats in multiplayer trials. You can see one example a system like this below.
+需要注意的是，这些作弊码无法用于多人测试。如果你需要类似能力，就必须设计一套自定义方案。如果你想在私测与公测之间做某种折中，建议只向你自己这个开发者以及受信任对象开放作弊权限。你可以通过保密来做到这一点，但更好的办法是使用玩家句柄，并在玩家进入游戏时，或在每个作弊触发器的条件中，对这些句柄进行检查。这样就能保证只有一份硬编码玩家列表中的成员，才能在多人测试中使用你自制的“测试文档作弊码”。下图展示了这样一套系统的一个示例。
 
-[![Multiplayer Test Document Cheats](./resources/055_Debug_Cheats2.png)](./resources/055_Debug_Cheats2.png)
-*Multiplayer Test Document Cheats*
+[![多人测试文档作弊码](./resources/055_Debug_Cheats2.png)](./resources/055_Debug_Cheats2.png)
+*多人测试文档作弊码*
 
-## Actor Cheats
+## Actor 作弊码
 
-When testing a document from the editor, Actor Cheats are also available. These cheats provide a number of ways to create and control Actors without needing to create custom testing provisions. It should be noted that
+从编辑器测试文档时，Actor 作弊码同样可用。这些作弊码提供了多种创建和控制 Actor 的方法，而不需要你专门编写自定义测试机制。需要注意的是，Actor 作弊码是调试 Actor 的唯一方式，因为触发调试器由于其异步特性，完全不会包含任何 Actor 信息。Actor 作弊码与测试文档作弊码类似，都是通过在游戏内聊天中输入文本来启用。
 
-actor cheats are the only way to debug actors, as the Trigger Debugger does not contain any information about them due to their asynchronous nature. Actor cheats are similar to test document cheats in that they are activated by entering text into the in-game chat.
-
-A particularly useful actor cheat command is `actorinfodisplay`. This command will display an in-game overlay showing how many actors and actor scopes are currently active, along with other useful information. The following images show the actor stats before and after a stress test trial.
+一个特别有用的 Actor 作弊命令是 `actorinfodisplay`。这个命令会显示一个游戏内覆盖层，告诉你当前有多少 Actor 和 Actor 作用域处于活动状态，以及其他实用信息。下图展示了压力测试前后的 Actor 统计信息。
 
 ![](./resources/055_Debug_Cheats3.png)
-*Before Actor Stress Test -- After Actor Stress Test*
+*Actor 压力测试前 -- Actor 压力测试后*

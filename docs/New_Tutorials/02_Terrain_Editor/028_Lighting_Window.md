@@ -1,173 +1,173 @@
-# Lighting Window
+# 光照窗口
 
-The Lighting Window is an interface for altering and previewing lights within the Editor. You can use it to create entirely new lighting arrangements, as well as using any of the existing lighting assets in the game. You can see what it looks like in the image below.
+光照窗口是一个用于在编辑器中修改和预览光照的界面。你可以用它来创建全新的光照方案，也可以直接利用游戏中已有的任意光照资源。如下图所示。
 
 [![Lighting Window and its Use](./resources/028_Lighting_Window1.png)](./resources/028_Lighting_Window1.png)
-*Lighting Window and its Use*
+*光照窗口及其用法*
 
-You can access the Lighting Window by navigating to Window ▶︎ Lighting from anywhere in the Editor. Every lighting setting in the game is found here, grouped into categories like UI Lighting, Tileset Lighting, Portrait Lighting, and Cinematics Lighting. From here you can browse and alter these sets, or even import and export lights between projects. To do so, navigate to either File ▶︎ Export Light or File ▶︎ Import Light. Outside the Editor, these are stored as .SC2Lighting files.
+你可以在编辑器任意位置通过 `Window ▶︎ Lighting` 打开光照窗口。游戏中的所有光照设置都集中在这里，并按 UI Lighting、Tileset Lighting、Portrait Lighting 和 Cinematics Lighting 等类别分组。在这里，你可以浏览和修改这些光照组，甚至可以在项目之间导入和导出光照。要这样做，请前往 `文件 ▶︎ Export Light` 或 `文件 ▶︎ Import Light`。在编辑器之外，这些文件会以 `.SC2Lighting` 格式保存。
 
-Modifying lights can be daunting due to the number of parameters in the Lighting Window. These parameters are broken down into ten categories: Global, Tone Mapping, Colorization, Variations, SSAO, Terrain, Regions, Key, Fill, and Back. These are discussed in more detail below.
+由于光照窗口中的参数数量极多，修改光照可能会显得有些令人望而生畏。这些参数被分为十个类别：Global、Tone Mapping、Colorization、Variations、SSAO、Terrain、Regions、Key、Fill 和 Back。下面会分别介绍。
 
-The easiest way to understand these properties is to use the Lighting Window to preview lighting in the main Editor view, which will dynamically update with every change. You can do this by opening the window, then moving to the Terrain Editor. Configure the lighting to show the game lighting by navigating to Render ▶︎ Show Lighting ▶︎ Game Lighting. Any selections and changes to the lighting selection should immediately render in the Editor view, giving you ample opportunity to test and experiment.
+理解这些属性最简单的方法，是利用光照窗口在编辑器主视图中实时预览光照效果，因为每次更改都会动态更新。你可以先打开光照窗口，再切换到地形编辑器。然后通过 `Render ▶︎ Show Lighting ▶︎ Game Lighting` 让编辑器显示游戏光照。这样无论你选择哪一种光照，或对其进行何种修改，编辑器视图都会立刻响应，方便你不断测试和实验。
 
-The following sections explore each of the features in the lighting tab, along with a description of their properties and a preview of some of their effects. Each preview features the base lighting arrangement on the leftmost side, set to 'Agria (Jungle)' lighting. This will be shown alongside various lighting alterations described in the caption for each image. These alterations are not cumulative, each one is made to the base lighting.
+下面各节会逐一介绍光照标签中的各项功能，给出属性说明并展示部分效果预览。每张预览图的最左侧都是基础光照方案，即 `Agria (Jungle)` 光照。随后展示的各项变化会在图片说明中标明。请注意，这些变化彼此之间并不会叠加，每一项都是在基础光照上单独做出的调整。
 
-## Global
+## 全局
 
 [![Global Lighting](./resources/028_Lighting_Window2.png)](./resources/028_Lighting_Window2.png)
-*Global Lighting*
+*全局光照*
 
-| Property            | Details                                                                                                                                                                      |
+| 属性 | 说明 |
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Ambient Color       | Defines the color of the global lighting on every surface.                                                                                                                   |
-| Specular Multiplier | Sets the magnitude of light emitted from reflective surfaces.                                                                                                                |
-| Emissive Multiplier | Sets the magnitude of light emitted from emissive textures.                                                                                                                  |
-| Light Time of Day   | Sets the light's time of day value. These are used within 'Time of Day' lighting to simulate, through a series of lights, the changes occurring during a planet's movements. |
-| Current Test Time   | Sets the current time of day in the Editor preview. Setting this to the Light Time of Day will test the current light.                                                       |
+| Ambient Color | 定义作用于所有表面的全局环境光颜色。 |
+| Specular Multiplier | 设置反光表面反射出的光强度。 |
+| Emissive Multiplier | 设置自发光纹理发出的光强度。 |
+| Light Time of Day | 设置光照的时间值。它会在“Time of Day”光照中使用，通过一系列光照来模拟行星运转时发生的变化。 |
+| Current Test Time | 设置编辑器预览中的当前时间。将其设为与 Light Time of Day 相同，可测试当前光照。 |
 
-[![Image](./resources/028_Lighting_Window3.png)](./resources/028_Lighting_Window3.png)
+[![图像](./resources/028_Lighting_Window3.png)](./resources/028_Lighting_Window3.png)
 
-Base -- Red Ambient -- Green Ambient -- Blue Ambient -- High Specular -- High Emissive -- Low Emissive
+基础 -- 红色环境光 -- 绿色环境光 -- 蓝色环境光 -- 高镜面反射 -- 高自发光 -- 低自发光
 
-## Tone Mapping
+## 色调映射
 
 [![Tone Mapping](./resources/028_Lighting_Window4.png)](./resources/028_Lighting_Window4.png)
-*Tone Mapping*
+*色调映射*
 
-| Property             | Details                                                                                                                                                                               |
+| 属性 | 说明 |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Exposure             | Sets the amount of light applied to the scene.                                                                                                                                        |
-| Bloom Threshold      | Sets the minimum light value to apply bloom to. Bloom is a type of fringe lighting that has a distinct bleeding effect emitted from shiny objects. Low bloom is common of night time. |
-| Ambient Multiplier   | Sets the magnitude of the ambient light. This is currently not active in the Editor                                                                                                   |
-| Diffusive Multiplier | Sets the amount of white light generated by objects.                                                                                                                                  |
-| White Point          | Sets the amount of light applied to the scene when the Method is set to Reinhard.                                                                                                     |
-| Method               | Alters how tone mapping is applied. Each method is a different algorithm, which affects brightness and contrast.                                                                      |
+| Exposure | 设置施加到场景中的整体光照量。 |
+| Bloom Threshold | 设置开始应用泛光的最小亮度值。泛光是一种从明亮物体边缘向外溢出的光效。夜景中常见较低泛光阈值。 |
+| Ambient Multiplier | 设置环境光强度。该项目前在编辑器中未启用。 |
+| Diffusive Multiplier | 设置物体产生的白光量。 |
+| White Point | 当 Method 设为 Reinhard 时，设置应用到场景中的亮度量。 |
+| Method | 改变色调映射的应用方式。每种方法都是不同的算法，会影响亮度和对比度。 |
 
-[![Image](./resources/028_Lighting_Window5.png)](./resources/028_Lighting_Window5.png)
+[![图像](./resources/028_Lighting_Window5.png)](./resources/028_Lighting_Window5.png)
 
-Base -- High Exposure -- Low Bloom Threshold -- High Diffusive Multiplier -- Extreme Diffusive Multiplier -- High White Point with Reinhard Mapping -- Linear Tone Mapping
+基础 -- 高曝光 -- 低泛光阈值 -- 高漫反射倍率 -- 极高漫反射倍率 -- Reinhard 映射下的高白点 -- Linear 色调映射
 
-## Colorization
+## 颜色调整
 
 [![Colorization](./resources/028_Lighting_Window6.png)](./resources/028_Lighting_Window6.png)
-*Colorization*
+*颜色调整*
 
-| Property      | Details                                                                                                                                           |
+| 属性 | 说明 |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Input Low     | Controls the contrast in the darks of the scene. Must remain lower than Input High.                                                               |
-| Input High    | Controls the contrast in the highlights of the scene. Must remain higher than Input Low.                                                          |
-| Input Gamma   | Controls the contrast in the scene's midtones.                                                                                                    |
-| Output Low    | Alters the darks of the scene, while preserving color. Must remain lower than Input High.                                                         |
-| Output High   | Alters highlight brightness, while preserving color. Must remain higher than Input Low.                                                           |
-| Brightness    | Sets the magnitude of light being reflected in a scene.                                                                                           |
-| Contrast      | Sets the emphasis of the difference between darks and highlights.                                                                                 |
-| Hue           | Hue shifts the color value of all objects in the scene. This is much more distinguishable with Colorize turned off.                               |
-| Saturation    | Sets the intensity of color within the scene.                                                                                                     |
-| Lightness     | Alters the overall amount of light within a scene.                                                                                                |
-| Colorize      | Alters the intensity and contrast of color in the scene. Turning this off modifies how hue, saturation, and lightness contribute to the lighting. |
-| Correct Gamma | When active, corrects the color of the scene based on monitor's gamma settings.                                                                   |
+| Input Low | 控制场景暗部的对比度。必须始终低于 Input High。 |
+| Input High | 控制场景高光部分的对比度。必须始终高于 Input Low。 |
+| Input Gamma | 控制场景中间调的对比度。 |
+| Output Low | 调整场景暗部，同时保留色彩。必须始终低于 Input High。 |
+| Output High | 调整高光亮度，同时保留色彩。必须始终高于 Input Low。 |
+| Brightness | 设置场景中反射光的强度。 |
+| Contrast | 设置暗部与高光差异的强调程度。 |
+| Hue | Hue 会整体偏移场景中所有对象的色相。在关闭 Colorize 时，这一效果会更容易分辨。 |
+| Saturation | 设置场景中的色彩强度。 |
+| Lightness | 改变场景中的整体亮度。 |
+| Colorize | 调整场景中色彩的强度和对比度。关闭它后，Hue、Saturation 和 Lightness 对光照的贡献方式也会发生变化。 |
+| Correct Gamma | 启用后，会根据显示器的 gamma 设置修正场景颜色。 |
 
-[![Image](./resources/028_Lighting_Window7.png)](./resources/028_Lighting_Window7.png)
+[![图像](./resources/028_Lighting_Window7.png)](./resources/028_Lighting_Window7.png)
 
-Base -- Input Low Increased -- Input High Decreased -- High Input Gamma -- Output Low Increased -- Output High Increased-- High Contrast
+基础 -- 提高 Input Low -- 降低 Input High -- 高 Input Gamma -- 提高 Output Low -- 提高 Output High -- 高对比度
 
-[![Image](./resources/028_Lighting_Window8.png)](./resources/028_Lighting_Window8.png)
+[![图像](./resources/028_Lighting_Window8.png)](./resources/028_Lighting_Window8.png)
 
-Base -- High Contrast --Hue Decreased with Colorize Off -- Hue Increased with Colorize Off -- Low Saturation -- Lightness Increased -- Correct Gamma Off
+基础 -- 高对比度 -- 关闭 Colorize 后降低 Hue -- 关闭 Colorize 后提高 Hue -- 低饱和度 -- 提高亮度 -- 关闭 Correct Gamma
 
-## Variations
+## 变化
 
-Variations are simple filters that can be used to affect the overall lighting of scene. Selecting any of the variation controls will add the associated property to the light.
+Variations 是一组简单滤镜，可用于影响场景整体光照。选择任意 variation 控件后，对应属性就会被添加到该光照中。
 
 [![Lighting Variations](./resources/028_Lighting_Window9.png)](./resources/028_Lighting_Window9.png)
-*Lighting Variations*
+*光照变化*
 
-| Property                          | Details                                                                                                             |
+| 属性 | 说明 |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| Region                            | Sets whether the variation applies to the scene's darks, midtones, or highlights.                                   |
-| Sensitivity                       | Controls the strength of the applied filter. These are additive; Red 5 is equal to five applications of Red 1.      |
-| Color Settings                    | Applies the selected color. Options include Red, Cyan, Magenta, Green, Blue, and Yellow.                            |
-| Light Settings                    | Applies more lightness or darks to the scene. These elements neutralize each other.                                 |
-| Less Saturation & More Saturation | Applies more or less saturation to the scene, changing the emphasis on color. These elements neutralize each other. |
+| Region | 设置该变化作用于场景的暗部、中间调还是高光部分。 |
+| Sensitivity | 控制所应用滤镜的强度。这些效果是可叠加的；Red 5 相当于应用五次 Red 1。 |
+| Color Settings | 应用选中的颜色。可选项包括 Red、Cyan、Magenta、Green、Blue 和 Yellow。 |
+| Light Settings | 为场景增加亮度或暗度。这些效果彼此会相互抵消。 |
+| Less Saturation & More Saturation | 对场景施加更多或更少饱和度，改变色彩强调程度。这些效果同样会彼此抵消。 |
 
-[![Image](./resources/028_Lighting_Window10.png)](./resources/028_Lighting_Window10.png)
+[![图像](./resources/028_Lighting_Window10.png)](./resources/028_Lighting_Window10.png)
 
-Base -- Cyan Midtones -- Violet Darks -- Green Highlights -- Darker Blue Darks -- Yellow Lighter Midtones -- More Saturation
+基础 -- 青色中间调 -- 紫色暗部 -- 绿色高光 -- 更暗的蓝色暗部 -- 更亮的黄色中间调 -- 更高饱和度
 
-## Ssao
+## SSAO
 
 [![Ambient Occlusion](./resources/028_Lighting_Window11.png)](./resources/028_Lighting_Window11.png)
-*Ambient Occlusion*
+*环境光遮蔽*
 
-Screen Space Ambient Occlusion (SSAO) is a rendering technique that shades objects based on their distance from the camera. These settings are currently inactive.
+屏幕空间环境光遮蔽（SSAO）是一种根据对象与镜头距离来进行阴影处理的渲染技术。这些设置目前尚未启用。
 
-## Terrain
+## 地形
 
 [![Terrain Lighting](./resources/028_Lighting_Window12.png)](./resources/028_Lighting_Window12.png)
-*Terrain Lighting*
+*地形光照*
 
-| Property                      | Details                                                                |
+| 属性 | 说明 |
 | ----------------------------- | ---------------------------------------------------------------------- |
-| Terrain Specular Exponent     | Sets the base amount of light reflected from the terrain's highlights. |
-| Terrain Diffuse Multiplier    | Sets the magnitude of the terrain's general light reflectivity.        |
-| Terrain Specular Multiplier   | Sets the magnitude of the terrain's highlight reflectivity.            |
-| Creep Specular Exponent       | Sets the base amount of light reflected from creep.                    |
-| Creep HDR Diffuse Multiplier  | Sets the magnitude of creep's general light reflectivity.              |
-| Creep HDR Specular Multiplier | Sets the magnitude of creep's highlight reflectivity.                  |
-| Creep HDR Emissive Multiplier | Sets how much light is created from creep's emissive texture.          |
+| Terrain Specular Exponent | 设置地形高光反射的基础强度。 |
+| Terrain Diffuse Multiplier | 设置地形整体光反射强度。 |
+| Terrain Specular Multiplier | 设置地形高光反射强度。 |
+| Creep Specular Exponent | 设置菌毯反光的基础强度。 |
+| Creep HDR Diffuse Multiplier | 设置菌毯整体光反射强度。 |
+| Creep HDR Specular Multiplier | 设置菌毯高光反射强度。 |
+| Creep HDR Emissive Multiplier | 设置菌毯自发光纹理所产生的光量。 |
 
-[![Image](./resources/028_Lighting_Window13.png)](./resources/028_Lighting_Window13.png)
+[![图像](./resources/028_Lighting_Window13.png)](./resources/028_Lighting_Window13.png)
 
-Base -- Increased Terrain Specular Exponent -- Increased Terrain Diffuse Exponent -- Increased Terrain Specular Multiplier -- Decreased Creep Specular Exponent -- Increased Creep HDR Diffuse Multiplier -- Increased Creep HDR Specular Multiplier
+基础 -- 提高 Terrain Specular Exponent -- 提高 Terrain Diffuse Exponent -- 提高 Terrain Specular Multiplier -- 降低 Creep Specular Exponent -- 提高 Creep HDR Diffuse Multiplier -- 提高 Creep HDR Specular Multiplier
 
-## Regions
+## 区域
 
 [![Region Lighting](./resources/028_Lighting_Window14.png)](./resources/028_Lighting_Window14.png)
-*Region Lighting*
+*区域光照*
 
-Regions define lighting settings that are applied distinctly to one area of the map. Up to four areas can be painted with the lighting brush within the Terrain Layer of the Terrain Module. Each region is highly configurable with support for individual Key, Back, Fill, and ambient settings. Once set, the lighting within a region overrides the global lighting. You can apply lighting regions to terrain in the Terrain Layer of the Terrain Module.
+Regions 定义的是仅作用于地图某一片区域的光照设置。你最多可以在地形模块的地形层中，使用光照刷绘制四个不同区域。每个区域都能分别配置 Key、Back、Fill 和环境光设置。一旦配置完成，区域内的光照就会覆盖全局光照。你可以在地形模块的地形层中，把这些光照区域应用到地形上。
 
 [![Base -- Painted Regions](./resources/028_Lighting_Window15.png)](./resources/028_Lighting_Window15.png)
-*Base -- Painted Regions*
+*基础 -- 已绘制区域*
 
-## Key, Fill, And Back Lighting
+## 主光、补光与背光
 
-These three associated categories make up a three-point lighting model, a traditional method of lighting scenes in various media. The Key is the principal light, it illuminates the main components of the scene and is the primary emphasizer of looks, colors, and shadows. The Fill is a secondary light that traditionally shines from an angle to the side of the Key. This contributes body, lessening the impact of individual shadows and creating softer lighting.
+这三个相关类别共同组成了三点布光模型，这是一种常见于多种媒体中的传统布光方法。Key 是主光源，它照亮场景的主要部分，也是决定整体外观、色彩和阴影风格的核心。Fill 是辅助光源，通常会从主光源一侧斜打进来，为物体补足体积感，减弱单个阴影的影响，让画面更柔和。
 
-Back lights, as the name suggests, shine either from behind or from another side of the scene. Usually Back lighting is set to give a sort of halo effect to objects in the scene, separating them from their surroundings with lighting around their rim. You'll find these lighting types in three similar tabs in the Lighting Window. One of these is shown below.
+而 Back light 顾名思义，是从物体背后或场景另一侧照射过来的光。通常 Back lighting 用来为物体边缘制造一圈类似轮廓光的效果，使其从背景中脱离出来。你可以在光照窗口中的三个相似标签里找到这些光照类型。下图展示了其中之一。
 
 [![Key Lighting](./resources/028_Lighting_Window16.png)](./resources/028_Lighting_Window16.png)
-*Key Lighting*
+*主光*
 
-| Property            | Details                                                                                                                                                                                                                                                                                                                                                                                        |
+| 属性 | 说明 |
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Diffuse Color       | Sets the color of the light's entire surface reflection.                                                                                                                                                                                                                                                                                                                                       |
-| Diffuse Multiplier  | Sets the strength of the light's entire surface reflection.                                                                                                                                                                                                                                                                                                                                    |
-| Specular Color      | Sets the color of the light's direct reflection.                                                                                                                                                                                                                                                                                                                                               |
-| Specular Multiplier | Sets the strength of the light's direct reflection.                                                                                                                                                                                                                                                                                                                                            |
-| Direction           | Sets the heading of the light using the H and V controls. H, or Horizontal angle, corresponds to cardinal direction as follows: North is 0, East is 90, South is 180, and West is 270. V, or Vertical angle, corresponds to the light's altitude. Directly above the target is 90, directly below is 270. Note that a light positioned below the horizon will not light the terrain's texture. |
+| Diffuse Color | 设置光照整体漫反射的颜色。 |
+| Diffuse Multiplier | 设置光照整体漫反射的强度。 |
+| Specular Color | 设置光照直接反射的颜色。 |
+| Specular Multiplier | 设置光照直接反射的强度。 |
+| Direction | 使用 H 和 V 控件设置光照方向。H 即 Horizontal angle，对应方位角：North 为 0，East 为 90，South 为 180，West 为 270。V 即 Vertical angle，对应光源高度角。目标正上方为 90，正下方为 270。请注意，若光源位于地平线以下，它将不会照亮地形纹理。 |
 
-## Customizing A Light
+## 自定义一组光照
 
-Open the demo map provided with this article. There you should see the scene used in the creation of some of this article's images. It's a film noir styled bar front. Unfortunately, the clean daytime lighting is spoiling the mood. You can use the lighting interface to solve this problem. To explore light customization, navigate to the Lighting Window via Window ▶︎ Lighting Window. Now select the premade light set 'Custom Night Light' and click on the '00:00:00' to open the light.
+打开本文附带的演示地图。你会看到文中部分示例图片所使用的场景：一个黑色电影风格的酒吧门面。遗憾的是，干净明亮的白天光照破坏了气氛。你可以用光照界面来解决这个问题。要开始探索光照自定义，请通过 `Window ▶︎ Lighting Window` 打开光照窗口。然后选择预制光照组 `Custom Night Light`，再点击 `00:00:00` 打开该光照。
 
 [![Starting Light](./resources/028_Lighting_Window17.png)](./resources/028_Lighting_Window17.png)
-*Starting Light*
+*起始光照*
 
-From here you'll make a series of adjustments to the lighting, they will be listed with their effects shown in the photo strip below. Unlike the images used in our previous examples, these effects are cumulative. Compare the results of each step using this sample image to get a feel for the effects of different lighting properties. By the end of this exercise, this scene should have much more film noir appeal.
+接下来，你将对光照进行一系列调整。它们会以步骤形式列出，并在下方的图条中展示对应效果。与前面示例图不同，这里的效果是会累积叠加的。请对照这张样例图观察每一步的结果，从而感受不同光照属性的影响。完成练习后，这个场景应当会更具黑色电影气质。
 
-1.  In Global, set the Ambient Color to R86, G79, B147. Set the Specular Multiplier to 0.6, and the Emissive Multiplier to 1.1.
-2.  In Tone Mapping, lower the Exposure from 1.5 to 0.6.
-3.  Lower the Bloom Threshold from 1.0 to 0.1. Increase the Diffuse Multiplier from 1.0 to 1.4.
-4.  In Colorization, increase the Input Low from 0 to 0.05. Decrease the Input High from 1 to 0.9.
-5.  Increase the Colorization from 0.3 to 0.5.
-6.  In Terrain, decrease the Terrain Diffuse Multiplier from 1.0 to 0. Decrease the Terrain Specular Multiplier from 3.75 to 0.
+1.  在 Global 中，将 Ambient Color 设为 R86、G79、B147。将 Specular Multiplier 设为 0.6，并把 Emissive Multiplier 设为 1.1。
+2.  在 Tone Mapping 中，将 Exposure 从 1.5 降到 0.6。
+3.  将 Bloom Threshold 从 1.0 降到 0.1。把 Diffuse Multiplier 从 1.0 提高到 1.4。
+4.  在 Colorization 中，将 Input Low 从 0 提高到 0.05。将 Input High 从 1 降低到 0.9。
+5.  将 Colorization 从 0.3 提高到 0.5。
+6.  在 Terrain 中，将 Terrain Diffuse Multiplier 从 1.0 降到 0。将 Terrain Specular Multiplier 从 3.75 降到 0。
 
 ![](./resources/028_Lighting_Window18.png)
-*Base -- Step 1 -- Step 2 -- Step 3 -- Step 4 -- Step 5 -- Step 6*
+*基础 -- 步骤 1 -- 步骤 2 -- 步骤 3 -- 步骤 4 -- 步骤 5 -- 步骤 6*
 
-## Attachments
+## 附件
 
  * [028_Lighting_Window_Start.SC2Map](./maps/028_Lighting_Window_Start.SC2Map)
  * [028_Lighting_Window_Completed.SC2Map](./maps/028_Lighting_Window_Completed.SC2Map)

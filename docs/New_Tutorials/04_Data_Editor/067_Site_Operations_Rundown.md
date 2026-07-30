@@ -1,180 +1,180 @@
-# Site Operations Rundown
+# 站点操作概览
 
-Site operations represent a substantial number of the modifications that you can be apply to an actor. It will likely take some time and experience before you have a firm grip on them. This is a brief guide on employing the most commonly used operations to help you along the way.
+站点操作几乎涵盖了你能施加到 Actor 上的大量修改。要真正熟练掌握它们，往往需要一些时间和经验。这是一份简短指南，介绍最常用的几类操作及其用法，帮助你更快上手。
 
-You'll notice that this guide differs a bit from previous rundowns of Editor elements. This is because site operations differ from other elements of the editor in that the order in which they're applied matters. Rearranging the same set of site operations can produce markedly different results. This can mean that site operations are a bit difficult to define in a vacuum. Rather than providing a breakdown of each operation's fields and details individually, this article defines each operation and shows how to apply them in a tutorial exercise. This will help you to gain insight into how a host actor changes as more site operations are layered onto it.
+你会注意到，这份指南与前面那些编辑器元素概览略有不同。原因在于，站点操作与编辑器中的其他元素不一样，它们的应用顺序会直接影响结果。重新排列同一组站点操作，可能会得到截然不同的表现。这也意味着，站点操作很难脱离上下文单独定义。因此，本文不会逐个拆解每种操作的字段和细节，而是通过教程练习来定义每一种操作，并演示如何应用它们。这样你就能更直观地理解：随着更多站点操作逐层叠加，宿主 Actor 会如何发生变化。
 
-Open the demo map provided with this article to start the tutorial. Inside you'll find a marine standing on a boardwalk roadway, as in the image below.
+先打开本文提供的演示地图。你会在其中看到一名站在木板路上的陆战队员，如下图所示。
 
-[![Demo Map Course](./resources/067_Site_Operations_Rundown1.png)](./resources/067_Site_Operations_Rundown1.png)
-*Demo Map Course*
+[![演示地图场景](./resources/067_Site_Operations_Rundown1.png)](./resources/067_Site_Operations_Rundown1.png)
+*演示地图场景*
 
-Move to the Data Editor, then to the actors tab for first step of the exercise.
+进入数据编辑器，然后切换到 Actor 标签页，开始练习的第一步。
 
 ## Site Operation (Attachment)
 
-The Attachment site operation attaches an actor either to a unit or to another actor. This is usually used to give the appearance that the actor's models are linked or grafted together. You can stack this grafting to create strange, chimaera-like units, which is perhaps the most iconic use of site operations. A well-known example built with this method is the Blizzard's April Fools' prank the Terratron.
+Attachment 站点操作会把一个 Actor 附着到某个单位或另一个 Actor 上。它通常用于制造“这些模型被连接或嫁接在一起”的视觉效果。你可以不断叠加这种嫁接，从而做出古怪的嵌合体单位，这大概也是站点操作最标志性的用途。用这种方法做出的著名例子之一，就是暴雪愚人节恶搞作品 Terratron。
 
 ![](./resources/067_Site_Operations_Rundown2.png)
-*Terratron: A Robot Built From Many Combined StarCraft Models*
+*Terratron：由多个《星际争霸》模型拼接而成的机器人*
 
-Before you try to understand the mechanics of this operation, it will help to go over a few terms. The actor being attached, which hosts the site operation, is known as the Host. The actor to which the Host is being attached is known as the Base.
+在真正理解这种操作的机制前，先明确几个术语会更有帮助。被附着的那个 Actor，也就是承载站点操作的 Actor，称为 Host。Host 被附着到的那个 Actor，则称为 Base。
 
-When creating an attachment site operation, the most important field is the Attachment Query. You can use this field to set the type of attachment point used. This is described in more detail in the table below. Applying the attachment site operation to the Host will tell it to send the Attachment Query to any Base it is connected to. This causes the Host to be attached to the Base by its instance of the attachment point type set by the Attachment Query. The operation then sets the Host's position and orientation to that of the Base's attachment point.
+创建附加型站点操作时，最重要的字段是 `Attachment Query`。你可以用它来设置要使用哪种附着点类型。下表会更详细地说明这一点。把附加型站点操作应用到 Host 上之后，Host 就会向它所连接的任意 Base 发送 `Attachment Query`。这会让 Host 通过 `Attachment Query` 指定的附着点类型实例附着到 Base 上。随后，该操作会把 Host 的位置和朝向设置为与 Base 的附着点一致。
 
-It's worth noting that, since there is a limited number of attachment point types, you'll find a useful pre-built set of attachment site operations already in the Data Editor. These typically have names with a prefix of SOpAttach, and a suffix describing the name of an attachment point type. Examples include SOpAttachHead, SOpAttachWeapon, and SOpAttachCenter.
+还值得一提的是，由于附着点类型的种类有限，你会在数据编辑器中发现一整套很有用的预制附加站点操作。它们的名称通常以前缀 `SOpAttach` 开头，并以后缀描述某种附着点类型的名称，例如 `SOpAttachHead`、`SOpAttachWeapon` 和 `SOpAttachCenter`。
 
-This table shows a breakdown of the attachment site operation's fields.
+下表列出了附加型站点操作的字段说明。
 
-| Field            | Details                                                                                                                                                                                                                                                                                                                                                                                                        |
+| 字段 | 说明 |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Attachment Query | Sets the attachment Methods, which specify the attachment point to which the Host will be attached. This is set by selecting a 'Filter Type.' The options here are Direct, where the reference name of an attachment point is specified from a dropdown, and Method, where the point is specified from the Attach Methods data type. You can also provide a Fallback query in case the specified method fails. |
-| Hold Position    | This flag sets the position of the attachment to remain constant at its initially calculated value.                                                                                                                                                                                                                                                                                                            |
-| Hold Rotation    | This flag sets the rotation of the attachment to remain constant at its initially calculated value.                                                                                                                                                                                                                                                                                                            |
+| 附着查询 | 设置附着方法，也就是指定 Host 会附着到哪个附着点上。它通过选择 `Filter Type` 来设置。这里的选项包括 Direct，即从下拉列表中直接指定附着点引用名；以及 Method，即从 Attach Methods 数据类型中指定附着点。如果指定的方法失败，你还可以提供一个 Fallback 查询。 |
+| 保持位置 | 该标志会让附着位置保持在最初计算出的值上，不再变化。 |
+| 保持旋转 | 该标志会让附着旋转保持在最初计算出的值上，不再变化。 |
 
-## Using An Attachment Operation
+## 使用附加操作
 
-The map provided with this article can be used to demonstrate attachment operations, you can practice on the lone marine. He won't mind. The first thing you'll need is a Model for the Host actor. You can create a model by moving to the models tab in the Data Editor, right-clicking in the Object List, and selecting 'Add Model.' This will launch the window shown below.
+本文附带的地图可以用来演示附加操作，你可以直接拿那名孤零零的陆战队员练手，他不会介意。你首先需要的是作为 Host Actor 所使用的一个模型。进入数据编辑器中的 模型 标签页，在对象列表中右键并选择 `Add Model` 来创建模型。这会打开下图所示窗口。
 
-![Model Creation Window](./resources/067_Site_Operations_Rundown3.png)
-*Model Creation Window*
+![模型创建窗口](./resources/067_Site_Operations_Rundown3.png)
+*模型创建窗口*
 
-Set the model's 'Name' to 'Light Model' and hit 'Suggest' to auto generate an ID. Set the 'Model Type' to 'Generic' and click 'Ok.' This will create a Model object. Move to its 'Model' field and double click it to launch an 'Object Values' selection window. Clicking 'Browse' in this window will launch the Archive Browser, as shown below.
+把模型的 `Name` 设为 `Light Model`，然后点击 `Suggest` 自动生成 ID。把 `Model Type` 设为 `Generic`，再点击 `Ok`。这样就会创建一个 Model 对象。接着定位到它的“模型”字段并双击，打开 `Object Values` 选择窗口。在这个窗口里点击 `Browse` 会打开资源浏览器，如下图所示。
 
-[![Model Selection with Archive Browser](./resources/067_Site_Operations_Rundown4.png)](./resources/067_Site_Operations_Rundown4.png)
-*Model Selection with Archive Browser*
+[![通过资源浏览器选择模型](./resources/067_Site_Operations_Rundown4.png)](./resources/067_Site_Operations_Rundown4.png)
+*通过资源浏览器选择模型*
 
-Use the browser's search function to find Streetlight\_01.m3, select it and click 'Ok.' Click 'Ok' again in the selection window, to move back to the main Data Editor view. The model asset has now been linked to a Model type and is ready for use within an actor. Prepare the actor by first moving to the actors tab. There, right-click in the object list and select 'Add Actor.'
+用浏览器的搜索功能找到 `Streetlight_01.m3`，选中后点击 `Ok`。然后在选择窗口中再次点击 `Ok`，返回数据编辑器主视图。现在，这个模型资源已经与一个 Model 类型完成链接，可以在 Actor 中使用了。接下来准备 Actor：先切换到 Actor 标签页，在对象列表中右键并选择 `Add Actor`。
 
-[![Adding an Actor](./resources/067_Site_Operations_Rundown5.png)](./resources/067_Site_Operations_Rundown5.png)
-*Adding an Actor*
+[![添加 Actor](./resources/067_Site_Operations_Rundown5.png)](./resources/067_Site_Operations_Rundown5.png)
+*添加 Actor*
 
-Selecting 'Add Actor' will launch an 'Actor Properties' creation window. In this window, set the 'Name' to 'Marine Light' and hit 'Suggest' to auto generate an ID. You should also set the 'Actor Type' to 'Model' and the 'Parent' to 'ModelAddition.' Click 'Ok' to create the actor. This should with the window pictured below.
+选择 `Add Actor` 后，会弹出 `Actor Properties` 创建窗口。在这里把 `Name` 设为 `Marine Light`，再点击 `Suggest` 自动生成 ID。还需要把 `Actor Type` 设为 `Model`，`Parent` 设为 `ModelAddition`。点击 `Ok` 创建这个 Actor。窗口应如下图所示。
 
-![Model Actor Creation Window](./resources/067_Site_Operations_Rundown6.png)
-*Model Actor Creation Window*
+![模型 Actor 创建窗口](./resources/067_Site_Operations_Rundown6.png)
+*模型 Actor 创建窗口*
 
-Creating the model with the same name as the model actor will fill the 'Model' field for you, automatically creating the link. Now it's time to add the attachment site operation to this actor. You can do so by moving to the 'Host Site Operations' field and double clicking on it to launch the site operations subeditor.
+如果模型与模型 Actor 使用同一个名字，编辑器会自动帮你填好“模型”字段，也就自动建立了链接。现在该给这个 Actor 添加附加站点操作了。定位到 `Host Site Operations` 字段并双击，打开站点操作子编辑器。
 
-[![Host Site Operation Subeditor](./resources/067_Site_Operations_Rundown7.png)](./resources/067_Site_Operations_Rundown7.png)
-*Host Site Operation Subeditor*
+[![Host Site Operation 子编辑器](./resources/067_Site_Operations_Rundown7.png)](./resources/067_Site_Operations_Rundown7.png)
+*Host Site Operation 子编辑器*
 
-Clicking the 'Choose' button will launch the site operation selection shown below.
+点击 `Choose` 按钮后，会打开下方所示的站点操作选择窗口。
 
-[![Selecting Attachment Site Operation](./resources/067_Site_Operations_Rundown8.png)](./resources/067_Site_Operations_Rundown8.png)
-*Selecting Attachment Site Operation*
+[![选择附加站点操作](./resources/067_Site_Operations_Rundown8.png)](./resources/067_Site_Operations_Rundown8.png)
+*选择附加站点操作*
 
-In this case, you can use one of the pre-made attachment operations. The series of site operations prefixed with SOpAttach each contains an Attachment Query that targets a specific class of attachment point in a unit. Select the SOPAttachHead operation, which targets the attachment point in a model's head. Then click 'Ok' to return to the previous view.
+这里你可以直接使用一个预制好的附加操作。所有以 `SOpAttach` 为前缀的站点操作，都内置了一个 `Attachment Query`，用于定位单位模型中的某一类附着点。请选择 `SOPAttachHead` 操作，它会定位模型头部的附着点。然后点击 `Ok` 返回上一视图。
 
-![Selected Site Operation](./resources/067_Site_Operations_Rundown9.png)
-*Selected Site Operation*
+![已选择的站点操作](./resources/067_Site_Operations_Rundown9.png)
+*已选择的站点操作*
 
-The site operation has been added to the actor's listing. Click 'Ok' to finalize. The model actor now contains a custom streetlight model that will be grafted to its Base unit's head. All that remains is for you to connect the actor to its host. You can do this using the actor events field. Navigate to 'Events' within the 'Marine Light' model actor, and double click the field to open the actor events subeditor view, shown below.
+该站点操作现在已经出现在 Actor 的列表中了。点击 `Ok` 完成确认。这个模型 Actor 现在包含了一个自定义路灯模型，它会被嫁接到 Base 单位的头部。剩下要做的，就是把这个 Actor 连接到它的宿主。你可以通过 Actor 事件字段来完成。进入 `Marine Light` 模型 Actor 的“事件”字段，双击打开下图所示的 Actor 事件子编辑器。
 
-[![Actor Events View](./resources/067_Site_Operations_Rundown10.png)](./resources/067_Site_Operations_Rundown10.png)
-*Actor Events View*
+[![Actor 事件视图](./resources/067_Site_Operations_Rundown10.png)](./resources/067_Site_Operations_Rundown10.png)
+*Actor 事件视图*
 
-Right-click inside the white box and select 'Add Event.' Using the dropdown, set the 'Msg Type' of the event to 'Unit Birth.' Then set the 'Msg Type' of the message to 'Create' and its 'Source Name' to 'Marine.' This should leave you with the following.
+在白色区域中右键并选择 `Add Event`。通过下拉框，把事件的 `Msg Type` 设为 `Unit Birth`。然后把消息的 `Msg Type` 设为 `Create`，并把 `Source Name` 设为 `Marine`。设置完后应如下所示。
 
-[![Linking Model Actor to Unit](./resources/067_Site_Operations_Rundown11.png)](./resources/067_Site_Operations_Rundown11.png)
-*Linking Model Actor to Unit*
+[![将模型 Actor 连接到单位](./resources/067_Site_Operations_Rundown11.png)](./resources/067_Site_Operations_Rundown11.png)
+*将模型 Actor 连接到单位*
 
-Creating this actor event causes the 'Marine Light' model actor to link to the 'Marine' unit actor at the time of unit creation. As described earlier, this causes the 'Marine' actor to serve as the Base, the 'Marine Light' as the Host, and the SOpAttachHead as the attachment site operation. The Model of the 'Marine Unit' Actor will now be grafted to the Model of the 'Marine Light' Actor at the point of the SOpAttachHead's Attachment Query. The result of this operation is shown in the image below.
+创建这条 Actor 事件后，`Marine Light` 模型 Actor 会在单位创建时连接到 `Marine` 单位 Actor。正如前面所说，这会让 `Marine` Actor 充当 Base，`Marine Light` 充当 Host，而 `SOpAttachHead` 则充当附加站点操作。于是，`Marine Unit` Actor 的模型就会在 `SOpAttachHead` 的 `Attachment Query` 所指定的点位上，被嫁接到 `Marine Light` Actor 的模型上。该操作的结果如下图所示。
 
 ![](./resources/067_Site_Operations_Rundown12.png)
-*Models Grafted Together with Attachment Operation*
+*通过附加操作嫁接在一起的模型*
 
 ## Site Operation (Explicit Rotation)
 
-The Explicit Rotation site operation creates a rotation in a Host actor on any combination of its three axes: x, y, and z. This is achieved through the use of two vectors, Forward and Up. Each vector provides a different base axis for rotation in the three cardinal directions. The details of this operation are broken down in the table below.
+Explicit Rotation 站点操作可以让 Host Actor 在其三个轴 `x`、`y`、`z` 上进行任意组合的旋转。它通过两个向量 `Forward` 与 `Up` 来实现。每个向量都为三维方向上的旋转提供不同的基准轴。下表拆解了这类操作的细节。
 
-| Fiel d         | Details                                                                                                                                                                                                                                                             |
+| Fiel d | 说明 |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Forw ard       | Provides a base rotation axis for rotation operations, which are selected using the X, Y, and Z inputs. You can picture the Forward vector as protruding outwards from the actor, parallel to the ground. Input rotations are controlled by the following scheme.   |
-|                | \-X: Right +X: Left                                                                                                                                                                                                                                                 |
-|                | \-Y: Forward +Y: Backwards                                                                                                                                                                                                                                          |
-|                | \-Z: Down +Z: Up                                                                                                                                                                                                                                                    |
-|                | This is a unit vector and all inputs are normalized on a scale of 1/-1. This vector sees much more use than the other option.                                                                                                                                       |
-| Up             | Provides a base rotation axis for rotation operations, which are selected using the X, Y, and Z inputs. You can picture the Up vector as protruding upwards from the actor, as if emerging from the ground. Input rotations are controlled by the following scheme. |
-|                | \-X: Right +X: Left                                                                                                                                                                                                                                                 |
-|                | \-Y: Down +Y: Up                                                                                                                                                                                                                                                    |
-|                | \-Z: Forward +Z: Backwards                                                                                                                                                                                                                                          |
-|                | This is a unit vector and all inputs are normalized on a scale of 1/-1. Usually this vector only sees use in models that are on their side, and moving through a range of motion. Under these circumstances, something using the Forward vector could invert.       |
-| Hold Posi tion | This flag sets the position of the operation to remain constant at its originally calculated value.                                                                                                                                                                 |
-| Hold Rota tion | This flag sets the rotation of the operation to remain constant at its originally calculated value.                                                                                                                                                                 |
+| Forw ard | 为通过 X、Y、Z 输入指定的旋转操作提供一个基础旋转轴。你可以把 `Forward` 向量理解为从 Actor 身上水平向外伸出的方向。输入旋转遵循以下规则。 |
+| | \-X: Right +X: Left |
+| | \-Y: Forward +Y: Backwards |
+| | \-Z: Down +Z: Up |
+| | 这是一个单位向量，所有输入都会标准化到 1/-1 的尺度上。它的使用频率远高于另一个选项。 |
+| Up | 为通过 X、Y、Z 输入指定的旋转操作提供另一个基础旋转轴。你可以把 `Up` 向量理解为从 Actor 身上垂直向上伸出的方向，像是从地面冒出来一样。输入旋转遵循以下规则。 |
+| | \-X: Right +X: Left |
+| | \-Y: Down +Y: Up |
+| | \-Z: Forward +Z: Backwards |
+| | 这也是一个单位向量，所有输入都会标准化到 1/-1 的尺度上。通常只有在模型侧躺、并且要在一定运动范围内转动时才会用到它。在这种情况下，若使用 `Forward` 向量，模型可能会翻转。 |
+| Hold Posi tion | 该标志会让此操作的位置保持在最初计算出的值上。 |
+| Hold Rota tion | 该标志会让此操作的旋转保持在最初计算出的值上。 |
 
-The two vector options are not typically used together. Mixing both options will create a resulting rotation is equal to the Forward vector rotation subtracted from the Up, which essentially splits the difference in their rotations.
+这两个向量通常不会一起使用。混合使用两者时，最终得到的旋转会等于 `Forward` 向量旋转减去 `Up` 向量旋转，本质上相当于折中了两者的旋转。
 
-## Using An Explicit Rotation Operation
+## 使用 Explicit Rotation 操作
 
-You will now use an explicit rotation operation to reorient the light model. Move back to the actors tab and create a new actor of the 'Explicit Rotation' type and name it 'Light Offset.' This procedure is shown below.
+接下来你将使用一个 Explicit Rotation 操作，来重新调整路灯模型的朝向。回到 Actor 标签页，创建一个类型为 `Explicit Rotation` 的新 Actor，并将其命名为 `Light Offset`。流程如下图所示。
 
-![Creating an Explicit Rotation Actor](./resources/067_Site_Operations_Rundown13.png)
-*Creating an Explicit Rotation Actor*
+![创建 Explicit Rotation Actor](./resources/067_Site_Operations_Rundown13.png)
+*创建 Explicit Rotation Actor*
 
-You can set the exact rotation by selecting a vector type to base the rotation on, then setting its x, y, and z fields. The possible vector fields Forward and Up are shown below.
+要设置具体旋转，只需先选定要作为旋转基准的向量类型，再设置其 `x`、`y`、`z` 字段。可用的向量字段 `Forward` 和 `Up` 如下图所示。
 
-[![Rotation Actor Fields](./resources/067_Site_Operations_Rundown14.png)](./resources/067_Site_Operations_Rundown14.png)
-*Rotation Actor Fields*
+[![旋转 Actor 字段](./resources/067_Site_Operations_Rundown14.png)](./resources/067_Site_Operations_Rundown14.png)
+*旋转 Actor 字段*
 
-Double clicking the Forward field will open the following view.
+双击 `Forward` 字段会打开如下视图。
 
-![Setting Rotation Site Operation](./resources/067_Site_Operations_Rundown15.png)
-*Setting Rotation Site Operation*
+![设置旋转站点操作](./resources/067_Site_Operations_Rundown15.png)
+*设置旋转站点操作*
 
-The rotation required here is to swing the light to the left and backwards a full unit each. You can do this by setting the X, and Y fields to 1. Your operation is now complete and ready to be added to the model actor's site operations listing. You can do so by moving to the 'Host Site Operations field in the 'Marine Light' and double clicking to open it. From here, select 'Choose' again and navigate to the new 'Light Offset' operation in the popup. Select it and click 'Ok.'
+这里所需的旋转，是让路灯同时向左和向后各摆动一个完整单位。你可以通过把 `X` 和 `Y` 字段都设为 `1` 来实现。现在，这个操作已经完成，可以添加到模型 Actor 的站点操作列表中了。方法是进入 `Marine Light` 的 `Host Site Operations` 字段并双击打开，然后再次选择 `Choose`，在弹窗中找到新建的 `Light Offset` 操作。选中后点击 `Ok`。
 
 ![](./resources/067_Site_Operations_Rundown16.png)
-*Adding your Custom Explicit Rotation Site Operation*
+*添加你自定义的 Explicit Rotation 站点操作*
 
-This will populate it into the site operation list as shown above. From there, click 'Ok' to finish the addition. The operation is now complete and can be investigated, but there's one more change you should make. Move to the 'Scale Maximum' field and open it. Set each of the X, Y, and Z values to 0.25. Repeat this process for the 'Scale Minimum' field.
+它会像上图那样出现在站点操作列表中。然后点击 `Ok` 完成添加。到这里，这个操作已经生效并可供观察，不过你还应该再做一个改动。定位到 `Scale Maximum` 字段并打开，把 `X`、`Y`、`Z` 都设为 `0.25`。然后用同样的方法设置 `Scale Minimum` 字段。
 
-[![Adjusting the Light Posts Scale](./resources/067_Site_Operations_Rundown17.png)](./resources/067_Site_Operations_Rundown17.png)
-*Adjusting the Light Posts Scale*
+[![调整路灯柱缩放](./resources/067_Site_Operations_Rundown17.png)](./resources/067_Site_Operations_Rundown17.png)
+*调整路灯柱缩放*
 
-On creation, models are set between the Scale Maximum and Scale Minimum. Making the two fields equal to one another will provide constant, non-random scaling for the model. These figures have set the scale to roughly a fourth of what was seen before. You can check your progress by returning to the Terrain Editor, where you should see something like the image below.
+模型创建时，缩放值会在 `Scale Maximum` 和 `Scale Minimum` 之间取值。把这两个字段设成相同数值，就能得到恒定、非随机的模型缩放。这里的数值会把模型缩放到此前大约四分之一的大小。你可以回到地形编辑器检查进度，此时应看到类似下图的结果。
 
-[![Scaled and Rotated Model Attachment](./resources/067_Site_Operations_Rundown18.png)](./resources/067_Site_Operations_Rundown18.png)
-*Scaled and Rotated Model Attachment*
+[![缩放并旋转后的模型附着](./resources/067_Site_Operations_Rundown18.png)](./resources/067_Site_Operations_Rundown18.png)
+*缩放并旋转后的模型附着*
 
-Note that the main axis of the street light is now aligned with the model's head.
+注意，此时路灯的主轴已经与模型头部对齐。
 
 ## Site Operation (Local Offset)
 
-The Local Offset site operation allows you to change the position of a model in all three cardinal directions: x, y, and z.
+Local Offset 站点操作可以让你沿着 `x`、`y`、`z` 三个主轴的任意方向修改模型位置。
 
-| Field          | Details                                                                                                                                                          |
+| 字段 | 说明 |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Local Offset   | Applies an offset vector that moves the actor in three directions, X, Y, and Z. This vector follows the basic directionality of the Editor, which is as follows. |
-|                | \-X: Right +X: Left                                                                                                                                              |
-|                | \-Y: Forward +Y: Backwards                                                                                                                                       |
-|                | \-Z: Down +Z: Up                                                                                                                                                 |
-| Hold Positi on | This flag sets the position of the offset to remain constant at its originally calculated value.                                                                 |
-| Hold Rotati on | This flag sets the rotation of the offset to remain constant at its originally calculated value.                                                                 |
+| Local Offset | 应用一个偏移向量，让 Actor 在 X、Y、Z 三个方向上移动。这个向量遵循编辑器的基础方向规则，具体如下。 |
+| | \-X: Right +X: Left |
+| | \-Y: Forward +Y: Backwards |
+| | \-Z: Down +Z: Up |
+| Hold Positi on | 该标志会让偏移位置保持在最初计算出的值上。 |
+| Hold Rotati on | 该标志会让偏移旋转保持在最初计算出的值上。 |
 
-## Using A Local Offset Operation
+## 使用 Local Offset 操作
 
-Now you'll use an offset operation to do some tweaking on the light attachment's position. Create a new actor named 'Light Down' with the type 'Site Operation (Local Offset).'
+现在你将使用偏移操作，对路灯附着的位置做一些微调。创建一个名为 `Light Down` 的新 Actor，类型为 `Site Operation (Local Offset)`。
 
-![Creating a Local Offset Actor](./resources/067_Site_Operations_Rundown19.png)
-*Creating a Local Offset Actor*
+![创建 Local Offset Actor](./resources/067_Site_Operations_Rundown19.png)
+*创建 Local Offset Actor*
 
-Move to your new actor's Local Offset field. The model will be moved downwards into the unit by offsetting it along the negative Z axis. Double click the field to edit it and set Z value to -0.3.
+进入这个新 Actor 的 `Local Offset` 字段。你会沿负 Z 轴偏移模型，把它向下压进单位内部。双击该字段进行编辑，并将 `Z` 值设为 `-0.3`。
 
-[![Setting the Offset Actor's Fields](./resources/067_Site_Operations_Rundown20.png)](./resources/067_Site_Operations_Rundown20.png)
-*Setting the Offset Actor's Fields*
+[![设置偏移 Actor 字段](./resources/067_Site_Operations_Rundown20.png)](./resources/067_Site_Operations_Rundown20.png)
+*设置偏移 Actor 字段*
 
-As with the others, this site operation must be added to the Base model's actor events. Go to the 'Host Site Operations field within 'Marine Light' and double click it to open the subeditor view. From there, hit 'Choose' and add the 'Local Down' offset to the operations listing. The listing, now containing three different site operations, should appear as in the image below.
+和前面的操作一样，这个站点操作也必须添加到 Base 模型的 Actor 事件中。进入 `Marine Light` 的 `Host Site Operations` 字段并双击打开子编辑器视图。然后点击 `Choose`，把 `Local Down` 偏移添加到操作列表中。此时列表里应像下图一样，包含三个不同的站点操作。
 
-![Offset Operation Added to Listing](./resources/067_Site_Operations_Rundown21.png)
-*Offset Operation Added to Listing*
+![已添加偏移操作的列表](./resources/067_Site_Operations_Rundown21.png)
+*已添加偏移操作的列表*
 
-Now is a good time to remember that the order of operations is important, and that altering it will often cause unpredictable results. Confirm that the operation order meets your planned design as in the above image. At this point the project is complete. A foreign model has been grafted onto the marine, reoriented, scaled, and offset. Move back to the Terrain Editor and take a moment to appreciate your design.
+现在正是再次提醒自己“操作顺序很重要”的好时机。改变顺序常常会导致难以预料的结果。请确认当前操作顺序与你计划的设计一致，就像上图那样。到这里，项目已经完成。一个外来模型已经被嫁接到陆战队员身上，并完成了重新定向、缩放和偏移。回到地形编辑器，花一点时间欣赏你的设计吧。
 
-[![Money Well Spent](./resources/067_Site_Operations_Rundown22.png)](./resources/067_Site_Operations_Rundown22.png)
-*Money Well Spent*
+[![钱花得值](./resources/067_Site_Operations_Rundown22.png)](./resources/067_Site_Operations_Rundown22.png)
+*钱花得值*
 
-## Attachments
+## 附件
 
  * [067_Site_Operations_Rundown_Completed.SC2Map](./maps/067_Site_Operations_Rundown_Completed.SC2Map)
  * [067_Site_Operations_Rundown_Start.SC2Map](./maps/067_Site_Operations_Rundown_Start.SC2Map)

@@ -1,132 +1,132 @@
-# Actor Messages Rundown
+# Actor 消息概览
 
-For nearly every data type, there is some associated actor message to provide its logical backend. This guarantees that the stable of actor messages is both diverse and numerous. In this article you'll find a breakdown of many of the types of messages, as well as some suggestions for their use.
+几乎每一种数据类型背后，都有某种对应的 Actor 消息来提供其逻辑后端。这也意味着 Actor 消息的种类既丰富又繁多。本文会拆解其中许多消息类型，并给出一些使用建议。
 
-Before we start, you should note that you can see an actor's messages both directly, through the expandable 'Events' field, and structured inside the actor event's subeditor. Each entry in this article will also include a view of the message type within the subeditor, but the basic fields view can be sometimes be noteworthy as well. You can see an example of this view in the image below.
+开始之前，你需要知道：Actor 的消息既可以直接在可展开的“事件”字段中查看，也可以在 Actor 事件子编辑器中以结构化方式查看。本文每一项也都会附带该消息类型在子编辑器中的视图，不过基础字段视图有时同样值得关注。你可以在下图中看到一个例子。
 
-[![Actor Events Field](./resources/061_Actor_Messages_Rundown1.png)](./resources/061_Actor_Messages_Rundown1.png)
-*Actor Events Field*
+[![Actor 事件字段](./resources/061_Actor_Messages_Rundown1.png)](./resources/061_Actor_Messages_Rundown1.png)
+*Actor 事件字段*
 
-From here you can see the direct ID of actor messages, such as UnitBirth or ActorCreation, rather than their structure form in the subeditor selection panel of 'Unit Birth' or 'Actor Creation.' These IDs may be important when using actor messages in the Trigger Editor or scripting. As such, they have been supplied at the start of each of the following entries.
+在这里，你能看到 Actor 消息的直接 ID，例如 `UnitBirth` 或 `ActorCreation`，而不是子编辑器选择面板里那种结构化名称，如 `Unit Birth` 或 `Actor Creation`。这些 ID 在触发器编辑器或脚本中使用 Actor 消息时可能很重要，因此下文每个条目开头都会列出对应 ID。
 
-While this article may serve as a reference, you should be aware that best way to investigate the full library of actor messages is individually, by creating and examining messages in the subeditor view itself. You can create an actor event or message by moving to an actor's 'Events' field, double clicking it to launch the subeditor, then right-clicking inside the white box and selecting 'Add Event.' This will create an event and message pair.
+虽然本文可以作为参考，但你也应当明白，想要深入了解完整的 Actor 消息库，最好的办法仍然是亲自到子编辑器里逐个创建并检查。你可以前往某个 Actor 的“事件”字段，双击打开子编辑器，然后在白色区域中右键选择“添加事件”，这样就会创建一组事件与消息配对。
 
-[![Actor Event Creation](./resources/061_Actor_Messages_Rundown2.png)](./resources/061_Actor_Messages_Rundown2.png)
-*Actor Event Creation*
+[![Actor 事件创建](./resources/061_Actor_Messages_Rundown2.png)](./resources/061_Actor_Messages_Rundown2.png)
+*Actor 事件创建*
 
-Below you'll find a rundown of the many types of actor messages.
+下面会依次概览多种 Actor 消息类型。
 
-## Animation Play
+## 播放动画
 
-[![Animation Play Message](./resources/061_Actor_Messages_Rundown3.png)](./resources/061_Actor_Messages_Rundown3.png)
-*Animation Play Message*
+[![播放动画消息](./resources/061_Actor_Messages_Rundown3.png)](./resources/061_Actor_Messages_Rundown3.png)
+*播放动画消息*
 
 AnimPlay
 
-Plays the specified animation. This is the essential message for animation control, its options mainly control the physical properties of the animation.
+播放指定动画。这是控制动画最核心的消息，其选项主要用于控制动画的物理表现方式。
 
-| Field                | Details                                                                                                                                                   |
+| 字段 | 说明 |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Name                 | Sets a reference label for the message.                                                                                                                   |
-| Animation Properties | Selects the animation type from a dropdown. All animations are tied to a preset list of states. You can find and investigate them in the Cutscene Editor. |
-| Flags                |                                                                                                                                                           |
-| Asset Driven Looping | Similar to Play Forever, but loops with more defined behavior set within the animation.                                                                   |
-| Full Match           | Will match the animation's consecutive plays to one another without any stuttering.                                                                       |
-| Non Looping          | Plays through the current animation once.                                                                                                                 |
-| Play Forever         | Continually loops the animation.                                                                                                                          |
-| Random Start Offset  | Starts the animation at a random frame.                                                                                                                   |
+| 名称 | 为该消息设置引用标签。 |
+| 动画属性 | 从下拉列表中选择动画类型。所有动画都绑定到一组预设状态，你可以在过场动画编辑器中查看和研究它们。 |
+| 标志 | |
+| 资源驱动循环 | 与 Play Forever 类似，但会使用动画内部定义得更明确的循环行为。 |
+| 完全匹配 | 会让该动画连续播放时彼此无缝衔接，不会出现卡顿。 |
+| 不循环 | 当前动画只播放一遍。 |
+| 永久播放 | 持续循环该动画。 |
+| 随机起始偏移 | 从一个随机帧开始播放动画。 |
 
-Blend In Blending dynamically interpolates between two different sets of animations. This sets the amount of time spent blending into this animation from the current one. Blend Out Sets the time spent blending out of this animation into a new one. Time Variant Sets the type of time scale used to set the Time Variant. Time Type Sets the type of time scale used to set the Time Variant. Blend In Start Offset Sets an offset time for the blending process to start. Priority Override Sets the priority for blending in comparison to the other animation's priority.
+Blend In 会在两组不同动画之间进行动态插值，这里设置的是从当前动画过渡到此动画所花费的时间。Blend Out 设置从此动画过渡到新动画所花费的时间。Time Variant 设置用于指定 Time Variant 的时间缩放类型。Time Type 设置用于指定 Time Variant 的时间尺度类型。Blend In Start Offset 设置混合过程开始时的偏移时间。Priority Override 设置此动画在混合时相对于其他动画优先级的优先级。
 
-## Animation Bracket Start
+## 动画括号开始
 
-[![Animation Bracket Start Message](./resources/061_Actor_Messages_Rundown4.png)](./resources/061_Actor_Messages_Rundown4.png)
-*Animation Bracket Start Message*
+[![动画括号开始消息](./resources/061_Actor_Messages_Rundown4.png)](./resources/061_Actor_Messages_Rundown4.png)
+*动画括号开始消息*
 
 AnimBracketStart
 
-Animation brackets act as containers for three-stage animation sequences. The stages are Opening, Content, and Closing.
+动画括号可以看作三段式动画序列的容器。这三个阶段分别是 Opening、Content 和 Closing。
 
-| Field               | Details                                                                |
+| 字段 | 说明 |
 | ------------------- | ---------------------------------------------------------------------- |
-| Name                | Sets a reference label for the message.                                |
-| Opening             | Sets the first stage animation.                                        |
-| Content             | Sets the second stage animation which plays following the Opening.     |
-| Closing             | Sets the final animation stage which plays after the Content.          |
-| Flags               |                                                                        |
-| Closing Full        | Confirms that the Closing animation completes under any circumstances. |
-| Instant             | Will skip the Opening animation and begin at the Content.              |
-| Non Looping         | Sets the Content animation to only play once.                          |
-| Play Forever        | Replays the Opening animation until receiving a manual stop.           |
-| Random Start Offset | Applies a random offset to the animation start times.                  |
+| 名称 | 为该消息设置引用标签。 |
+| Opening | 设置第一阶段动画。 |
+| Content | 设置第二阶段动画，在 Opening 之后播放。 |
+| Closing | 设置最后阶段动画，在 Content 之后播放。 |
+| 标志 | |
+| Closing Full | 确保 Closing 动画在任何情况下都能播放完成。 |
+| 即时 | 跳过 Opening 动画，直接从 Content 开始。 |
+| 不循环 | 让 Content 动画只播放一次。 |
+| 永久播放 | 在收到手动停止前不断重播 Opening 动画。 |
+| 随机起始偏移 | 为动画的起始时间应用随机偏移。 |
 
-Time Variant Sets the type of time scale used to set the Time Variant. Time Type Sets the type of time scale used to set the Time Variant.
+Time Variant 设置用于指定 Time Variant 的时间缩放类型。Time Type 设置用于指定 Time Variant 的时间尺度类型。
 
-## Destroy
+## 销毁
 
-[![Destroy Message Options](./resources/061_Actor_Messages_Rundown5.png)](./resources/061_Actor_Messages_Rundown5.png)
-*Destroy Message Options*
+[![销毁消息选项](./resources/061_Actor_Messages_Rundown5.png)](./resources/061_Actor_Messages_Rundown5.png)
+*销毁消息选项*
 
 Destroy
 
-Destroys the actor, eliminating it from any further updates and removing any visual components. There are two available types, Immediate and Normal. Immediate will instantly destroy the actor and any of its substituents. In the case of units, their death animations are not played. Normal removes the actor and its substituents, but allows death animations to play and particles to naturally fade out.
+销毁该 Actor，使其不再接收后续更新，并移除任何可视组件。可用类型有两种：Immediate 和 Normal。Immediate 会立刻销毁 Actor 及其附属部分；如果对象是单位，则不会播放死亡动画。Normal 会移除 Actor 及其附属部分，但允许死亡动画播放完毕，并让粒子自然淡出。
 
-## Glow Start
+## 开始发光
 
-[![Glow Start Message](./resources/061_Actor_Messages_Rundown6.png)](./resources/061_Actor_Messages_Rundown6.png)
-*Glow Start Message*
+[![开始发光消息](./resources/061_Actor_Messages_Rundown6.png)](./resources/061_Actor_Messages_Rundown6.png)
+*开始发光消息*
 
 GlowStart
 
-Applies a pulse-like glow effect to the actor's model. This can be stopped with the 'Glow Stop' message. There are no suboptions for this message.
+为 Actor 的模型施加一种脉冲式发光效果。可以通过 `Glow Stop` 消息停止。这个消息没有子选项。
 
-## Halo Set Color
+## 设置光环颜色
 
-[![Halo Set Color Message](./resources/061_Actor_Messages_Rundown7.png)](./resources/061_Actor_Messages_Rundown7.png)
-*Halo Set Color Message*
+[![设置光环颜色消息](./resources/061_Actor_Messages_Rundown7.png)](./resources/061_Actor_Messages_Rundown7.png)
+*设置光环颜色消息*
 
 HaloSetColor
 
-Halos add a glowing outline around a model. They are typically used to provide contrast to a unit or highlight it for specific reference. This message sets the color of the halo, while 'Halo Start' and 'Halo Stop' control its addition and removal respectively.
+光环会在模型周围添加一圈发光轮廓，通常用于让单位与背景形成对比，或为了特定目的突出显示该单位。这个消息用于设置光环颜色，而 `Halo Start` 和 `Halo Stop` 则分别控制光环的添加与移除。
 
-## Model Swap
+## 替换模型
 
-[![Model Swap Message](./resources/061_Actor_Messages_Rundown8.png)](./resources/061_Actor_Messages_Rundown8.png)
-*Model Swap Message*
+[![替换模型消息](./resources/061_Actor_Messages_Rundown8.png)](./resources/061_Actor_Messages_Rundown8.png)
+*替换模型消息*
 
 ModelSwap
 
-Sets the actor's model to the value selected for Model. This will replace any currently selected model. This also supports picking of the model's specific Variation.
+将 Actor 的模型设置为 `Model` 所指定的值。这会替换当前已经选中的模型，同时也支持选择该模型的具体 Variation。
 
-## Set Opacity
+## 设置不透明度
 
-[![Set Opacity Message](./resources/061_Actor_Messages_Rundown9.png)](./resources/061_Actor_Messages_Rundown9.png)
-*Set Opacity Message*
+[![设置不透明度消息](./resources/061_Actor_Messages_Rundown9.png)](./resources/061_Actor_Messages_Rundown9.png)
+*设置不透明度消息*
 
 SetOpacity
 
-Alters the opacity of the actor, propagating that change to any connected visual asset, such as a model.
+改变 Actor 的不透明度，并将该变化传播到任何关联的可视资源，例如模型。
 
-| Field             | Details                                                                                                    |
+| 字段 | 说明 |
 | ----------------- | ---------------------------------------------------------------------------------------------------------- |
-| Opacity           | Sets the level of opacity applied, with 0.0 being the default status and 1.0 being completely transparent. |
-| Blend in Duration | Sets the time period over which the opacity will be applied. By default, application is instant.           |
-| Label             | Sets a reference label for the message.                                                                    |
+| 不透明度 | 设置应用后的不透明度级别，其中 0.0 为默认状态，1.0 为完全透明。 |
+| 混入时长 | 设置不透明度变化施加所经历的时间。默认是瞬时应用。 |
+| 标签 | 为该消息设置引用标签。 |
 
-## Set Tint Color
+## 设置染色颜色
 
-[![Set Tint Color Message](./resources/061_Actor_Messages_Rundown10.png)](./resources/061_Actor_Messages_Rundown10.png)
-*Set Tint Color Message*
+[![设置染色颜色消息](./resources/061_Actor_Messages_Rundown10.png)](./resources/061_Actor_Messages_Rundown10.png)
+*设置染色颜色消息*
 
 SetTintColor
 
-Applies a tint to the actor, propagating the color change to any connected visual assets, such as a model.
+为 Actor 应用染色，并将颜色变化传播到任何连接的可视资源，例如模型。
 
-| Field             | Details                                                                                                                                                                                                    |
+| 字段 | 说明 |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Color             | Sets the color applied as a tint. Clicking the color box will launch a color picker window.                                                                                                                |
-| HDR Multiplier    | Sets the brightness amplification through HDR lighting.                                                                                                                                                    |
-| Blend In Duration | Sets the time period over which the color will be applied. By default, application is instant.                                                                                                             |
-| Blend Type        | Selects from different blending methods. One Shot will apply the blend into the color once, Bounce will blend into the color then back out again, and Cycle will repeatedly blend in and out of the color. |
-| Label             | Sets a reference label for the message.                                                                                                                                                                    |
-| Priority          | Sets the priority of this tinting over similar messages.                                                                                                                                                   |
+| 颜色 | 设置作为染色应用的颜色。点击颜色框会打开取色器窗口。 |
+| HDR 倍率 | 设置通过 HDR 光照产生的亮度增幅。 |
+| 混入时长 | 设置颜色应用所经历的时间。默认是瞬时应用。 |
+| 混合类型 | 从不同混合方式中选择。One Shot 会向该颜色混合一次，Bounce 会先混入颜色再退回，Cycle 则会反复混入并退出该颜色。 |
+| 标签 | 为该消息设置引用标签。 |
+| 优先级 | 设置该染色消息相对于类似消息的优先级。 |

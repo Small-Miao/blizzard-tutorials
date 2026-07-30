@@ -1,81 +1,81 @@
-# Model Data Viewer
+# 模型数据查看器
 
-Some procedures in the Data Editor call for the use of 'Model Data,' the structural properties of model assets set during their construction. You can always retrieve these properties by inspecting the assets where they were created, in the published suite of Blizzard Art Tools. In many cases, this can be overkill. A shortcut is to use the Cutscene Editor as an inspector. There you'll find a special Model Data Viewer for this very purpose. The viewer is shown in the image below.
+在数据编辑器中，有些流程需要用到“模型数据”，也就是模型资源在构建时设定的结构属性。你当然可以直接去这些资源被创建的地方，也就是暴雪发布的 Blizzard Art Tools 套件中检查这些属性。但很多时候，这样做有些小题大做。一个更便捷的办法，是把过场动画编辑器当成检查器来用。那里有一个专门为此准备的模型数据查看器，如下图所示。
 
-[![Model Data Viewer](./resources/068_Model_Data_Viewer1.png)](./resources/068_Model_Data_Viewer1.png)
-*Model Data Viewer*
+[![模型数据查看器](./resources/068_Model_Data_Viewer1.png)](./resources/068_Model_Data_Viewer1.png)
+*模型数据查看器*
 
-## Launching The Viewer
+## 启动查看器
 
-You can find the Model Data Viewer by opening the Cutscene Editor and navigating to Object ▶︎ Model Data, as shown below.
+你可以打开过场动画编辑器，然后按下图所示通过 `Object ▶︎ Model Data` 找到模型数据查看器。
 
-[![Opening the Model Data Viewer](./resources/068_Model_Data_Viewer2.png)](./resources/068_Model_Data_Viewer2.png)
-*Opening the Model Data Viewer*
+[![打开模型数据查看器](./resources/068_Model_Data_Viewer2.png)](./resources/068_Model_Data_Viewer2.png)
+*打开模型数据查看器*
 
-You can also get to the viewer by right-clicking on a model in the Actor Timeline Tree, or the bottom-left pane where components of the current scene are listed, and selecting 'Show Model Data.'
+你也可以在 Actor 时间线树中，或者在当前场景组件列表所在的左下角面板里，对某个模型右键，然后选择 `Show Model Data` 来打开查看器。
 
 ![](./resources/068_Model_Data_Viewer3.png)
-*Opening the Model Data Viewer from the Actor Timeline Tree*
+*从 Actor 时间线树打开模型数据查看器*
 
-## Understanding The Viewer
+## 理解查看器
 
-Once launched, the model data viewer will populate itself with the data of the currently selected model type.
+启动后，模型数据查看器会自动填充当前选中模型类型的数据。
 
-[![Model Data Viewer in Cutscene Editor](./resources/068_Model_Data_Viewer4.png)](./resources/068_Model_Data_Viewer4.png)
-*Model Data Viewer in Cutscene Editor*
+[![过场动画编辑器中的模型数据查看器](./resources/068_Model_Data_Viewer4.png)](./resources/068_Model_Data_Viewer4.png)
+*过场动画编辑器中的模型数据查看器*
 
-Inside the viewer, you'll see that the model data is broken up and organized into folders. Each folder holds either a detailed breakdown of one of the structural types of the model or an overview of the whole model's data. These folders follow the layout outlined below.
+在查看器中，你会看到模型数据被拆分并整理成多个文件夹。每个文件夹要么详细拆解模型的一种结构类型，要么提供整个模型数据的概览。这些文件夹遵循如下布局。
 
-  - Unit Type
-      - Basic Information
-      - Animation Sequences
-      - Geometry
-      - Materials
-      - Attachment Points
-      - Bones
-      - Lights
-      - Cameras
-      - Physics Bodies
-      - Effects
-          - Particle Effects
-          - Ribbons
+  - 单位类型
+      - 基本信息
+      - 动画序列
+      - 几何体
+      - 材质
+      - 附着点
+      - 骨骼
+      - 灯光
+      - 摄像机
+      - 物理刚体
+      - 效果
+          - 粒子效果
+          - 缎带
 
-The information you'll find in each folder is broken down in the following table.
+下表说明了各文件夹中可以找到的信息。
 
-| Field               | Details                                                                                                                                                                                                                                                   |
+| 字段 | 说明 |
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Basic Information   | Offers an overview of the model's file structure and collision sizes.                                                                                                                                                                                     |
-| Animation Sequences | Breaks up each model animation into a folder listed under the animation's reference name, length, and starting frame. Moving into each animation's folder reveals their looping settings, individual bounding sphere sizes, and several other flags.      |
-| Geometry            | Contains counts of the bones, vertices, divisions, and skinned bones within the model.                                                                                                                                                                    |
-| Material            | Breaks down each material in the model, listing their texture and map compositions alongside lighting information and any display property flags that are set. Also contains folders for each material that show any parallax height or motion blur data. |
-| Attachment Points   | Shows a list of all the available attachment points on the model. Each point is listed under its reference name and the bone number to which it is attached.                                                                                              |
-| Bones               | Breaks down each bone in the model by identifying number and reference name. Every bone also has a subfolder containing information about billboarding, animation, and inverse kinematics.                                                                |
+| 基本信息 | 提供模型文件结构和碰撞体尺寸的概览。 |
+| 动画序列 | 将每个模型动画拆分为单独文件夹，并以该动画的引用名、长度和起始帧列出。进入具体动画文件夹后，还能看到它们的循环设置、各自动画包围球尺寸以及若干其他标志。 |
+| 几何体 | 包含模型中的骨骼数、顶点数、分区数和蒙皮骨骼数等统计。 |
+| 材质 | 拆解模型中的每一种材质，列出其纹理与贴图组成，以及光照信息和所有已设置的显示属性标志。同时每种材质也会有自己的子文件夹，展示诸如视差高度或运动模糊之类的数据。 |
+| 附着点 | 显示模型上所有可用附着点的列表。每个点都会以其引用名以及所附着的骨骼编号列出。 |
+| 骨骼 | 通过编号和引用名拆解模型中的每根骨骼。每根骨骼也都有一个子文件夹，其中包含公告板、动画和逆向运动学等信息。 |
 
-## Model Data Applications
+## 模型数据的用途
 
-The applications for information found in the model data viewer can vary from project to project.
+模型数据查看器中的信息，在不同项目里的用途会有所不同。
 
-If a project is using custom assets, then the viewer can be your first stop to confirm that everything is loading into the engine. Here, the model data is compared to the information found within the Blizzard Art Tools, checking for any discrepancies. Any differences might suggest that certain components are not exporting correctly.
+如果项目使用了自定义资源，那么查看器可以成为你最先检查的一站，用来确认所有内容都已经正确载入引擎。此时，你可以把这里的模型数据与 Blizzard Art Tools 中的信息进行对比，检查是否存在差异。任何不一致，都可能意味着某些组件在导出时出了问题。
 
-In other cases, the viewer is used for looking up reference names. These names are used frequently within triggers and data as identifiers. The Animation Sequence reference names are used in actor events, as the 'Animation Property,' or in the animation trigger actions, as 'Identifier.' Attachment Point reference names are used for attachment site operations and the 'Attach Actor to ...' trigger actions.
+在其他情况下，查看器则常用于查询引用名。这些名称在触发器和数据中经常被当作标识符使用。动画序列的引用名会在 Actor 事件中作为 `Animation Property` 使用，或在动画相关触发器动作中作为 `Identifier` 使用。附着点的引用名则会用于附加型站点操作，以及 `Attach Actor to ...` 触发器动作中。
 
-## Locating Attachment Points
+## 定位附着点
 
-The Model Data Viewer has a special use in locating attachment points using the Cutscene Editor. You can do this by enabling the visibility of attachment points by navigating to Render ▶︎ Show Geometry ▶︎ Attachment Points, as shown below.
+模型数据查看器还有一个特殊用途，就是配合过场动画编辑器定位附着点。你可以通过 `Render ▶︎ Show Geometry ▶︎ Attachment Points` 启用附着点显示，如下图所示。
 
-[![Showing Attachment Points](./resources/068_Model_Data_Viewer5.png)](./resources/068_Model_Data_Viewer5.png)
-*Showing Attachment Points*
+[![显示附着点](./resources/068_Model_Data_Viewer5.png)](./resources/068_Model_Data_Viewer5.png)
+*显示附着点*
 
-Once enabled, each attachment point is represented by a triangular solid overlaid on the model. Each triangle represents a position where the attachment point is found and points in the direction the attachment point faces. The image below shows the attach points of a marauder.
+启用后，每个附着点都会以一个覆盖在模型上的三角形实体来表示。每个三角形都代表附着点所在的位置，并指示该附着点朝向的方向。下图展示了劫掠者模型的附着点。
 
-[![Attachment Points Basic Visualization](./resources/068_Model_Data_Viewer6.png)](./resources/068_Model_Data_Viewer6.png)
-*Attachment Points Basic Visualization*
+[![附着点基础可视化](./resources/068_Model_Data_Viewer6.png)](./resources/068_Model_Data_Viewer6.png)
+*附着点基础可视化*
 
-This visualization shows the distribution and direction of attachment points, but offers no help in finding out the reference names of each point so that you can use them elsewhere in the Editor. Some of the attachment points have useful names, but others can be difficult to decode.
+这种可视化能展示附着点的分布和朝向，但无法帮助你知道每个点的引用名是什么，而这恰恰是你之后在编辑器其他地方使用它们所必须知道的。有些附着点的名称比较直观，但也有一些很难仅凭名称猜出具体位置。
 
-If you open the viewer and navigate to the Attachment Points folder, you can find each individual attachment point by selecting the listing of the point that is being searched for. Once highlighted in the Model Data Viewer, an attachment point will glow bright green in the main view of the Cutscene Editor and begin pulsing. This is shown in the image below.
+如果你打开查看器并进入“附着点”文件夹，就可以通过在列表中选中某个附着点，来定位你正在查找的具体点位。一旦在模型数据查看器中高亮某个附着点，它就会在过场动画编辑器主视图中发出亮绿色光芒，并开始脉冲闪烁。如下图所示。
 
 ![](./resources/068_Model_Data_Viewer7.png)
-*Attachment Point Highlighted Using Model Data Viewer*
+*使用模型数据查看器高亮附着点*
 
-This effect is far more prominent in motion, but the image above still shows that the selected attachment point is brighter and much larger. In this instance, the method has identified Ref\_Hardpoint, which would have been difficult to locate using its reference name alone.
+这个效果在动态下更明显，不过即使是上图，也能看出被选中的附着点更亮且更大。此例中，该方法定位到了 `Ref_Hardpoint`，而如果仅凭引用名本身，它其实并不容易找到。

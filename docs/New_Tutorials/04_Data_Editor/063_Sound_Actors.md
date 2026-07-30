@@ -1,115 +1,115 @@
-# Sound Actors
+# 声音 Actor
 
-Sound Actors are used to deliver most of the game's unit sounds. This includes things like order affirmations, weapons fire, death cries, spell effects, and construction noises. There are other sounds in the games, such as music and cutscene dialog, but sounds actors handle the systemic sounds that respond to gameplay. As a type of actor, sound actors can be located in the actors tab, shown below.
+声音 Actor 用于承载游戏中大多数单位声音。这包括命令确认、武器开火、死亡惨叫、技能音效以及建造噪音等。游戏里当然也有其他类型的声音，例如音乐和过场对话，但声音 Actor 主要处理那些会响应玩法的系统性声音。作为一种 Actor，你可以在下图所示的 Actor 标签页中找到它们。
 
-[![Sound Actors Listing](./resources/063_Sound_Actors1.png)](./resources/063_Sound_Actors1.png)
-*Sound Actors Listing*
+[![声音 Actor 列表](./resources/063_Sound_Actors1.png)](./resources/063_Sound_Actors1.png)
+*声音 Actor 列表*
 
-Sound actors don't actually contain their sound asset, it is stored separately in a Sound data type. As such, you can think of sound actors as a kind of sound coordinator. They act in response to the game's inputs via their connection to a unit, then start and stop sounds as directed by their 'Events' field. They have a limited ability to configure their sound. Any alterations to a sound's properties, like pitch, volume, or 3D settings, typically occur in the Sound data.
+声音 Actor 实际上并不直接存放声音资源，声音资源会单独保存在 `Sound` 数据类型中。因此，你可以把声音 Actor 理解为一种声音协调器。它们通过与单位建立连接来响应游戏输入，然后依据“事件”字段来开始或停止声音。它们对声音本身的配置能力有限；像音高、音量或 3D 设置这类属性调整，通常都发生在 `Sound` 数据里。
 
-There are two base types of sound actor that are used for sound actor parentage, SoundOneShot and SoundContinuous. The former is used for sounds that only play once, while the latter is for sounds that play indefinitely. For example, the the Zerg burrow noise is a one shot sound, while the medivac healing loop is a continuous sound.
+作为声音 Actor 父级使用的基础类型有两种：`SoundOneShot` 和 `SoundContinuous`。前者用于只播放一次的声音，后者则用于持续播放的声音。例如，虫族的潜地音效属于一次性声音，而医疗运输机的治疗循环声则是持续声音。
 
-## Sound Actor Fields
+## 声音 Actor 字段
 
-A sound actor's fields create a link between the sound actor itself, a unit, and a sound asset. These fields are broken down in the table below.
+声音 Actor 的字段会在声音 Actor 本体、单位和声音资源之间建立连接。下表对这些字段进行了说明。
 
-| Field                | Details                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| 字段 | 说明 |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Events               | Sets the actor events. Sound actors use events to create themselves and their link to a unit. The control of Sound objects is also handled through events.                                                                                                                                                                                                                                                                                                             |
-| Sound                | Sets the Sound played on actor creation. Any base behavior present in the sound is maintained here, including looping, variations, and volume controls.                                                                                                                                                                                                                                                                                                                |
-| Sound Flags          | Contains a single Update Visibility flag. This flag makes use of actors' ability to be asynchronous. When activated, sounds will respond to their visibility status for a player. For example, if a sound is playing as a unit vanishes from a player's view into fog of war, the sound's volume will fade out. This flag is often disabled for unit death sounds so that players can hear the full death sound of a unit, even if it disappears under the fog of war. |
-| Host                 | Determines which properties are inherited from the host. Properties like positon and height are important to any sounds configured to be 3D.                                                                                                                                                                                                                                                                                                                           |
-| Host Site Operations | Site operations can be used to alter the sound's position in 3D space.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| 事件 | 设置 Actor 事件。声音 Actor 通过事件创建自身以及与单位的连接；对 `Sound` 对象的控制也通过事件完成。 |
+| 声音 | 设置 Actor 创建时要播放的 `Sound`。声音自身具备的基础行为会在这里被保留，包括循环、变体和音量控制等。 |
+| 声音标志 | 这里只包含一个 `Update Visibility` 标志。它利用了 Actor 可异步运行的特性。启用后，声音会根据某位玩家对其的可见状态作出反应。例如，如果一个声音正在播放，而单位又从玩家视野中进入战争迷雾，那么这个声音的音量就会逐渐淡出。这个标志通常会对单位死亡音效关闭，以便玩家即使在单位消失于迷雾下时，仍能听完整个死亡音效。 |
+| 宿主 | 决定从宿主继承哪些属性。对任何配置成 3D 的声音来说，位置和高度等属性都很重要。 |
+| 宿主站点操作 | 可用站点操作来改变声音在 3D 空间中的位置。 |
 
-## Sound Actor Events
+## 声音 Actor 事件
 
-Events and messages pertinent to a sound actor's operation are broken down in the table below.
+下表拆解了与声音 Actor 运作相关的事件和消息。
 
-| Message                   | Description                                                                                                                                              |
+| 消息 | 说明 |
 | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Create                    | Creates the actor, playing the sound with its specified properties.                                                                                      |
-| Destroy                   | Destroys the actor, ending sound output.                                                                                                                 |
-| Timer Set                 | Sometimes used to play a sound after the actor's creation,                                                                                               |
-| Sound Done                | Operates as an event, where it is triggered once a sound has finished playing. Usually used to Destroy the actor. A looping sound will not trigger this. |
-| Sound Add Digital Effects | Modifies a sound with digital signal processing. There are a number of preconfigured DSP effects such as ReverbUnderwater and ReverbStoneRoom.           |
-| Sound Set Muted           | Mutes or unmutes a sound. A muted sound continues to play, but at effectively zero volume.                                                               |
-| Sound Set Offset          | Creates an offset, or pause before the sound begins playing.                                                                                             |
-| Sound Set Paused          | Pauses or unpauses a sound. A paused sound's output stops until begun again.                                                                             |
-| Sound Set Pitch           | Alters the pitch of a sound over time, making it higher or lower.                                                                                        |
-| Sound Set Volume          | Sets the volume of a sound over time.                                                                                                                    |
+| Create | 创建 Actor，并以指定属性播放声音。 |
+| Destroy | 销毁 Actor，结束声音输出。 |
+| Timer Set | 有时用于在 Actor 创建后一段时间再播放声音。 |
+| Sound Done | 作为事件使用：当声音播放结束时触发。通常会用它来 `Destroy` 该 Actor。循环声音不会触发它。 |
+| Sound Add Digital 效果 | 使用数字信号处理为声音添加效果。这里提供了多种预设 DSP 效果，例如 `ReverbUnderwater` 和 `ReverbStoneRoom`。 |
+| Sound Set Muted | 将声音静音或取消静音。被静音的声音仍在播放，只是音量实际上为零。 |
+| Sound Set Offset | 为声音创建一个偏移，也就是在真正开始播放前先暂停一段时间。 |
+| Sound Set Paused | 暂停或取消暂停声音。暂停后的声音会停止输出，直到再次开始。 |
+| Sound Set Pitch | 随时间改变声音音高，使其变高或变低。 |
+| Sound Set Volume | 随时间设置声音音量。 |
 
-## Demoing Sound Actors
+## 演示声音 Actor
 
-Open the demo map provided with this article. The course inside shows a roach that's been cornered by some marines. It should appear as shown in the image below.
+打开本文附带的演示地图。场景中有一只被几名陆战队员围住的蟑螂，如下图所示。
 
-[![Sound Actors Listing](./resources/063_Sound_Actors2.png)](./resources/063_Sound_Actors2.png)
-*Cornered Roach Demo Map*
+[![声音 Actor 列表](./resources/063_Sound_Actors2.png)](./resources/063_Sound_Actors2.png)
+*被围住的蟑螂演示地图*
 
-By default, roaches don't make any sort of noise while being attacked. Testing the map now will demonstrate this. However, you can build a new sound actor to alter this behavior using some prebuilt assets. Navigate to the Data Editor and open the Sounds tab. Find the existing sound 'Roach\_Damaged,' and open its 'Sounds Assets' field. This should present you with the following view.
+默认情况下，蟑螂在受到攻击时不会发出任何特别的声音。现在就测试地图，你会看到这一点。不过，你可以借助一些预先做好的资源创建一个新的声音 Actor，来改变这一行为。进入数据编辑器并打开 声音 标签页，找到现有声音 `Roach_Damaged`，然后打开它的 `声音 Assets` 字段。你应该会看到如下视图。
 
-[![Sound Actors Listing](./resources/063_Sound_Actors3.png)](./resources/063_Sound_Actors3.png)
-*Sound Assets View*
+[![声音 Actor 列表](./resources/063_Sound_Actors3.png)](./resources/063_Sound_Actors3.png)
+*声音资源视图*
 
-Here a custom Sound has been set up to replicate a selection of zergling death noises. The list is set so that a random variation will pick and play as a stand in for a roach damaged noise. To set that functionality, move to the actors tab and right-click in the main view, then select 'Add Actor.'
+这里已经配置好了一个自定义 `Sound`，用于复用若干跳虫死亡音效。这个列表被设置为随机挑选并播放其中一种变体，用来充当蟑螂受伤音效。要把这个功能接入玩法，请切换到 Actor 标签页，在主视图中右键并选择 `Add Actor`。
 
-[![Creating an Actor](./resources/063_Sound_Actors4.png)](./resources/063_Sound_Actors4.png)
-*Creating an Actor*
+[![创建一个 Actor](./resources/063_Sound_Actors4.png)](./resources/063_Sound_Actors4.png)
+*创建一个 Actor*
 
-Name the new actor 'Roach Damaged,' then click 'Suggest' to generate an ID. Use the 'Actor Type' dropdown to select the creation of a sound actor, as shown below.
+将新 Actor 命名为 `Roach Damaged`，然后点击 `Suggest` 生成 ID。使用 `Actor Type` 下拉框，选择创建一个声音 Actor，如下图所示。
 
-![Selecting Sound Actor Creation](./resources/063_Sound_Actors5.png)
-*Selecting Sound Actor Creation*
+![选择声音 Actor 创建类型](./resources/063_Sound_Actors5.png)
+*选择声音 Actor 创建类型*
 
-Select the 'Parent' to be SoundOneShot, since the behavior you want is for the sound to play once on being attacked, then stop. The final actor creation window will look something like this.
+将 `Parent` 设为 `SoundOneShot`，因为你希望的行为是单位受到攻击时声音播放一次然后停止。最终的 Actor 创建窗口大致如下。
 
-![Sound Actor Creation Window](./resources/063_Sound_Actors6.png)
-*Sound Actor Creation Window*
+![声音 Actor 创建窗口](./resources/063_Sound_Actors6.png)
+*声音 Actor 创建窗口*
 
-Now highlight the actor you just created and find its 'Event's field. Select this field and double click it to open the actor events subeditor. You'll see that there is a pre-existing 'SoundDone' event with a 'Destroy' message. This is parented in from the SoundOneShot base and will cause the sound to stop, or be destroyed, after playing once. Right-click below this element and select 'Add Event', as shown below.
+现在选中刚创建的 Actor，找到它的“事件”字段。选中该字段并双击，打开 Actor 事件子编辑器。你会看到里面已经有一个 `SoundDone` 事件和一条 `Destroy` 消息。这是从 `SoundOneShot` 基础类型继承来的，会让声音播放一次后停止，也就是销毁该 Actor。在该元素下方右键并选择 `Add Event`，如下图所示。
 
-[![Adding an Event](./resources/063_Sound_Actors7.png)](./resources/063_Sound_Actors7.png)
-*Adding an Event*
+[![添加一个事件](./resources/063_Sound_Actors7.png)](./resources/063_Sound_Actors7.png)
+*添加一个事件*
 
-Once created, highlight the new 'ActionDamage' event and use the dropdown to set the Event's Msg Type to 'Unit Damage.'
+新事件创建后，选中这个新的 `ActionDamage` 事件，并使用下拉框把事件的 `Msg Type` 设为 `Unit Damage`。
 
-[![Selecting Event Type](./resources/063_Sound_Actors8.png)](./resources/063_Sound_Actors8.png)
-*Selecting Event Type*
+[![选择事件类型](./resources/063_Sound_Actors8.png)](./resources/063_Sound_Actors8.png)
+*选择事件类型*
 
-Set the 'Unit Damage' event's Source Name to 'Roach.' Then set the message to 'Create.' This will establish the link with the roach, causing the actor to be created and play every time the roach is damaged. The completed actor events should look like those in the image below.
+将这个 `Unit Damage` 事件的 `Source Name` 设为 `Roach`，再把消息设为 `Create`。这样就与蟑螂建立了连接，使得每次蟑螂受到伤害时，该 Actor 都会被创建并播放。完成后的 Actor 事件应如下图所示。
 
-[![Completed Actor Events](./resources/063_Sound_Actors9.png)](./resources/063_Sound_Actors9.png)
-*Completed Actor Events*
+[![完成的 Actor 事件](./resources/063_Sound_Actors9.png)](./resources/063_Sound_Actors9.png)
+*完成的 Actor 事件*
 
-Click 'Ok' to save the actor events, then move back to the main Data Editor view. The sound actor still requires a connection to a sound asset, so create the link by navigating to the 'Sound' field and double clicking to open it.
+点击 `Ok` 保存 Actor 事件，然后回到数据编辑器主视图。这个声音 Actor 还需要与某个声音资源建立连接，因此请定位到“声音”字段并双击打开它。
 
-This will launch an 'Object Values' window where you can set the sound. At this point you should be looking at the following.
+这会弹出一个 `Object Values` 窗口，让你设置声音。此时你应会看到如下内容。
 
-[![Setting Sound Asset](./resources/063_Sound_Actors10.png)](./resources/063_Sound_Actors10.png)
-*Setting Sound Asset*
+[![设置声音资源](./resources/063_Sound_Actors10.png)](./resources/063_Sound_Actors10.png)
+*设置声音资源*
 
-Select the 'Roach Damaged' Sound that was supplied with the map and click 'Ok.' Now move to the 'Terms' field and double click to open it. This field offers some additional terms, the same as found in actor events. In this case, these terms must be passed before the actor is created. Click the + button to add a new term, then use the dropdown to select 'Cap,' as shown below.
+选择地图中提供的 `Roach Damaged` 声音，然后点击 `Ok`。接着定位到“术语”字段并双击打开它。这个字段提供了一些额外术语，和 Actor 事件中的术语是同一套机制。在这里，这些术语必须在 Actor 创建前成立。点击 `+` 按钮添加一个新术语，然后在下拉框中选择 `Cap`，如下图所示。
 
-[![Setting Terms](./resources/063_Sound_Actors11.png)](./resources/063_Sound_Actors11.png)
-*Setting Terms*
+[![设置术语](./resources/063_Sound_Actors11.png)](./resources/063_Sound_Actors11.png)
+*设置术语*
 
-Once selected, set the Cap value of this term to 2. This will appear as follows.
+选中后，把这个术语的 Cap 值设为 `2`。结果会如下所示。
 
-[![Completed Term](./resources/063_Sound_Actors12.png)](./resources/063_Sound_Actors12.png)
-*Completed Term*
+[![完成的术语](./resources/063_Sound_Actors12.png)](./resources/063_Sound_Actors12.png)
+*完成的术语*
 
-This term sets a cap on the number of actors that can exist in the same scope before another can be created. The scope here is the unit source, the roach. This setup means that the roach can make a maximum of two damaged sounds at any given time. Confirm these settings by clicking 'Ok.'
+这个术语会对同一作用域内允许存在的 Actor 数量设置上限，超过后就不会再创建新的 Actor。这里的作用域是单位来源，也就是蟑螂本身。这意味着任意时刻，蟑螂最多只能同时发出两个受伤声音。点击 `Ok` 确认这些设置。
 
-The map is now complete. The sound actor has allowed you to introduce a new sound into the roach's data. You can see the changes in the unit's data structure below.
+至此地图已经完成。通过这个声音 Actor，你已经把一个新声音接入了蟑螂的数据中。下图展示了单位数据结构中的变化。
 
 ![](./resources/063_Sound_Actors13.png)
-*Old Roach Data Structure -- New Roach Data Structure*
+*旧蟑螂数据结构 -- 新蟑螂数据结构*
 
-The sound actor has linked the Sound 'Roach Damaged' into the Unit data through its events, specifically the 'Unit Create' event, which will be triggered on any damage to the roach. Testing this behavior should play this new sound when any marines are commanded to attack the roach. Remember that the sound is a sampling of the zergling death cry. Use 'Test Document' to see it working in-game.
+这个声音 Actor 通过事件把 `Roach Damaged` 这个 `Sound` 连接到了单位数据中，具体来说，是通过会在蟑螂受到任意伤害时触发的那个事件完成的。测试该行为后，只要命令陆战队员攻击蟑螂，就会播放这个新声音。别忘了，这个声音本身其实是由跳虫死亡惨叫采样而来。使用 `Test Document` 即可在游戏中查看效果。
 
-[![Newfound Sympathy for the Roach](./resources/063_Sound_Actors14.png)](./resources/063_Sound_Actors14.png)
-*Newfound Sympathy for the Roach*
+[![重新同情起这只蟑螂](./resources/063_Sound_Actors14.png)](./resources/063_Sound_Actors14.png)
+*重新同情起这只蟑螂*
 
-## Attachments
+## 附件
 
- * [063_Sound_Actors_Completed.SC2Map](./maps/063_Sound_Actors_Completed.SC2Map)
- * [063_Sound_Actors_Start.SC2Map](./maps/063_Sound_Actors_Start.SC2Map)
+ * [063_Sound_Actor_Completed.SC2Map](./maps/063_Sound_Actors_Completed.SC2Map)
+ * [063_Sound_Actor_Start.SC2Map](./maps/063_Sound_Actors_Start.SC2Map)

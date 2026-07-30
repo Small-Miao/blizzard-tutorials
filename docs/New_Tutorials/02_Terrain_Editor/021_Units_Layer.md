@@ -1,66 +1,66 @@
-# Units Layer
+# 单位层
 
-The Units Layer is where you can place units on the map and configure them in various ways. While units may enter a game via triggers or other sources, placing them directly in the Editor can be useful for designing the look and feel of your game. You can access this layer from the Terrain Bar, by clicking the icon shown below.
+单位层是你在地图上放置单位，并以多种方式配置它们的地方。虽然单位也可以通过触发器或其他来源在游戏中出现，但直接在编辑器中放置单位，对于设计游戏的外观与手感非常有帮助。你可以点击下图所示图标，从地形栏进入这一层。
 
-![Units Layer Icons](./resources/021_Units_Layer1.png)
-*Units Layer Icons*
+![单位 Layer Icons](./resources/021_Units_Layer1.png)
+*单位层图标*
 
-## Unit Palette
+## 单位面板
 
-'Unit' is a very flexible term, usually referring to gameplay pieces such as marines, zealots, and the like. These examples are in fact units, but in the context of the Editor the term refers more broadly to a data type. In this case, a unit is an entity that can be placed in the Editor and used in the game. This includes traditional StarCraft units, but it also includes visual props, destructible terrain, resources, buildings, signs, and critters.
+“单位”这个词的含义非常灵活，通常会让人想到机枪兵、狂热者之类的玩法单位。这些例子当然属于单位，但在编辑器语境中，这个术语泛指一种数据类型。在这里，单位是指可以在编辑器中放置、并在游戏中使用的实体。它既包括传统《星际争霸》单位，也包括视觉道具、可破坏地形、资源、建筑、标志牌和小动物。
 
-As previously mentioned, the Units Layer is a great tool for setting up the working parts of your game while completely avoiding any coding. This can be great for absolute beginners, but it also offers users of any experience level the ability to put together a quick mock-up. Every unit you place in the Terrain Editor will be seen in game unless you later modify or disable them using triggers. You can find, select, and place units using the options present in the Units Palette, shown below.
+如前所述，单位层是一个无需任何代码就能搭建游戏工作部分的强大工具。它对完全的新手来说很友好，但也同样能让任何经验水平的用户快速搭出一个原型。你在地形编辑器中放置的每个单位都会在游戏中出现，除非你之后通过触发器对它们进行修改或禁用。你可以使用 单位 Palette 中的选项来查找、选择并放置单位，如下图所示。
 
-![Units Palette](./resources/021_Units_Layer2.png)
-*Units Palette*
+![单位 Palette](./resources/021_Units_Layer2.png)
+*单位面板*
 
-The main feature of the Units Palette is a listing of all units available for placement in the map. This list is populated from the map's current structure of data, including its dependencies and any data native to the current map. The list also gives you access to three layers of filters, allowing you to find by player, object family, race, and object type. You can see it in use in the image below.
+单位 Palette 的主要部分，是列出地图中所有可放置单位的清单。这个列表会根据地图当前的数据结构生成，包括它的依赖项以及地图原生数据。该列表还提供三层筛选器，你可以按玩家、对象族、种族和对象类型来查找。下图展示了它的使用方式。
 
 ![Finding Melee Structures](./resources/021_Units_Layer3.png)
-*Finding Melee Structures*
+*查找对战建筑*
 
-The palette also boasts some supplemental features. The Existing Object list keeps a record of every unit you've placed on the map. It provides details about each unit's type, its owner, whether or not it belongs to any current groups, and its visibility status. This can be very useful for locating units in a crowded map or estimating the overall unit count during performance troubleshooting. Finally, there is also a Preview, which shows a rendering of the unit currently selected for placement. You can reorient this view with the standard camera controls. These features are shown in the image below.
+该面板还有一些辅助功能。现有对象 列表会记录你在地图上放置的每一个单位，并显示其类型、拥有者、是否属于某个组以及可见性状态。在地图较拥挤时，它很适合用来定位单位；在排查性能问题时，也能帮助你估算整体单位数量。此外，面板中还提供 预览，用来渲染当前选中、准备放置的单位。你可以使用标准镜头控制来调整预览视角。下图展示了这些功能。
 
-[![Units Preview and Existing Object List](./resources/021_Units_Layer4.png)](./resources/021_Units_Layer4.png)
-*Units Preview and Existing Object List*
+[![单位 预览 and 现有对象列表](./resources/021_Units_Layer4.png)](./resources/021_Units_Layer4.png)
+*单位预览与现有对象列表*
 
-## Placing A Unit
+## 放置单位
 
-To place a unit, look to the unit palette listing and find a subject either manually or using the search bar and filters. Try selecting a Thor by typing into the search bar. Clicking on the unit and navigating to the main viewport will show a transparent preview of the unit ready to be placed.
+要放置单位，请在单位面板列表中手动查找目标，或使用搜索栏和筛选器。例如，你可以尝试在搜索栏中输入并选择一台 Thor。点击该单位后，将鼠标移到主视口中，就会看到它的半透明预览，表示已经准备好放置。
 
-[![Unit Placement Preview](./resources/021_Units_Layer5.png)](./resources/021_Units_Layer5.png)
-*Unit Placement Preview*
+[![Unit Placement 预览](./resources/021_Units_Layer5.png)](./resources/021_Units_Layer5.png)
+*单位放置预览*
 
-Click again to place the unit, it should turn solid and will now show up in the Existing Object list.
+再次点击即可放置单位。它会变成实体显示，并出现在 现有对象 列表中。
 
-## Configuring A Placed Unit
+## 配置已放置单位
 
-When placing units in the Terrain Editor, you also unwrap some of their properties for easy configuration. You can edit the Thor's properties by double clicking on it the main viewport. This will launch the 'Object Properties' window, shown below.
+在地形编辑器中放置单位时，编辑器也会把它们的一些属性展开出来，便于你直接配置。你可以在主视口中双击 Thor 来编辑其属性。这会打开如下图所示的“对象属性”窗口。
 
 [![Unit's Object Properties](./resources/021_Units_Layer6.png)](./resources/021_Units_Layer6.png)
-*Unit's Object Properties*
+*单位对象属性*
 
-The Object Properties window allow you to make a variety of adjustments to a selected Unit. The options displayed may vary depending on what unit you're working with. Below you'll find a breakdown of the properties this window allows you to edit.
+对象属性窗口允许你对选中的单位进行多种调整。窗口中显示的选项会因单位类型不同而有所变化。下表列出了该窗口通常允许你编辑的属性。
 
-| Property | Description                                                                                      |
+| 属性 | 说明 |
 | -------- | ------------------------------------------------------------------------------------------------ |
-| Name     | Applies a custom label to the specified unit. This label is visible in the Existing Object list. |
-| Player   | Sets ownership of the unit.                                                                      |
-| Position | Sets the location of the unit in the map via X and Y coordinates.                                |
-| Rotation | Adjusts the facing angle of the unit in the Editor.                                              |
+| Name | 为指定单位添加自定义标签。该标签会显示在 现有对象 列表中。 |
+| Player | 设置单位归属。 |
+| Position | 通过 X 和 Y 坐标设置单位在地图中的位置。 |
+| Rotation | 调整单位在编辑器中的朝向角度。 |
 
-As an exercise demonstrating the utility of these features, place a few more Thors on the map using the previous procedure. Edit the object properties of each of these units and make sure they have all their Player values to Player 1. Now select the single original Thor and set is ownership to Player 3. Use its object property Name to give it the label TEST UNIT. If you check the Existing Object list, the labelled unit should be clearly differentiated, as in the image below.
+为了练习这些功能的作用，请按照前述步骤再在地图上放置几台 Thor。编辑这些单位的对象属性，并确保它们的 Player 值全部设为 玩家 1。然后选中最初那一台 Thor，把它的归属改成 玩家 3，并使用对象属性中的 Name 为它加上标签 `TEST UNIT`。如果你查看 现有对象 列表，就会看到这台带标签的单位已被清楚地区分出来，如下图所示。
 
 [![Labelled Unit](./resources/021_Units_Layer7.png)](./resources/021_Units_Layer7.png)
-*Labelled Unit*
+*已加标签的单位*
 
-Go back to the Thor assigned to Player 3 and change its ownership to Player 1. Shuffle the Thors together by moving them around on the Units Layer. You can even set the units so that they are all facing the same direction using their Rotation property, making them all appear identical. Note that a unit at a 270° Rotation will face the camera. You should be left with something that looks like this.
+接着回到那台归属于 玩家 3 的 Thor，再把它的归属改回 玩家 1。然后在单位层中移动这些 Thor，把它们混在一起。你甚至可以利用 Rotation 属性让它们都朝向同一个方向，使它们看起来完全一样。请注意，Rotation 为 270° 的单位会面朝镜头。最终你应当得到如下效果。
 
 [![Unit located with Name Property](./resources/021_Units_Layer8.png)](./resources/021_Units_Layer8.png)
-*Unit located with Name Property*
+*通过 Name 属性定位单位*
 
-Under ordinary circumstances, these units would be indistinguishable. In this instance, the label you assigned to the Thor is still visible in the Palette Existing Object list, and this will help you to locate your unique Thor after the shuffle. If you had given this unit some special gameplay significance, being referenced in triggers for example, then the ability to find it in the Terrain Module quickly is particularly useful.
+正常情况下，这些单位彼此几乎无法区分。但在这个例子中，你为 Thor 设置的标签仍会显示在面板的 现有对象 列表中，这会帮助你在重新打乱位置后快速找回那台特殊的 Thor。如果你赋予了该单位某种特殊玩法意义，例如在触发器中引用它，那么能够在地形模块里快速找到它就会非常有用。
 
-## Attachments
+## 附件
 
- * [021_Units_Layer.SC2Map](./maps/021_Units_Layer.SC2Map)
+ * [021_单位_Layer.SC2Map](./maps/021_Units_Layer.SC2Map)

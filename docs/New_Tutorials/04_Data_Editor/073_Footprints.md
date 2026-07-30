@@ -1,24 +1,24 @@
-# Footprints
+# 足迹
 
-Footprints attach pathing to other objects. Take a statue doodad as an example. To function in the Editor, it must prevent units from walking through it and clipping the model. A footprint can be used to prevent this by being attached to the doodad, creating a pathing blocker around the statue's area. You can see this in the image below.
+足迹会把寻路逻辑附加到其他对象上。以一个雕像装饰物为例。为了在编辑器中正常工作，它必须阻止单位穿过它并与模型发生穿模。将一个足迹附加到这个装饰物上，就可以在雕像周围创建一个寻路阻挡区域，防止这种情况发生。如下图所示。
 
-[![Doodad Footprint](./resources/073_Footprints1.png)](./resources/073_Footprints1.png)
-*Doodad Footprint*
+[![装饰物足迹](./resources/073_Footprints1.png)](./resources/073_Footprints1.png)
+*装饰物足迹*
 
-The doodad has sectioned off a grid area where neither unit pathing nor building can occur. The type is determined by the amount of pathing area the footprint takes up on a unit grid basis. This footprint is a 3x3, measuring three units in both axes. You can view and edit footprints by moving to the Data Editor and navigating to + ▶︎ Edit Game Data ▶︎ Footprints, as shown below.
+这个装饰物划出了一块网格区域，在其中既不能进行单位寻路，也不能建造建筑。足迹类型由其在单位网格上所占据的寻路面积决定。这里的足迹是一个 `3x3`，也就是在两个轴向上都占据三个单位。你可以进入数据编辑器，并通过 `+ ▶︎ Edit Game Data ▶︎ Footprints` 查看和编辑足迹，如下图所示。
 
-[![Navigating to Footprints in Data](./resources/073_Footprints2.png)](./resources/073_Footprints2.png)
-*Navigating to Footprints in Data*
+[![在数据中导航到足迹](./resources/073_Footprints2.png)](./resources/073_Footprints2.png)
+*在数据中导航到足迹*
 
-## Footprint Details
+## 足迹详情
 
-Selecting a footprint in the Editor will show its fields in the right subview and its connected objects in the Object Explorer. A footprint hooks into an actor through the 'Footprint' field and a unit through its 'Pathing Footprint' field. You should note that, when it comes to units, many buildings have their own footprints, but actual moveable ground units handle pathing with their own systems. Below you'll find an image of the footprints tab and a breakdown of its essential fields.
+在编辑器中选中一个足迹后，右侧子视图会显示它的字段，而对象浏览器会显示与之连接的对象。足迹会通过 `Footprint` 字段连接到 Actor，并通过 `Pathing Footprint` 字段连接到单位。需要注意的是，对于单位而言，很多建筑都有自己的足迹，但真正可移动的地面单位则会通过它们自己的系统来处理寻路。下方先给出足迹标签页示意图，再对其关键字段进行说明。
 
-[![Footprint Data Fields](./resources/073_Footprints3.png)](./resources/073_Footprints3.png)
-*Footprint Data Fields*
+[![足迹数据字段](./resources/073_Footprints3.png)](./resources/073_Footprints3.png)
+*足迹数据字段*
 
-| Fields          | Details                                                                                                                                                                                                                     |
+| 字段 | 说明 |
 | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Footprint Group | Sets the index category within the editor. Most footprints are found under the default Generic or blank grouping. Some unique footprints for destructibles and uncommon shapes are found under the SpecifcDoodads grouping. |
-| Layers          | Determines the composition of pathing applied to the footprint. This can be altered using the Footprint Editor.                                                                                                             |
-| Shape           | Determines the visible shape of the footprint. This can be altered with the Footprint Editor.                                                                                                                               |
+| 足迹组 | 设置编辑器中的索引分类。大多数足迹都位于默认的 `Generic` 或空白分组下。一些专门用于可破坏物和不常见形状的特殊足迹，则位于 `Specifc装饰物` 分组下。 |
+| 图层 | 决定足迹所应用的寻路构成。可通过足迹编辑器进行修改。 |
+| 形状 | 决定足迹的可见形状。也可通过足迹编辑器修改。 |

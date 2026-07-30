@@ -1,45 +1,45 @@
-# Actions
+# 动作
 
-Actions are the individual commands within a trigger that make a change within the game. An activated trigger resolves by running each of its actions in a directed sequence. Each action provides a distinct function, which can be combined with any number of other actions to create larger effects. Essentially, actions are the building block statements that you'll use to direct the game.
+动作是触发器中的单条命令，用来在游戏内产生变化。一个被激活的触发器会按照既定顺序依次执行其中的每个动作。每个动作都提供独立功能，而多个动作可以自由组合，形成更大的效果。从本质上说，动作就是你用来驱动游戏的基础语句块。
 
-## Creating An Action
+## 创建动作
 
-First, create a new trigger by right-clicking the Trigger Panel and navigating to New ▶︎ New Trigger. Inside your new trigger, launch the 'Actions' window either by double clicking the 'Actions' heading or by right-clicking inside the Main Tab and navigating to New ▶︎ New Action.
+首先，在触发器面板中右键并选择 新建 ▶︎ 新建触发器，创建一个新触发器。进入这个触发器后，可以双击“动作”标题，或在主标签页中右键选择 新建 ▶︎ 新建动作，以打开“动作”窗口。
 
-[![Actions Window](./resources/034_Actions1.png)](./resources/034_Actions1.png)
-*Actions Window*
+[![动作窗口](./resources/034_Actions1.png)](./resources/034_Actions1.png)
+*动作窗口*
 
-The 'Actions' window shows a list of available actions in its rightmost view. You'll also see a few searching options here, allowing you to search by category, by browsing the sidebar on the left, or from the top search bar.
+“动作”窗口最右侧会列出可用动作。你还可以使用多种搜索方式，包括按分类浏览左侧边栏，或使用顶部搜索框直接查找。
 
-Type "Text Message" into the search bar and select the action called 'Text Message.' This should present you with the following view.
+在搜索框中输入 "Text Message"，然后选择名为 'Text Message' 的动作。此时你应会看到如下界面。
 
-[![Text Message Action](./resources/034_Actions2.png)](./resources/034_Actions2.png)
-*Text Message Action*
+[![Text Message 动作](./resources/034_Actions2.png)](./resources/034_Actions2.png)
+*Text Message 动作*
 
-## Setting Action Terms
+## 设置动作参数
 
-The anatomy of the action is shown in the Main Tab's subview here. You'll notice the term 'Message' is colored red. Red text denotes a required value for an action to be valid. By contrast, the blue text for the other two terms of the action presents their default values. In the tab view, you'll see that the action is marked with a distinct red X, showing that it is invalid. A map with invalid elements won't run correctly, so it's important that you take note of them.
+这里在主标签页的子视图中展示了该动作的结构。你会注意到术语 'Message' 是红色的。红色文本表示这是动作生效所必需的值。相对地，另外两个参数显示为蓝色文本，表示它们当前使用的是默认值。在标签页视图中，你还会看到这个动作带有明显的红色 X，表示它目前无效。地图中如果存在无效元素，将无法正确运行，因此一定要留意这些标记。
 
-To enable this action, a message is required. Click on the term 'Message' and add the text 'Hello, World\!' to the popup. Click 'OK' and return to the main screen to validate your action. To test this action, its trigger must be called in some manner. In this case, you'll add a 'Map Initialization' event by navigating to Events ▶︎ Map Initialization. This should bring you to the following view.
+要让这个动作可用，必须填写一条消息。点击 'Message' 参数，在弹出框中输入 'Hello, World\!'。点击 'OK' 返回主界面后，动作就会变为有效。要测试这个动作，还需要让其所在触发器以某种方式被调用。这里我们通过 Events ▶︎ Map Initialization 添加一个 'Map Initialization' 事件。完成后应如下所示。
 
-[![Configured Action](./resources/034_Actions3.png)](./resources/034_Actions3.png)
-*Configured Action*
+[![已配置的动作](./resources/034_Actions3.png)](./resources/034_Actions3.png)
+*已配置的动作*
 
-Running the 'Test Document' action should result in this trigger firing after the map begins. The message will print to the default 'Subtitle' area just above the game's UI. Your test run should return a result like the one shown below.
+运行 “Test Document” 后，这个触发器会在地图开始时触发。消息会输出到游戏界面上方默认的 'Subtitle' 区域。测试结果应类似下图。
 
-[![Action Screen Output](./resources/034_Actions4.png)](./resources/034_Actions4.png)
-*Action Screen Output*
+[![动作的屏幕输出](./resources/034_Actions4.png)](./resources/034_Actions4.png)
+*动作的屏幕输出*
 
-## Action Effects & Varieties
+## 动作效果与种类
 
-The criteria for the event (Map Initialization) has occurred, resulting in the action firing, which displayed your message to the screen. This is the basic process from which gameplay emerges. You can vary the types of things you are able to do by studying the actions available in the basic library. Highlighting an action in the 'Actions' window will display basic tips below the list. These same tips are also available in the bottommost subview of the Main Tab. Here's a brief intro to some commonly used actions.
+当事件（Map Initialization）的触发条件成立后，动作就会执行，并把你的消息显示到屏幕上。这就是玩法产生的最基本流程。通过研究基础库中提供的各种动作，你可以扩展自己能够实现的内容类型。在“动作”窗口中选中某个动作时，列表下方会显示基础提示信息；同样的提示也能在主标签页最下方的子视图中看到。下面简要介绍一些常用动作。
 
-| Action                     | Effect                                                                                                                                                     |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Set Variable               | Determines the value of any variable available to the map.                                                                                                 |
-| Create Dialog              | Builds a dialog container for 'Dialog Items,' allowing for custom UI constructions.                                                                        |
-| Create Unit (Facing Angle) | Spawns a unit with a specific rotational heading in the plane of the map.                                                                                  |
-| Play Sound                 | Runs a sound file from the StarCraft Asset library.                                                                                                        |
-| Show/Hide \_               | A group of actions that change visibilities of objects on a player basis. For example, Show/Hide Dialog Item can create distinct UI items for each player. |
-| Set \_                     | A group of value changing actions. For example, Set Alliance defines if players or player groups are hostile to one another.                               |
-| Remove \_                  | A group of removal actions. These will eliminate many types of entities from the game, as in Remove Unit, Remove Behavior or Remove Inventory Item.        |
+| 动作 | 作用 |
+| --- | --- |
+| 设置变量 | 决定地图中任意可用变量的值。 |
+| 创建对话框 | 创建一个用于容纳“对话框项”的对话框容器，以便构建自定义 UI。 |
+| 创建单位（朝向角度） | 在地图平面上生成一个带指定朝向的单位。 |
+| 播放声音 | 播放星际资源库中的声音文件。 |
+| 显示/隐藏 \_ | 一组按玩家维度改变对象可见性的动作。例如 Show/Hide Dialog Item 可以为每位玩家创建不同的 UI 项。 |
+| 设置 \_ | 一组用于修改数值或状态的动作。例如 Set Alliance 用于定义玩家或玩家组之间是否敌对。 |
+| 移除 \_ | 一组删除类动作，可将多种实体从游戏中移除，例如 Remove Unit、Remove Behavior 或 Remove Inventory Item。 |

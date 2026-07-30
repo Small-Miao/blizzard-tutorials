@@ -1,38 +1,38 @@
 ---
-title: Data Spaces
+title: 数据空间
 authors:
     - duckies
 ---
 
-# Data Spaces
+# 数据空间
 
-A method of clumping relevant data into a single file so that in can be copied into other maps in a organized and least time-consuming manner.
+一种把相关数据聚合进单个文件的方法，这样就能以更有条理、也更省时的方式把它复制到其他地图中。
 
-This tutorial assumes that you've never seen .xml in your entire life and just want to flip the table at the mentions of any sort of complex stuff.
+本教程默认你这辈子都没见过 `.xml`，一听到任何稍微复杂点的东西就想直接掀桌子。
 
-## Step 1. Saving map as components
+## 第 1 步：将地图保存为组件
 
-File->Save As-> chose save as .SC2Components instead of usual .SC2map file.
+依次点击 `File->Save As->`，选择保存为 `.SC2Components`，而不是常见的 `.SC2map` 文件。
 
 ![](./data-spaces/7a7c2e19fe350e07246ebce2a2c5dedc1aed007f.png)
 
-Then find to the newly created map folder and head into `Base.SC2Data` -> `GameData` folder
+然后找到新建出来的地图文件夹，并进入 `Base.SC2Data` -> `GameData` 文件夹。
 
 ![](./data-spaces/d24fac19396186c19b2f8ad4bcc82d76f5dcfcf9.png)
 
-Saving map as components gives you an insight of what the map is made of. In `Base.SC2Data` -> `GameData` folder you can see the data edits you've made.
+把地图保存为组件后，你就能更清楚地看到一张地图实际上由哪些部分构成。在 `Base.SC2Data` -> `GameData` 文件夹中，你可以看到自己做过的数据修改。
 
 ![](./data-spaces/ce9096c22e61b820b7dc61f3c591c5834f791d27.png)
 
-You can easily copy paste all the data from one map to another by saving both maps as components and then copy-pasting those xml files.
+只要把两张地图都保存为组件，你就可以通过复制粘贴这些 xml 文件，轻松把数据从一张地图搬到另一张地图。
 
-## Step 2. Creating a data space
+## 第 2 步：创建数据空间
 
-Here we see data edits separated by their categories – units, actors, effects, behaviors etc..
+在这里，你会看到数据修改已经按类别拆分开了，比如单位、Actor、效果、行为等等。
 
-We will be creating a single .xml file in which all of our relevant data will be stored (rather than being split over multiple different files).
+我们要创建一个单独的 `.xml` 文件，把所有相关数据都放进去，而不是分散在多个不同文件中。
 
-You can either create new or just copy-paste any of xml files, rename it to how you want the data space to be called, open it, erase everything inside and copypaste
+你可以新建一个 xml 文件，也可以直接复制任意一个现有 xml 文件，然后把它重命名为你希望这个数据空间使用的名称，打开它，删除里面的全部内容，再粘贴如下内容：
 
 ```xml
 <?xml version="1.0" encoding="us-ascii"?>
@@ -43,9 +43,9 @@ You can either create new or just copy-paste any of xml files, rename it to how 
 ![](./data-spaces/0bef7176c983a4cdf417abecd0644374b927c1e8.png)
 
 
-## Step 3. Making editor see data space
+## 第 3 步：让编辑器识别数据空间
 
-We'll need to make a new xml file called `GameData.xml` in the `Base.SC2Data` folder (create it same way we created our previous xml file in step 2). Copypaste following, except in catalog path specify the name of our dataspace file.
+我们需要在 `Base.SC2Data` 文件夹里新建一个名为 `GameData.xml` 的 xml 文件（创建方式和第 2 步中新建前一个 xml 文件时相同）。把下面内容粘贴进去，不过要记得把 catalog path 改成你自己的数据空间文件名。
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -56,36 +56,36 @@ We'll need to make a new xml file called `GameData.xml` in the `Base.SC2Data` fo
 
 ![](./data-spaces/b666aef6f73b61cb64b79e542e37e57d5e918321.png)
 
-## Step 4. Transfering data into data space
+## 第 4 步：把数据转移进数据空间
 
-Now everything is setup to work. After we load up the map we can see that data spaces menu now has the data space we made.
+现在一切都已经设置好了。重新载入地图后，你会看到数据空间菜单里已经出现了我们刚创建的数据空间。
 
 ![](./data-spaces/d1c42025870c4bbd280c23d03083545f8b0b71da.png)
 
-Select data entries you want to move to data space, right click on them and select "Move ...".
+选中你想移动到数据空间中的数据项，右键并选择 `"Move ..."`.
 
 ![](./data-spaces/10db63dea886ac1099c752e12ebbc47dfa4c85aa.png)
 
 !!! info
 
-    If you are using data collections feature, moving data collection will also move all of it's contained elelemnts.
+    如果你正在使用数据集合功能，那么移动一个数据集合时，也会一并移动它所包含的所有元素。
 
 ![](./data-spaces/cf0678e56d9cb6f5d63c4ffad849a215ac6a1eef.png)
 
-After everything has been moved, save the map and check the dataspace. You'll find all the information you moved in editor to now conveniently reside in that one file. It can now be easily shared around.
+等所有内容都移动完成后，保存地图并检查这个数据空间。你会发现，之前在编辑器中移动进去的所有信息，现在都方便地集中到了这一个文件里，也就更容易分享了。
 
-To import it into a new map or mod we'll need to save that map/mod as components, move our dataspace file into `\Base.SC2Data\GameData` folder and create/add catalog path into GameData.xml file like we did in step 3.
+如果要把它导入到新的地图或模组中，我们需要先把那张地图或模组也保存为组件，再把自己的数据空间文件移动到 `\Base.SC2Data\GameData` 文件夹，并像第 3 步那样在 `GameData.xml` 文件中创建或添加 catalog path。
 
-## Step 5. Everything's "(Unknown)" and "(Unnamed)"
+## 第 5 步：为什么全都变成了 `(Unknown)` 和 `(Unnamed)`
 
-Turns out text is stored separately. If we add data space to different map or mod we'll find out that all descriptions and data field names are gone/messed up. Because there are game clients in many languages besides english, all text that is displayed to users is stored separately. In map's component folder you can find localization folder, in my case it would be `enUS.SC2Data`. It stores text files with texts for data entries. We will have to manually add/merge revelant data of localization files for the map to which we're importing our dataspace.
+原因是文本是单独存储的。如果我们把数据空间加入另一张地图或模组，就会发现所有描述和数据字段名称都丢了，或者变得乱七八糟。因为游戏客户端除了英文外还有很多语言，所以所有展示给用户看的文本都是单独存储的。在地图的组件文件夹里，你可以找到本地化文件夹；以我的情况为例，它是 `enUS.SC2Data`。这里保存着数据条目对应的文本文件。我们必须手动把相关本地化文件中的数据添加或合并到目标地图里，才能正确导入数据空间。
 
 ![](./data-spaces/4465131cbdddc78685fd15dfe02108fe0097d014.png)
 
-## Example map
+## 示例地图
 
 * [BounceTestMap.SC2Map](./data-spaces/BounceTestMap.SC2Map)
 
-**Additional Links**
+**附加链接**
 
-- Mapster's Github's tutorial link: <https://sc2mapster.github.io/mkdocs/data/>
+- Mapster 的 Github 教程链接：<https://sc2mapster.github.io/mkdocs/data/>

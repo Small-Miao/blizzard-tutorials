@@ -1,78 +1,78 @@
-# Battle.Net Info
+# Battle.net 信息
 
-Battle.net Info is the hub for customizing how a map is presented on the Arcade.
+Battle.net 信息是定制地图在 Arcade 中展示方式的核心位置。
 
-## General
+## 常规
 
 [![General Tab](./resources/011_BattleNet_Info01.png)](./resources/011_BattleNet_Info01.png)
-*General Tab*
+*常规标签*
 
-A project's Icon and a linked Website are set under the General tab. The Website will be appended to the bottom of a game's Details and can offer a hyperlink to a community website. A project's Icon is used frequently throughout the Arcade as the main representation of a project. This includes the Browse screen, the Open Games listing, and many other locations. In the following image, you can see the icon next to the game's title on the Overview screen.
+项目的图标和关联网站都在 General 标签下设置。网站链接会附加在游戏 Details 页面的底部，可用于跳转到社区网站。项目图标则会频繁出现在 Arcade 的各个位置，作为项目的主要代表元素，包括 Browse 页面、Open Games 列表以及许多其他位置。在下图中，你可以看到它出现在 Overview 页面里的游戏标题旁边。
 
 [![Arcade Overview Screen](./resources/011_BattleNet_Info02.png)](./resources/011_BattleNet_Info02.png)
-*Arcade Overview Screen*
+*Arcade 概览页面*
 
-## Screenshots
+## 截图
 
-The Screenshots tab allows you to select five promotional screenshots to be published to the project's Overview screen.
+Screenshots 标签允许你选择五张宣传截图，发布到项目的 Overview 页面中。
 
 [![Screenshots Tab](./resources/011_BattleNet_Info03.png)](./resources/011_BattleNet_Info03.png)
-*Screenshots Tab*
+*截图标签*
 
-Screenshots are uploaded either from the map's current data with the Archive Browser or from the local computer. Each shot must have a resolution of 800x600 px. Should your screenshots exceed the default resolution, you will be prompted to crop the source image to the required size. Checking the Available In Game option will add the screenshot to the game's data separately (at the expense of publishing size). Once added, your screenshots are used to populate the 'Screenshots' rotation on the 'Overview' screen, as shown below.
+截图既可以通过 Archive Browser 从地图当前数据中上传，也可以从本地电脑上传。每张截图必须是 800x600 px 分辨率。如果截图尺寸超过默认分辨率，系统会提示你裁剪原图到所需大小。勾选 Available In Game 选项后，截图还会额外写入游戏数据中（代价是增加发布体积）。添加后，这些截图会填充到 “Overview” 页面中的 “Screenshots” 轮播区域，如下图所示。
 
 [![Screenshots from Overview Screen](./resources/011_BattleNet_Info04.png)](./resources/011_BattleNet_Info04.png)
-*Screenshots from Overview Screen*
+*Overview 页面中的截图*
 
-## How To Play
+## 玩法说明
 
-You can add a brief manual detailing how to play your game under the How To Play tab. Players in the Arcade will see these details at the 'How To Play' screen. Players will often check this screen while the map loads or while idling in a lobby. This gives you a chance to impart some strategic or gameplay information prior to the loading screen. You can see how to build your How To Play section in the image below.
+你可以在 How To Play 标签下添加一份简短说明，介绍你的游戏该怎么玩。Arcade 中的玩家会在 “How To Play” 页面看到这些内容。玩家通常会在地图加载期间，或在大厅等待时查看这个页面。因此，这给了你一个在加载画面之前传达策略和玩法信息的机会。下图展示了如何构建 How To Play 内容。
 
 [![How to Play Tab](./resources/011_BattleNet_Info05.png)](./resources/011_BattleNet_Info05.png)
-*How to Play Tab*
+*玩法说明标签*
 
-Filling out the Basic Instructions, How To Win, and Advanced Instructions fields will fill their corresponding sections of the 'How To Play' screen. If you check the Use Bullets option, your instructions will keep the same bulleted appearance you see at the How To Play tab when they're on the Arcade. You can see how these descriptions look in the Arcade in the following image.
+填写 Basic Instructions、How To Win 和 Advanced Instructions 字段后，对应内容会出现在 “How To Play” 页面的相应区域中。如果你勾选 Use Bullets 选项，那么这些说明在 Arcade 中也会保持与 How To Play 标签中相同的项目符号样式。下图展示了这些描述在 Arcade 中的显示效果。
 
-. [![Image](./resources/011_BattleNet_Info06.png)](./resources/011_BattleNet_Info06.png)
+. [![图像](./resources/011_BattleNet_Info06.png)](./resources/011_BattleNet_Info06.png)
 
-Arcade How to Play Screen
+Arcade 玩法说明页面
 
-## How To Play Screenshots
+## 玩法说明截图
 
-The How To Play Screenshots tab functions in the same way as the Screenshots tab and is used to add up to five screenshots to the 'How To Play' section of the project's Arcade page.
+How To Play Screenshots 标签的工作方式与 Screenshots 标签相同，用于向项目 Arcade 页面中的 “How To Play” 部分添加最多五张截图。
 
 [![How to Play Screenshots Tab](./resources/011_BattleNet_Info07.png)](./resources/011_BattleNet_Info07.png)
-*How to Play Screenshots Tab*
+*玩法说明截图标签*
 
-The screenshots should be sized to 800x600 px, you can add a caption to each to help add context. Once added, the screenshots are used to populate a section on the rightmost side of the 'How to Play' screen, pictured below.
+这些截图应为 800x600 px，并且你可以为每张截图添加说明文字以补充上下文。添加后，截图会显示在 “How to Play” 页面最右侧区域，如下图所示。
 
 ![](./resources/011_BattleNet_Info08.png)
-*How to Play Screenshots in Arcade How to Play Screen*
+*Arcade 玩法说明页面中的玩法说明截图*
 
-## Tutorial
+## 教学地图
 
-The Tutorial tab can be used to set an instructional tutorial map for your project. Once set, players can access this map individually through the 'Play Tutorial' button found on the 'Overview' screen. A tutorial map can be used to give players a safe, risk-free space to learn essential skills required by the main map. Players will be presented with the option to play a tutorial map as shown in the image below.
+Tutorial 标签可用于为项目指定一张教学地图。设置后，玩家可以通过 “Overview” 页面中的 “Play Tutorial” 按钮单独进入这张地图。教学地图可以为玩家提供一个安全、无压力的空间，学习主地图所需的关键技巧。玩家会看到如下图所示的教学地图入口。
 
 [![Play Tutorial Button on Overview Screen](./resources/011_BattleNet_Info09.png)](./resources/011_BattleNet_Info09.png)
-*Play Tutorial Button on Overview Screen*
+*Overview 页面中的 Play Tutorial 按钮*
 
-The Tutorial tab itself is shown below.
+Tutorial 标签本身如下图所示。
 
 [![Tutorial Tab](./resources/011_BattleNet_Info10.png)](./resources/011_BattleNet_Info10.png)
-*Tutorial Tab*
+*教学标签*
 
-The tutorial map is linked via the Tutorial Map File. There are three options to choose from. Selecting Self will provide the tutorial as a Tutorial Game Variant of the current map. Selecting Other allows you to define another map file, either saved locally or on Battle.net, to serve as the tutorial. Alternatively, you can select None, which will remove the 'Play Tutorial' button from the 'Overview' screen.
+教学地图通过 Tutorial Map File 关联。这里有三种可选方式。选择 Self 会把当前地图的 Tutorial Game Variant 作为教学内容。选择 Other 则允许你指定另一张地图文件，无论它保存在本地还是 Battle.net 上，都可以作为教学地图。你也可以选择 None，这会从 “Overview” 页面移除 “Play Tutorial” 按钮。
 
-The Tutorial Game Speed option allows you to set the game speed of the tutorial map independently of the main map.
+Tutorial Game Speed 选项允许你独立于主地图来设置教学地图的游戏速度。
 
-## Patch Notes
+## 补丁说明
 
-The Patch Notes tab allows you to add patch notes for each version of your project. These are displayed publicly on the 'Patch Notes' screen of the Arcade. Users can use this page to keep up with any important updates and balance changes, as well as seeing if the map is still being maintained.
+Patch Notes 标签允许你为项目的每个版本添加补丁说明。这些内容会公开显示在 Arcade 的 “Patch Notes” 页面上。用户可以借此了解重要更新和平衡改动，同时判断地图是否仍在持续维护。
 
 [![Patch Notes Tab](./resources/011_BattleNet_Info11.png)](./resources/011_BattleNet_Info11.png)
-*Patch Notes Tab*
+*补丁说明标签*
 
-Each 'Patch Notes' entry contains a Version, Date, and a set of Notes. Patches are always displayed according to their Version number, with the latest patch at the top. Each set of Notes can be a maximum of 100 lines long, while individual lines cannot exceed 140 characters. You can set the Version and Date manually and there is no requirement to match the values generated by the Arcade's publishing system.
+每条 “Patch Notes” 记录都包含 Version、Date 和一组 Notes。补丁总是按 Version 编号排序显示，最新版本在最上方。每组 Notes 最多可有 100 行，而每一行不能超过 140 个字符。你可以手动设置 Version 和 Date，并不要求必须与 Arcade 发布系统自动生成的值一致。
 
 [![Arcade Patch Notes Screen](./resources/011_BattleNet_Info12.png)](./resources/011_BattleNet_Info12.png)
-*Arcade Patch Notes Screen*
+*Arcade 补丁说明页面*

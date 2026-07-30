@@ -1,168 +1,168 @@
-# Range Actors
+# Range Actor
 
-Range Actors are used to draw range indicators on the map. A range actor is a visual actor with a narrow purpose that sees frequent use in StarCraft's melee game. In this capacity, range indicators mark a lot of distances relevant to gameplay, including the casting range for a ghost's snipe, the vision ranges for an observer's detection, and perhaps most famously the shelling range for a siege tank.
+Range Actor 用于在地图上绘制范围指示器。它是一种用途较为单一的可视 Actor，但在《星际争霸 II》的天梯玩法中非常常见。这类范围指示器会标出许多与玩法相关的距离，例如幽灵狙击的施法距离、侦测者侦测范围的视野半径，以及最著名的攻城坦克炮击范围。
 
-[![Siege Tank Range Actor](./resources/062_Range_Actors3.png)](./resources/062_Range_Actors3.png)
-*Siege Tank Range Actor*
+[![攻城坦克的 Range Actor](./resources/062_Range_Actors3.png)](./resources/062_Range_Actors3.png)
+*攻城坦克的 Range Actor*
 
-In actuality, range actors don't draw range indicators. Instead, they draw a circularly patterned texture on the map, which then operates as a range indicator. The distinction is made here so that you understand that range actors can be used in other ways. It's important to have a full understanding of what the actor is actually doing so that you can both configure and employ it.
+严格来说，Range Actor 并不是直接绘制“范围指示器”。它实际上是在地图上绘制一圈带有重复图案的纹理，而这个纹理随后才起到范围指示的作用。这里特意强调这个区别，是为了让你明白 Range Actor 也可以用于其他目的。理解它究竟在做什么很重要，这样你才能正确地配置和运用它。
 
-You can set the visibility of range actors in the Terrain Editor by navigating to View ▶︎ Show Terrain ▶︎ Show Range. You can find range actors in data, under the actors tab, with the type 'Range,' as shown below.
+你可以在地形编辑器中通过 `视图 ▶︎ Show Terrain ▶︎ Show Range` 来设置 Range Actor 的可见性。在数据中，它位于 Actor 标签页下，类型为 `Range`，如下图所示。
 
-[![Range Actors Listing](./resources/062_Range_Actors4.png)](./resources/062_Range_Actors4.png)
-*Range Actors Listing*
+[![Range Actor 列表](./resources/062_Range_Actors4.png)](./resources/062_Range_Actors4.png)
+*Range Actor 列表*
 
-## Range Actor Details
+## Range Actor 详情
 
-Range actors have a large number of fields due to their parentage from actors. However, the reality is that you'll only be using the most useful of those fields. Range actors' most useful fields are broken down in the following table.
+由于继承自 Actor，Range Actor 拥有大量字段。但实际上你真正会用到的，主要只有其中最有价值的一部分。下表列出了 Range Actor 最实用的字段。
 
-| Field             | Details                                                                                                                                                                                                                                                  |
+| 字段 | 说明 |
 | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Ability           | Links the actor to an ability and receives a Range value from it.                                                                                                                                                                                        |
-| Arc               | Sets the fraction of a circle, or the arc, over which the texture will be patterned. Values are between 0 and 360. By default, indicators draw a full circle or 360. The arc begins directly in front of the unit and widens equally in both directions. |
-| Behavior          | Links the actor to a behavior and receives a Range value from it.                                                                                                                                                                                        |
-| Cliff Level Flags | Sets how the range actor will project its texture to other cliff levels. Checking Lower, Higher, or Equal will display the texture onto those levels.                                                                                                    |
-| Sight             | Links the actor to a unit and receives a range value from its Sight Radius field.                                                                                                                                                                        |
-| Weapon            | Links the actor to a weapon and receives a Range value from it.                                                                                                                                                                                          |
-| Icon              | Sets the texture to be patterned onto the map. Note that all default range actors use the RadarIcon1 texture.                                                                                                                                            |
-| Icon Tint         | Applies a tint to the Icon texture.                                                                                                                                                                                                                      |
-| Icon Arc Length   | Sets the spacing at which the Icon is patterned. The spacing value is a measurement in units of the arc between individual icons.                                                                                                                        |
-| Range Flags       | Contains two flags, Game World and Range Flag Minimap. The former sets whether the actor displays within the main game, while the latter sets if the actor will display a scaled version to the minimap.                                                 |
-| Events            | Sets the actor events. Range actors use events to create and remove themselves, as well as control visibility behavior.                                                                                                                                  |
-| Range             | Directly sets the radius at which the textures are patterned. Do not use this in conjunction with the Ability, Behavior, Sight, or Weapon fields.                                                                                                        |
+| 技能 | 将该 Actor 关联到一个技能，并从该技能接收 `Range` 值。 |
+| 弧度 | 设置纹理沿圆周铺设的圆弧范围，取值在 0 到 360 之间。默认情况下，指示器会绘制完整圆形，也就是 360。圆弧会从单位正前方开始，向两侧等距展开。 |
+| 行为 | 将该 Actor 关联到一个行为，并从该行为接收 `Range` 值。 |
+| 悬崖层级标志 | 设置 Range Actor 如何将纹理投射到其他悬崖层级。勾选 Lower、Higher 或 Equal 后，纹理就会显示到对应层级。 |
+| 视野 | 将该 Actor 关联到一个单位，并从其 Sight Radius 字段接收范围值。 |
+| 武器 | 将该 Actor 关联到一个武器，并从该武器接收 `Range` 值。 |
+| 图标 | 设置要铺设到地图上的纹理。注意，默认的 Range Actor 全都使用 `RadarIcon1` 纹理。 |
+| 图标染色 | 为 `Icon` 纹理应用染色。 |
+| 图标弧长 | 设置 `Icon` 图案重复铺设时的间距。该值表示单个图标沿圆弧分布时的间隔距离。 |
+| 范围标志 | 包含两个标志：Game World 和 Range Flag Minimap。前者决定该 Actor 是否显示在主游戏画面中，后者决定是否在小地图上显示一个缩放版本。 |
+| 事件 | 设置 Actor 事件。Range Actor 通过事件创建和移除自身，并控制可见性行为。 |
+| 范围 | 直接设置纹理铺设的半径。不要与技能、行为、视野或武器字段配合使用。 |
 
-As noted above, there are several fields that allow you to customize the appearance of range actors. These properties go largely ignored within the default data dependencies. This is because traditional StarCraft typically uses range actors as a communication tool. A result, their appearance is kept consistent across all units to avoid player confusion. Nevertheless, these fields may still offer creative options for developers.
+如上所述，有多个字段可以让你自定义 Range Actor 的外观。不过在默认数据依赖项中，这些属性大多没有被充分利用。原因在于《星际争霸 II》通常把 Range Actor 当作一种信息传达工具，因此它们的外观在不同单位之间会保持一致，以免玩家产生混淆。尽管如此，这些字段对开发者来说仍然提供了不少创造空间。
 
-## Range Actors Messages
+## Range Actor 消息
 
-The table below contains a breakdown of the events and messages pertinent to a range actor's.
+下表拆解了与 Range Actor 运作最相关的事件和消息。
 
-| Message                     | Description                                                                                                                                                            |
+| 消息 | 说明 |
 | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Create                      | Creates the range actor, displaying the indicator the map.                                                                                                             |
-| Destroy                     | Destroys the range actor, removing the indicator from the map.                                                                                                         |
-| RangeUpdat e                | Commands the actor to recheck its Range value from its source. Since the Range value is set on actor creation, this can be useful if a host's properties have changed. |
-| Ability                     | Used to apply the actor while an ability is actively targeting.                                                                                                        |
-| TargetOn                    |                                                                                                                                                                        |
-| Ability                     | Used to remove the actor after targeting has finished.                                                                                                                 |
-| TargetOff                   |                                                                                                                                                                        |
-| SelectionL ocalUpdate Start | Used to apply the actor while a unit is selected.                                                                                                                      |
-| SelectionL ocalUpdate Stop  | Used to remove the actor when a unit is unselected.                                                                                                                    |
+| Create | 创建 Range Actor，并在地图上显示指示器。 |
+| Destroy | 销毁 Range Actor，并从地图上移除指示器。 |
+| RangeUpdat e | 命令 Actor 从其来源重新检查 `Range` 值。由于 `Range` 值是在 Actor 创建时设定的，当宿主属性发生变化时，这会很有用。 |
+| Ability | 用于在技能处于主动选目标状态时应用该 Actor。 |
+| TargetOn | |
+| Ability | 用于在目标指定结束后移除该 Actor。 |
+| TargetOff | |
+| SelectionL ocalUpdate Start | 用于在单位被选中时应用该 Actor。 |
+| SelectionL ocalUpdate Stop | 用于在单位取消选中时移除该 Actor。 |
 
-## Range Actor Types
+## Range Actor 类型
 
-There are four base types of range actors used for parentage, Range Abil, Range Behavior, Range Sight, and Range Weapon.
+作为父级使用的基础 Range Actor 一共有四种：`Range Abil`、`Range Behavior`、`Range Sight` 和 `Range Weapon`。
 
-Range Abil is a basis for range actors designed to provide a range indicator for targeted abilities. It supports an Ability token, linking to which will set the actor's Range field to that of the token. The token also provides an actor events template, which links the range actor's creation and removal messages to the Ability token's targeting inputs. This template is shown below.
-
-![](./resources/062_Range_Actors5.png)
-*![Image](./resources/062_Range_Actors6.png)*
+`Range Abil` 是专门为目标型技能提供范围指示器而设计的基础类型。它支持一个 `Ability` Token；只要与之关联，Actor 的 `Range` 字段就会被设置为该 Token 对应技能的范围值。这个 Token 同时还提供了一套 Actor 事件模板，可将 Range Actor 的创建与移除消息连接到 `Ability` Token 的选目标输入。模板如下所示。
 
 ![](./resources/062_Range_Actors5.png)
-*![Image](./resources/062_Range_Actors6.png)*
-
-Range Behavior is a basis for range actors designed to provide a range indicator for Radar Range or Detect Radius Behaviors. It supports a Behavior token, linking to which will set the actor's Range field to that of the token. The token also has an actor events template, which will create and remove the actor based on the Behavior token's on or off status. This template is shown below.
+*![图像](./resources/062_Range_Actors6.png)*
 
 ![](./resources/062_Range_Actors5.png)
-*![Image](./resources/062_Range_Actors6.png)*
+*![图像](./resources/062_Range_Actors6.png)*
+
+`Range Behavior` 是为 Radar Range 或 Detect Radius 行为提供范围指示器的基础类型。它支持一个 `Behavior` Token；只要连接该 Token，Actor 的 `Range` 字段就会被设置为该 Token 的范围值。这个 Token 也带有一套 Actor 事件模板，会根据 `Behavior` Token 的开关状态来创建和移除 Actor。模板如下所示。
 
 ![](./resources/062_Range_Actors5.png)
-*![Image](./resources/062_Range_Actors6.png)*
+*![图像](./resources/062_Range_Actors6.png)*
 
-Range Sight is a basis for range actors designed to provide a range indicator for sight radii. It supports a Unit token, linking to which will set the actor's Range field to that of the token. Range Weapon similarly accepts a Weapon token, setting the Range of the actor to that of the token. Note that these last two base types do not contain actor events, and require the range actor's create and destroy events to be set before they can be considered operational.
+![](./resources/062_Range_Actors5.png)
+*![图像](./resources/062_Range_Actors6.png)*
 
-## Demoing Range Actors
+`Range Sight` 是为视野半径提供范围指示器的基础类型。它支持一个 `Unit` Token；只要连接该 Token，Actor 的 `Range` 字段就会被设置为该单位的数值。`Range Weapon` 则类似，不过它接收的是 `Weapon` Token，并将该 Token 的范围值赋给 Actor。需要注意的是，后两种基础类型本身并不包含 Actor 事件，因此在实际使用前，你还必须先为 Range Actor 设置创建和销毁事件。
 
-Now, open the demo map provided with this article. The course features an overseer floating above a set of cliff faces, as shown below.
+## 演示 Range Actor
 
-[![Demo Map Course](./resources/062_Range_Actors7.png)](./resources/062_Range_Actors7.png)
-*Demo Map Course*
+现在，打开本文提供的演示地图。场景中有一只监督者漂浮在一组悬崖上方，如下图所示。
 
-The overseer is a unit from StarCraft known for its detection ability. It reveals invisible units at a certain distance in a circular radius around the overseer. In this map, there is no indication of this range, either passively or on selection of the overseer. You can apply some range actors to change that, giving the player a better impression of the overseer's utility at a glance.
+[![演示地图场景](./resources/062_Range_Actors7.png)](./resources/062_Range_Actors7.png)
+*演示地图场景*
 
-To do this, move to the Data Editor and then into the actors tab. If the tab isn't already available, open it by navigating to + ▶︎ Edit Actor Data ▶︎ Actors. There, create a new actor by right-clicking in the main view and selecting Add Actor, as shown below.
+监督者是《星际争霸 II》中以侦测能力著称的单位。它会以监督者为圆心，在一定距离内显露隐形单位。而在这张地图中，无论是平时还是选中监督者时，这个范围都没有任何显示。你可以通过添加一些 Range Actor 来改变这一点，让玩家一眼就更容易理解监督者的作用。
 
-[![Creating an Actor](./resources/062_Range_Actors8.png)](./resources/062_Range_Actors8.png)
-*Creating an Actor*
+为此，进入数据编辑器并切换到 Actor 标签页。如果还没有打开该标签页，就通过 `+ ▶︎ Edit Actor Data ▶︎ Actor` 打开它。然后在主视图中右键，选择 `Add Actor` 创建一个新 Actor，如下图所示。
 
-This will launch a popup that you can use to set the details of the actor being created. Name the new actor 'Overseer Sight Range,' then hit 'Suggest' to generate an ID. Use the 'Actor Type' dropdown to set that type to Range, then set the 'Parent' to Range Sight. This declares the actor as the needed range actor, while giving it a base type that will help with some of the work later. The creation window should now appear as shown in the image below.
+[![创建一个 Actor](./resources/062_Range_Actors8.png)](./resources/062_Range_Actors8.png)
+*创建一个 Actor*
 
-![Image](./resources/062_Range_Actors9.png) Range Actor Prepared for Creation
+这会弹出一个窗口，用来设置新建 Actor 的细节。将新 Actor 命名为 `Overseer Sight Range`，然后点击 `Suggest` 生成 ID。把 `Actor Type` 下拉框设为 `Range`，再把 `Parent` 设为 `Range Sight`。这样既声明了它是所需的 Range Actor，又给了它一个稍后会有帮助的基础类型。创建窗口现在应如下图所示。
 
-Click 'Ok' to create the range actor. This will take you back to the main Data Editor view. From there, highlight the 'Overseer Sight Range' actor to open its fields. You'll see that, due to its parentage, this actor has a token at the bottom of the fields listing. Inputting a Unit type as this token will allow the new range actor to draw some of its properties from the existing unit. Select the token field, as shown below.
+![图像](./resources/062_Range_Actors9.png) 已准备创建的 Range Actor
 
-[![Range Actor Token Field](./resources/062_Range_Actors10.png)](./resources/062_Range_Actors10.png)
-*Range Actor Token Field*
+点击 `Ok` 创建 Range Actor。你会回到数据编辑器主视图。接着选中 `Overseer Sight Range` Actor，打开它的字段。由于继承了父级，你会看到字段列表底部有一个 Token。给这个 Token 填入一个 `Unit` 类型后，新建的 Range Actor 就能从现有单位中读取部分属性。请选中这个 Token 字段，如下图所示。
 
-Opening this token field will allow you to set a unit, which will have its Sight value pulled to be used as the range actor's Range. Do so by double clicking on the token field. This will present you with the following view.
+[![Range Actor Token 字段](./resources/062_Range_Actors10.png)](./resources/062_Range_Actors10.png)
+*Range Actor Token 字段*
 
-![Token Selection](./resources/062_Range_Actors11.png)
-*Token Selection*
+打开这个 Token 字段后，你就可以设置一个单位，该单位的 Sight 值会被拿来作为该 Range Actor 的 `Range`。双击该 Token 字段即可，随后会看到如下视图。
 
-Selecting a unit in the token popup will set that unit's Sight as the distance the indicator will be drawn at. Since this range actor is being designed to show the overseer's vision range, select the 'Overseer' here. It's worth pointing out that any other unit with the same sight range could still work here and accurately portray the overseer's vision. However, inputting the actual overseer itself allows this range actor to be updated should that vision value change for any reason. This is good design. Clicking 'Ok' in the token popup will update the actor. The 'Sight' field should now look like the image below.
+![Token 选择](./resources/062_Range_Actors11.png)
+*Token 选择*
 
-![Token Selection](./resources/062_Range_Actors12.png)
-*Token Selection*
+在这个 Token 弹窗中选择某个单位，就会把该单位的 Sight 作为指示器绘制距离。由于这个 Range Actor 的目标是显示监督者的视野范围，因此这里选择 `Overseer`。值得一提的是，任何视野范围相同的其他单位在这里理论上也能用，并且依然能正确表现监督者的视野；但直接填入真正的监督者，可以确保一旦该视野值因任何原因发生变化，这个 Range Actor 也会随之更新。这才是更好的设计。点击 `Ok` 后，Actor 会被更新。此时 `Sight` 字段应如下图所示。
 
-The Sight field has been autofilled. You may also have noticed that the Range value will not display within the actor. The values are linked directly to the unit, meaning that the 'Range' field is now a manual override. In general, you shouldn't use this alongside a token.
+![Token 选择](./resources/062_Range_Actors12.png)
+*Token 选择*
 
-Now, navigate to the 'Events' field and double click to launch the actor events subeditor. There should be only a single 'ActorOrphan' event, responsible for cleaning up the range actor if it ends up orphaned in the Editor. Right-click inside the white box and select 'Add Event.'
+`Sight` 字段已经自动填充。你可能也注意到，Actor 中并不会直接显示 `Range` 的值。这些值是直接链接到单位上的，所以现在 `Range` 字段相当于手动覆盖项。一般来说，不应在使用 Token 的同时再去手动设置它。
 
-[![Actor Event Creation](./resources/062_Range_Actors13.png)](./resources/062_Range_Actors13.png)
-*Actor Event Creation*
+接下来，定位到“事件”字段并双击，打开 Actor 事件子编辑器。此时应该只会有一个 `ActorOrphan` 事件，它负责在该 Range Actor 在编辑器中变成孤儿时进行清理。右键点击白色区域，然后选择 `Add Event`。
 
-Set the new event's 'Msg Type' to 'Unit Birth' and its 'Source Name' to 'Overseer.' Then set its message to 'Create.' This process is shown below.
+[![创建 Actor 事件](./resources/062_Range_Actors13.png)](./resources/062_Range_Actors13.png)
+*创建 Actor 事件*
 
-[![Setting Creation Event](./resources/062_Range_Actors14.png)](./resources/062_Range_Actors14.png)
-*Setting Creation Event*
+将新事件的 `Msg Type` 设为 `Unit Birth`，并把 `Source Name` 设为 `Overseer`。然后把它的消息设为 `Create`。如下图所示。
 
-This combination of event and message will create the range actor when the overseer is created. This means that the range indicator will always display with the overseer. Next, create another event and set its 'Msg Type' to 'Unit Death.' Also set its 'Source Name' to 'Overseer' and its message to 'Destroy.' This will destroy and remove the range indicator when the overseer is destroyed. The completed actor events should look as follows.
+[![设置创建事件](./resources/062_Range_Actors14.png)](./resources/062_Range_Actors14.png)
+*设置创建事件*
 
-[![Completed Actor Events](./resources/062_Range_Actors15.png)](./resources/062_Range_Actors15.png)
-*Completed Actor Events*
+这个事件与消息的组合，会在监督者创建时一并创建这个 Range Actor。这意味着监督者出现时，范围指示器就会始终显示。接着再创建一个事件，把它的 `Msg Type` 设为 `Unit Death`，同时把 `Source Name` 也设为 `Overseer`，消息设为 `Destroy`。这样在监督者死亡时，范围指示器就会被销毁并移除。完成后的 Actor 事件应如下所示。
 
-Click 'Ok' to save the actor events, then return to the main Data Editor view. At this point, the range indicator should already be functional, but you can make a slight alteration to improve visibility. Select the 'Icon Arc Length' field and set its value to 1.125. This halves the base value, which will result in twice as many range indicators being shown in the circle.
+[![完成的 Actor 事件](./resources/062_Range_Actors15.png)](./resources/062_Range_Actors15.png)
+*完成的 Actor 事件*
 
-If you test the range actor now, you should get a succesful result. However, to better illustrate the effects of these actors, the next step is to build a second range indicator and attach it to the Overseer. You can do this quickly by selecting the 'Overseer Sight Range' actor, then right-clicking and selecting 'Duplicate Actor.' This will present you with the following view.
+点击 `Ok` 保存 Actor 事件，然后回到数据编辑器主视图。到这一步，范围指示器实际上已经可以工作了，但你还可以做一个小调整来提升可见性。选中 `Icon Arc Length` 字段，将其值设为 `1.125`。这相当于把基础值减半，从而让圆周上显示的范围图标数量翻倍。
 
-[![Duplicating Range Actor](./resources/062_Range_Actors16.png)](./resources/062_Range_Actors16.png)
-*Duplicating Range Actor*
+如果你现在测试这个 Range Actor，结果应该已经正确。不过，为了更清楚地展示这类 Actor 的效果，下一步我们会再做一个第二范围指示器，并把它也附到监督者身上。你可以先选中 `Overseer Sight Range` Actor，再右键选择 `Duplicate Actor`，快速完成这件事。界面如下所示。
 
-This will launch a 'Duplicate Actor' window, with a single 'Overseer Sight Range' value.
+[![复制 Range Actor](./resources/062_Range_Actors16.png)](./resources/062_Range_Actors16.png)
+*复制 Range Actor*
 
-![Duplication Window](./resources/062_Range_Actors17.png)
-*Duplication Window*
+这会弹出 `Duplicate Actor` 窗口，其中只有一个 `Overseer Sight Range` 条目。
 
-Duplicating actors can be very messy, as they will also clone many of their connected actors. In this instance, the range actor is an isolated, single purpose actor, so you can feel free to duplicate it. Make sure that the 'Overseer Sight Range' value is selected in the window, then click 'Ok.'
+![复制窗口](./resources/062_Range_Actors17.png)
+*复制窗口*
 
-This will duplicate the actor into the Editor as 'Overseer Sight Range Copy.' Highlight this new actor and double click it to change its properties. In the 'Actor Properties' window that this launches, set the actor's name to 'Overseer Sight Facing,' then click 'Suggest' to generate an ID. Confirm the window's values with the image below, then click 'Ok.'
+复制 Actor 可能会非常混乱，因为它常常会连带复制许多与之关联的 Actor。不过这里的 Range Actor 是一个独立、单一用途的 Actor，所以可以放心复制。确认窗口中勾选了 `Overseer Sight Range`，然后点击 `Ok`。
 
-![Duplication Window](./resources/062_Range_Actors18.png)
-*Duplication Window*
+编辑器中会生成一个名为 `Overseer Sight Range Copy` 的副本。选中这个新 Actor 并双击，修改它的属性。在弹出的 `Actor Properties` 窗口中，把名称改为 `Overseer Sight Facing`，然后点击 `Suggest` 生成 ID。确认窗口中的值与下图一致后，点击 `Ok`。
 
-Highlight the 'Overseer Sight Facing' actor, select its 'Arc' field, and change the value to 90. This actor will now only project a quarter of a circle in front of the Overseer, emphasizing the direction the unit is facing. Highlight the 'Sight' field, right-click it, and navigate to Reset to Parent Value ▶︎ \[Core.SCMod\] CActorRange. You can see this procedure being carried out in the image below.
+![复制窗口](./resources/062_Range_Actors18.png)
+*复制窗口*
 
-[![Resetting Actor Sight Field](./resources/062_Range_Actors19.png)](./resources/062_Range_Actors19.png)
-*Resetting Actor Sight Field*
+选中 `Overseer Sight Facing` Actor，找到它的 `Arc` 字段并把值改为 `90`。这样该 Actor 就只会在监督者前方投射四分之一圆，更强调单位当前朝向。接着选中 `Sight` 字段，右键并依次选择 `Reset to Parent Value ▶︎ [Core.SCMod] CActorRange`。如下图所示。
 
-This has unlinked this facing actor's range from the overseer token. Now, create a new value by selecting the 'Range' field and setting its value to 8. This will allow you to differentiate between it and the 'Overseer Sight Range' indicator. Otherwise, the both indicators would be drawn at the same Range and just overlap.
+[![重置 Actor 的 Sight 字段](./resources/062_Range_Actors19.png)](./resources/062_Range_Actors19.png)
+*重置 Actor 的 Sight 字段*
 
-For the final step, select the 'Icon Tint' field and double click it to launch an 'Object Values' window. Click the colored box to open a color picker. Set the color to yellow, or R255 G255 B0, and click 'Ok.' Leave the Alpha value as 255 and click 'Ok' to finalize the icon tint.
+这样一来，这个表示朝向的 Actor 的范围就与监督者 Token 解绑了。现在请创建一个新值：选中 `Range` 字段，将其设为 `8`。这样你就能把它与 `Overseer Sight Range` 指示器区分开来；否则两个指示器会在同一 `Range` 上绘制，彼此完全重叠。
 
-[![Selecting the Icon Tint](./resources/062_Range_Actors20.png)](./resources/062_Range_Actors20.png)
-*Selecting the Icon Tint*
+最后一步，选中 `Icon Tint` 字段并双击，打开 `Object Values` 窗口。点击彩色框打开取色器，把颜色设为黄色，也就是 `R255 G255 B0`，然后点击 `Ok`。Alpha 保持 `255` 不变，再点击一次 `Ok` 完成图标染色。
 
-At this point, confirm the fields in the constructed actors below. The 'Overseer Sight Range' actor is displayed on the left, while the 'Overseer Sight Facing' actor is on the right.
+[![选择图标染色](./resources/062_Range_Actors20.png)](./resources/062_Range_Actors20.png)
+*选择图标染色*
+
+现在，请对照下方确认这两个构建完成的 Actor 字段。左边是 `Overseer Sight Range`，右边是 `Overseer Sight Facing`。
 
 ![](./resources/062_Range_Actors21.png)
-*Overseer Sight Range Fields -- Overseer Sight Facing Fields*
+*Overseer Sight Range 字段 -- Overseer Sight Facing 字段*
 
-The map is now complete. As you can see, the overseer has been set with two separate range actors, one that draws an indicator at its sight range in white and one that draws an indicator showing its facing in yellow. Testing the map should show these actors in action. Launching a test using the 'Test Document' function should give a result like the one pictured below.
+至此地图已经完成。如你所见，监督者现在拥有两个独立的 Range Actor：一个用白色在其视野范围处绘制指示器，另一个用黄色绘制一个表示其朝向的指示器。测试地图时就能看到这两个 Actor 实际运作。使用 `Test Document` 进行测试，应会得到类似下图的结果。
 
-[![Custom Overseer Range Indicators](./resources/062_Range_Actors22.png)](./resources/062_Range_Actors22.png)
-*Custom Overseer Range Indicators*
+[![自定义监督者范围指示器](./resources/062_Range_Actors22.png)](./resources/062_Range_Actors22.png)
+*自定义监督者范围指示器*
 
-## Attachments
+## 附件
 
- * [062_Range_Actors_Completed.SC2Map](./maps/062_Range_Actors_Completed.SC2Map)
- * [062_Range_Actors_Start.SC2Map](./maps/062_Range_Actors_Start.SC2Map)
+ * [062_Range_Actor_Completed.SC2Map](./maps/062_Range_Actors_Completed.SC2Map)
+ * [062_Range_Actor_Start.SC2Map](./maps/062_Range_Actors_Start.SC2Map)

@@ -1,92 +1,92 @@
-# Terrain Editor Interface
+# 地形编辑器界面
 
-The Terrain Editor is probably the most diverse section of the Editor. Beyond its use as a workspace for map design, it is also where many of the Editor's other sections interact with the map file itself. The Trigger Editor, for example, communicates with the Terrain Editor through points and regions. The Data Editor communicates with it through units and other entities, while the Cutscene Editor works through cameras, and much more.
+地形编辑器很可能是整个编辑器中内容最丰富的部分。除了作为地图设计的工作区之外，它也是编辑器中许多其他部分与地图文件本身发生交互的地方。例如，触发编辑器通过点和区域与地形编辑器沟通；数据编辑器则通过单位和其他实体与之联动；过场动画编辑器则通过镜头来配合，等等。
 
-## The Interface
+## 界面
 
 [![Interface View of Uvantak's Ganymede](./resources/019_Terrain_Editor_Interface1.png)](./resources/019_Terrain_Editor_Interface1.png)
-*Interface View of Uvantak's Ganymede*
+*Uvantak 的 Ganymede 界面视图*
 
-As you may have guessed from the above, the Terrain Editor serves as a sort of project hub. The end result is that it features a wide range of options and functions. This has led to its being divided into seven individual layers. You can navigate these layers using the Terrain Bar on the Main Toolbar. There you'll find buttons which take you directly to each layer, as seen below.
+正如你从上图中可能已经猜到的那样，地形编辑器某种意义上就像项目枢纽。其结果是，它拥有非常广泛的选项和功能，因此被划分为七个独立图层。你可以通过主工具栏中的地形栏在这些图层之间切换。那里有一组按钮，可让你直接进入各个图层，如下图所示。
 
 ![Terrain Bar](./resources/019_Terrain_Editor_Interface2.png)
-*Terrain Bar*
+*地形栏*
 
-By default, the layers are distinctly separated. Once a layer is active, you may only work on elements designated to that layer. While using the Terrain Editor, you will always have one active layer. You can find your current location by checking which layer button is currently highlighted.
+默认情况下，各图层彼此明确分离。一旦某个图层处于活动状态，你就只能编辑属于该图层的元素。使用地形编辑器时，始终只有一个活动图层。你可以通过查看当前被高亮的图层按钮来确认自己所在的位置。
 
-Every layer features its own options. These are presented on a large panel on the left-hand side of the main terrain view. This is called the UI Panel. The image below shows how it looks with the Units Layer open.
+每个图层都有自己的专属选项。这些选项会显示在主地形视图左侧的大面板中，它被称为 UI Panel。下图展示了在单位层开启时它的样子。
 
 ![UI Panel](./resources/019_Terrain_Editor_Interface3.png)
-*UI Panel*
+*UI 面板*
 
-The **UI Panel** changes depending on the current layer. Each layer has a Palette that offers most of the major controls within that layer. You can read about Palettes in more detail in the individual articles dealing with each layer. It is also worth noting that the top File Tab offers many options, which are broken into subtabs. Those are described below.
+**UI 面板**会根据当前图层而变化。每个图层都拥有一个 Palette，用来承载该图层中的大多数主要控制项。关于 Palette 的更详细说明，你可以在介绍各个图层的单独文章中看到。还值得注意的是，顶部菜单标签中提供了许多按子标签划分的选项，下面会逐一介绍。
 
-## View Options
+## 视图选项
 
-These options control the visibility of individual components within the Editor, change the current viewport properties, and offer some support for camera features. You can reach them from the View Tab, as shown below.
+这些选项用于控制编辑器中各个组件的可见性、修改当前视口属性，并提供部分镜头相关支持。你可以在 View 标签中找到它们，如下图所示。
 
 ![View Tab](./resources/019_Terrain_Editor_Interface4.png)
-*View Tab*
+*视图标签*
 
-| Action               | Effect                                                                                     |
+| 操作 | 作用 |
 | -------------------- | ------------------------------------------------------------------------------------------ |
-| Show UI Panel        | Controls the visibility of the UI Panel.                                                   |
-| Show UI              | Controls the visibility of several advanced UI features, such as framerate.                |
-| Show Layer           | Controls the visibility of each layer individually.                                        |
-| Show Names           | Controls the visibility of the names of elements like points and regions.                  |
-| Show Tags            | Controls the visibility of tags created within the 'Map Properties' menu.                  |
-| Show Difficulty      | Controls the visibility of the difficulty setting of units.                                |
-| Show Background      | Controls the visibility of the skybox in the Editor display.                               |
-| Show Placement Grid  | Controls the visibility of grid components.                                                |
-| Show Pathing         | Controls the visibility of differing types of pathing, such as 'Unpathable Areas'.         |
-| Show Terrain         | Controls the visibility of certain terrain components such as creep, water, or map bounds. |
-| Enable Object Sounds | Toggles the sound effects for placing objects in the Editor.                               |
-| Lock Game View       | Locks the camera to the specific settings found in melee games.                            |
+| Show UI Panel | 控制 UI 面板是否可见。 |
+| Show UI | 控制若干高级 UI 功能是否可见，例如帧率。 |
+| Show Layer | 单独控制各图层是否可见。 |
+| Show Names | 控制点、区域等元素名称是否可见。 |
+| Show Tags | 控制在“地图属性”菜单中创建的标签是否可见。 |
+| Show Difficulty | 控制单位难度设置是否可见。 |
+| Show Background | 控制编辑器显示中的天空盒是否可见。 |
+| Show Placement Grid | 控制网格组件是否可见。 |
+| Show Pathing | 控制不同类型寻路信息是否可见，例如 “Unpathable Areas”。 |
+| Show Terrain | 控制某些地形组件是否可见，例如菌毯、水体或地图边界。 |
+| Enable Object 声音 | 开关在编辑器中放置对象时的音效。 |
+| Lock Game View | 将镜头锁定为对战游戏中的标准视角设置。 |
 
-## Render Options
+## 渲染选项
 
-This section contains options you can use to control the visibility of advanced graphical elements in the Editor. You can find them using the Render Tab, as seen below.
+这一部分包含一些可用于控制编辑器中高级图形元素可见性的选项。你可以在 Render 标签中找到它们，如下图所示。
 
 ![Render Tab](./resources/019_Terrain_Editor_Interface5.png)
-*Render Tab*
+*渲染标签*
 
-| Action              | Effect                                                                                |
+| 操作 | 作用 |
 | ------------------- | ------------------------------------------------------------------------------------- |
-| Show Shader Mode    | Controls the visibility of the different types of shaders.                            |
-| Show Lighting       | Choose to display either the game lighting or custom lighting currently being edited. |
-| Show Fog Effects    | Controls the visibility of fog features.                                              |
-| Show Particles      | Controls the visibility of particle elements including models, actors, and so forth.  |
-| Show Wireframe Mode | Enables a mode that displays every element in wireframe.                              |
+| Show Shader Mode | 控制不同类型着色器的显示。 |
+| Show Lighting | 选择显示游戏光照，或当前正在编辑的自定义光照。 |
+| Show Fog 效果 | 控制雾效是否显示。 |
+| Show Particles | 控制粒子元素是否显示，包括模型、Actor 等。 |
+| Show Wireframe Mode | 启用线框显示模式，将所有元素以线框形式呈现。 |
 
-Below is a shot of a few hydralisks that has been set to show in wireframe mode.
+下图展示了几只刺蛇在启用线框模式时的效果。
 
 [![Wireframe Mode](./resources/019_Terrain_Editor_Interface6.png)](./resources/019_Terrain_Editor_Interface6.png)
-*Wireframe Mode*
+*线框模式*
 
-## Layer Options
+## 图层选项
 
-This section allows you to control which layers are active at any given time, breaking their default separation. You can do this using the Select From field to activate different configurations of layers. You will also find the navigational options here, which allow you to move from layer to layer, the same as the Terrain Bar. You can find layer options using the Layer Tab, shown below.
+这一部分允许你控制任意时刻哪些图层处于活动状态，从而打破它们默认的彼此隔离。你可以通过 Select From 字段来激活不同的图层组合配置。这里也提供图层间的导航选项，其作用与地形栏相同。你可以在下图所示的 Layer 标签中找到这些内容。
 
 ![Layer Tab](./resources/019_Terrain_Editor_Interface7.png)
-*Layer Tab*
+*图层标签*
 
-## Tools
+## 工具
 
-Here you'll find options supporting basic functions like selecting and designing a map. You can navigate the tools using the Tools Tab.
+这里提供用于支持基础功能的选项，例如选择对象和设计地图。你可以通过 Tools 标签访问这些工具。
 
 ![Tools Tab](./resources/019_Terrain_Editor_Interface8.png)
-*Tools Tab*
+*工具标签*
 
-| Action              | Effect                                                                    |
+| 操作 | 作用 |
 | ------------------- | ------------------------------------------------------------------------- |
-| Selection Mode      | Allows you to select objects using the mouse.                             |
-| Measure Distance    | Changes the cursor into a measuring tool.                                 |
-| Snap to Grid        | Alters grid-snapping behavior for placing elements.                       |
-| Diagonal Selection  | Rotates the axis for selection, so box selection occurs along a 45° axis. |
-| Use Group Selection | Changes selection behavior to only affect units within a group.           |
-| Use Symmetry        | Toggles the symmetry behavior used for the map.                           |
+| Selection Mode | 允许你使用鼠标选择对象。 |
+| Measure Distance | 将光标切换为测距工具。 |
+| Snap to Grid | 修改放置元素时的网格吸附行为。 |
+| Diagonal Selection | 旋转选择轴线，使框选沿 45° 方向进行。 |
+| Use Group Selection | 修改选择行为，使其只影响组内单位。 |
+| Use Symmetry | 开关地图所使用的对称功能。 |
 
-The Measure Distance option changes the default mouse so that you can measure from one point to another. This can be useful in determining rough distances for things like melee map design, as well as helping with calculations for triggers or data. You can use the tool by clicking once to begin measuring, then clicking at your desired endpoint. The image below shows Measure Distance in action.
+Measure Distance 会将默认鼠标光标切换为测量工具，用于测量一点到另一点之间的距离。它在估算对战地图设计中的大致距离时非常有用，也能帮助进行触发器或数据相关的计算。使用方法是先点击一次开始测量，再在目标终点处点击。下图展示了 Measure Distance 的实际效果。
 
 [![Measuring Tool](./resources/019_Terrain_Editor_Interface9.png)](./resources/019_Terrain_Editor_Interface9.png)
-*Measuring Tool*
+*测量工具*

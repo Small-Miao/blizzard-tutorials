@@ -1,77 +1,77 @@
-# Export Game Assets
+# 导出游戏资源
 
-Just as custom assets can be brought into the Editor with the Importer, the standard assets can also be exported out of projects into basic file types. Each type of asset requires you to use a slightly different method to extract it from a project. These methods are described in this article.
+正如你可以通过导入器把自定义资源带入编辑器一样，标准资源也可以从项目中导出为常见文件类型。不同类型的资源需要使用略有区别的方法来提取。本文会介绍这些方法。
 
-Exporting from the Editor is often used to get a closer look at the standard assets. They can be taken out of the Editor, inserted into different programs, altered and recomposed, then imported again for use. Knowing how to export can also be valuable if you ever lose any source parts of a project. You can then export files from the base project as a recovery method. For each asset type, there some common file formats that you should be aware of. A list is provided below.
+从编辑器中导出，常见用途之一是更仔细地查看标准资源。你可以把它们从编辑器中取出，放进其他软件里修改、重组，再重新导入使用。如果你遗失了项目中的某些源文件，了解导出方法也很有价值，因为你可以从基础项目中重新导出相关文件作为恢复手段。对于各类资源，也有一些常见文件格式值得了解，列表如下。
 
-| Type               | File Format             |
+| 类型 | 文件格式 |
 | ------------------ | ----------------------- |
-| Texture            | .dds                    |
-| Model              | .m3                     |
-| Sound              | .wav                    |
-| UI Layout          | .SC2Layout, .xml        |
-| Trigger Libraries  | .SC2Lib                 |
-| Lights             | .SC2Lighting            |
-| Components Folders | .SC2Components, Various |
+| 纹理 | .dds |
+| 模型 | .m3 |
+| 音效 | .wav |
+| UI 布局 | .SC2Layout, .xml |
+| 触发器库 | .SC2Lib |
+| 光照 | .SC2Lighting |
+| 组件文件夹 | .SC2Components, Various |
 
-## Opening The Archive Browser
+## 打开归档浏览器
 
-You may already be familiar with the Archive Browser for its use in finding files for various data and trigger operations. It also serves as the main hub for exporting things from a project. To use it for this purpose, you'll need to access to browser directly, rather than as part of an editing prompt. You can do so by navigating to Window ▶︎ Console from anywhere in the Editor, as shown below.
+你可能已经在处理各种数据或触发器操作时用过归档浏览器查找文件。它也是从项目中导出内容的主要入口。若要将它用于导出，你需要直接打开浏览器，而不是在某个编辑提示框中调用它。你可以在编辑器任意位置通过 `窗口` ▶︎ `控制台` 打开它，如下图所示。
 
-[![Opening the Console](./resources/083_Export_Game_Assets1.png)](./resources/083_Export_Game_Assets1.png)
-*Opening the Console*
+[![打开控制台](./resources/083_Export_Game_Assets1.png)](./resources/083_Export_Game_Assets1.png)
+*打开控制台*
 
-Once you've launched the console, enter the command browse then select the 'Enter' button, as shown below.
+启动控制台后，输入命令 `browse`，然后点击“Enter”按钮，如下图所示。
 
-![Asset Browser Launch Command](./resources/083_Export_Game_Assets2.png)
-*Asset Browser Launch Command*
+![启动资源浏览器的命令](./resources/083_Export_Game_Assets2.png)
+*启动资源浏览器的命令*
 
-This will launch the Archive Browser. It will show a structured folder arrangement of all the assets currently in the project.
+这会打开归档浏览器。你将看到当前项目中所有资源的结构化文件夹视图。
 
-[![Archive Browser View](./resources/083_Export_Game_Assets3.png)](./resources/083_Export_Game_Assets3.png)
-*Archive Browser View*
+[![归档浏览器视图](./resources/083_Export_Game_Assets3.png)](./resources/083_Export_Game_Assets3.png)
+*归档浏览器视图*
 
-## Exporting From The Archive Browser
+## 从归档浏览器导出
 
-Assets can be exported from the Archive Browser by right-clicking them and selecting Export File.
+你可以在归档浏览器中右键某个资源并选择“导出文件”来导出它。
 
-[![Archive Browser View](./resources/083_Export_Game_Assets4.png)](./resources/083_Export_Game_Assets4.png)
-*Archive Browser View*
+[![归档浏览器视图](./resources/083_Export_Game_Assets4.png)](./resources/083_Export_Game_Assets4.png)
+*归档浏览器视图*
 
-## Exporting Ui Layouts
+## 导出 UI 布局
 
-You can also use the Archive Browser to export UI layouts. Do so by locating them in the UI folder, highlighting them, and selecting Export File.
+你也可以通过归档浏览器导出 UI 布局。只需在 `UI` 文件夹中找到它们，选中后点击“导出文件”即可。
 
-[![Archive Browser View](./resources/083_Export_Game_Assets5.png)](./resources/083_Export_Game_Assets5.png)
-*Archive Browser View*
+[![归档浏览器视图](./resources/083_Export_Game_Assets5.png)](./resources/083_Export_Game_Assets5.png)
+*归档浏览器视图*
 
-Alternatively, you can extract them directly from the UI Editor. Navigate to the .SC2Layout file, then highlight the XML data and hit Ctrl+C to copy. The data can then be pasted into a text editor or plaintext file for later use.
+另一种做法是直接从 UI 编辑器中提取它们。找到对应的 `.SC2Layout` 文件，选中其中的 XML 数据，再按 `Ctrl+C` 复制。之后便可把数据粘贴到文本编辑器或纯文本文件中留作后用。
 
-[![Highlighting XML for Export](./resources/083_Export_Game_Assets6.png)](./resources/083_Export_Game_Assets6.png)
-*Highlighting XML for Export*
+[![选中用于导出的 XML](./resources/083_Export_Game_Assets6.png)](./resources/083_Export_Game_Assets6.png)
+*选中用于导出的 XML*
 
-## Exporting Trigger Libraries
+## 导出触发器库
 
-You can export trigger libraries from the Trigger Editor using the Library Panel by highlighting the library, right-clicking, and selecting Export Library.
+你可以在触发编辑器中使用库面板导出触发器库。选中目标库，右键并选择“导出库”即可。
 
-[![Exporting a Trigger Library](./resources/083_Export_Game_Assets7.png)](./resources/083_Export_Game_Assets7.png)
-*Exporting a Trigger Library*
+[![导出触发器库](./resources/083_Export_Game_Assets7.png)](./resources/083_Export_Game_Assets7.png)
+*导出触发器库*
 
-## Exporting Lights
+## 导出光照
 
-You can export lighting files from the Lighting Window. Select the lighting arrangement to be exported, then right-click and select Export Light.
+你可以在光照窗口中导出光照文件。选中要导出的光照配置，然后右键选择“导出光照”。
 
-[![Exporting a Light](./resources/083_Export_Game_Assets8.png)](./resources/083_Export_Game_Assets8.png)
-*Exporting a Light*
+[![导出光照](./resources/083_Export_Game_Assets8.png)](./resources/083_Export_Game_Assets8.png)
+*导出光照*
 
-## Exporting Components Folders
+## 导出组件文件夹
 
-A map project can be broken into its Components Folders through an export process. This format is a collection of scripts, component lists, image files, and raw data that can be useful for diagnostic and analytic procedures that you can do outside the Editor. To export, open the map to be saved as component folders and navigate to File ▶︎ Save As. Change the 'Save as type' field to .SC2Components and select 'Save.'
+地图项目还可以通过导出流程拆分为组件文件夹。这种格式由脚本、组件列表、图像文件和原始数据组成，适合在编辑器外做诊断和分析。要导出它，请打开要保存为组件文件夹的地图，并前往 `文件` ▶︎ `另存为`。将“保存类型”字段改为 `.SC2Components`，然后点击“保存”。
 
-[![Saving as StarCraft II Component Folders](./resources/083_Export_Game_Assets9.png)](./resources/083_Export_Game_Assets9.png)
-*Saving as StarCraft II Component Folders*
+[![另存为《星际争霸 II》组件文件夹](./resources/083_Export_Game_Assets9.png)](./resources/083_Export_Game_Assets9.png)
+*另存为《星际争霸 II》组件文件夹*
 
-This process will result in a folder with the specified filename, appended with the suffix .SC2Map. This folder will contain a set profile of data components and assets that will look similar to those shown below.
+完成后，会生成一个带有所选文件名、并附加 `.SC2Map` 后缀的文件夹。该文件夹中会包含一组固定结构的数据组件和资源，外观大致如下图所示。
 
-[![StarCraft II Components Folder](./resources/083_Export_Game_Assets10.png)](./resources/083_Export_Game_Assets10.png)
-*StarCraft II Components Folder*
+[![《星际争霸 II》组件文件夹](./resources/083_Export_Game_Assets10.png)](./resources/083_Export_Game_Assets10.png)
+*《星际争霸 II》组件文件夹*

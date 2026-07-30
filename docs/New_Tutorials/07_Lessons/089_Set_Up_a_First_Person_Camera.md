@@ -1,110 +1,110 @@
-# Set Up A First Person Camera
+# 设置第一人称镜头
 
-Camera objects in the StarCraft engine are devices often used for storytelling. Applying a new camera during a narrative scene allows you to use angles and effects outside the traditional isometric view. A quick switch of the camera can be a very potent narrative tool.
+《星际争霸》引擎中的镜头对象常用于叙事表现。在剧情场景中切换到新的镜头，可以让你使用传统等距视角之外的角度与效果。一次快速的镜头切换，往往就是非常有力的叙事工具。
 
-Custom cameras can also be applied to gameplay itself, altering the player's viewpoint to a new perspective while they play. A favorite use of this technique for many developers is the First Person Camera. This is a camera set directly inside the head of a game's player character. A first person camera simulates a natural viewpoint of walking or moving around the environment and gives the user the impression that they are navigating the game themselves. Making this alteration to the engine's gameplay camera is quite straightforward. Follow the method laid out in this article and the map provided with it to set up a first person camera for any project.
+自定义镜头同样可以直接应用到玩法中，在玩家进行游戏时，把视角切换为全新的观察方式。很多开发者特别喜欢的一种用法，就是第一人称镜头。这种镜头会直接放在游戏角色的头部内部，或极其贴近其头部的位置。第一人称镜头会模拟角色在环境中行走、移动时的自然视角，让玩家产生仿佛亲自置身游戏世界中的感觉。要把这种视角改造应用到引擎原本的游戏镜头上，其实并不复杂。按照本文介绍的方法，并配合附带地图操作，你就可以为任意项目设置第一人称镜头。
 
-## Field Of View
+## 视野范围
 
-The Field of View (FOV) sets how much of the game world is visible to a camera. This an important figure for controlling the basic composition of a custom gameplay camera. Changing the FOV can be tricky and is best done through a live preview of a camera. There are actually two types of field of view available for use in the Editor, Vertical and Horizontal. A Vertical FOV is used by default, as it is more appropriate for a traditional RTS view.
+视野范围（FOV）决定了镜头能够看到多少游戏世界内容。对于自定义游戏镜头来说，这是控制整体画面构图的重要参数。调整 FOV 往往比较微妙，最好结合镜头实时预览来完成。实际上，编辑器中有两种可用的视野类型：垂直视野和水平视野。默认使用的是垂直 FOV，因为它更适合传统 RTS 视角。
 
-For a first person camera, you should strongly consider a Horizontal FOV, as it tends to give a much more natural approximation of human eyesight. The field of view type can be changed in map properties by navigating to Map Options ▶︎ Options ▶︎ Use Horizontal Field of View. Checking this flag will change the FOV type of every camera to Horizontal. You should note that certain FOV values are a common cause of motion sickness amongst players. Having an in-game control to change the magnitude of the FOV value can be helpful.
+对于第一人称镜头，你应当优先考虑使用水平 FOV，因为它通常更接近人类自然视野的感觉。你可以在地图属性中通过 `Map Options` ▶︎ `Options` ▶︎ `Use Horizontal Field of View` 来切换视野类型。勾选这个标记后，地图中所有镜头都会改用水平 FOV。还需要注意，某些 FOV 数值是玩家产生晕动症的常见原因。因此，在游戏内提供一个可调节 FOV 大小的选项通常会很有帮助。
 
-![Enabling Horizontal Field of View](./resources/089_Set_Up_a_First_Person_Camera5.png)
-*Enabling Horizontal Field of View*
+![启用水平视野范围](./resources/089_Set_Up_a_First_Person_Camera5.png)
+*启用水平视野范围*
 
-## Creating The Camera
+## 创建镜头
 
-A first person camera should be oriented on the map alongside the player character in a fashion that would simulate that character's vision. You can do this by moving the camera effectively into the character model's head, or just behind their shoulders. The Free Camera Controls are crucial here, as they allow you to position the Editor camera easily with the mouse. The following controls are particularly useful for setting the camera.
+第一人称镜头应当与玩家角色一起放置在地图中，并且摆放方式要能模拟该角色的视野。你可以把镜头直接移入角色模型头部，也可以放在其肩后极近的位置。这里自由镜头控制非常关键，因为它可以让你用鼠标轻松摆放编辑器镜头。下面这些控制方式对设置镜头尤其有用。
 
-| Control               | Effect                                                                                                                 |
+| 控制 | 效果 |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Zoom                  | Zooms the camera in the target direction. Zooming in will decrease camera Distance.                                    |
+| 缩放 | 沿目标方向推进或拉远镜头。放大时会减小镜头 Distance。 |
 | (Shift + Right Click) |                                                                                                                        |
-| Rotate                | Spins the camera around its target point. This will alter Target -- Pitch and Target - Yaw.                            |
+| 旋转 | 围绕目标点旋转镜头。这会改变 `Target -- Pitch` 和 `Target - Yaw`。 |
 | (Ctrl + Right Click)  |                                                                                                                        |
-| Height                | Moves the camera along a vertical axis, away from or closer to the map's ground level. This alters Target -- Z Offset. |
+| 高度 | 沿垂直轴移动镜头，使其更靠近或更远离地图地表。这会改变 `Target -- Z Offset`。 |
 | (Alt + Right Click)   |                                                                                                                        |
 
-A placed first person camera should look something like the image below.
+放置好的第一人称镜头应大致如下图所示。
 
-[![First Person Camera Setting](./resources/089_Set_Up_a_First_Person_Camera6.png)](./resources/089_Set_Up_a_First_Person_Camera6.png)
-*First Person Camera Setting*
+[![第一人称镜头设置](./resources/089_Set_Up_a_First_Person_Camera6.png)](./resources/089_Set_Up_a_First_Person_Camera6.png)
+*第一人称镜头设置*
 
-Once oriented, the camera object can be created by hitting the 'Create Camera' button in the Cameras Palette, as shown below. Note that the unit model's blocking the view is only temporary. You should also make sure to get an idea of the unit's position relative to the camera, as this will be the anchor for the first person camera's movement.
+摆好位置后，就可以点击镜头面板中的“Create Camera”按钮来创建镜头对象，如下图所示。注意，此时单位模型挡住视线只是暂时现象。你还应顺便确认一下单位相对于镜头的位置，因为它将成为第一人称镜头移动时的锚点。
 
-![Creating Camera Object](./resources/089_Set_Up_a_First_Person_Camera7.png)
-*Creating Camera Object*
+![创建镜头对象](./resources/089_Set_Up_a_First_Person_Camera7.png)
+*创建镜头对象*
 
-## Choosing Camera Properties
+## 选择镜头属性
 
-You can use 'Camera Properties' to preview the camera object and fine tune how it will look in game. Open this pane by selecting the first person camera from the Cameras Palette, then double clicking it. The standard first person camera settings are shown below.
+你可以通过“Camera Properties”来预览镜头对象，并进一步微调它在游戏中的表现。选中镜头面板中的第一人称镜头对象后，双击即可打开该面板。标准的第一人称镜头设置如下图所示。
 
-[![First Person Camera Property Settings](./resources/089_Set_Up_a_First_Person_Camera8.png)](./resources/089_Set_Up_a_First_Person_Camera8.png)
-*First Person Camera Property Settings*
+[![第一人称镜头属性设置](./resources/089_Set_Up_a_First_Person_Camera8.png)](./resources/089_Set_Up_a_First_Person_Camera8.png)
+*第一人称镜头属性设置*
 
-There are several things you should take note of here. The basic camera shot target is composed of the Pitch and Yaw. These values will vary widely depending on a camera's position on the map. Typically, you'll need to use a Z Offset in the range of 0.5 to 1.5 to give a realistic ground-level view.
+这里有几点值得特别注意。镜头的基础取景方向由 `Pitch` 和 `Yaw` 共同决定，这两个数值会随着镜头在地图上的位置而有很大变化。通常来说，你需要把 `Z Offset` 设在 `0.5` 到 `1.5` 之间，才能得到较为真实的贴地视角。
 
-Distance in this case controls the separation of the camera and its target. For a first person camera it should be set to 0. A (Horizontal) Field of View set to 90 is the most common option for making a good-looking first person perspective. You should also set the Distance Far Clip to 10,000. This large distance will cause some performance dragging, but it is necessary to render the entirety of the scene from such a low, flat vantage.
+这里的 `Distance` 控制镜头与目标之间的距离。对于第一人称镜头，它应设为 `0`。将（水平）FOV 设为 `90`，通常是获得自然第一人称画面的最常见选择。你还应把 `Distance Far Clip` 设为 `10,000`。这么大的距离会带来一些性能开销，但对于这种低位、平视的视角来说，只有这样才能渲染出完整场景。
 
-## Setting Up The Camera Logic
+## 设置镜头逻辑
 
-A custom gameplay camera will require handling logic, triggers that handle how the camera will perform and be used by the player during game time. Logic like this can take on many forms depending on the type of project and its implementation. Still, there are some basic necessities that will likely be a part of any design. A standard example of first person camera logic is shown in the image below.
+自定义游戏镜头还需要一套控制逻辑，也就是决定镜头在游戏过程中如何表现、如何被玩家使用的触发器。这类逻辑的具体形式，会因项目类型和实现方式不同而有很大差异。不过，有些基础需求几乎总会出现在设计中。一个标准的第一人称镜头逻辑示例如下图所示。
 
-[![First Person Camera Logic](./resources/089_Set_Up_a_First_Person_Camera9.png)](./resources/089_Set_Up_a_First_Person_Camera9.png)
-*First Person Camera Logic*
+[![第一人称镜头逻辑](./resources/089_Set_Up_a_First_Person_Camera9.png)](./resources/089_Set_Up_a_First_Person_Camera9.png)
+*第一人称镜头逻辑*
 
-Each step of the camera logic is annotated below.
+镜头逻辑中的每一步含义如下。
 
-  - Reveal Area -- The map has been revealed, as RTS-style fog of war is not desirable here.
-
-<!-- -->
-
-  - Set Variable -- Sets the controllable player character, which serves as the camera anchor.
+  - Reveal Area -- 地图已被揭示，因为此处并不适合使用 RTS 风格的战争迷雾。
 
 <!-- -->
 
-  - Apply Camera Object -- Applies the first person camera to the in-game view.
+  - Set Variable -- 设置可控制的玩家角色，它会作为镜头锚点。
 
 <!-- -->
 
-  - Follow Unit Group with Camera Area -- Attaches the first person camera to the player's movements.
-  - Lock Camera Mouse Relative Mode On -- Ties camera movement to mouse control, which is a genre standard.
-  - Turn Camera Rotation On -- Supports the mouse control by allowing the camera to free-look in 3D space.
+  - Apply Camera Object -- 将第一人称镜头应用到游戏视图中。
 
 <!-- -->
 
-  - Hide the Mouse Cursor -- Removes the player cursor from view.
-  - Hide the Game UI -- Removes the standard UI, allowing for a custom build.
+  - Follow Unit Group with Camera Area -- 让第一人称镜头跟随玩家移动。
+  - Lock Camera Mouse Relative Mode On -- 将镜头移动绑定到鼠标控制，这是该类型游戏的常见做法。
+  - Turn Camera Rotation On -- 允许镜头在 3D 空间中自由转向，以配合鼠标控制。
 
-Together, these actions help complete the illusion that the camera is actually a free moving entity. Combining this with any sort of keyboard controls for movement will form the basis of a first person game.
+<!-- -->
 
-## Camera Smooth Time
+  - Hide the Mouse Cursor -- 隐藏玩家鼠标指针。
+  - Hide the Game UI -- 隐藏标准游戏 UI，以便之后自定义界面。
 
-The game camera has some built-in smoothing coefficients that affect how the camera moves around the map. When you're building a first person camera, the default values tend to be detrimental. You can change those defaults by moving to the Data Editor, then to the Cameras tab, as shown below.
+这些动作配合在一起，有助于营造出“镜头本身就是一个自由移动实体”的错觉。如果再结合任意形式的键盘移动控制，就能形成第一人称游戏的基础。
 
-[![Camera Smooth Time Settings](./resources/089_Set_Up_a_First_Person_Camera10.png)](./resources/089_Set_Up_a_First_Person_Camera10.png)
-*Camera Smooth Time Settings*
+## 镜头平滑时间
 
-You can change these values by opening the 'Target Smooth' field. You'll want to alter the Smooth Time Maximum and Smooth Time Minimum values. These set the minimum time the camera can take while moving to the position of a moving target. Setting these values too low may cause stuttering, so a standard value of 0.08 is usually appropriate. The completed fields are shown below.
+游戏镜头自带一些平滑系数，会影响镜头在地图上的移动方式。制作第一人称镜头时，默认值往往并不理想。你可以切换到数据编辑器，再进入 `Cameras` 标签页来修改这些默认值，如下图所示。
 
-[![Setting Smooth Times](./resources/089_Set_Up_a_First_Person_Camera11.png)](./resources/089_Set_Up_a_First_Person_Camera11.png)
-*Setting Smooth Times*
+[![镜头平滑时间设置](./resources/089_Set_Up_a_First_Person_Camera10.png)](./resources/089_Set_Up_a_First_Person_Camera10.png)
+*镜头平滑时间设置*
 
-## Hiding The Player Unit
+打开 `Target Smooth` 字段后即可修改这些值。你需要调整 `Smooth Time Maximum` 和 `Smooth Time Minimum`。这两个参数决定了镜头在跟随移动目标时，移动到目标位置所需的最短时间。把它们设得过低可能导致抖动，因此常见且合适的标准值通常是 `0.08`。完成后的字段如下图所示。
 
-For a first person game, the player character's model should be removed from view. This is accomplished in the unit actor's events by adding an ActorCreation event that sends the SetOpacity message, setting the model's opacity to 0.0. You can see this in the following image.
+[![设置平滑时间](./resources/089_Set_Up_a_First_Person_Camera11.png)](./resources/089_Set_Up_a_First_Person_Camera11.png)
+*设置平滑时间*
 
-[![Set Opacity Actor Message](./resources/089_Set_Up_a_First_Person_Camera12.png)](./resources/089_Set_Up_a_First_Person_Camera12.png)
-*Set Opacity Actor Message*
+## 隐藏玩家单位
 
-## Testing The Results
+对于第一人称游戏来说，玩家角色的模型应当从视野中移除。实现方法是在单位 Actor 的事件中添加一个 `ActorCreation` 事件，并发送 `SetOpacity` 消息，把模型的不透明度设为 `0.0`。如下图所示。
 
-In the demo map provided with this article, all of the listed modifications have already been made to the game. Testing it should give you the following result.
+[![Set Opacity Actor 消息](./resources/089_Set_Up_a_First_Person_Camera12.png)](./resources/089_Set_Up_a_First_Person_Camera12.png)
+*Set Opacity Actor 消息*
 
-[![First Person Map View](./resources/089_Set_Up_a_First_Person_Camera13.png)](./resources/089_Set_Up_a_First_Person_Camera13.png)
-*First Person Map View*
+## 测试结果
 
-## Attachments
+在本文附带的演示地图中，以上列出的所有修改都已经应用到游戏中。测试后，你应当会看到如下结果。
+
+[![第一人称地图视图](./resources/089_Set_Up_a_First_Person_Camera13.png)](./resources/089_Set_Up_a_First_Person_Camera13.png)
+*第一人称地图视图*
+
+## 附件
 
  * [089_Set_Up_A_First_Person_Camera.SC2Map](./maps/089_Set_Up_A_First_Person_Camera.SC2Map)

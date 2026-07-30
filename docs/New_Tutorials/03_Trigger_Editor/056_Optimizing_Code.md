@@ -1,92 +1,92 @@
-# Optimizing Code
+# 代码优化
 
-Having a game than runs smoothly is paramount to your audience's experience. Although StarCraft and its engine are highly optimized within their closed off backend, once a user starts adding custom content using the Editor they run the risk of creating significant performance problems. Developers working at the code level are at more risk here. That said, there are optimization options in the Editor that could help attenuate any critical problems.
+让游戏流畅运行，对受众体验至关重要。虽然《星际争霸》及其引擎在封闭的后端中已经高度优化，但只要用户开始通过编辑器加入自定义内容，就会面临制造严重性能问题的风险。直接在代码层面开发的作者，风险尤其高。不过，编辑器里确实有一些优化手段，可以帮助缓解关键问题。
 
-Performance issues can be separated into two broad categories, latency spikes and intensive background tasks. Latency spikes are an issue familiar to many players. They result in sudden, egregious interruptions of frame rate, followed by the game state snapping into the future. By comparison, intensive background tasks create long, dragging dips in frame rate, potentially over the whole game's performance. As a result, they may affect an audience's enjoyment without ever identifying themselves as a technical error.
+性能问题大致可以分成两类：延迟尖峰和高负载后台任务。延迟尖峰是很多玩家都熟悉的问题，它会造成突发而剧烈的帧率中断，随后游戏状态突然“跳”到未来。相比之下，高负载后台任务会带来持续、拖沓的帧率下降，甚至影响整局游戏的整体表现。因此，它们可能在不显得像技术错误的前提下，照样损害玩家体验。
 
-Regardless of which category your performance issues belong to, the prescription is optimization.
+无论你的性能问题属于哪一类，解决方案都离不开优化。
 
-## Locating Performance Problems
+## 定位性能问题
 
-The first step of any optimization process is inquiring into the cause of slowdowns. While this article focuses on code optimization, you would do well to seal off all other possible areas of the map for performance optimization first. Changing code at this level can greatly reduce the readability and maintainability of code, and it should not be taken lightly.
+任何优化流程的第一步，都是先追查卡顿的根源。虽然本文聚焦于代码优化，但在动手改这一层之前，你最好先把地图中其他可能的性能问题区域全部排查干净。在这种层面改代码，往往会明显降低代码的可读性和可维护性，因此不应轻率进行。
 
-The Trigger Debugger is the Editor's primary tool for finding optimization targets. In the debugger, there is a Triggers Tab of particular importance in identifying performance issues. This tab presents a full list of triggers the map, sorted by the field 'Average Execution Time.' Triggers with high-ranging values here are prime candidates for latency spikes. Taking a look at leaders in another field, 'Total Time,' will help you to find triggers causing intensive background task type lag. Advanced tabs in the debugger, such as the Trigger Profiling Tab and Function Profiling Tab, can offer evidence to support your first observations.
+触发调试器是编辑器中定位优化目标的主要工具。在调试器里，Tr i ggers 标签在识别性能问题时尤其重要。这个标签会列出地图中的全部触发器，并按 `Average Execution Time` 等字段排序。这里数值偏高的触发器，往往就是延迟尖峰的重点嫌疑对象。再看看另一个字段 `Total Time` 的领先项，则有助于找出导致“高负载后台任务型”卡顿的触发器。调试器中的高级标签，如 Trigger Profiling 和 Function Profiling，也能为你的初步判断提供进一步佐证。
 
-## Optimization In Practice
+## 实际优化示例
 
-You'll find an exercise below that should help you understand the principles of finding and resolving performance issues.
+下面有一个练习，可以帮助你理解发现并解决性能问题的基本原则。
 
-Create a new Arcade map with the default settings. Now place a large number of marines split between the User Player 1 and the Hostile Player 15. You can confirm these control settings from 'Player Properties.' You should add enough marines to end up with a map that looks like the image below.
+创建一张使用默认设置的新 Arcade 地图。然后在地图上放置大量陆战队员，分别归属于 User 玩家 1 和 Hostile 玩家 15。你可以在 `玩家属性` 中确认这些控制设置。你需要放置足够多的陆战队员，让地图看起来类似下图。
 
-[![Marine Coverage](./resources/056_Optimizing_Code1.png)](./resources/056_Optimizing_Code1.png)
-*Marine Coverage*
+[![陆战队员覆盖范围](./resources/056_Optimizing_Code1.png)](./resources/056_Optimizing_Code1.png)
+*陆战队员覆盖范围*
 
-These marines will be periodically ordered to move to a random point on the map. Each Marine will also have a damage aura, which deals damage to any enemy units within a radius of 10 units. Move to the Trigger Editor and create a trigger responsible for the first behavior using the plan shown below.
+这些陆战队员会被周期性地下达命令，移动到地图上的随机点。每个陆战队员还会拥有一个伤害光环，对半径 10 范围内的敌方单位造成伤害。进入触发编辑器，先按下图方案创建一个负责第一种行为的触发器。
 
-[![Random Movement Trigger](./resources/056_Optimizing_Code2.png)](./resources/056_Optimizing_Code2.png)
-*Random Movement Trigger*
+[![随机移动触发器](./resources/056_Optimizing_Code2.png)](./resources/056_Optimizing_Code2.png)
+*随机移动触发器*
 
-Every two seconds, this trigger loops through each unit on the map and orders them to make a random movement. You can build the second trigger described above using the plan below.
+这个触发器每两秒遍历一次地图上的所有单位，并命令它们执行一次随机移动。接着，你可以按下图方案构建前文描述的第二个触发器。
 
-[![AOE Aura Trigger](./resources/056_Optimizing_Code3.png)](./resources/056_Optimizing_Code3.png)
-*AOE Aura Trigger*
+[![范围光环触发器](./resources/056_Optimizing_Code3.png)](./resources/056_Optimizing_Code3.png)
+*范围光环触发器*
 
-This trigger uses two nested loops to apply damage around each marine. The outer loop iterates over each unit on the map, finding potential targets for the aura. Then the inner loop uses this list, parsing it for any units within the 10 unit radius. Every half-second, Hostile units found by this procedure have the damage aura applied to them. After reading the descriptions for each behaviour, you might have a guess about which will be more problematic. Even so, run the map with the Trigger Debugger enabled to investigate. This should produce a view similar to the one pictured below.
+这个触发器使用了两个嵌套循环，在每个陆战队员周围施加伤害。外层循环遍历地图上的每个单位，查找光环的潜在目标；内层循环则处理这份列表，筛出 10 范围内的单位。每半秒，通过该流程找到的敌对单位都会受到伤害光环效果。读完两种行为的描述后，你大概已经能猜到哪个更有问题了。即便如此，还是应当在启用触发调试器的情况下运行地图并进行确认。你看到的结果应当类似下图。
 
-[![Trigger Debugger Trial](./resources/056_Optimizing_Code4.png)](./resources/056_Optimizing_Code4.png)
-*Trigger Debugger Trial*
+[![触发调试器测试](./resources/056_Optimizing_Code4.png)](./resources/056_Optimizing_Code4.png)
+*触发调试器测试*
 
-The Trigger Tab's 'Total Time' field, has isolated the 'Damage Aura' Trigger as by far the most costly. It requires a total execution time of 10069 ms with average run time of 117 ms. This is nearly 300 times longer than the 'Random Movement' trigger at 35 ms. Demonstrable differences in optimization potential can be very large. Clearly, focusing your optimization efforts on the 'Random Movement' trigger would be a big mistake. To continue the investigation of your target, move to the Trigger Profiling tab and enable its Show Natives and Show SubCalls features.
+Triggers 标签中的 `Total Time` 字段，已经明确指出 `Damage Aura` 触发器是远远最昂贵的部分。它的总执行时间达到 10069 ms，平均运行时间为 117 ms。相比之下，`Random Movement` 触发器只有 35 ms，前者几乎慢了 300 倍。可见，不同优化目标之间的收益差距可能极大。很明显，如果你把优化精力投入到 `Random Movement` 触发器上，那将是一个严重错误。为了继续调查目标，切换到 Trigger Profiling 标签，并启用 `Show Natives` 与 `Show SubCalls` 功能。
 
-[![Trigger Profiling Tab](./resources/056_Optimizing_Code5.png)](./resources/056_Optimizing_Code5.png)
-*Trigger Profiling Tab*
+[![Trigger Profiling 标签](./resources/056_Optimizing_Code5.png)](./resources/056_Optimizing_Code5.png)
+*Trigger Profiling 标签*
 
-At this level of detail, you can see that the 'Damage Aura' trigger's calls of UnitDamage and PlayerIsEnemy are the primary cause of the issues. Both of these functions are found in the inner loop, a location which is run multiplicatively more times than elsewhere within the code.
+在这一层级的细节下，你可以看到 `Damage Aura` 触发器中的 `UnitDamage` 和 `PlayerIsEnemy` 调用，正是问题的主要来源。它们都位于内层循环中，而那个位置的执行次数会比代码其他地方成倍放大。
 
-## Resolve Performance Problems
+## 解决性能问题
 
-With your targets discovered, it's time to learn some unfortunate truths about performance resolution. Since problems like these differ wildly, there are very few catch-all solutions available. Every issue needs attention and understanding to be resolved.
+既然目标已经锁定，就该了解一些关于性能优化的不太愉快的事实了。由于这类问题的差异极大，几乎不存在通吃一切的解决方案。每个问题都需要具体分析和理解，才能真正解决。
 
-In terms of general paradigms, there are some useful directions. First, question the algorithm itself with efficiency in mind. Make sure you've avoided spurious use of operations in trying to achieve a goal. Once you've been through this exhaustively, you can resort to making micro-optimizations. In micro-optimization, you'll fine-tune the code by hand, squeezing out better performance at the cost of your own effort.
+从一般范式来说，有几个方向比较有用。首先，要带着“效率优先”的思维质疑当前算法本身。确保你在实现目标时，没有无谓地使用多余操作。只有在你彻底做完这一步之后，才应该转向微优化。所谓微优化，就是你手工精修代码，靠投入更多精力来榨出更高性能。
 
-The 'Damage Aura' example is too simple to have potential algorithmic problems. However, you could consider a solution using the Data Editor. For every triggered operation in the Editor, there is usually some equivalent in pure data or a mixture of the two disciplines. Data can typically offer a bit more efficiency at the price of intuitiveness. As a rule of thumb, if you find yourself making extensive provisions to work within data, you likely have crossed the threshold for performance savings.
+`Damage Aura` 这个例子本身过于简单，不太存在算法层面的潜在问题。不过，你可以考虑通过数据编辑器来实现。对于编辑器中的每一种触发式操作，通常都能在纯数据，或数据与触发混合的方式中找到对应方案。数据实现往往效率更高一些，但代价是直观性更差。一个经验法则是：如果你为了塞进数据系统而写了大量适配性工作，那么你多半已经跨过了“值得为性能这么做”的门槛。
 
-## Micro-Optimizations
+## 微优化
 
-Micro-optimizations are usually a non-trivial way of eking out minute improvements for code, but in some cases they can have surprising results. Part of this is due to the Galaxy script compiler applying few native optimizations. There are also several GUI constructs, designed for ease of use, that don't smoothly break into Galaxy code. Although it is work intensive, micro-optimization can be simple compared to a complex algorithm change. They also may be applied uniformly to a great deal of code, awarding cumulative savings.
+微优化通常并不是一种轻松获得细微提升的方法，但在某些情况下，它可能带来令人意外的效果。部分原因在于 Galaxy 脚本编译器几乎不会做原生优化。另一个原因是，GUI 中有不少为了易用性而设计的结构，并不能很好地转换成 Galaxy 代码。虽然劳动量不小，但和改一个复杂算法相比，微优化有时反而更直接。而且它们往往可以批量应用到大量代码上，从而积少成多。
 
-For a demonstration, create a duplicate of the 'Damage Area' trigger. Keep the original for comparison later. At this point, some code-reading is necessary to find targets for micro-optimization. The noticeable problems and their optimizations have been broken down in the table below. Note that some of these require a level of knowledge acquired through the practice of optimizing code in the Editor.
+为了演示，请复制一份 `Damage Aura` 触发器，保留原版以便稍后对照。到这一步，你需要开始读代码，寻找适合做微优化的目标。下表列出了几个明显问题以及对应优化方式。需要注意的是，其中有些优化需要通过长期在编辑器中做性能优化所积累的经验才能看出来。
 
-| Problem                                                                                                             | Optimization                                                 |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| The trigger currently constructs a new group of marines on each execution by looping through every unit on the map. | Add the Marines to the unit group just once.                 |
-| Each marine creates a new aura region during each check.                                                            | Create the region once and reuse it.                         |
-| The '-targets' unit group initializes with 'Empty Unit Group', creating an unneeded empty group.                    | Initialize with 'No Unit Group', a less costly null value.   |
-| The player alliance check, critically in the inner loop, has a less costly alternative.                             | Substitute an efficiency Unit Group Builder native function. |
-| The GUI loop For Each Unit is inefficient for unit groups that are not manipulated during the looping procedure.    | Substitute a custom-tooled loop.                             |
+| 问题 | 优化方式 |
+| ---- | -------- |
+| 该触发器当前每次执行时，都会通过遍历地图上的全部单位来新建一个陆战队员组。 | 只在一开始把陆战队员加入单位组一次。 |
+| 每个陆战队员都会在每次检查时新建一个光环区域。 | 只创建一次区域，并重复使用它。 |
+| `-targets` 单位组以 `Empty Unit Group` 初始化，平白创建了一个不必要的空单位组。 | 改用 `No Unit Group` 初始化，这是一个成本更低的空值。 |
+| 玩家同盟检查位于至关重要的内层循环里，而且有更低成本的替代方案。 | 用效率更高的 Unit Group Builder 原生函数替代。 |
+| GUI 循环 `For Each Unit` 对于那些在遍历过程中不会被修改的单位组来说效率不高。 | 用专门手写的循环替代。 |
 
-Below you will find an optimization that alleviates the first two problems listed above.
+下面的优化解决了上表中的前两个问题。
 
 ![](./resources/056_Optimizing_Code6.png)
-*Micro-Optimization by Trigger Reorganization*
+*通过重组触发器进行微优化*
 
-The tasks of aura region and marine group construction have been moved to a 'Map Initialization' trigger, resulting in their expensive operations being performed just once. The third, fourth, and fifth problems on the table are addressed below.
+光环区域和陆战队员组的构造工作被移动到了 `Map Initialization` 触发器中，从而让这些高成本操作只执行一次。表中的第三、第四和第五个问题，则在下图中得到处理。
 
-[![Micro-Optimization by Hand Coding](./resources/056_Optimizing_Code7.png)](./resources/056_Optimizing_Code7.png)
-*Micro-Optimization by Hand Coding*
+[![通过手写代码进行微优化](./resources/056_Optimizing_Code7.png)](./resources/056_Optimizing_Code7.png)
+*通过手写代码进行微优化*
 
-Here, the 'Damage Aura' trigger has had the previously mentioned, hand-coded optimizations made. The specifics are beyond the scope of this article, but it's worth considering that, even though its appearance is much more complex, at some point all GUI code will become Galaxy script, where things may look different. Below you will find the old and new versions of the trigger presented in raw code.
+这里，`Damage Aura` 触发器已经应用了前面提到的手写优化。具体细节超出了本文范围，但值得想一想：即使 GUI 看起来复杂得多，最终所有 GUI 代码都会转成 Galaxy 脚本，而到了那一层，事情往往会呈现出不同的样子。下面展示了该触发器旧版本和新版本的原始代码。
 
 ![](./resources/056_Optimizing_Code8.png)
 *[![image3](./resources/056_Optimizing_Code9.png)](./resources/056_Optimizing_Code9.png)*
 
-Galaxy Script Comparison
+Galaxy 脚本对比
 
-When presented in Galaxy code, the micro-optimized version is revealed to be far simpler. The truncation is largely the result of the use of custom While loops, rather than the GUI loop, For Each Unit. This GUI loop is designed for its ease and utility, but it was poorly suited to this task. A custom solution has saved many actions, considering that the 'Damage Aura' trigger makes no modification to the unit group while iterating.
+以 Galaxy 代码的形式呈现时，微优化后的版本实际上简单得多。代码大幅缩短，主要是因为使用了自定义 `While` 循环，而不是 GUI 的 `For Each Unit`。GUI 循环的设计目标是易用和通用，但它并不适合这个任务。由于 `Damage Aura` 触发器在遍历过程中并不会修改单位组，自定义方案省掉了大量动作。
 
-The extraneous player alliance check has also been removed by the use of the Galaxy function UnitGroupAlliance, rather than the GUI's UnitGroup. The GUI is designed for simplicity in appearance and use for all users. With experience you may choose to suspend it where appropriate. You should also note that shorter code is not necessarily faster code, so you should confirm your new code's efficiency by going back to the Trigger Debugger.
+多余的玩家同盟检查也被移除了，替代手段是使用 Galaxy 函数 `UnitGroupAlliance`，而不是 GUI 的 `UnitGroup`。GUI 在外观和使用上强调简单，面向所有用户；当你积累了足够经验后，可以在合适的地方绕过它。你还应该记住，代码更短不一定就更快，因此写完新代码后，仍然要回到触发调试器中验证实际效率。
 
-[![Optimization Savings](./resources/056_Optimizing_Code10.png)](./resources/056_Optimizing_Code10.png)
-*Optimization Savings*
+[![优化收益](./resources/056_Optimizing_Code10.png)](./resources/056_Optimizing_Code10.png)
+*优化收益*
 
-As you can see, the 'Damage Aura' trigger has been accelerated by about 40% through the application of micro-optimizations to the code, an impressive result.
+正如你所见，仅通过对代码施加微优化，`Damage Aura` 触发器就加速了大约 40%，是一个相当显著的结果。

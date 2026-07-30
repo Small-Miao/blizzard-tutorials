@@ -1,57 +1,57 @@
-# Loggers
+# 日志记录器
 
-A logger is a diagnostic tool that allows developers to output data from a running program over time and then archive it. This allows a post-script characterization of how the program, in this case your game, has run. Loggers often support a type of tagging, where events with specific qualities are marked and individually monitored. Tagged events are then either outputted to individual files or set up with some sort of viewing client to parse the data. This type of sorted run-time information can give detailed insight into how a game performed.
+日志记录器是一种诊断工具，允许开发者持续输出运行中程序的数据，并在之后归档。这样一来，你就可以在事后刻画程序的运行情况，在本文的语境下，也就是你的游戏是如何运行的。日志记录器通常支持某种标记机制，可以为具备特定特征的事件打上标签并单独监视。被标记的事件随后会被输出到独立文件，或通过某种查看客户端来解析数据。这类经过分类的运行时信息，能够让你详细了解游戏的实际表现。
 
-## Logger Usage
+## 日志记录器的用途
 
-By way of example, a logger could be designed to monitor non-critical errors over the course of a play test. These errors could be tagged with different severities or other game-state information from the time of their occurrence. By inspecting the logged outputs after play, a developer could gain crucial information about the number and distribution of errors across an entire session. This offers a different viewpoint than the more typical diagnostic approach of witnessing a single error, then moving to fix it immediately. Another illustrative example of data logging is shown below.
+举例来说，日志记录器可以被设计为在一次游玩测试中持续监视非关键错误。这些错误可以根据严重级别，或者发生当时的游戏状态信息，被打上不同标签。通过在游玩结束后检查日志输出，开发者就能获得关于整场会话中错误数量与分布的关键信息。相比“看到一个错误就立刻去修”的典型诊断方式，这提供了一个不同的视角。下面还展示了另一个记录数据的例子。
 
 ![](./resources/054_Loggers1.png)
-*APM Logged in a Replay Visualized with Scelight*
+*用 Scelight 可视化的回放 APM 日志*
 
-This chart is a visualization of the APM of a StarCraft player over the course of a multiplayer match. APM has been logged every few seconds, then graphed to give a smooth picture of it as a piece of data over a game session. The data is derived from a StarCraft replay. Replays themselves are the output of a logger that records every player action during a match.
+这张图展示了一名《星际争霸》玩家在一场多人对局全过程中的 APM 可视化结果。APM 每隔几秒就会被记录一次，然后绘制成图，从而形成整场对局中这项数据的平滑曲线。这些数据来自一份《星际争霸》回放。回放本身就是一种日志记录器的输出，它记录了对局期间玩家执行的每一个操作。
 
-It may seem like a bit of a stretch to see this as relevant to the article at hand. After all, replays are targeted at rebuilding a match of a completed game as it occurs, while a logger usually monitors how a program performs. Still, this should be a familiar example for StarCraft users despite how elaborate it is. After all, replays are recorded for any online play tests of a game and can offer a useful picture of what occurred during that test. Replay analyzers, like Scelight in this case, offer an example of a client that parses tagged output data.
+把这个例子和本文主题联系起来，乍看之下可能有些牵强。毕竟，回放的目标是重建一场已经结束的比赛，而日志记录器通常关注的是程序本身的运行表现。不过，对《星际争霸》玩家来说，这仍然是一个足够熟悉的例子，即使它显得更复杂一些。毕竟，任何在线游戏测试都会生成回放，而回放能有效呈现那次测试中实际发生了什么。像本例中的 Scelight 这样的回放分析器，则可以看作是解析带标签输出数据的一种客户端。
 
-## Creating A Logger Within The Editor
+## 在编辑器内创建日志记录器
 
-Assembling a logger directly within the StarCraft engine is both possible and potentially useful for the development of your project. To do so, there are a couple of specifications to meet. First, there must be a way to output debug information at any given location within the code. This information must then be able pass out of the Editor and into a file structure, where it is separated into several files based on logging tags. Having a global control for the debug process to quickly enable and disable logging would be useful as well. With this design in mind, you can shape a logger from existing functionality in the Editor. In terms of output options, the 'Debug' actions are a good place to start. A list of these actions is shown below.
+直接在《星际争霸》引擎内部组装一个日志记录器，是可行的，而且对项目开发可能很有帮助。要做到这一点，需要满足几个条件。首先，代码中的任意位置都必须有办法输出调试信息。其次，这些信息必须能够离开编辑器并进入文件结构中，并根据日志标签拆分成多个文件。最后，如果还能有一个全局控制来快速启用或禁用整个调试过程，就会更加实用。按照这个思路，你可以利用编辑器现有功能拼出一个日志记录器。就输出选项而言，`Debug` 动作是一个很好的起点。下图列出了这些动作。
 
-[![Debug Actions](./resources/054_Loggers2.png)](./resources/054_Loggers2.png)
-*Debug Actions*
+[![调试动作](./resources/054_Loggers2.png)](./resources/054_Loggers2.png)
+*调试动作*
 
-The first point of interest here is the action Debug Message. This allows text to be printed to either a file, game window, or the Trigger Debugger. Select this action and move into the Trigger Editor. There you'll note that its parameters are an ideal fit for logger design. You can see them in the image below.
+这里首先值得关注的是 `调试消息` 动作。它可以把文本打印到文件、游戏窗口或触发调试器。选中这个动作并进入触发编辑器后，你会注意到它的参数非常适合日志记录器设计。如下图所示。
 
-[![Debug Message Parameters](./resources/054_Loggers3.png)](./resources/054_Loggers3.png)
-*Debug Message Parameters*
+[![调试消息 参数](./resources/054_Loggers3.png)](./resources/054_Loggers3.png)
+*调试消息 参数*
 
-The initial parameter sets the output text, while the second parameter allows you to specify a Debug Message Type. This is a preset with 16 potential values, Type 01 through Type 16, that can serve as tags for the output. Once tagged, you can configure each output type to print to different files and exhibit different behaviors with respect to what it outputs and how it presents those outputs. For this demo, you'll use three tags, with each being modelled as a different error severity level. To keep track of these tags, they have each been set to a constant variable. The full mapping follows the scheme below.
+第一个参数用于设置输出文本，第二个参数则允许你指定 `调试消息类型`。这是一个预设，共有 16 个可能值，从 `Type 01` 到 `Type 16`，可以拿来充当输出标签。打上标签后，你就可以为每种输出类型配置不同的文件，以及不同的输出行为和显示方式。在本示例中，你将使用三个标签，并把它们分别建模为不同的错误严重级别。为了便于管理，这些标签都被设置成了常量变量。完整映射如下。
 
-logger\_info = Type 01 \<Debug Message Type(Constant)\>
+logger\_info = Type 01 \<调试消息类型(Constant)\>
 
-logger\_warning = Type 02 \<Debug Message Type(Constant)\>
+logger\_warning = Type 02 \<调试消息类型(Constant)\>
 
-logger\_error = Type 03 \<Debug Message Type(Constant)\>
+logger\_error = Type 03 \<调试消息类型(Constant)\>
 
-With these set, the logger trigger can be developed using the following plan.
+有了这些设置之后，就可以按下图方案构建日志记录器触发器。
 
-[![Debug Triggers](./resources/054_Loggers4.png)](./resources/054_Loggers4.png)
-*Debug Triggers*
+[![调试触发器](./resources/054_Loggers4.png)](./resources/054_Loggers4.png)
+*调试触发器*
 
-By using the Set Debug Message Name action, you can assign a custom name to each of the specified debug message types. This name appears in the Show User Input option available from the Trigger Debugger and makes it easier to handle the different output channels. This is supported by the Set Debug Message Color action, which will allow you to differentiate more easily when looking at the debugger window. You can see this in the image below.
+通过 `Set 调试消息 Name` 动作，你可以为指定的调试消息类型设置自定义名称。这个名称会显示在触发调试器里的 `Show User Input` 选项中，能让你更容易区分不同输出通道。`Set 调试消息 Color` 动作也能起到辅助作用，它可以让你在查看调试器窗口时更容易分辨不同类型。如下图所示。
 
-[![Debug Triggers](./resources/054_Loggers5.png)](./resources/054_Loggers5.png)
-*Debug Triggers*
+[![调试触发器](./resources/054_Loggers5.png)](./resources/054_Loggers5.png)
+*调试触发器*
 
-Then, most importantly, the Set Debug Message File allows for the assignment of file names to each of the debug message types. It is recommended that you assign a unique file to every logging level. Doing so will allow this trigger to serve as a full logger by delineating the error types into separate files for inspection after a test. For single player games, the output folder for logger files on Windows will be C:\\Users\\\<username\>\\Documents\\StarCraft II\\UserLogs\\\<mapname\>.
+接下来最关键的是，`Set 调试消息 File` 允许你为每一种调试消息类型指定文件名。建议为每一个日志级别都分配唯一文件。这样一来，这个触发器就能真正作为完整的日志记录器使用，把不同错误类型分流到不同文件中，供测试结束后检查。对于单人游戏，Windows 下日志记录器文件的输出目录是 `C:\\Users\\\<username\>\\Documents\\StarCraft II\\UserLogs\\\<mapname\>`。
 
-[![Logger Output Files](./resources/054_Loggers6.png)](./resources/054_Loggers6.png)
-*Logger Output Files*
+[![日志记录器输出文件](./resources/054_Loggers6.png)](./resources/054_Loggers6.png)
+*日志记录器输出文件*
 
-## Adding Filters
+## 添加过滤器
 
-At this point the logger is operational and can output potentially useful diagnostic data to separate files. It meets the design criteria. However, you might want to filter debugging messages one level further. There are some more functions which can help here. Enable/Disable Debug Message Type allows you to toggle each specific debug message type within the Trigger Debugger. This filter is only for viewing though, it will have no effect on the in-game readout or the output files. If you'd like to filter the in-game readout and output files, you can use the action Filter Debug Message Type.
+到这一步，日志记录器已经可以工作，并且能把潜在有价值的诊断数据输出到不同文件中，已经满足了设计目标。不过，你可能还想再进一步过滤调试消息。这里还有一些额外函数可以帮上忙。`Enable/Disable 调试消息类型` 允许你在触发调试器中切换各个调试消息类型的显示与否。不过，这个过滤器只影响查看效果，不会影响游戏内读数或输出文件。如果你还想过滤游戏内读数和输出文件，可以使用动作 `Filter 调试消息类型`。
 
-Unfortunately, there is no way to disable messages only in the Trigger Debugger. One workaround is to use the third parameter of the Debug Message action to disable these outputs. If you are implementing your own logger, it may be a good idea to encapsulate the Debug Message inside an action definition to permanently build in this ability yourself.
+遗憾的是，目前没有办法只在触发调试器中禁用消息。一个变通方式是利用 `调试消息` 动作的第三个参数，直接关闭这些输出。如果你打算实现自己的日志记录器，把 `调试消息` 封装进一个动作定义里，永久内建这项能力，会是个不错的主意。
 
-As a final note, when you're creating a release version of your project for the public, these debug filters can be used to quickly disable every debug output and maximize the performance of your release version.
+最后需要说明的是，当你准备发布一个面向公众的正式版本时，这些调试过滤器可以帮助你快速关闭所有调试输出，从而尽可能提升正式版性能。

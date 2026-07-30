@@ -1,68 +1,68 @@
-# Records
+# 记录
 
-Records are templates of variables. Building a record is like assembling a sort of planned layout of variables, where you decide type, name, and quantity. Once assembled, the record defines a new composite data type that can be created indefinitely. Each record creates a set of variables according to its design, then maintains them as a persistent container. A typical record design is shown below.
+记录是变量的模板。构建一个记录，就像先规划好一份变量布局，其中包括变量的类型、名称和数量。组装完成后，记录就定义出了一种新的复合数据类型，并且可以无限制地创建实例。每个记录都会按其设计生成一组变量，并把它们作为持久容器维护起来。下面展示了一个典型的记录结构。
 
-![Record Anatomy](./resources/040_Records1.png)
-*Record Anatomy*
+![记录结构](./resources/040_Records1.png)
+*记录结构*
 
-The record design belies its main usage, the top heading 'Tutorial Record' is the name of the record. Since the record itself is never used to store variables, this name will become a makeshift type for the record. When instances of the record are made, they will show the record type, in this case Tutorial Record, as shown below.
+记录的设计本身已经透露了它的主要用途。最上方的标题 'Tutorial Record' 是这个记录的名称。由于记录本身并不直接用来存储变量，这个名称实际上会变成一种“记录类型名”。当你创建该记录的实例时，它们就会显示为这种记录类型，也就是这里的 Tutorial Record，如下所示。
 
-![Record Instances](./resources/040_Records2.png)
-*Record Instances*
+![记录实例](./resources/040_Records2.png)
+*记录实例*
 
-Under the 'Variables' heading are the variables contained with the record, referred to as 'members.' Each member has its own type and initial value. When you create an instance of Tutorial Record, it will create each of its members, meaning that the instance will have five members of the type, Name, Player, Color, Race, and Starting Location, each with their respective data type.
+在 'Variables' 标题下的是这个记录包含的变量，它们被称为“成员”。每个成员都有自己的类型和初始值。当你创建一个 Tutorial Record 实例时，它会为这个实例生成所有成员，也就是说该实例会包含 Name、Player、Color、Race 和 Starting Location 五个成员，并分别带有各自的数据类型。
 
-## Creating Records
+## 创建记录
 
-Records are created in the Triggers Panel, as they must exist at a global scope. Right-click on the panel and navigate to New ▶︎ New Record. Selecting the record will display its contents in the main view tab. Record variables can be created by right-clicking on the 'Variables' heading in the record and navigating to New ▶︎ New Variable. To create a new instance of a record, create a variable and set its type to -- Record. This will make a listing of any possible record types available under the heading 'Record.' Once you have selected the desired type, each variable within the record will automatically be created, though not directly visible in the Editor.
+记录是在触发器面板中创建的，因为它们必须存在于全局作用域。右键点击面板并选择 新建 ▶︎ 新建记录。选中该记录后，其内容会显示在主视图标签页中。记录内部的变量可以通过右键点击记录中的 'Variables' 标题并选择 新建 ▶︎ 新建变量 来创建。若要创建一个记录实例，请先创建一个变量，并把其类型设为 -- Record。这样在 'Record' 选项下就会列出所有可用记录类型。选择想要的类型后，记录中的每个变量都会自动创建出来，只是它们不会在编辑器中直接单独显示。
 
-[![Record Instances](./resources/040_Records3.png)](./resources/040_Records3.png)
-*Record Instances*
+[![记录实例](./resources/040_Records3.png)](./resources/040_Records3.png)
+*记录实例*
 
-Note that records, as in the data type, show up in the Triggers Panel, suggesting a global scope. However, since they are not actual instances, they have no specific scope yet. Individual instances of a record can exist at either a global or local scope.
+需要注意的是，作为一种数据类型，记录会显示在触发器面板中，看起来像是全局作用域中的元素。但由于它们并不是真正的实例，因此此时还没有具体作用域。记录的实际实例既可以存在于全局作用域，也可以存在于局部作用域。
 
-## Referencing A Record Variable
+## 引用记录变量
 
-The variables created within a record instance are not directly accessible. They cannot be altered or inspected with the same methods that traditional variables can be. In terms of use, record variables must be accessed through a technique known as referencing. This allows you to call on the individual variable by referencing it in terms of the record instance. Consider the following record.
+记录实例中创建出的变量不能被直接访问。你不能像对待普通变量那样直接修改或查看它们。在使用层面上，记录变量必须通过一种叫做“引用”的方式来访问。也就是说，你需要先指向记录实例，再从这个实例中取出其中某个具体变量。请看下面这个记录。
 
-![Record with Integer Members](./resources/040_Records4.png)
-*Record with Integer Members*
+![包含整型成员的记录](./resources/040_Records4.png)
+*包含整型成员的记录*
 
-An instance of this record type has been created called Player Data. In this instance there is a Starting Minerals variable like its source record. As an exercise, try setting a player's minerals to this Starting Minerals count of 500 at the start of a game. This will require you to reference the record instance's property. Fortunately, the Editor GUI does much of the work here. Imagine you were going to use a 'Modify Player Property' action, as in the following trigger.
+这个记录类型的一个实例被创建出来并命名为 Player Data。该实例中包含一个名为 Starting Minerals 的变量，与其源记录中的成员对应。作为练习，试着在游戏开始时把玩家的矿物设置为这个 Starting Minerals 中的 500。要做到这一点，就必须引用该记录实例的属性。幸运的是，编辑器 GUI 会帮你完成大部分工作。假设你准备使用一个 'Modify Player Property' 动作，如下图所示。
 
-[![Trigger Requiring Referenced Variable](./resources/040_Records5.png)](./resources/040_Records5.png)
-*Trigger Requiring Referenced Variable*
+[![需要引用变量的触发器](./resources/040_Records5.png)](./resources/040_Records5.png)
+*需要引用变量的触发器*
 
-The 'Value' field is where the Starting Minerals variable is needed, but it is unclear how to deliver it there. Double click the field to launch an 'Integer' window and navigate to the Variable tab as seen below.
+'Value' 字段就是需要填入 Starting Minerals 变量的地方，但一开始并不明显该如何把它传进去。双击该字段，打开一个 'Integer' 窗口，然后进入 Variable 标签页，如下所示。
 
-![Integer Field Window](./resources/040_Records6.png)
-*Integer Field Window*
+![Integer 字段窗口](./resources/040_Records6.png)
+*Integer 字段窗口*
 
-The record instance is shown in the field viewer. Since there is an integer type variable inside this record, it is made available as an input to the field. Select it and click 'Ok.' You'll see that some changes have been made to the 'Value' field for the action, as shown below.
+此时，字段查看器中会显示该记录实例。由于这个记录内部包含一个整型变量，所以它会作为该字段的可用输入项出现。选中它并点击 'Ok.' 之后你会看到动作的 'Value' 字段发生了变化，如下图所示。
 
-[![New Action Field](./resources/040_Records7.png)](./resources/040_Records7.png)
-*New Action Field*
+[![新的动作字段](./resources/040_Records7.png)](./resources/040_Records7.png)
+*新的动作字段*
 
-The record is inputted into the field, but you have also revealed an additional field titled 'Member.' As mentioned a little earlier, a variable member refers to its component variables. The '.' separating the record and the member field is a special operator type known as the Referencing Operator. By the referencing operator, the internal members of the record instance have been made available. Clicking the 'Member' field now will present you with the following view.
+记录实例已经被填入字段中，同时你还会看到一个新增字段，标题为 'Member.' 前面提到过，成员变量就是记录中的各个组成变量。连接记录和成员字段的 '.' 是一种特殊运算符，称为“引用运算符”。正是通过这个引用运算符，记录实例内部的成员才得以暴露出来。此时点击 'Member' 字段，会看到如下视图。
 
-[![Referencing Record Member](./resources/040_Records8.png)](./resources/040_Records8.png)
-*Referencing Record Member*
+[![引用记录成员](./resources/040_Records8.png)](./resources/040_Records8.png)
+*引用记录成员*
 
-Here, the Starting Minerals member can be selected, do so and click 'Ok.' The result will look as follows.
+在这里可以选择 Starting Minerals 成员，选中它并点击 'Ok.' 最终结果如下。
 
-[![Referenced Record Variable](./resources/040_Records9.png)](./resources/040_Records9.png)
-*Referenced Record Variable*
+[![被引用的记录变量](./resources/040_Records9.png)](./resources/040_Records9.png)
+*被引用的记录变量*
 
-Setting the member variable here has finished the referencing procedure. Now, the Starting Minerals value will be set to the 'Value' field, via the reference to its record instance Player Data. When this action runs, it will be passed to the record instance, then follow this reference to the internal structure where the variable is. It will then carry the variable value out and use it.
+在这里设定成员变量后，引用过程就完成了。现在，Starting Minerals 的值会通过对记录实例 Player Data 的引用，被送入 'Value' 字段。该动作执行时，会先访问这个记录实例，再沿着这条引用进入其内部结构中找到对应变量，然后把变量的值取出并使用。
 
-## Record Arrays
+## 记录数组
 
-Record instances also have support for arrays. On highlighting a record in the subview, select 'Array.' This will allow you to set 'Dimension' and 'Size' elements like any typical array. Each member of the array will have the standard record design, with all its members set to the standard initial values. This is useful for handling large swathes of data in a very organized package. A typical record array is shown below.
+记录实例同样支持数组。选中子视图中的某个记录后，勾选 'Array.' 这样就可以像普通数组一样设置 'Dimension' 和 'Size'。数组中的每个成员都会拥有标准记录结构，并且所有成员都使用默认初始值。这对于以高度有序的方式管理大批量数据非常有用。一个典型的记录数组如下所示。
 
-[![Record Array](./resources/040_Records10.png)](./resources/040_Records10.png)
-*Record Array*
+[![记录数组](./resources/040_Records10.png)](./resources/040_Records10.png)
+*记录数组*
 
-Referencing variables from within a record array is generally the same as referencing a standard record variable. The difference is that an index is required to select the specific instance you want. A typical view is shown below.
+从记录数组中引用变量的方法，基本和引用普通记录变量相同。区别在于，你必须提供一个索引，以选定你想要的具体实例。典型效果如下图所示。
 
-[![Record Array Referencing](./resources/040_Records11.png)](./resources/040_Records11.png)
-*Record Array Referencing*
+[![记录数组引用](./resources/040_Records11.png)](./resources/040_Records11.png)
+*记录数组引用*

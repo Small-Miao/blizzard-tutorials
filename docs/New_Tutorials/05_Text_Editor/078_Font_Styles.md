@@ -1,90 +1,90 @@
-# Font Styles
+# 字体样式
 
-Font Styles allow you to change the basic presentation of your text. Font styles don't need to be particularly elaborate or exotic. They represent any distinction made to a font from the default text used by the game.
+字体样式可以改变文本的基础呈现方式。它不一定非要做得复杂或花哨；只要某种字体效果与游戏默认文本有所区别，就可以算作一种字体样式。
 
-## Creating A Font Style
+## 创建字体样式
 
-Creating font styles lets you use font assets from outside the standard dependencies. You can set up styles with any choice of existing or imported fonts, but for this exercise you'll use a free font sample of OpenSans. First, import the font using the Importer. You can get there via Module ▶︎ Import. There, right-click inside the white box and select 'Import Files,' then locate the font file, either a .ttf or .otf, and click 'Ok.' Saving your project after the import should present you with the following.
+创建字体样式后，你就可以使用标准依赖之外的字体资源。你可以用任意现有或导入的字体来设置样式，不过本练习将使用免费的 OpenSans 字体示例。首先，通过导入器导入字体。前往 `模块` ▶︎ `导入`。在那里，在白色区域内右键并选择“导入文件”，然后找到字体文件（`.ttf` 或 `.otf`），点击“确定”。导入后保存项目，你应该会看到如下所示的结果。
 
-![Imported Font](./resources/078_Font_Styles1.png)
-*Imported Font*
+![已导入的字体](./resources/078_Font_Styles1.png)
+*已导入的字体*
 
-Font styles themselves are created from the Text Editor. To build a font style, navigate there via Modules ▶︎ Text. Move to the 'Font Styles' heading and right-click in the main listing. Select 'Add Style' to begin, as shown below.
+字体样式本身是在文本编辑器中创建的。要创建字体样式，请前往 `模块` ▶︎ `文本`。找到“字体样式”标题，在主列表中右键，选择“添加样式”开始创建，如下图所示。
 
-[![Adding a Font Style](./resources/078_Font_Styles2.png)](./resources/078_Font_Styles2.png)
-*Adding a Font Style*
+[![添加字体样式](./resources/078_Font_Styles2.png)](./resources/078_Font_Styles2.png)
+*添加字体样式*
 
-In the 'Style Properties' pop up, set the 'Name' to 'OpenSans18.' This denotes the font type and its intended size.
+在弹出的“样式属性”窗口中，将“名称”设为 `OpenSans18`。这个名称表示字体类型及其预期字号。
 
-![Style Naming](./resources/078_Font_Styles3.png)
-*Style Naming*
+![样式命名](./resources/078_Font_Styles3.png)
+*样式命名*
 
-Once the font style has been created, you can configure it using the panel on the right-hand side of the Text Editor. In this case, set Font Height to 18, Horizontal Justify to Left, and Vertical Justify to Middle. Set the text's color to white. The set fields should look as follows.
+创建完成后，你可以在文本编辑器右侧面板中配置该字体样式。本例中，将“字体高度”设为 `18`，“水平对齐”设为“左对齐”，“垂直对齐”设为“中间对齐”。文字颜色设为白色。设置完成后的字段应如下所示。
 
-[![Configured OpenSans18 Style](./resources/078_Font_Styles4.png)](./resources/078_Font_Styles4.png)
-*Configured OpenSans18 Style*
+[![已配置的 OpenSans18 样式](./resources/078_Font_Styles4.png)](./resources/078_Font_Styles4.png)
+*已配置的 OpenSans18 样式*
 
-Turn your attention to the 'Text Preview' to get a feel for the style. With the options above set correctly, it should look as shown in the image below.
+接着查看“文本预览”，感受一下这个样式的效果。若上述选项设置正确，它应当与下图相似。
 
-![OpenSans18 Style Preview](./resources/078_Font_Styles5.png)
-*OpenSans18 Style Preview*
+![OpenSans18 样式预览](./resources/078_Font_Styles5.png)
+*OpenSans18 样式预览*
 
-## Create Font Style From Template
+## 从模板创建字体样式
 
-From here you can create more font styles using the 'OpenSans18' style as a template. This will set all fields of the child style to that of its parent. This option is a useful timesaver, you can use it to build out a family of styles that has a degree of consistency.
+接下来，你可以把 `OpenSans18` 作为模板来创建更多字体样式。这样会让子样式继承父样式中的全部字段设置。这个选项非常省时，适合快速建立一组风格统一的字体样式。
 
-Create a new font style from a template by navigating to 'Add Font Style' in the Text Editor. Name the style 'OpenSans48' then set its 'Template' to 'OpenSans18,' as shown below.
+要从模板创建新字体样式，请在文本编辑器中选择“添加字体样式”。将新样式命名为 `OpenSans48`，然后把它的“模板”设为 `OpenSans18`，如下图所示。
 
-![Style Creation from Template](./resources/078_Font_Styles6.png)
-*Style Creation from Template*
+![从模板创建样式](./resources/078_Font_Styles6.png)
+*从模板创建样式*
 
-Configure this style's Font Height to 48, then check the Shadow flag and set a Shadow Offset of 2. Add an Outline Width of 4 then set the two color choices to (R175, G237, B230) and (R133, G220, B139). Alternately, you can choose to experiment with how the font looks now. This should leave you with a style panel that looks as shown in the image below.
+将该样式的“字体高度”设为 `48`，然后勾选“阴影”标记，并把“阴影偏移”设为 `2`。再添加 `4` 的“描边宽度”，并将两个颜色值分别设为 `(R175, G237, B230)` 和 `(R133, G220, B139)`。当然，你也可以自行尝试当前字体外观的不同搭配。完成后，样式面板应如下图所示。
 
-[![Configured OpenSans48 Style](./resources/078_Font_Styles7.png)](./resources/078_Font_Styles7.png)
-*Configured OpenSans48 Style*
+[![已配置的 OpenSans48 样式](./resources/078_Font_Styles7.png)](./resources/078_Font_Styles7.png)
+*已配置的 OpenSans48 样式*
 
-The preview will now show a more substantial typeface, as in the image below.
+现在，预览中会显示一种更醒目的字体效果，如下图所示。
 
-![OpenSans48 Style Preview](./resources/078_Font_Styles8.png)
-*OpenSans48 Style Preview*
+![OpenSans48 样式预览](./resources/078_Font_Styles8.png)
+*OpenSans48 样式预览*
 
-## Applying A Font Style
+## 应用字体样式
 
-Once created, you can apply font styles from anywhere in the Editor that you can edit text. The Text Editor is a top-down solution for changing the content or font styles of any text within a project. Navigating to the 'Text' tab will display a list of all the project text. This view is shown below.
+字体样式创建完成后，你可以在编辑器中任何可编辑文本的地方使用它。文本编辑器提供了一种自上而下的方式，用于修改项目中任意文本的内容或字体样式。切换到“文本”标签页后，会显示项目中的全部文本列表，如下图所示。
 
-[![Text Editor Main View](./resources/078_Font_Styles9.png)](./resources/078_Font_Styles9.png)
-*Text Editor Main View*
+[![文本编辑器主视图](./resources/078_Font_Styles9.png)](./resources/078_Font_Styles9.png)
+*文本编辑器主视图*
 
-Highlighting an instance of text will push its details to the right-hand side of the screen, which consists of three sub-panels, Text Entry, Text Controls, and Text Preview.
+选中某一段文本后，其详细信息会显示在界面右侧，右侧由三个子面板组成：文本条目、文本控制和文本预览。
 
 ![](./resources/078_Font_Styles10.png)
-*Text Entry -- Text Controls -- Text Preview*
+*文本条目 -- 文本控制 -- 文本预览*
 
-You can apply a style to a highlighted piece of text by selecting it from the 'Apply Style' dropdown.
+你可以通过“应用样式”下拉框，为选中的文本应用某个样式。
 
-[![Selecting Style for Application](./resources/078_Font_Styles11.png)](./resources/078_Font_Styles11.png)
-*Selecting Style for Application*
+[![选择要应用的样式](./resources/078_Font_Styles11.png)](./resources/078_Font_Styles11.png)
+*选择要应用的样式*
 
-Clicking the 'Apply Style' button will finish the operation by appending a style tag around the text entry. A style tag will precede the raw text with \<s val ='Style Name"\> and follow it with \</s\>. These elements instruct the game to change the contained text's style at run-time. For now, you can preview the text output from the Text Preview panel.
+点击“应用样式”按钮后，系统会在文本条目外层自动添加样式标签，从而完成操作。样式标签会在原始文本前加入 `\<s val ='Style Name"\>`，并在结尾添加 `\</s\>`。这些元素会指示游戏在运行时改变其中文本的样式。当前阶段，你可以先在“文本预览”面板中查看输出效果。
 
-[![Text with Applied Font Style](./resources/078_Font_Styles12.png)](./resources/078_Font_Styles12.png)
-*Text with Applied Font Style*
+[![已应用字体样式的文本](./resources/078_Font_Styles12.png)](./resources/078_Font_Styles12.png)
+*已应用字体样式的文本*
 
-Alternately, you can style text while you fill any text field in the Trigger Editor. Selecting a text field and navigating to the 'Value' source should bring up another editor reminiscent of the Text Editor.
+另外，你也可以在触发编辑器中填写任意文本字段时直接设置样式。选中文本字段并切换到“值”来源后，会打开另一个类似文本编辑器的界面。
 
-[![Styling a Text Field](./resources/078_Font_Styles13.png)](./resources/078_Font_Styles13.png)
-*Styling a Text Field*
+[![为文本字段设置样式](./resources/078_Font_Styles13.png)](./resources/078_Font_Styles13.png)
+*为文本字段设置样式*
 
-As before, highlight any inputted text to unlock the Text Controls. Select a style with the 'Apply Style' dropdown and click the button itself to style the text. The results of this process are shown below.
+和之前一样，先选中输入的文本以启用“文本控制”。然后通过“应用样式”下拉框选择样式，并点击对应按钮即可为该文本设置样式。结果如下图所示。
 
-[![Styled Text in the Trigger Editor](./resources/078_Font_Styles14.png)](./resources/078_Font_Styles14.png)
-*Styled Text in the Trigger Editor*
+[![触发编辑器中的样式化文本](./resources/078_Font_Styles14.png)](./resources/078_Font_Styles14.png)
+*触发编辑器中的样式化文本*
 
-In this case, you can test the updated text by launching the map. Pictured below is a standard example of the styled text in the game-view.
+此时，你可以启动地图来测试更新后的文本。下图展示了样式化文本在游戏画面中的一个常见效果。
 
-[![Styled Text in Game-View](./resources/078_Font_Styles15.png)](./resources/078_Font_Styles15.png)
-*Styled Text in Game-View*
+[![游戏画面中的样式化文本](./resources/078_Font_Styles15.png)](./resources/078_Font_Styles15.png)
+*游戏画面中的样式化文本*
 
-## Attachments
+## 附件
 
  * [078_Font_Styles.SC2Map](./maps/078_Font_Styles.SC2Map)

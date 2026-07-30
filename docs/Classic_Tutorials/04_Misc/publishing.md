@@ -1,59 +1,59 @@
-# PUBLISHING
+# 发布
 
-The new Battle.net publishing system allows you to publish your maps and mods directly to the Battle.net service, where they are permanently stored online and made available for others to play within the game. If you want to play your map online with other players, or if you want others to be able to use your mod in their maps, it must first be published to Battle.net.
+Battle.net 的新版发布系统允许你直接通过编辑器将地图和 Mod 发布到 Battle.net 服务中。发布后的文件会被永久存储在线上，并在游戏内提供给其他玩家使用。如果你想与其他玩家在线游玩自己的地图，或者希望其他人能在他们的地图中使用你的 Mod，那么你必须先把它发布到 Battle.net。
 
 
 
-## PUBLISHING YOUR MAP OR MOD
+## 发布你的地图或 Mod
 
 ![img](./resources/publishing01.png)
 
-Publishing is done through the editor. First, open the map or mod you want to publish, and use the File > Publish command from any module window. This will open a dialog for configuring the publishing details, as follows:
+发布操作通过编辑器完成。首先打开你想发布的地图或 Mod，然后在任意模块窗口中使用 文件 > Publish 命令。这会打开一个对话框，用于配置发布细节，内容如下：
 
-Log In - Click the Log In button in the left panel to log in to Battle.net using your Battle.net account and StarCraft II character.
+Log In - 点击左侧面板中的 Log In 按钮，使用你的 Battle.net 账号和《星际争霸 II》角色登录 Battle.net。
 
-- Published Name - The published name of your map or mod is what uniquely identifies it on Battle.net, and this name must not already be in use by any existing map or mod that has already been published by another user. By default, this will be the name defined through Map > Map Info or in the Document Info component within the Overview Manager.
-
-
-If this name is already in use, or if you want to publish using a different name, click the Change Name button to enter a new name. You may also specify a different name for each language the game supports, but this is not required. Note that the name in each language must be unique across all languages.
-
-- Revision - Each published file has a version number associated with it. When you re-publish a map or mod that you have already published (that is, using the same published name), this version number will be incremented automatically. You can choose to increment it as a Minor revision, which generally means only small tweaks or fixes have been made, or as a Major revision, which means significant changes have been made.
-
-- Release (Maps only) - When you choose a Private release, the map will not be available to other players within the game, and only you will be able to create games using this map, after which you may invite other players into the game. This is a good way to test your map with friends online before releasing it to everyone. When you choose a Public release, the map will be available to the entire StarCraft II community, and anyone can create a game using your map.
-
-- Author - The author name will automatically display as your StarCraft II character, or you may optionally choose Show Real Name to have your real name shown instead.
-
-- Locked For Editing (Maps only) - Before publishing a map for the first time, you are required to choose whether it will be Locked or Unlocked.
+- Published Name - 你地图或 Mod 的发布名称，是它在 Battle.net 上的唯一标识；这个名称不能与其他用户已经发布过的任何地图或 Mod 重复。默认情况下，这里会使用 Map > 地图信息 中定义的名称，或者 Overview Manager 中 Document Info 组件所定义的名称。
 
 
-> NOTE: Once published, a Locked map cannot be opened in the editor by anyone, including yourself. Choose this option if you want to prevent others from viewing or copying your map using the editor. However, make sure to retain a local copy of your map for future modification in the editor.
+如果这个名称已经被占用，或者你想使用其他名称发布，点击 Change Name 按钮即可输入新名称。你也可以为游戏支持的每种语言分别设置不同的名称，但这不是必须的。请注意，每种语言中的名称也都必须在所有语言范围内保持唯一。
 
-> NOTE: An Unlocked map can be opened by other users within the editor. Choose this option if you would like share your map with other map makers. This is a good way to contribute to the map making community, but keep in mind that others will be able to copy and publish the map as their own.
+- Revision - 每个已发布文件都会关联一个版本号。当你重新发布一个已经发布过的地图或 Mod 时（也就是使用相同的 Published Name），版本号会自动递增。你可以选择递增为 Minor revision，这通常表示只是做了小幅调整或修复；也可以选择 Major revision，这表示改动较大。
 
-- Locked (Owner Use Only) (Mods only) - Similar to maps, mods must also be either Locked or Unlocked.
+- Release (Maps only) - 如果选择 Private 发布，那么这张地图不会在游戏中向其他玩家公开，只有你自己可以创建该地图的游戏，然后再邀请其他玩家加入。这是在正式公开前，与朋友在线测试地图的好方式。如果选择 Public 发布，那么地图会向整个《星际争霸 II》社区开放，任何人都可以使用你的地图创建游戏。
 
+- Author - 作者名称会默认显示为你的《星际争霸 II》角色名；你也可以选择 Show Real Name，改为显示真实姓名。
 
-> A Locked mod will not be available to other users, and only you will be able to include it in the maps you make.
-
-> An Unlocked mod can be used by others in their maps, and sharing your mods with other map makers can benefit the map making community significantly. But as with maps, remember that an unlocked mod may also be copied by others.
-
-- Storage Requirements - Battle.net has the following limits for published files per user: up to 80 individual maps or mods (represented as "slots" in the dialog), with no more than 300 MB total size.
+- Locked For Editing (Maps only) - 首次发布地图前，你必须决定它是 Locked 还是 Unlocked。
 
 
-If there are any additional requirements for publishing the map or mod, they will be listed on the left. Once everything has been configured, you can accept the dialog, and your file will be uploaded to Battle.net. Upload progress can be seen in the File Transfers window which will automatically be shown. When the upload is complete, you can hop in the game and play your map!
+> 注意：地图一旦以 Locked 状态发布，任何人都无法再在编辑器中打开它，包括你自己。如果你希望阻止他人通过编辑器查看或复制你的地图，可以选择这个选项。不过请务必保留一份地图的本地副本，以便今后继续修改。
+
+> 注意：处于 Unlocked 状态的地图可以被其他用户在编辑器中打开。如果你愿意与其他制图作者分享地图，可以选择这个选项。这是回馈制图社区的一种好方式，但也请记住，其他人将能够复制并以自己的名义再次发布这张地图。
+
+- Locked (Owner Use Only) (Mods only) - 和地图类似，Mod 也必须选择 Locked 或 Unlocked。
+
+
+> 处于 Locked 状态的 Mod 不会对其他用户开放，只有你自己可以把它加入到所制作的地图中。
+
+> 处于 Unlocked 状态的 Mod 可以被其他人用于他们自己的地图中。与其他制图作者分享你的 Mod，能极大地帮助整个制图社区。但和地图一样，也请记住，未锁定的 Mod 同样可能被他人复制。
+
+- Storage Requirements - Battle.net 对每位用户已发布文件的限制如下：最多可发布 80 个独立地图或 Mod（在对话框中显示为 “slots”），总容量不超过 300 MB。
+
+
+如果发布该地图或 Mod 还有其他额外要求，它们会显示在左侧。全部配置完成后，你就可以确认对话框，文件会被上传到 Battle.net。上传进度会显示在自动弹出的 File Transfers 窗口中。上传完成后，你就可以进入游戏游玩自己的地图了！
 
 
 
-## MANAGING YOUR PUBLISHED FILES
+## 管理你已发布的文件
 
 ![img](./resources/publishing02.png)
 
-Once you've published one or more files to Battle.net, you can use the File > Manage Published command from any editor module to open a window for viewing all of your currently published files. You can log in to Battle.net from this window, and must do so in order to see your files.
+当你已经向 Battle.net 发布了一份或多份文件后，可以在任意编辑器模块中使用 文件 > Manage Published 命令，打开一个窗口，查看你当前已发布的所有文件。你也可以在这个窗口中登录 Battle.net；要查看你的文件，必须先登录。
 
-- Storage Used - Shows you how many publishing slots and how much storage space is currently being used by your account.
+- Storage Used - 显示你的账号当前已占用多少发布槽位，以及占用了多少存储空间。
 
-- File List - Lists all maps and mods published to your account, with basic details about the status of the files. Selecting a file will show additional information and a preview image on the right.
+- File List - 列出发布到你账号下的所有地图和 Mod，并显示这些文件的基础状态信息。选中某个文件后，右侧会显示更多信息和预览图。
 
-- Remove From Account - This button will remove the selected map or mod from your account and free up a storage slot. This means it will no longer be available for play or use through the Battle.net service. Note that for mods, any existing published maps that include the mod will still be able to access the old mod data, but newly created maps will no longer be able to use it.
+- Remove From Account - 这个按钮会把选中的地图或 Mod 从你的账号中移除，并释放一个存储槽位。这意味着该文件将不再能通过 Battle.net 服务被游玩或使用。需要注意的是，对于 Mod 来说，任何已经发布且包含该 Mod 的现有地图，仍然可以访问旧的 Mod 数据；但之后新建的地图将无法再使用它。
 
-- Open In Editor - This button will open the map or mod in the editor, where it can be modified and saved to a new local file. This can only be done for Unlocked maps or mods.
+- Open In Editor - 这个按钮会在编辑器中打开该地图或 Mod，你可以对其进行修改并另存为新的本地文件。只有 Unlocked 状态的地图或 Mod 才能这样做。

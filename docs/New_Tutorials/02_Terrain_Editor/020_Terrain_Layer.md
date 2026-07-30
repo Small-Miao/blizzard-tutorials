@@ -1,175 +1,175 @@
-# Terrain Layer
+# 地形层
 
-The Terrain Layer deals with the fundamental elements of terrain design, including ground texture, elevation, cliffs, and water. You can access it from the Terrain Bar, by clicking the icon shown below.
+地形层处理地形设计中的基础元素，包括地表纹理、高度、悬崖和水体。你可以通过点击下图所示的图标，从地形栏进入这一层。
 
 ![Terrain Layer Icon](./resources/020_Terrain_Layer1.png)
-*Terrain Layer Icon*
+*地形层图标*
 
-## Terrain Palette
+## 地形面板
 
-Every map begins at the creation screen, here you'll make basic decisions about the look of your map, determining its texture, height, and size. Once the Editor has generated the map, it will open in the Terrain Editor, giving you a fresh slate of terrain, a blank canvas.
+每张地图都从创建界面开始，在那里你会对地图的外观做出一些基础决定，确定它的纹理、高度和尺寸。编辑器生成地图后，会在地形编辑器中打开它，为你提供一块全新的地形底稿，就像一张空白画布。
 
 [![Map Creation](./resources/020_Terrain_Layer2.png)](./resources/020_Terrain_Layer2.png)
-*Map Creation*
+*地图创建*
 
-The terrain development process usually begins at the Terrain Layer. Continuing the painting theme, the tools in this layer are called brushes. They can be found in the Terrain Palette, shown below.
+地形开发过程通常就是从地形层开始的。延续“绘画”的比喻，这一层中的工具被称为刷子。你可以在下图所示的 Terrain Palette 中找到它们。
 
 ![Terrain Palette](./resources/020_Terrain_Layer3.png)
-*Terrain Palette*
+*地形面板*
 
-## Brush Options
+## 刷子选项
 
-Selecting any brush will display various modifiers within the palette. Every brush has options allowing you to control the ways in which you 'paint' your terrain. Below you'll see an example of these options, followed by a breakdown of all the options available to you.
+选择任意刷子后，面板中都会显示多个修饰选项。每一种刷子都提供一组控制项，让你决定以何种方式“绘制”地形。下面先给出这些选项的示例，再说明每一项的具体作用。
 
 [![Brush Options](./resources/020_Terrain_Layer4.png)](./resources/020_Terrain_Layer4.png)
-*Brush Options*
+*刷子选项*
 
-| Pro per ty  | Effect                                                                                                                                                                                                                                                                   |
+| 属性 | 作用 |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Inc rem ent | Adjusts the magnitude at which the current action is performed.                                                                                                                                                                                                          |
-| Siz e       | Changes the dimensions at which the current action is performed.                                                                                                                                                                                                         |
-| Spe ed      | Adjusts the speed at which the current action is performed.                                                                                                                                                                                                              |
-| Sha pe      | Selects the shape of the area in which the current action is performed.                                                                                                                                                                                                  |
-| Sty le      | Applies an effect to the action being performed. These include various opacity, shape, and randomness options.                                                                                                                                                           |
-|             | The Paintbrush style is the default standard with no additional effects.                                                                                                                                                                                                 |
-|             | The Airbrush style applies a degree of opacity around the edges of the application area, controlled by the Variability slider.                                                                                                                                           |
-|             | The Noise style adds a random component to the application, while the Fractal style applies the brush recursively. These final two styles, and their modification with the properties Variability and Resolution, are best described by the preview found in the Editor. |
+| Increment | 调整当前操作施加的强度。 |
+| Size | 改变当前操作作用范围的尺寸。 |
+| Speed | 调整当前操作执行的速度。 |
+| Shape | 选择当前操作作用区域的形状。 |
+| Style | 为当前操作附加额外效果，包括不同的不透明度、形状和随机性选项。 |
+|             | Paintbrush 风格是默认标准样式，不附加额外效果。 |
+|             | Airbrush 风格会在作用区域边缘加入一定透明过渡，其强度由 Variability 滑块控制。 |
+|             | Noise 风格会为操作加入随机成分，而 Fractal 风格会递归应用刷子。最后这两种风格，以及它们与 Variability 和 Resolution 属性结合后的效果，最适合通过编辑器中的预览来理解。 |
 
-Beyond these general options, each of the nine brushes available in the Terrain Layer has a number of unique options. You can read a breakdown of the brushes and their options in the following sections.
+除了这些通用选项外，地形层中的九种刷子还各自拥有若干独特选项。下面会按刷子逐一说明。
 
-## The Brushes
+## 刷子
 
-![Image](./resources/020_Terrain_Layer5.png)
+![图像](./resources/020_Terrain_Layer5.png)
 
-This tool allows you to paint textures onto the surface of the map. Painting is done with a mixing system that allows the dynamic layering of a palette of eight textures per map.
+这个工具允许你把纹理绘制到地图表面。地表绘制采用一种混合系统，允许对每张地图的八种纹理调色板进行动态叠加。
 
 [![Texture Brush and its Use](./resources/020_Terrain_Layer6.png)](./resources/020_Terrain_Layer6.png)
-*Texture Brush and its Use*
+*纹理刷及其用法*
 
-| Property        | Effect                                                                                                                    |
+| 属性 | 作用 |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| Add Texture     | Applies the currently selected texture to the map using the selected brush options.                                       |
-| Remove Texture  | Removes the currently selected texture to the map using the selected brush options.                                       |
-| Uniform Texture | Applies the current texture at a locked Alpha value, resulting in no variation in opacity.                                |
-| Replace Texture | Replaces the first texture selection with the second, does not alter any other textures.                                  |
-| Smudge Texture  | Pushes the first texture the user clicks onto other textures for as long as the button is held.                           |
-| Blur Texture    | Softens the border between adjoining textures.                                                                            |
-| Fill Texture    | Fills an entire area with the selected texture. The area is selected based on the altitude at which the brush is clicked. |
+| Add Texture | 使用当前刷子选项，把当前选中的纹理应用到地图上。 |
+| Remove Texture | 使用当前刷子选项，从地图上移除当前选中的纹理。 |
+| Uniform Texture | 以固定的 Alpha 值应用当前纹理，因此不会出现不透明度变化。 |
+| Replace Texture | 将第一种选中的纹理替换为第二种，不会影响其他纹理。 |
+| Smudge Texture | 将用户首次点击到的纹理推抹到其他纹理上，只要按住按钮就会持续生效。 |
+| Blur Texture | 软化相邻纹理之间的边界。 |
+| Fill Texture | 用所选纹理填充整个区域。区域会依据点击位置的海拔高度来判定。 |
 
-![Image](./resources/020_Terrain_Layer7.png)
+![图像](./resources/020_Terrain_Layer7.png)
 
-This tool allows you to alter the topology of your terrain. All height features made with this brush will remain pathable by unit movement, regardless of how outlandish they may appear. You can make pathing distinctions with the cliff and pathing tools.
+这个工具允许你修改地形的地貌形态。用这个刷子创建出的所有高度变化，无论视觉上看起来多么夸张，都会保持可被单位通行。若要区分寻路规则，则需要使用悬崖和寻路工具。
 
 [![Height Brush and its Use](./resources/020_Terrain_Layer8.png)](./resources/020_Terrain_Layer8.png)
-*Height Brush and its Use*
+*高度刷及其用法*
 
-| Property  | Effect                                                                                   |
+| 属性 | 作用 |
 | --------- | ---------------------------------------------------------------------------------------- |
-| Raise     | Increases the target area's height based on the brush options and Amplitude.             |
-| Lower     | Decreases the target area's height based on the brush options and Amplitude.             |
-| Uniform   | Alters the height within the brush's target area to be approximately equal.              |
-| Noise     | Applies a random variation in height to the target area.                                 |
-| Amplitude | Sets a magnitude for height alterations, similar to the standard brush option Increment. |
+| Raise | 根据刷子选项和 Amplitude 提高目标区域的高度。 |
+| Lower | 根据刷子选项和 Amplitude 降低目标区域的高度。 |
+| Uniform | 将刷子作用范围内的高度调整为大致一致。 |
+| Noise | 为目标区域加入随机高度变化。 |
+| Amplitude | 设定高度变化的幅度，类似于通用刷子选项中的 Increment。 |
 
-![Image](./resources/020_Terrain_Layer9.png)
+![图像](./resources/020_Terrain_Layer9.png)
 
-This tool changes the cliff levels of the target selection. There are four distinct levels of terrain, which have special gameplay rules and interactions. Ground-based units move between these layers using ramps. You can also use this tool to place those ramps.
+这个工具用于改变目标区域的悬崖层级。地形共有四个不同层级，它们具有特殊的玩法规则与交互方式。地面单位通过坡道在这些层级之间移动。你也可以用这个工具来放置坡道。
 
 [![Cliff Brush and its Use](./resources/020_Terrain_Layer10.png)](./resources/020_Terrain_Layer10.png)
-*Cliff Brush and its Use*
+*悬崖刷及其用法*
 
-| Property         | Effect                                                                                                                                              |
+| 属性 | 作用 |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Raise Cliff      | Raises all terrain in the current target area up one cliff level. If the area is already at the highest level, it will not be altered.              |
-| Lower Cliff      | Lowers all terrain in the current target area down one cliff level. If the area is already at the lowest level, it will not be altered.             |
-| Same Level Cliff | Clicking with this brush selects the cliff level of the target area, holding the button will apply this level of cliff anywhere the brush is moved. |
-| Add Ramp         | Creates a ramp between terrain levels at the target, if possible.                                                                                   |
-| Remove Ramp      | Removes any ramps in the target area.                                                                                                               |
-| Type             | Toggles between possible visual styles of ramps in the current terrain type.                                                                        |
+| Raise Cliff | 将当前目标区域内的全部地形提升一级悬崖层级。如果已经处于最高层，则不会变化。 |
+| Lower Cliff | 将当前目标区域内的全部地形降低一级悬崖层级。如果已经处于最低层，则不会变化。 |
+| Same Level Cliff | 使用此刷子点击时会读取目标区域的悬崖层级；按住后移动，则会在所到之处应用该层级。 |
+| Add Ramp | 如果可能，在目标处创建连接不同地形层级的坡道。 |
+| Remove Ramp | 移除目标区域中的所有坡道。 |
+| Type | 在当前地形类型可用的坡道视觉样式之间切换。 |
 
-![Image](./resources/020_Terrain_Layer11.png)
+![图像](./resources/020_Terrain_Layer11.png)
 
-This tool allows you to select from an array of dynamic set-piece objects available in the Editor. These terrain objects require special placement and cooperation with doodads or units to produce desired effects.
+这个工具允许你从编辑器提供的一组动态场景对象中进行选择。这类地形对象需要特殊的摆放方式，并且通常需要与装饰物或单位配合，才能产生理想效果。
 
 [![Terrain Object Brush and its Use](./resources/020_Terrain_Layer12.png)](./resources/020_Terrain_Layer12.png)
-*Terrain Object Brush and its Use*
+*地形对象刷及其用法*
 
-| Property            | Effect                                                                                               |
+| 属性 | 作用 |
 | ------------------- | ---------------------------------------------------------------------------------------------------- |
-| Add Terrain Object  | Places the currently selected terrain object at the target area.                                     |
-| Show Terrain Cells  | Displays any terrain cells in the target area that have had their visibility changed.                |
-| Hide Terrain Cells  | Alters the visibility of any terrain cells in the target area.                                       |
-| Terrain Object List | A list of all the available terrain objects, sorted by the cliff level they are properly applied to. |
+| Add Terrain Object | 在目标区域放置当前选中的地形对象。 |
+| Show Terrain Cells | 显示目标区域中那些可见性已被更改的 terrain cell。 |
+| Hide Terrain Cells | 修改目标区域中 terrain cell 的可见性。 |
+| 地形对象列表 | 列出所有可用地形对象，并按其适用的悬崖层级排序。 |
 
-[![Image](./resources/020_Terrain_Layer13.png)](./resources/020_Terrain_Layer13.png)
+[![图像](./resources/020_Terrain_Layer13.png)](./resources/020_Terrain_Layer13.png)
 
-This brush will apply regions to the map where water will be rendered. In this context, 'water' actually refers to a variety of dynamic fluids and may appear as lava or acid in certain terrain types. The regions are locked to a constant size applied in square units by this brush.
+这个刷子会在地图上涂绘出用于渲染水体的区域。在这里，“水”实际上指的是多种动态液体，因此在某些地形类型中也可能表现为岩浆或酸液。此刷子施加的区域会以固定的方格单位大小锁定。
 
 ![Water Brush and its Use](./resources/020_Terrain_Layer14.png)
-*Water Brush and its Use*
+*水体刷及其用法*
 
-| Property           | Effect                                                                                                                                                                                                 |
+| 属性 | 作用 |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Add Water          | Applies a water region to the target area.                                                                                                                                                             |
-| Remove Water       | Removes any water regions within the target area.                                                                                                                                                      |
-| Water Type Listing | Offers a selection of various types of water which may be applied. Note that these are not linked to terrain types and may be applied in any quantity.                                                 |
-| State              | Toggles between any alternate settings in the current water type.                                                                                                                                      |
-| Height             | The height at which the water in the region being applied will render. Water is applied at a set height per region. This setting can affect the look of certain areas, from shallows to being flooded. |
+| Add Water | 在目标区域添加水体区域。 |
+| Remove Water | 移除目标区域中的所有水体区域。 |
+| Water Type Listing | 提供多种可应用的水体类型。需要注意，它们并不与地形类型绑定，因此可以任意混合使用。 |
+| State | 在当前水体类型的不同可选状态之间切换。 |
+| Height | 设置该区域水体渲染时的高度。水体是按区域以固定高度应用的。这个设置会影响局部外观，例如浅滩或被淹没的效果。 |
 
-[![Image](./resources/020_Terrain_Layer15.png)](./resources/020_Terrain_Layer15.png)
+[![图像](./resources/020_Terrain_Layer15.png)](./resources/020_Terrain_Layer15.png)
 
-This tool renders roads, which are treated as a special type of visual element. Roads are rendered automatically along a path laid down by this tool in points. This system is designed to quickly generate realistic looking roads without having to lay down individual doodad segments.
+这个工具用于渲染道路，而道路在这里被视为一种特殊的视觉元素。道路会沿着本工具通过点铺设出的路径自动生成。这个系统的目的是快速生成看起来自然的道路，而不必手动摆放一个个装饰物段。
 
 ![Road Brush and its Use](./resources/020_Terrain_Layer16.png)
-*Road Brush and its Use*
+*道路刷及其用法*
 
-| Property   | Effect                                                                                                                                                                                                 |
+| 属性 | 作用 |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Add Road   | Creates a road segment by placing individual points. Clicking outside of currently placed points will add a new segment. Clicking within currently placed points allows you to alter the road segment. |
-| Type       | Selects from the road textures available in the current terrain type.                                                                                                                                  |
-| Road Width | Alters the width of the road segment being currently placed.                                                                                                                                           |
+| Add Road | 通过放置一系列点来创建道路段。点击当前未存在点的位置会新建一段，点击已存在点则可以修改该道路段。 |
+| Type | 从当前地形类型可用的道路纹理中进行选择。 |
+| Road Width | 修改当前正在放置的道路段宽度。 |
 
-## Foliage Brush
+## 植被刷
 
-![Image](./resources/020_Terrain_Layer17.png)
+![图像](./resources/020_Terrain_Layer17.png)
 
-This tool allows you to paint regions so that the Editor can automatically generate foliage depending on their current texture. Foliage is a kind of automatically generated visual element, similar to a doodad, which cannot be directly altered in the Editor.
+这个工具允许你在区域上进行标记，使编辑器能根据当前纹理自动生成植被。植被是一种自动生成的视觉元素，类似装饰物，但无法在编辑器中直接逐个修改。
 
 ![Foliage Brush and its Use](./resources/020_Terrain_Layer18.png)
-*Foliage Brush and its Use*
+*植被刷及其用法*
 
-| Property         | Effect                                                                                                                                                                  |
+| 属性 | 作用 |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Allow Foliage    | Sets the target area to permit foliage generation. When the brush is active, these areas will display in a grey overlay.                                                |
-| Disallow Foliage | Sets the target area to not generate foliage.                                                                                                                           |
-| Density Per Cell | Determines the amount of foliage to be generated when using the Generate Foliage option.                                                                                |
-| Generate Foliage | Creates foliage elements within the marked areas of the map. Will also clear foliage from the last generation run, updating the areas whose foliage status has changed. |
+| Allow Foliage | 将目标区域设为允许生成植被。刷子激活时，这些区域会显示为灰色覆盖层。 |
+| Disallow Foliage | 将目标区域设为不生成植被。 |
+| Density Per Cell | 决定使用 Generate Foliage 时每个单元格生成的植被数量。 |
+| Generate Foliage | 在地图中已标记区域内生成植被元素。同时也会清除上一次生成结果中已不再允许植被的部分。 |
 
-[![Image](./resources/020_Terrain_Layer19.png)](./resources/020_Terrain_Layer19.png)
+[![图像](./resources/020_Terrain_Layer19.png)](./resources/020_Terrain_Layer19.png)
 
-This tool gives you access to a palette of four lighting regions to paint onto your map. It also allows you to mix these regions together. When the game is launched, each individual region will have a corresponding set of lighting options applied within its bounds. Any areas with a mix of lighting regions will have the lighting options mixed as well. This allows you to build dynamic, realistic lighting environments. While the brush is active, the four lighting regions are displayed using colored overlays of red, green, blue, and yellow.
+这个工具让你可以使用四种光照区域组成的调色板，在地图上进行涂绘，并允许这些区域互相混合。游戏启动后，每个区域边界内都会应用一组对应的光照选项；若某片区域混合了多个光照区域，其光照设置也会相应混合。这样你就能构建出动态且真实的光照环境。刷子激活时，这四种光照区域会以红、绿、蓝、黄四种颜色覆盖显示。
 
 ![Lighting Brush and its Use](./resources/020_Terrain_Layer20.png)
-*Lighting Brush and its Use*
+*光照刷及其用法*
 
-| Property         | Effect                                                                                                                                                      |
+| 属性 | 作用 |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Add Lighting     | Applies the currently selected region to the map using the selected brush options.                                                                          |
-| Remove Lighting  | Removes the currently selected texture from the map using the selected brush options.                                                                       |
-| Uniform Lighting | The first click of the brush samples the composition of the selection region. Continued use of the brush will then apply that composition to other regions. |
-| Blur Lighting    | Creates a softer mixture between adjoining light regions.                                                                                                   |
-| Fill Lighting    | Fills an entire area with the selected light region. The area is selected based on the altitude at which the brush was clicked.                             |
+| Add Lighting | 使用当前刷子选项，把当前所选区域应用到地图中。 |
+| Remove Lighting | 使用当前刷子选项，把当前所选纹理从地图中移除。 |
+| Uniform Lighting | 刷子的第一次点击会采样选区的光照构成，之后继续使用刷子时就会把这种构成应用到其他区域。 |
+| Blur Lighting | 让相邻光照区域之间形成更柔和的混合。 |
+| Fill Lighting | 用所选光照区域填充整个区域。区域会依据点击位置的海拔高度来判定。 |
 
-[![Image](./resources/020_Terrain_Layer21.png)](./resources/020_Terrain_Layer21.png)
+[![图像](./resources/020_Terrain_Layer21.png)](./resources/020_Terrain_Layer21.png)
 
-The creep tool allows you to create creep on the map without the need for creep-generating Zerg units. It also allows you to designate special rules to certain areas for disallowing or permitting creep.
+菌毯工具允许你在地图上创建菌毯，而无需依赖能够生成菌毯的虫族单位。它还允许你为某些区域指定特殊规则，以禁止或允许菌毯生成。
 
 ![Creep Brush and its Use](./resources/020_Terrain_Layer22.png)
-*Creep Brush and its Use*
+*菌毯刷及其用法*
 
-| Property       | Effect                                                       |
+| 属性 | 作用 |
 | -------------- | ------------------------------------------------------------ |
-| Add Creep      | Applies creep to the target area.                            |
-| Remove Creep   | Removes creep from the target area.                          |
-| Disallow Creep | Flags the selected area to disallow the generation of creep. |
-| Allow Creep    | Flags the selected area to allow the generation of creep.    |
+| Add Creep | 在目标区域添加菌毯。 |
+| Remove Creep | 从目标区域移除菌毯。 |
+| Disallow Creep | 将所选区域标记为禁止生成菌毯。 |
+| Allow Creep | 将所选区域标记为允许生成菌毯。 |

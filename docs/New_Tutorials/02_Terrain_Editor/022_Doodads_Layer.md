@@ -1,33 +1,33 @@
-# Doodads Layer
+# 装饰物层
 
-The Doodads Layer contains decorative environmental objects called doodads. These are the fundamental map styling element of the Editor, with thousands available. You can find this layer via the Terrain Bar, using the icon seen below.
+装饰物层包含被称为 装饰物 的环境装饰对象。它们是编辑器中最基础的地图风格化元素，数量成千上万。你可以通过下图所示图标，从地形栏进入这一层。
 
-![Doodad Layer icon](./resources/022_Doodads_Layer1.png)
-*Doodad Layer icon*
+![装饰物 Layer icon](./resources/022_Doodads_Layer1.png)
+*装饰物层图标*
 
-## Doodads Palette
+## 装饰物面板
 
-The Doodads Palette functions as a catalog of doodads, allowing you to sort, search, and place doodads. There are no restrictions on the use of Doodads, and the palette gives you access to any doodads available in the current release. Keep in mind that doodads can accumulate quickly and overuse of doodads is a common cause of performance dragging. You'll find this palette in the leftmost portion of the Terrain Editor when the Doodads Layer is active. The palette itself is shown below.
+装饰物面板相当于一个 装饰物 目录，允许你对装饰物进行排序、搜索和放置。装饰物 的使用并没有额外限制，而该面板会让你访问当前版本中所有可用的装饰物。需要记住的是，装饰物 数量很容易迅速堆积，而过度使用装饰物是导致性能下降的常见原因之一。当装饰物层处于活动状态时，你会在地形编辑器最左侧找到这个面板。如下图所示。
 
-![Palette Preview and Existing Object List](./resources/022_Doodads_Layer2.png)
-*Palette Preview and Existing Object List*
+![调色板预览 and 现有对象列表](./resources/022_Doodads_Layer2.png)
+*面板预览与现有对象列表*
 
-The Doodad Palette boasts five search filters to help you find map elements. You can apply these filters by navigating to a specific pull down and selecting a filtering option, as shown below.
+装饰物面板提供五种搜索筛选器，帮助你查找地图元素。你可以通过打开相应下拉框并选择筛选条件来使用它们，如下图所示。
 
-![Doodad Filtering](./resources/022_Doodads_Layer3.png)
-*Doodad Filtering*
+![装饰物 Filtering](./resources/022_Doodads_Layer3.png)
+*装饰物筛选*
 
-The list will be updated to include every doodad with the selected property. These filters stack, so you can search by multiple properties at once. The following table contains a breakdown of the filters you can use.
+列表会更新为所有符合该条件的 装饰物。这些筛选器可以叠加使用，因此你可以同时按多种属性进行搜索。下表列出了这些筛选器的作用。
 
-| Filter       | Description                                                                                                                                                                                                                    |
+| 筛选器 | 说明 |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Climate      | A major division of Terrain Types that helps narrow down doodad options by a general season, biosphere, or feel.                                                                                                               |
-| Terrain Type | Filters by the specific setting and texture set that on which doodad was originally designed to be placed. Matching the doodads and the map's Terrain Type is an excellent starting point for selecting complementary pieces.  |
-| Actor Type   | Set to Doodad by default. Typically this filter should remain on that setting, but in advanced use this filter allows you to place some other types as map decoration, as if they were a doodad.                               |
-| Parent       | Filters by the parentage of the doodad in the Data Editor. Like Actor Type, this is an advanced use category that allows for the placement of some non-traditional doodad elements.                                            |
-| Doodad Type  | Filters by tags of the intended usage for each doodad. Provides useful, descriptive categories like Environment, which isolates trees and bushes, or Cliff and Ramp, which consists of doodads that can be embeded into walls. |
+| Climate | 地形类型 的一个大类划分，用于按大致季节、生物圈或氛围来缩小 装饰物 范围。 |
+| 地形类型 | 按 装饰物 原本设计时所适配的具体场景与纹理集进行筛选。让 装饰物 与地图所用 地形类型 保持一致，是选择协调元素的绝佳起点。 |
+| Actor Type | 默认设置为 装饰物。通常这个筛选器应保持在该设置，但在高级用法中，它也允许你把其他类型对象像 装饰物 一样作为地图装饰放置。 |
+| Parent | 按 装饰物 在数据编辑器中的父级进行筛选。和 Actor Type 一样，这也是高级用法类别，可让你放置一些非传统 装饰物 元素。 |
+| 装饰物类型 | 按 装饰物 的用途标签进行筛选。它会提供一些有用且直观的分类，比如 Environment 可筛出树木与灌木，而 Cliff and Ramp 则集中显示可嵌入墙面或坡道中的 装饰物。 |
 
-Aside from search filters, the doodad layer offers a few supplementary features for placing and editing existing doodads. As in the Units Layer, there is an Existing Object list that tracks all doodads currently placed in the Editor, and a Preview which supplies a rendering of the doodad currently selected for placement. Double clicking a doodad will launch its 'Object Properties' window where you can tag it with a name, and alter its visual properties in a number of ways. A combination of these features are shown below.
+除了搜索筛选器之外，装饰物层还提供一些用于放置和编辑现有 装饰物 的辅助功能。与单位层一样，这里也有一个 现有对象 列表，用于追踪当前已放置在编辑器中的所有 装饰物；同时还有 预览，可渲染当前选中的待放置 装饰物。双击某个 装饰物 会打开它的“对象属性”窗口，你可以在那里为其添加名称，并以多种方式调整其视觉属性。下图展示了这些功能的组合效果。
 
-[![Doodad Preview and Existing Object List](./resources/022_Doodads_Layer4.png)](./resources/022_Doodads_Layer4.png)
-*Doodad Preview and Existing Object List*
+[![装饰物 预览 and 现有对象列表](./resources/022_Doodads_Layer4.png)](./resources/022_Doodads_Layer4.png)
+*装饰物预览与现有对象列表*

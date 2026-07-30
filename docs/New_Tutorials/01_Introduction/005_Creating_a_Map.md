@@ -1,47 +1,47 @@
-# Creating A Map
+# 创建地图
 
-The first step in any project is the creation of a new document, either a map or a mod. When you are creating a document, you'll be presented with options to help you configure your project quickly. Any of these initial configurations can be changed later within the Editor itself.
+任何项目的第一步都是创建一个新文档，也就是地图或模组。创建文档时，你会看到一组选项，帮助你快速完成项目配置。这些初始配置日后都可以在编辑器内部修改。
 
-## Map Creation Options
+## 地图创建选项
 
-With the Editor launched, navigate to the file tab in the top left corner of any Editor screen.
+启动编辑器后，前往任意编辑器界面左上角的文件标签。
 
 [![File Menu](./resources/005_Creating_a_Map01.png)](./resources/005_Creating_a_Map01.png)
-*File Menu*
+*文件菜单*
 
-This will bring you to the 'New Document' window, where you can select the type of document you wish to create.
+这会打开“新建文档”窗口，你可以在其中选择想创建的文档类型。
 
 [![Choosing Document Type](./resources/005_Creating_a_Map02.png)](./resources/005_Creating_a_Map02.png)
-*Choosing Document Type*
+*选择文档类型*
 
-For this scenario, select 'Arcade Map' by clicking the button to its left, then hit 'Next' to proceed. You will be brought to the dependency section, pictured below.
+在本示例中，点击 “Arcade 地图” 左侧按钮选中它，然后点击 “Next” 继续。接下来你会进入依赖项界面，如下图所示。
 
-[![Choosing Dependency](./resources/005_Creating_a_Map03.png)](./resources/005_Creating_a_Map03.png)
-*Choosing Dependency*
+[![Choosing 依赖项](./resources/005_Creating_a_Map03.png)](./resources/005_Creating_a_Map03.png)
+*选择依赖项*
 
-Dependencies describe which mod files will provide assets to a project. You can always proceed by navigating to the 'Custom' heading, then selecting nothing. This would provide an entirely blank project, with no mod file dependencies. In this example, you'll use the substantial archive of StarCraft assets, typically known as the 'standard dependencies.' Access to the standard dependencies is one of the primary strengths of working with the Editor.
+依赖项用于说明项目将从哪些模组文件获取资源。你始终可以进入 “Custom” 分类并保持不选任何内容，这样就会得到一个完全空白、没有任何模组依赖项的项目。在本示例中，你将使用庞大的《星际争霸》资源库，也就是通常所说的“标准依赖项”。能够访问标准依赖项，是使用编辑器最重要的优势之一。
 
-To import the most recent iteration of StarCraft's assets, select the 'Heart of the Swarm' standard dependency, then proceed by selecting 'Next'. This will bring you to the map configuration section, pictured below.
+若要导入最新一版《星际争霸》资源，请选择 “虫群之心” 标准依赖项，然后点击 “Next” 继续。这会带你进入地图配置界面，如下图所示。
 
-## Map Configuration
+## 地图配置
 
 [![Example Generation Options](./resources/005_Creating_a_Map04.png)](./resources/005_Creating_a_Map04.png)
-*Example Generation Options*
+*示例生成选项*
 
-The map configuration screen is where you'll make some basic decisions about the initial look of your terrain. The effects of each option are broken down in the following table.
+地图配置界面是你为初始地形外观做出基础决定的地方。各项选项的作用如下表所示。
 
-| Property                    | Effect                                                                                                                                                                                                                        |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Dimensions (Width x Height) | Sets the initial full size of the map. You can change this later from the Map Bounds options. Dimensions range from 32 to 256 units, in increments of 8.                                                                      |
-| Playable Size               | The actual area of a map in which units can path, the correction is made based on a hard-coded variable buffer on each side of the map. At some extremely small sizes this buffer is avoided.                                 |
-| Size Description            | A basic description of map sizes. Options include Tiny, Small, Medium, Huge, and Epic.                                                                                                                                        |
-| Use Terrain                 | Unchecking this cancels terrain generation. While you may want a terrainless map in some cases, it is functionally similar to a mod.                                                                                          |
-| Texture Set                 | Selects the 'Terrain Type' for a map, this is the palette of eight textures that will be used to build the ground in your environment. This also applies to creep visuals, cliff types, lighting, and atmospheric sound sets. |
-| Initial Texture             | On generation, the entire terrain will be painted this single type of the terrain set.                                                                                                                                        |
-| Base Height                 | All terrain is generated at this default height. If the Add Random Height option is unchecked, the terrain will be produced as a smooth surface.                                                                              |
-| Add Random Height           | Creates random distortions in the Base Height at a magnitude determined by the Strength and Variability option sliders. This is useful in producing a more naturalistic base for terrain.                                     |
+| 属性 | 作用 |
+| ---- | ---- |
+| Dimensions (Width x Height) | 设置地图初始完整尺寸。之后你可以在 Map Bounds 选项中再次修改。尺寸范围为 32 到 256，步进为 8。 |
+| Playable Size | 地图中单位实际可寻路的区域大小。该数值会根据地图四周一段写死的不可玩缓冲区进行修正。在某些极小尺寸下不会使用这一缓冲区。 |
+| Size Description | 对地图尺寸的基础描述。可选项包括 Tiny、Small、Medium、Huge 和 Epic。 |
+| Use Terrain | 取消勾选会禁用地形生成。虽然有些情况下你可能需要无地形地图，但它在功能上与模组非常接近。 |
+| 纹理集 | 选择地图的 “地形类型”，也就是构建地表时使用的八纹理调色板。它还会影响菌毯视觉、悬崖类型、光照和环境音效组。 |
+| Initial Texture | 生成时，整张地形都会先刷成当前地块集中的这一种纹理。 |
+| Base Height | 所有地形都会以此默认高度生成。如果未勾选 Add Random Height，地形将呈现为平滑表面。 |
+| Add Random Height | 在 Base Height 的基础上制造随机起伏，幅度由 Strength 和 Variability 滑块决定。这有助于生成更自然的地形底稿。 |
 
-Following the guidelines set out in our 'Example Generation Guidelines' image above should give you a map that looks like the one pictured below. This map is primed to begin a project with. At this time, it's usually wise to save your file.
+按照上方“示例生成指南”中的设置，你应当得到一张如下图所示的地图。这张地图已经适合作为项目起点。此时通常最好先保存文件。
 
 [![Newly Generated Char Rock](./resources/005_Creating_a_Map05.png)](./resources/005_Creating_a_Map05.png)
-*Newly Generated Char Rock*
+*新生成的 Char Rock*

@@ -1,113 +1,113 @@
-# Texture Sets
+# 纹理集
 
-The type of textures available for use on any given map's terrain are organized into sets. Historically these sets are known as tilesets, owing to the 2D roots of the RTS genre. Now though, they are referred to within the StarCraft II Editor as Texture Sets, referring to the fact that they are composed of individual Texture assets. This name game actually extends further, and the data type of texture sets are referred to in the Data Editor as Terrain Types. The names of the prebuilt sets are likely familiar to anyone who has experience with the campaign or competitive StarCraft. Examples include: Bel'Shir, Shakuras, and Char. An example of one such set, as presented in the Terrain Palette, is shown below.
+地图地形上可用的纹理会被组织成一个个集合。从历史上看，这些集合被称为 tileset，这是 RTS 类型诞生于 2D 时代所留下的叫法。而在《星际争霸 II》编辑器中，它们现在被称为 纹理集，强调这些集合是由单独的纹理资源组成的。这个命名体系还会继续延伸：在数据编辑器里，纹理集对应的数据类型叫作 地形类型。任何玩过战役或竞技《星际争霸》的人，大概都对预制地块集的名字不陌生，比如：Bel'Shir、Shakuras 和 Char。下面展示的是其中一个纹理集在地形面板中的样子。
 
-![Bel'Shir Texture Set](./resources/030_Texture_Sets1.png)
-*Bel'Shir Texture Set*
+![Bel'Shir 纹理集](./resources/030_Texture_Sets1.png)
+*Bel'Shir 纹理集*
 
-The composition of Texture Sets/Types is limited for performance reasons. The robust landscape painting provided in the Terrain Editor allows a lot of blending in between its texture palette. As a result, the scope of textures available at any given time must be limited. Fortunately, existing palettes can be configured and entirely new ones can be custom-built to open up more diverse texture options for a particular project.
+出于性能原因，纹理集/Type 的组成受到一定限制。地形编辑器提供了强大的地表绘制能力，允许在其纹理调色板之间进行大量混合。因此，在任意时刻可用的纹理范围必须受到约束。幸运的是，现有调色板可以被重新配置，也可以完全自定义创建新的纹理集，从而为特定项目提供更丰富的纹理选择。
 
-## Terrain Textures
+## 地形纹理
 
-Terrain types are composed of a set of eight individual textures, which are stored in data as Terrain Textures. This type is built from raw texture files that then have several fields injected into them. Doing so gives the texture the proper information in terms of things like physics, lighting, and foliage typing, rendering it eligible for use in the game. Some important fields of the Terrain Texture type can be found in the following table.
+地形类型 由八种单独纹理组成，它们在数据中存储为 地形纹理。这个类型最初来自原始纹理文件，随后会为其注入多个字段。这样一来，纹理就会拥有与物理、光照和植被类型等相关的正确信息，从而具备在游戏中使用的资格。下表列出了一些 地形纹理 类型的重要字段。
 
-| Property         | Details                                                                                                                                                                                                                                              |
+| 属性 | 说明 |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Physics Material | The material reported to the actor system for certain events occurring on this texture's space. For example, in the Trigger Editor actors can be made to play different sounds or use alternate models, depending on the texture's physics material. |
-| Doodads          | Determines what type of foliage is generated on this terrain via the Generate Foliage function of the Terrain Palette.                                                                                                                               |
-| Texture          | Sets the visible texture for the Terrain Texture. It provides the look of a specific texture, but will not always reflect its exact in-game appearance through the Editor if a normal map is required.                                               |
-| Normal Map       | Sets the normal map, which controls reflected color and game lighting data. Omission of a normal map will likely result in graphical errors.                                                                                                         |
+| Physics Material | 该纹理空间在发生某些事件时，会向 actor 系统报告的材质类型。例如在触发编辑器中，actor 可以依据纹理的 Physics Material 播放不同音效或使用替代模型。 |
+| 装饰物 | 决定地形面板的 Generate Foliage 功能会在该纹理上生成哪类植被。 |
+| Texture | 设置 地形纹理 可见的基础纹理。它决定纹理的外观，但如果该纹理还需要法线贴图，那么编辑器中的预览未必总能完全反映游戏内的最终效果。 |
+| Normal Map | 设置法线贴图，它负责控制反射颜色和游戏光照数据。若缺少法线贴图，通常会导致图形错误。 |
 
-## Creating A Custom Terrain Texture
+## 创建自定义地形纹理
 
-First, create a new Arcade map and set its default texture set to 'Bel'Shir (Jungle).' You don't need to specify any other map properties for this tutorial. Now move to the Data Editor by navigating to Modules ▶︎ Data.
+首先，创建一张新的 Arcade 地图，并将其默认纹理集设为 `Bel'Shir (Jungle)`。本教程中你不需要额外指定其他地图属性。然后通过 `模块 ▶︎ Data` 切换到数据编辑器。
 
-Within Data, open the terrain textures tab and create a terrain texture by right-clicking the Object Listing and selecting 'Add Terrain Texture.' This should appear as shown below.
+在 Data 中，打开 terrain textures 标签，并在对象列表中右键选择 `Add 地形纹理` 来创建一个地形纹理。如下图所示。
 
-[![Creating Terrain Texture](./resources/030_Texture_Sets2.png)](./resources/030_Texture_Sets2.png)
-*Creating Terrain Texture*
+[![Creating 地形纹理](./resources/030_Texture_Sets2.png)](./resources/030_Texture_Sets2.png)
+*创建地形纹理*
 
-This will launch a 'Terrain Texture Properties' window. Enter 'Demo Texture' under 'Name,' then hit the 'Suggest' button to generate an ID. The completed terrain texture creation screen should look like this.
+这会打开 “地形纹理 Properties” 窗口。在 `Name` 中输入 `Demo Texture`，然后点击 `Suggest` 生成 ID。完成后的创建界面应如下图所示。
 
-[![Creating Terrain Texture](./resources/030_Texture_Sets3.png)](./resources/030_Texture_Sets3.png)
-*Creating Terrain Texture*
+[![Creating 地形纹理](./resources/030_Texture_Sets3.png)](./resources/030_Texture_Sets3.png)
+*创建地形纹理*
 
-Click 'Ok' to create your terrain texture, then move on to the newly created texture's fields. You should now select a raw texture by double clicking the 'Texture' field, as in the image below.
+点击 “Ok” 创建该地形纹理，然后开始设置它的字段。此时，你应如下图所示，双击 `Texture` 字段来选择原始纹理。
 
-![Creating Terrain Texture](./resources/030_Texture_Sets4.png)
-*Creating Terrain Texture*
+![Creating 地形纹理](./resources/030_Texture_Sets4.png)
+*创建地形纹理*
 
-Opening the 'Texture' field will launch an 'Object Values' window with a browse option. Clicking the 'Browse' button should bring you to the Archive Browser, where you can select a texture. Quickly select the lavasilvertoprock.dds texture using the search function, then hit 'Ok' to complete selection.
+打开 `Texture` 字段后，会弹出一个带有浏览选项的“对象值”窗口。点击 `Browse` 按钮，会进入 Archive Browser，在那里你可以选择纹理。使用搜索功能快速找到 `lavasilvertoprock.dds`，然后点击 “Ok” 完成选择。
 
-![Selecting Terrain Texture](./resources/030_Texture_Sets5.png)
-*Selecting Terrain Texture*
+![Selecting 地形纹理](./resources/030_Texture_Sets5.png)
+*选择地形纹理*
 
-You will also have to supply a normal map texture alongside the base texture. Double click the cell to the right of the 'Normal Map' field and repeat the same process as used for the 'Texture' field. This time, find the texturelavasilvertoprock\_nrm.dds and click 'OK' to select it for use.
+除了基础纹理外，你还需要为它提供对应的法线贴图。在 `Normal Map` 字段右侧的单元格中双击，并重复与 `Texture` 字段相同的操作。这次请找到 `texturelavasilvertoprock_nrm.dds`，然后点击 “OK” 选中它。
 
-[![Selecting Terrain Texture Normal Map](./resources/030_Texture_Sets6.png)](./resources/030_Texture_Sets6.png)
-*Selecting Terrain Texture Normal Map*
+[![Selecting 地形纹理 Normal Map](./resources/030_Texture_Sets6.png)](./resources/030_Texture_Sets6.png)
+*选择地形纹理法线贴图*
 
-Note that the suffix \_nrm in the texture name identifies this as the associated normal map for your texture. However, it's worth noting that some normal maps in the editor use the endings \_normal or \_norm. If the Editor can't find an associated normal map for your texture, you should select the same texture file for the 'Normal Map' field as you have already used for the 'Texture' field. If you don't supply any normal map at all, you may encounter graphical issues due to the engine lacking certain lighting and color information for your map.
+请注意，纹理名中的后缀 `_nrm` 表明这就是该纹理对应的法线贴图。不过也值得一提的是，编辑器中有些法线贴图会使用 `_normal` 或 `_norm` 结尾。如果编辑器找不到与某纹理对应的法线贴图，你应当在 `Normal Map` 字段中直接选择和 `Texture` 字段相同的纹理文件。如果完全不提供法线贴图，地图可能会出现图形问题，因为引擎会缺少某些光照和颜色信息。
 
-## Setting Custom Foliage
+## 设置自定义植被
 
-By using the 'Generate Foliage' function in the Terrain Editor, you can populate each terrain texture in the 'Allow Foliage' area with its associated type of foliage drawn from the 'Doodads' field. Adding this functionality to the texture under construction should prove educational. To add support for foliage on your new texture, double click the cell to the right of the 'Doodads - ' heading.
+通过地形编辑器中的 `Generate Foliage` 功能，你可以让处于 `Allow Foliage` 区域内的每种地形纹理，都生成其 `装饰物` 字段所关联的植被类型。为正在制作的纹理补上这项功能会很有教育意义。要为你的新纹理添加植被支持，请双击 `装饰物 - ` 标题右侧的单元格。
 
-[![Foliage Doodad Input](./resources/030_Texture_Sets7.png)](./resources/030_Texture_Sets7.png)
-*Foliage Doodad Input*
+[![Foliage 装饰物 Input](./resources/030_Texture_Sets7.png)](./resources/030_Texture_Sets7.png)
+*植被装饰物输入*
 
-From the 'Object Values' window that you've just launched, click the green + button to add a new foliage doodad to the terrain texture. Doing so will add a new blank doodad. You can define it by selecting the 'Choose' button. Clicking this button will launch a popup that allows you to select any Model type from the project's data. This process is shown below.
+在刚刚打开的“对象值”窗口中，点击绿色 `+` 按钮，向该地形纹理添加一个新的植被 装饰物。这样会加入一个空白 装饰物。你可以点击 `Choose` 按钮来定义它。点击后会打开一个弹窗，允许你从项目数据中选择任意 Model 类型。操作如下图所示。
 
-[![Foliage Doodad Selection](./resources/030_Texture_Sets8.png)](./resources/030_Texture_Sets8.png)
-*Foliage Doodad Selection*
+[![Foliage 装饰物 Selection](./resources/030_Texture_Sets8.png)](./resources/030_Texture_Sets8.png)
+*植被装饰物选择*
 
-Select the 'Shakuras Tree' Model and click 'Ok.' At this point, foliage generation will support this terrain texture. Anytime the texture is within an 'Allow Foliage' zone, activating the Generate Foliage function in the Terrain Editor will create the doodad in an amount based on the Density (Per Cell) settings in the Terrain Palette.
+请选择 `Shakuras Tree` 模型并点击 “Ok”。此时，这种地形纹理就已经支持植被生成了。每当这块纹理处在 `Allow Foliage` 区域内，激活地形编辑器中的 `Generate Foliage` 功能后，就会按照 Terrain Palette 中 Density (Per Cell) 的设置数量生成该 装饰物。
 
-Foliage tends to look best when it is created with some randomness. This mimics a natural environment. There are a few options in this menu to help with this. One option here is the checkbox titled 'Random Rotation.' If you activate this, it will rotate each doodad model to face a random direction on generation. Check the 'Random Rotation' box to enable it and click 'OK' to finish.
+植被通常在带有一定随机性的情况下看起来会更自然，因为这样更接近真实环境。这个菜单中有几个选项可以帮助你做到这一点，其中之一就是名为 `Random Rotation` 的复选框。启用它后，每个 装饰物 模型在生成时都会随机朝向一个方向。勾选 `Random Rotation`，然后点击 “OK” 完成设置。
 
-![Completed Doodads Input](./resources/030_Texture_Sets9.png)
-*Completed Doodads Input*
+![Completed 装饰物 Input](./resources/030_Texture_Sets9.png)
+*完成后的装饰物输入*
 
-Another option not addressed in this article is to populate this doodad list with multiple types of possible foliage to ensure a distribution of different models. You can then set the Probability of each doodad, which will change the proportion in which they are generated. For now though, stick to the single model already selected.
+本文没有展开的另一个选项，是在这个 装饰物 列表中加入多种可能的植被模型，以确保最终生成时分布出不同种类。之后你还可以设置每种 装饰物 的 Probability，以调整它们的生成比例。不过在本练习中，只保留当前已选择的单一模型即可。
 
-## Altering A Texture Set
+## 修改纹理集
 
-Now that you have your Terrain Texture prepared, you'll need to add it to the texture set being used by the map itself. Remember that you've selected the 'Bel'Shir (Jungle)' set for this map. As mentioned earlier, these sets are collected internally within the Data Editor under the datatype Terrain Types. You could construct a completely new terrain type, but for the moment you can just alter the current map set to substitute the 'Demo Texture' for one of its eight default textures.
+现在你的 地形纹理 已经准备好了，接下来需要把它加入地图当前所使用的纹理集中。还记得你为这张地图选择的是 `Bel'Shir (Jungle)`。如前所述，这些集合在数据编辑器内部是通过 地形类型 数据类型来管理的。你当然可以完全创建一个全新的 terrain type，不过在当前示例中，只需修改当前地图所用的地块集，把 `Demo Texture` 替换掉默认八种纹理中的其中一种即可。
 
-Open the terrain textures tab by navigating to + ▶︎ Edit Terrain Data ▶︎ Terrain Types, then find the pre-existing type 'Bel'Shir (jungle)' in the Object Listing. Highlight it to view its fields, then you can swap in the new texture by double clicking 'Texture -- Blend,' as shown below.
+通过 `+ ▶︎ Edit Terrain Data ▶︎ 地形类型` 打开 地形类型 标签，然后在对象列表中找到已有类型 `Bel'Shir (jungle)`。高亮它以查看字段，然后如下图所示，双击 `Texture -- Blend` 来替换其中一项纹理。
 
-[![Altering Bel'Shir Terrain Type](./resources/030_Texture_Sets10.png)](./resources/030_Texture_Sets10.png)
-*Altering Bel'Shir Terrain Type*
+[![Altering Bel'Shir 地形类型](./resources/030_Texture_Sets10.png)](./resources/030_Texture_Sets10.png)
+*修改 Bel'Shir 地形类型*
 
-This will launch an 'Object Values' window annotated with 'Textures -- Blend.'
+这会打开一个标注为 `纹理 -- Blend` 的“对象值”窗口。
 
-[![Terrain Type Definition View](./resources/030_Texture_Sets11.png)](./resources/030_Texture_Sets11.png)
-*Terrain Type Definition View*
+[![地形类型 Definition View](./resources/030_Texture_Sets11.png)](./resources/030_Texture_Sets11.png)
+*地形类型 定义视图*
 
-This editor lists the 'Texture Library' of all available Terrain Textures and the currently selected Terrain Type in two parallel listings. The intermediary controls allow textures to be added, removed, reoriented, and swapped back and forth between the library and the texture set. Additionally the 'Preview' button, can be used to see the 'Demo Texture' with both its base texture and normal map combined. Select 'Demo Texture' from the 'Texture Library', then highlight 'Bel'Shir Dirt Light' in the 'Texture Set' and hit 'Replace.' This should swap the textures, as you can see in the image below.
+这个编辑器会以并排的两个列表显示全部可用 地形纹理 所组成的 `纹理库`，以及当前选中的 地形类型。中间的控制按钮允许你在纹理库和纹理集之间添加、移除、调整顺序和替换纹理。此外，你还可以使用 `预览` 按钮查看 `Demo Texture` 将基础纹理和法线贴图合并后的效果。请在 `纹理库` 中选中 `Demo Texture`，然后在 `纹理集` 中高亮 `Bel'Shir Dirt Light`，再点击 `Replace`。这样就会完成替换，如下图所示。
 
-[![Swapped Terrain Textures](./resources/030_Texture_Sets12.png)](./resources/030_Texture_Sets12.png)
-*Swapped Terrain Textures*
+[![Swapped 地形纹理](./resources/030_Texture_Sets12.png)](./resources/030_Texture_Sets12.png)
+*已替换的地形纹理*
 
-Clicking 'Ok' at this stage will complete the Terrain Type update and finalize the exercise.
+在这个阶段点击 “Ok”，就会完成 地形类型 更新，并结束本练习。
 
-## Testing The Custom Texture Set
+## 测试自定义纹理集
 
-Go back to the Terrain Editor and navigate to the brush tool in the Terrain Palette. You should be greeted by a thumbnail preview of your the 'Demo Texture' in the far left spot of the texture set. This will look like the image below.
+回到地形编辑器，并切换到 Terrain Palette 中的纹理刷工具。你应该会在纹理集最左侧位置看到 `Demo Texture` 的缩略图预览，如下图所示。
 
 ![](./resources/030_Texture_Sets13.png)
-*Customized Texture Set on Terrain Palette*
+*地形面板中的自定义纹理集*
 
-The texture is now ready to be painted onto the terrain, so feel free to start experimenting.
+现在这块纹理已经可以被绘制到地形上了，你可以开始自由尝试。
 
 [![Volcanic Ash in Bel'Shir](./resources/030_Texture_Sets14.png)](./resources/030_Texture_Sets14.png)
-*Volcanic Ash in Bel'Shir*
+*Bel'Shir 中的火山灰纹理*
 
-You can test the foliage capabilities of this new texture by laying an area of it down, then painting that area with the 'Allow Foliage' option. If you hit Generate Foliage, it should give you something similar to the screenshot below.
+你还可以通过先铺设一片这种纹理，再使用 `Allow Foliage` 选项标记该区域，来测试新纹理的植被能力。点击 Generate Foliage 后，结果应与下图类似。
 
 [![Generated Shakuras Tree Foliage](./resources/030_Texture_Sets15.png)](./resources/030_Texture_Sets15.png)
-*Generated Shakuras Tree Foliage*
+*生成的 Shakuras Tree 植被*
 
-## Attachments
+## 附件
 
  * [030_Texture_Sets.SC2Map](./maps/030_Texture_Sets.SC2Map)

@@ -1,88 +1,88 @@
-# Dialogs
+# 对话框
 
-Dialogs is a catch-all term in the StarCraft II engine referring to a large collection of elements that can occur in the screen space, including text, images, animation, and interfaces. The dialog itself is a sort of container that displays any combination of the aforementioned elements on a player's screen. Each of these elements are referred to as a Dialog Item, and are created inside a selected dialog. Using the dialog system enables you to produce many types of content, including briefings, portrait dialog sequences, buttons, sliders, and more.
+在《星际争霸 II》引擎中，Dialogs 是一个统称，指代所有可能出现在屏幕空间中的元素集合，包括文本、图像、动画和界面元素。对话框本身是一种容器，可以在玩家屏幕上显示上述元素的任意组合。这些元素都被称为 Dialog Item，并且是在某个选定对话框内部创建的。借助对话框系统，你可以制作多种内容，包括简报、肖像对话序列、按钮、滑块等等。
 
-# Creating Dialogs
+# 创建对话框
 
-Dialogs are usually created through a two-step process where the dialog is first instantiated and then is displayed to the screen for a player group. This process will appear as follows.
+对话框通常通过两步来创建：先实例化对话框，再将其显示给某个玩家组。这个过程如下所示。
 
-[![Dialog Creation](./resources/043_Dialogs1.png)](./resources/043_Dialogs1.png)
-*Dialog Creation*
+[![创建对话框](./resources/043_Dialogs1.png)](./resources/043_Dialogs1.png)
+*创建对话框*
 
-The bulk of dialog creation takes place under the Create Dialog and Show/Hide Dialog options, these allow for the dialog to be sized then oriented on the screen, and then displayed. The Show Dialog action is needed because dialogs are created in the Hidden state by default. Usually after this step, a dialog will captured to a variable with a Set Variable action. This gives the dialog a constant handle for things like referencing it, moving it, further altering its visibility, or building items within it. For setting a dialog to a variable, the function identifier Last Created Dialog is a standard.
+对话框创建的主体工作都在 Create Dialog 和 Show/Hide Dialog 这两类选项中完成。它们允许你设置对话框大小、确定其在屏幕上的定位，然后将其显示出来。之所以还需要 Show Dialog 动作，是因为对话框默认是以隐藏状态创建的。通常完成这一步后，还会用 Set Variable 动作把该对话框保存到变量中。这样一来，它就拥有了一个稳定句柄，便于后续引用、移动、进一步修改可见性，或在其中构建对话框项。要把对话框赋给变量，常用的函数标识符是 Last Created Dialog。
 
-# Dialog Actions
+# 对话框动作
 
-The Editor features a large collection of dialog actions that facilitate the creation and maintenance of dialogs and their items. A view of these actions is shown below.
+编辑器提供了大量与对话框相关的动作，用于创建和维护对话框及其内部项。如下图所示。
 
-[![Dialog Actions](./resources/043_Dialogs2.png)](./resources/043_Dialogs2.png)
-*Dialog Actions*
+[![对话框动作](./resources/043_Dialogs2.png)](./resources/043_Dialogs2.png)
+*对话框动作*
 
-The following table breaks down the general types of dialog actions and describes them. This list is usually appropriate for both dialogs and dialog items, which are discussed a little later.
+下表概述了这些对话框动作的常见类别及其作用。这个列表通常同时适用于对话框和对话框项，后者会在稍后介绍。
 
-| Function            | Description                                                                                                               |
+| 功能 | 说明 |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| Attach Dialog       | Moves an element to a specific anchor.                                                                                    |
-| Create Dialog       | Creates a new element, allowing you to set its size, anchor, offset, and text.                                            |
-| Destroy Dialog      | Destroys an element and any contained items.                                                                              |
-| Display Screen Item | Creates an element directly in screen space that requires no containing dialog.                                           |
-| Move Dialog         | Moves an element relative to a specific anchor.                                                                           |
-| Set Dialog          | Sets the property of a specific element. Properties include size, lighting, text, color, animation, font style, and more. |
-| Show/Hide Dialog    | Reveals or removes an element from a target player or group's screen.                                                     |
+| Attach Dialog | 把元素移动到指定锚点。 |
+| Create Dialog | 创建一个新元素，并允许你设置其大小、锚点、偏移和文本。 |
+| Destroy Dialog | 销毁一个元素及其包含的所有项目。 |
+| Display Screen Item | 直接在屏幕空间中创建一个元素，不需要所属对话框。 |
+| Move Dialog | 相对于某个指定锚点移动元素。 |
+| Set Dialog | 设置某个元素的属性，包括大小、光照、文本、颜色、动画、字体样式等。 |
+| Show/Hide Dialog | 在目标玩家或玩家组的屏幕上显示或移除某个元素。 |
 
-## Dialog Items
+## 对话框项
 
-Dialogs are populated by dialog items. Without any items, a dialog is just a rectangular container with a themed backdrop depending on the player's race. Dialog items are varied and have options relevant to each individual type, but in general they abide by the same set of principles as dialogs. Much like dialogs themselves, you can create dialog items with a Create Dialog Item action, then display them with a Show Dialog Item action. After this, you'll usually save a handle within a variable with a Set Variable action. Again, a useful identifier for doing this is the function Last Created Dialog Item.
+对话框的内容是由对话框项填充的。如果没有任何对话框项，对话框就只是一个矩形容器，背景样式会根据玩家种族显示不同主题。对话框项种类很多，每种都有各自相关的选项，但总体原则与对话框本身相同。和对话框一样，你可以先用 Create Dialog Item 动作创建对话框项，再用 Show Dialog Item 动作将其显示出来。之后通常也会用 Set Variable 动作把它保存到变量中。这里同样有一个很实用的函数标识符：Last Created Dialog Item。
 
-As an exercise, you'll create a dialog item using the general procedure described above. The assembly trigger is shown below.
+作为练习，你可以按照上述通用流程创建一个对话框项。下图展示了其组装触发器。
 
-[![Dialog and Dialog Item Assembly](./resources/043_Dialogs3.png)](./resources/043_Dialogs3.png)
-*Dialog and Dialog Item Assembly*
+[![对话框与对话框项的组装](./resources/043_Dialogs3.png)](./resources/043_Dialogs3.png)
+*对话框与对话框项的组装*
 
-Create Dialog Item (Button) allows you to create a button dialog item, which is a special item that accepts player input. Mousing over the button will change its visual state, indicating that it can be clicked. During the item's creation several fields were set.
+Create Dialog Item (Button) 允许你创建一个按钮型对话框项。按钮是一种可以接收玩家输入的特殊对话框项。当鼠标悬停在按钮上时，它的视觉状态会发生变化，提示玩家它可以被点击。创建该对话框项时，设置了若干字段。
 
-The Width and Height define the button's area, which both displays the item's texture and determines the area of screen space that will accept player inputs. Its Anchor sets which side of the parent dialog the item will be attached to, while Offset X and Offset Y set the distances from the Anchor at which the button will be created. For Button Text, the input 'Demo Text' was set. This text will be created in the center of the button. If this text were too long to fit in the button's area, it would be truncated to '...' until corrected. Testing this dialog will appear as shown below.
+Width 和 Height 定义了按钮的区域，既决定了按钮纹理的显示范围，也决定了哪些屏幕区域会接受玩家输入。Anchor 用于设置它附着在父对话框的哪一侧，Offset X 与 Offset Y 则决定按钮相对该 Anchor 的偏移距离。对于 Button Text，这里输入的是 'Demo Text'。这段文本会显示在按钮中央。如果文本过长，超出按钮范围，它会先被截断为 '...'，直到你修正它为止。测试这个对话框后，效果如下。
 
-[![Button Dialog item in Game View](./resources/043_Dialogs4.png)](./resources/043_Dialogs4.png)
-*Button Dialog item in Game View*
+[![游戏视图中的按钮对话框项](./resources/043_Dialogs4.png)](./resources/043_Dialogs4.png)
+*游戏视图中的按钮对话框项*
 
-## Dialog Event -- Dialog Item Is Used
+## 对话框事件 -- Dialog Item Is Used
 
-As it stands, clicking the button made in the last demo will have no effect. For dialog items designed to accept user input, there is a specific dialog event, Dialog Item is Used, required to receive and respond to player inputs. You can find this event by sorting by the label 'Dialog' during event creation, as is shown below.
+就目前状态而言，点击上一个演示中的按钮不会产生任何效果。对于这种用于接收用户输入的对话框项，必须使用一个专门的对话框事件 Dialog Item is Used 才能接收并响应玩家操作。你可以在创建事件时按 'Dialog' 标签筛选找到它，如下所示。
 
-[![Dialog Item is Used Event](./resources/043_Dialogs5.png)](./resources/043_Dialogs5.png)
-*Dialog Item is Used Event*
+[![Dialog Item is Used 事件](./resources/043_Dialogs5.png)](./resources/043_Dialogs5.png)
+*Dialog Item is Used 事件*
 
-This event responds to a host of possible interactions with dialogs, which are shown in the following image.
+该事件能够响应多种可能的对话框交互，如下图所示。
 
-[![Dialog Item Interaction Types](./resources/043_Dialogs6.png)](./resources/043_Dialogs6.png)
-*Dialog Item Interaction Types*
+[![对话框项交互类型](./resources/043_Dialogs6.png)](./resources/043_Dialogs6.png)
+*对话框项交互类型*
 
-In this instance, the event type Clicked is appropriate. To recognize a specific dialog item, a condition can be used with a comparison operator between the identifier Used Dialog Item and the dialog item's variable handle. Creating an interaction trigger for the previous demo might look like the image below.
+在这个例子里，选择事件类型 Clicked 就很合适。若要识别某个特定对话框项，可以通过比较运算符，将标识符 Used Dialog Item 与该对话框项的变量句柄进行比较。为前面那个示例创建一个交互触发器，大致会如下图所示。
 
-[![Button Clicked Trigger](./resources/043_Dialogs7.png)](./resources/043_Dialogs7.png)
-*Button Clicked Trigger*
+[![按钮点击触发器](./resources/043_Dialogs7.png)](./resources/043_Dialogs7.png)
+*按钮点击触发器*
 
-Testing the demo will now give the following output.
+现在测试该示例，就会得到如下输出。
 
-[![Button Responds To Click](./resources/043_Dialogs8.png)](./resources/043_Dialogs8.png)
-*Button Responds To Click*
+[![按钮响应点击](./resources/043_Dialogs8.png)](./resources/043_Dialogs8.png)
+*按钮响应点击*
 
-Giving the button a trial click here has shown a response to the dialog event by delivering a text message output.
+在这里试着点击按钮后，你就能看到它通过对话框事件作出响应，并输出一条文本消息。
 
-## Dialog Formatting
+## 对话框布局
 
-Dialogs are constant constructs, meaning that they will look the same regardless of the output size of a particular player's screen. This is a similar system to that used in the basic melee game interface. This system ensures a level of reliability, but when creating custom content it is something you should be aware of. Take the following example. A centered dialog created at a 16:9 resolution will look like the following.
+对话框是一种固定尺寸构造，这意味着无论玩家的屏幕输出尺寸如何，它们看起来都会保持一致。这与基础近战游戏界面所使用的系统类似。这种机制带来了较高的可靠性，但在制作自定义内容时，你也必须意识到它的影响。以下面的例子为例：在 16:9 分辨率下创建一个居中的对话框，其效果如下。
 
-[![Custom Dialog at 16:9 Resolution](./resources/043_Dialogs9.png)](./resources/043_Dialogs9.png)
-*Custom Dialog at 16:9 Resolution*
+[![16:9 分辨率下的自定义对话框](./resources/043_Dialogs9.png)](./resources/043_Dialogs9.png)
+*16:9 分辨率下的自定义对话框*
 
-Creating this same dialog at a 4:3 resolution will look as follows.
+把同一个对话框放到 4:3 分辨率下，就会变成下面这样。
 
-[![Custom Dialog at 4:3 Resolution](./resources/043_Dialogs10.png)](./resources/043_Dialogs10.png)
-*Custom Dialog at 4:3 Resolution*
+[![4:3 分辨率下的自定义对话框](./resources/043_Dialogs10.png)](./resources/043_Dialogs10.png)
+*4:3 分辨率下的自定义对话框*
 
-Despite the difference in resolutions, the dialogs themselves have the same dimensions. This system works through an internal resolution that is provided by the StarCraft II client. The internal resolution has the following values for each screen ratio.
+尽管分辨率不同，对话框本身的尺寸其实没有变化。这套系统依赖于《星际争霸 II》客户端提供的内部基准分辨率。各个屏幕比例下的内部基准分辨率如下。
 
 > 4:3 Ratio - 1600x1200
 > 
@@ -90,14 +90,14 @@ Despite the difference in resolutions, the dialogs themselves have the same dime
 > 
 > 16:10 Ratio - 1920x1200
 
-Height will always be calculated at a constant 1200, then width will be measured based on the screen ratio. While this system will ensure that your dialogs maintain the same level of visibility across a variety of machines, it is worth noting that large dialogs and dialog items might be cut off or cropped if you aren't careful. If you're developing your project without the means to test on a variety of systems, then it's important to keep in mind a range of usability when designing dialogs or other screen space elements. Consider another example, a standard set of dialogs could appear as shown below on a widescreen formatted computer.
+高度始终按固定的 1200 计算，宽度则根据屏幕比例得出。虽然这套系统可以保证你的对话框在不同机器上具有相近的可见效果，但也必须注意：如果不够谨慎，较大的对话框和对话框项可能会被裁切或截断。如果你在开发项目时无法在多种系统上测试，那么在设计对话框或其他屏幕空间元素时，就必须提前考虑一段合理的可用性范围。再看一个例子：一组标准对话框在宽屏电脑上可能如下所示。
 
-[![Widescreen Oriented Dialogs](./resources/043_Dialogs11.png)](./resources/043_Dialogs11.png)
-*Widescreen Oriented Dialogs*
+[![面向宽屏布局的对话框](./resources/043_Dialogs11.png)](./resources/043_Dialogs11.png)
+*面向宽屏布局的对话框*
 
-Testing this project on a different, non-widescreen display will look like the following.
+如果在另一台非宽屏显示器上测试同一个项目，则会变成下面这样。
 
 ![](./resources/043_Dialogs12.png)
-*Overlapping Dialogs on a Non-Widescreen Display*
+*非宽屏显示器上的对话框重叠*
 
-The constrained width of a standard display has caused the two dialogs to overlap, potentially obscuring important information. One method of avoiding this could be a provisional option for different types of displays. This would make use of Show/Hide Dialog actions and have two parallel dialog constructions. Alternately, designing dialog systems to be no more than 1600 px wide can prevent this sort mishap in most cases.
+标准显示器较窄的宽度导致两个对话框互相重叠，可能遮挡重要信息。避免这种问题的一种方式，是针对不同显示类型准备临时性方案。例如利用 Show/Hide Dialog 动作，准备两套并行的对话框布局。另一种办法则是在设计时把整个对话框系统宽度控制在不超过 1600 px，这在大多数情况下都能避免类似意外。

@@ -1,35 +1,35 @@
-Marketing
+营销
 
-Eventually the time will be right to release your project into the world. Putting some effort into how you do this can have a huge impact on the number of people interested in it. Marketing your game and building hype is a great way to increase your game's chances of being successful. While there is always a chance that pure word of mouth will be enough, you can't underestimate the value of going on the offensive. Even if your game is unfinished or still in active development, starting a marketing effort can pay off by giving you additional feedback, willing testers, and other opportunities. Despite all this, good marketing starts with a good project. It's important that you don't get ahead of yourself. Concentrate on the important thing first, the practice of game design.
+总有一天，你会迎来把项目正式发布出去的时机。你如何做这件事，会极大影响对它感兴趣的人数。为你的游戏做宣传、营造期待感，是提升项目成功机会的好办法。虽然纯靠口口相传也并非完全没有可能，但你不能低估主动出击的价值。即使游戏尚未完成，或者仍在积极开发中，尽早开始宣传也可能带来回报，比如额外反馈、愿意参与的测试者，以及其他机会。不过，好的营销始终建立在好的项目之上。不要操之过急，先把最重要的事情做好，也就是游戏设计本身。
 
-# Promotional Materials
+# 宣传素材
 
-You'll want to have materials that can show off your game in various locations. While Battle.net and the Arcade have many preview features, you can't rely on people encountering your project through the game itself. There are already many things going on there, and you have to compete for attention to start building your own niche. Promotional items such screenshots, video, a website, sharply written copy, and illustrations can be employed in many capacities to push your project to a wider audience.
+你需要准备一些能在不同场合展示游戏的素材。虽然 Battle.net 和 Arcade 本身提供了不少预览功能，但你不能只指望玩家在游戏里偶然发现你的项目。那里已经有很多内容在争夺注意力，而你必须先争取到关注，才能逐步建立自己的受众。截图、视频、网站、文案精炼的介绍文字，以及插画等宣传材料，都可以在不同场景下帮助你把项目推向更广泛的玩家群体。
 
-It's good to have some idea of your target audience here. If the project is a melee map appealing to competitive StarCraft players, show things they would enjoy, like new advancements in play or features designed to promote high-level balance. If the game appeals to fans of a certain genre, look at what other things in the space have done, try to hit some of the same points while offering your own innovations.
+在这里，最好对目标受众有一个大致判断。如果项目是一张面向竞技《星际争霸》玩家的近战地图，就展示他们会感兴趣的内容，例如新的对局发展思路，或者有助于高水平平衡的设计特性。如果你的游戏更吸引某类题材爱好者，那就去看看同类作品通常如何呈现，尝试抓住相似的卖点，同时拿出你自己的创新。
 
-Trailers, or short promotional films, can be particularly effective. When creating these, you'll want to film at the best possible resolution and game settings, while keeping things concise. In the earliest part of your trailer, try to include something that highlights the unique features of your project, gets people's attention, and makes them actually find the project to try it out. Show the salient points of your project, introduce new ideas at a good pace, and don't linger too long on things that might not be interesting to someone who hasn't tried it before.
+预告片，也就是简短的宣传影片，通常特别有效。制作这类内容时，尽量使用最佳分辨率和较高的游戏画质，同时保持节奏紧凑。在预告片最前面的一小段时间里，尽量放入最能体现项目独特性的内容，迅速抓住观众注意力，并让他们真的愿意去找到并试玩你的项目。展示项目最突出的要点，以良好的节奏引入新想法，不要在那些对没玩过游戏的人来说可能并不有趣的部分停留太久。
 
-# Publicizing
+# 宣传发布
 
-With your promotional materials in hand, it's time to get the word out. Be sure to scour community sites and meeting grounds you think are appropriate, as well as the official Blizzard forums. Make a list of where you want to market and prepare a general template from your materials. Don't just wallpaper places with thoughtless spam. Take the time to work from your template in each scenario, tailoring your approach and communication to each space. Some general ideas for publication may include:
+有了宣传素材之后，就该把消息传播出去。务必认真寻找你认为合适的社区网站、聚集地，以及暴雪官方论坛。先列一份你准备投放宣传的渠道清单，再基于现有素材整理一个通用模板。不要在各处随手刷屏。应当根据不同场景，在模板基础上有针对性地调整表达方式和沟通内容。常见的宣传途径包括：
 
-  - Posting to StarCraft community forums.
-  - Sending some messages out on social media.
-  - Linking your project to gaming website editors or bloggers.
-  - Reaching out to community figures who may be interested.
-  - Showing your project to StarCraft streamers who could be interested in trying it.
+  - 在《星际争霸》社区论坛发帖。
+  - 在社交媒体上发布相关内容。
+  - 把项目推荐给游戏网站编辑或博客作者。
+  - 联系可能感兴趣的社区人物。
+  - 向可能愿意试玩的《星际争霸》主播展示你的项目。
 
-When making a dedicated marketing launch of something, try to concentrate your efforts on a short window of time, this will multiply its effectiveness by getting your project talked about in multiple places at once. Despite this, don't give up if your initial marketing push has tepid results. Sometimes it takes a slow burn to build interest; keep your materials public and updated, and try putting in a smaller constant level of publication effort over time. Don't let perpetual marketing keep you from developing though, a project may have a breakthrough with additional work or could even lead you to something new. After all, there's always the next project.
+如果你要为某个内容做一次集中的宣传发布，尽量把行动压缩到一小段时间窗口内。这样能通过让项目在多个地方同时被讨论，放大宣传效果。即便第一次宣传反响平平，也不要因此放弃。有时兴趣需要慢慢累积；保持素材公开且持续更新，并长期维持一个较低但稳定的宣传频率，往往也会有效。不过，也不要让持续营销妨碍开发本身。项目可能会因为进一步打磨而迎来突破，甚至引导你走向新的方向。毕竟，永远还有下一个项目。
 
-# Maintaining The Community
+# 维护社区
 
-Marketing does not necessarily end after launch. You may want to put effort into building a community to continue growing and developing your project. If it's a multiplayer game made for repeated play, you'll want to consider any materials that can unite the playerbase, allowing them to get in touch with one another. A simple website can be effective for this and can even have its own discussion forum attached to it. The Battle.net system allows you to publicize a single website for each project. You can add this from the Editor by navigating to Battle.net Info ▶︎ General ▶︎ Website, as shown below.
+营销并不一定在发布后结束。你可能还需要投入精力建设社区，继续推动项目成长和发展。如果这是一个适合反复游玩的多人游戏，你就该考虑一些能把玩家群体连接起来的载体，让他们彼此取得联系。一个简单的网站就可能很有效，甚至还可以附带讨论区。Battle.net 系统允许你为每个项目公开一个网站链接。你可以在编辑器中前往 `Battle.net Info` ▶︎ `General` ▶︎ `Website` 添加，如下图所示。
 
-[![Battle.net Website Link](./resources/084_Marketing1.png)](./resources/084_Marketing1.png)
-*Battle.net Website Link*
+[![Battle.net 网站链接](./resources/084_Marketing1.png)](./resources/084_Marketing1.png)
+*Battle.net 网站链接*
 
-Use the 'Test' button to make sure the link is properly attached. StarCraft II also supports a feature called 'Groups.' Groups are a great way to start a hub where players can gather on Battle.net. You can even create 'Events' within groups, setting scheduled play sessions or meetings that are displayed on the StarCraft II home screen for members of the group. It's also worth your while to check out the 'Blizzard Arcade Night' group, which hosts events specifically tailored for developers to market and test their projects in front of an audience.
+使用“Test”按钮确认链接已经正确关联。《星际争霸 II》还支持一个名为“Groups”的功能。群组是在 Battle.net 上建立玩家聚集中心的好办法。你甚至可以在群组内创建“Events”，安排定期游戏活动或聚会，这些内容会显示在群组成员的《星际争霸 II》主界面上。你也值得去看看 `Blizzard Arcade Night` 群组，它会举办专门为开发者准备的活动，方便你在观众面前宣传和测试项目。
 
-[![Blizzard Arcade Night Group](./resources/084_Marketing2.png)](./resources/084_Marketing2.png)
-*Blizzard Arcade Night Group*
+[![Blizzard Arcade Night 群组](./resources/084_Marketing2.png)](./resources/084_Marketing2.png)
+*Blizzard Arcade Night 群组*

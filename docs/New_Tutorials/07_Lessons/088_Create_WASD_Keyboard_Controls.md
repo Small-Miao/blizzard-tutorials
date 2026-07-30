@@ -1,21 +1,21 @@
-# Create Wasd Keyboard Controls
+# 创建 WASD 键盘控制
 
-Using the keyboard to control a game character's movement is a classic control scheme. The best known example of this is the WASD keyboard controls, in which the W, A, S, and D keys are bound to the directions up, left, right, and down. This is often used as an ergonomic, universally available option that can be operated one hand while the other uses the mouse.
+使用键盘来控制游戏角色移动，是一种非常经典的操作方案。其中最知名的例子就是 WASD 键盘控制，也就是把 `W`、`A`、`S` 和 `D` 四个键分别绑定到上、左、右、下四个方向。这种方案常被采用，因为它符合人体工学、几乎人人可用，并且一只手即可操作，另一只手还能继续使用鼠标。
 
-Although StarCraft uses a mouse and keyboard control scheme, it does not tie any keyboard controls directly to movement. Still, this is possible for custom projects made using the Editor. Learning to implement the WASD keyboard controls can be very educational and has many practical applications in action, adventure, and simulation games.
+虽然《星际争霸》本身使用鼠标加键盘的控制方式，但它并不会把键盘直接绑定到移动上。不过，对于使用编辑器制作的自定义项目来说，这完全可以实现。学习如何制作 WASD 键盘控制，不仅很有教育意义，在动作、冒险和模拟类游戏里也有大量实际用途。
 
-## Keypress Ui Events
+## 按键 UI 事件
 
-A keyboard control system requires some way of getting between player inputs and the game. UI events usually suit this requirement and in this case you'll make use of the Key Pressed event. The triggers 'KeyPressDOWN' and 'KeyPressUP' create events that respond to the four keys of the WASD controls. 'KeyPressDOWN' runs when any of these keys is pushed down, while 'KeyPressUP' runs when any of these keys are released. You can see the composition of these triggers in the image below.
+键盘控制系统必须有某种方式，把玩家输入传递到游戏逻辑中。UI 事件通常很适合承担这个职责，而在这里你将使用 `Key Pressed` 事件。`KeyPressDOWN` 和 `KeyPressUP` 这两个触发器分别创建了对 WASD 四个按键的响应事件。`KeyPressDOWN` 会在这些键被按下时运行，而 `KeyPressUP` 会在这些键被释放时运行。下图展示了这些触发器的组成方式。
 
-[![Keypress UI Event Triggers](./resources/088_Create_WASD_Keyboard_Controls7.png)](./resources/088_Create_WASD_Keyboard_Controls7.png)
-*Keypress UI Event Triggers*
+[![按键 UI 事件触发器](./resources/088_Create_WASD_Keyboard_Controls7.png)](./resources/088_Create_WASD_Keyboard_Controls7.png)
+*按键 UI 事件触发器*
 
-By separating the keys out individually, this system supports combinations of keys being pressed and released in any way the hardware supports. As a result, combinations like pressing the W and A keys together will give the proper response of moving the character both up and left at the same time.
+通过把每个按键独立处理，这套系统就能支持硬件允许的任意按键同时按下与释放组合。因此，像同时按下 `W` 和 `A` 这样的组合，也能正确地让角色同时向上和向左移动。
 
-## Key Storage Array
+## 按键存储数组
 
-In order to track all concurrent key presses, this design requires an array for storage. The 'KEYPRESS' array is of the Boolean type and sized to a value of 3. Considering that arrays begin at a zero index, the total storage available here is 4 keys, enough for the entire WASD control system. Using a Boolean array allows each array value to represent whether or not a certain key is currently pressed. The keys will use the following mapping.
+为了跟踪所有并发按键状态，这套设计需要一个数组来存储。`KEYPRESS` 数组的类型是 `Boolean`，大小设为 `3`。考虑到数组索引从 `0` 开始，这实际上提供了 `4` 个位置，足够整个 WASD 控制系统使用。使用布尔数组的好处在于，每个数组值都能表示某个按键当前是否被按下。按键与索引的对应关系如下。
 
 W == Index 0
 
@@ -25,25 +25,25 @@ S == Index 2
 
 D == Index 3
 
-A True value represents pressed, while a False value represents not being pressed. All the spots in the array are set to False by default. The array itself is shown below.
+值为 `True` 表示已按下，值为 `False` 表示未按下。数组中的所有位置默认都设为 `False`。数组本身如下图所示。
 
-[![Key Storage Array](./resources/088_Create_WASD_Keyboard_Controls8.png)](./resources/088_Create_WASD_Keyboard_Controls8.png)
-*Key Storage Array*
+[![按键存储数组](./resources/088_Create_WASD_Keyboard_Controls8.png)](./resources/088_Create_WASD_Keyboard_Controls8.png)
+*按键存储数组*
 
-## Switch Actions
+## Switch 动作
 
-As you've already seen, the two keypress triggers will each respond to any of the four WASD keys. This saves the design from having to rely on eight separate events to monitor keyboard inputs. However, this creates a need for some control statements to properly parse the input. You can use a switch statement to solve this by providing a case for each of the four Key values. The switch statement used for the 'KeyPressUP' trigger is shown in the image below.
+正如你已经看到的，这两个按键触发器都会对四个 WASD 按键中的任意一个做出响应。这样一来，设计就不必依赖八个独立事件来监视键盘输入。但这也意味着你需要使用一些控制语句来正确解析输入。可以用 switch 语句来解决这个问题，为四个不同的按键值分别提供一个 case。`KeyPressUP` 触发器中使用的 switch 语句如下图所示。
 
 ![KeyPressUP Switch](./resources/088_Create_WASD_Keyboard_Controls9.png)
 *KeyPressUP Switch*
 
-For each trigger, the switch statement contains a 'Set Variable' action that sets the index of the array associated with that case's Key. For the 'KeyPressUP' trigger the values are set to True, indicating that the key is now down. Conversely, for 'KeyPressDOWN" trigger the values are set to False, indicating that the key has been released.
+在每个触发器中，switch 语句都包含一个“设置变量”动作，用于把对应 case 的按键所关联的数组索引设为某个值。对于 `KeyPressUP` 触发器，这些值会被设为 `True`，表示该键当前处于按下状态。相反，在 `KeyPressDOWN"` 触发器中，这些值会被设为 `False`，表示该键已经释放。
 
-## Keypress Detection Loop
+## 按键检测循环
 
-To create a constant a feed of keypress inputs into movement logic, a loop 'KeyPress Detect' is used. The loop itself is quite extensive and has been reproduced below, annotated with comments.
+为了把持续不断的按键输入流送入移动逻辑中，这个设计使用了一个名为 `KeyPress Detect` 的循环。这个循环本身较长，下面按原样列出，并附带注释说明。
 
-  - General -- While (Conditions) are true, do (Actions) // While loop allows for constant movement
+  - General -- While (Conditions) are true, do (Actions) // While 循环允许持续移动
 
 <!-- -->
 
@@ -51,7 +51,7 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 
 <!-- -->
 
-  - (WASD Unit is alive) == True // Checks that the controlled unit is still alive
+  - (WASD Unit is alive) == True // 检查受控单位是否仍然存活
 
 <!-- -->
 
@@ -59,7 +59,7 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 
 <!-- -->
 
-  - General -- If (Conditions) then do multiple (Actions) // Sets off a series of input checks
+  - General -- If (Conditions) then do multiple (Actions) // 触发一系列输入检查
 
 <!-- -->
 
@@ -67,18 +67,18 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 
 <!-- -->
 
-  - General -- Else If // These checks look for a specific
+  - General -- Else If // 这些检查会寻找某一种特定的
 
 <!-- -->
 
-  - Else If // input case
+  - Else If // 输入情况
 
 <!-- -->
 
   - KEYPRESS\[0\] == False
   - KEYPRESS\[1\] == False
-  - KEYPRESS\[2\] == False // The case here is all four keys
-  - KEYPRESS\[3\] == False // not being pressed
+  - KEYPRESS\[2\] == False // 这里表示四个键
+  - KEYPRESS\[3\] == False // 全部都没有按下
 
 <!-- -->
 
@@ -86,7 +86,7 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 
 <!-- -->
 
-  - Unit -- Order WASD Unit to (Stop)(Replace Existing Orders) // Cease movement
+  - Unit -- Order WASD Unit to (Stop)(Replace Existing Orders) // 停止移动
 
 <!-- -->
 
@@ -99,7 +99,7 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 <!-- -->
 
   - KEYPRESS\[0\] == True
-  - KEYPRESS\[1\] == True // W and A keys are pressed
+  - KEYPRESS\[1\] == True // W 和 A 键被按下
 
 <!-- -->
 
@@ -107,7 +107,7 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 
 <!-- -->
 
-  - Execute Move(145.0, 1.0) // Moves the unit northeast
+  - Execute Move(145.0, 1.0) // 将单位向东北移动
 
 <!-- -->
 
@@ -119,7 +119,7 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 
 <!-- -->
 
-  - KEYPRESS\[0\] == True // W and D keys are pressed
+  - KEYPRESS\[0\] == True // W 和 D 键被按下
   - KEYPRESS\[3\] == True
 
 <!-- -->
@@ -128,7 +128,7 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 
 <!-- -->
 
-  - Execute Move(45.0, 1.0) // Moves the unit northwest
+  - Execute Move(45.0, 1.0) // 将单位向西北移动
 
 <!-- -->
 
@@ -140,7 +140,7 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 
 <!-- -->
 
-  - KEYPRESS\[2\] == True // S and A keys are pressed
+  - KEYPRESS\[2\] == True // S 和 A 键被按下
   - KEYPRESS\[1\] == True
 
 <!-- -->
@@ -149,7 +149,7 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 
 <!-- -->
 
-  - Execute Move(45.0, -1.0) // Moves the unit southeast
+  - Execute Move(45.0, -1.0) // 将单位向东南移动
 
 <!-- -->
 
@@ -161,7 +161,7 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 
 <!-- -->
 
-  - KEYPRESS\[2\] == True // S and D keys are pressed
+  - KEYPRESS\[2\] == True // S 和 D 键被按下
   - KEYPRESS\[3\] == True
 
 <!-- -->
@@ -170,7 +170,7 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 
 <!-- -->
 
-  - Execute Move(145.0, -1.0) // Moves the unit southwest
+  - Execute Move(145.0, -1.0) // 将单位向西南移动
 
 <!-- -->
 
@@ -182,7 +182,7 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 
 <!-- -->
 
-  - KEYPRESS\[0\] == True // W key is pressed
+  - KEYPRESS\[0\] == True // W 键被按下
 
 <!-- -->
 
@@ -190,7 +190,7 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 
 <!-- -->
 
-  - Execute Move(90.0, 1.0) // Moves the unit north
+  - Execute Move(90.0, 1.0) // 将单位向北移动
 
 <!-- -->
 
@@ -202,7 +202,7 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 
 <!-- -->
 
-  - KEYPRESS\[1\] == True // A key is pressed
+  - KEYPRESS\[1\] == True // A 键被按下
 
 <!-- -->
 
@@ -210,7 +210,7 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 
 <!-- -->
 
-  - Execute Move(180.0, 1.0) // Moves the unit west
+  - Execute Move(180.0, 1.0) // 将单位向西移动
 
 <!-- -->
 
@@ -222,7 +222,7 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 
 <!-- -->
 
-  - KEYPRESS\[2\] == True // S key is pressed
+  - KEYPRESS\[2\] == True // S 键被按下
 
 <!-- -->
 
@@ -230,7 +230,7 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 
 <!-- -->
 
-  - Execute Move(90.0, -1.0) // Moves the unit south
+  - Execute Move(90.0, -1.0) // 将单位向南移动
 
 <!-- -->
 
@@ -242,7 +242,7 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 
 <!-- -->
 
-  - KEYPRESS\[3\] == True // D key is pressed
+  - KEYPRESS\[3\] == True // D 键被按下
 
 <!-- -->
 
@@ -250,37 +250,37 @@ To create a constant a feed of keypress inputs into movement logic, a loop 'KeyP
 
 <!-- -->
 
-  - Execute Move(0.0, -1.0) // Moves the unit east
+  - Execute Move(0.0, -1.0) // 将单位向东移动
 
 <!-- -->
 
-  - General -- Wait 0.0 Real Time Seconds // Creates a pause for test outputs
+  - General -- Wait 0.0 Real Time Seconds // 为测试输出创建一个停顿
 
-## Moving The Unit
+## 移动单位
 
-'KeyPress Detect' pushes a set of instructions to the 'Execute Move' action, which handles moving the controlled unit. These instructions include an Angle and Offset that are sent to an 'Order Targeting Point' command. This command makes use of the 'Move' ability, sending the unit to a 'Point with a Polar Offset.' By sending the unit to its current position altered by the Offset, the command effectively moves the unit in the direction of the Angle by the offset magnitude.
+`KeyPress Detect` 会把一组指令传给 `Execute Move` 动作，由它来处理受控单位的移动。这些指令包括一个 `Angle` 和一个 `Offset`，它们会被送入 `Order Targeting Point` 命令。这个命令使用的是 `Move` 技能，并把单位派往一个“带极坐标偏移的点”。由于命令把单位当前的位置再加上这个偏移作为目标点，因此它实际上会让单位沿 `Angle` 指定的方向、按 `Offset` 的大小进行移动。
 
-When the Offset is set to a negative value, this actually represents moving the unit in the opposite direction. So an Angle of 145.0 with an Offset of -1.0, which occurs when the S and D keys are pressed, will send the unit in the southwest direction. When the values are an Angle of 145.0 and an Offset of 1.0, as is the case when the W and A keys are pressed, the unit is sent in the northeast direction. The 'Execute Move' action definition can be seen in the image below.
+当 `Offset` 设为负值时，它实际上表示让单位朝相反方向移动。例如，当 `S` 和 `D` 键被按下时，会使用 `145.0` 的角度和 `-1.0` 的偏移，因此单位会向西南方向移动。而当 `W` 和 `A` 键被按下时，角度仍是 `145.0`，但偏移为 `1.0`，于是单位会向东北方向移动。`Execute Move` 动作定义如下图所示。
 
-[![Execute Move Action Definition](./resources/088_Create_WASD_Keyboard_Controls10.png)](./resources/088_Create_WASD_Keyboard_Controls10.png)
-*Execute Move Action Definition*
+[![Execute Move 动作定义](./resources/088_Create_WASD_Keyboard_Controls10.png)](./resources/088_Create_WASD_Keyboard_Controls10.png)
+*Execute Move 动作定义*
 
-## Connecting It Together
+## 把系统连接起来
 
-For this demonstration, the movement system is initiated on map start. This isn't necessary, but it is the most likely scenario. Control schemes seldom change within the body of a game, but shifting the initialization actions elsewhere is still an option. The 'Melee Initialization' trigger is shown below.
+在本演示中，移动系统会在地图开始时初始化。这并不是硬性要求，但却是最常见的场景。控制方案很少会在游戏进行过程中发生变化，不过你仍然可以把初始化动作放到别的位置。`近战初始化` 触发器如下图所示。
 
-![Melee Initialization Trigger](./resources/088_Create_WASD_Keyboard_Controls11.png)
-*Melee Initialization Trigger*
+![近战初始化 触发器](./resources/088_Create_WASD_Keyboard_Controls11.png)
+*近战初始化 触发器*
 
-This trigger sets a pre-placed unit to the 'WASD Unit' variable. This makes it the controlled unit for the movement system. Additionally, the 'KeyPress Detect' loop begins, at which point it immediately starts searching for player inputs. Whenever you're working with a constantly running UI events system, you should monitor the large quantity of loop and event checks closely for performance. When designing a system like this for online use, be sure to do careful testing to ensure latency doesn't become a problem.
+这个触发器会把一名预先放置在地图上的单位赋值给 `WASD Unit` 变量，使其成为这套移动系统的受控单位。随后，`KeyPress Detect` 循环开始运行，并立即开始监听玩家输入。只要你在制作持续运行的 UI 事件系统，就应密切关注大量循环与事件检查带来的性能影响。如果你打算把这样的系统用于联机环境，务必认真测试，确保延迟不会成为问题。
 
-## Testing The Controls
+## 测试控制
 
-Launching the map will allow you to control the marine with the WASD keys.
+启动地图后，你就可以用 WASD 键控制陆战队员移动了。
 
-[![WASD Keyboard Controls](./resources/088_Create_WASD_Keyboard_Controls12.png)](./resources/088_Create_WASD_Keyboard_Controls12.png)
-*WASD Keyboard Controls*
+[![WASD 键盘控制](./resources/088_Create_WASD_Keyboard_Controls12.png)](./resources/088_Create_WASD_Keyboard_Controls12.png)
+*WASD 键盘控制*
 
-## Attachments
+## 附件
 
  * [088_Create_WASD_Keyboard_Controls.SC2Map](./maps/088_Create_WASD_Keyboard_Controls.SC2Map)

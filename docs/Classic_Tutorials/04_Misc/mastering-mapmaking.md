@@ -1,55 +1,55 @@
-# Mastering Mapmaking: Part Two
+# 精进制图：第二部分
 
 ![Mastering Mapmaking: Part Two](./resources/mastering_mapmaking01.jpg)
 
-Like stars in the sky, dozens of community-made maps have peppered the Koprulu sector over the years. Each map is a testament to its creator’s hard work, and many have returned to the spotlight more than once. Meanwhile, new mapmakers continue to join the galaxy’s ranks, while more established creators continue to dream up new orbital stations or refine their existing planetary battlegrounds.
+多年来，数十张社区创作地图如同星空中的繁星，点缀着科普卢星区。每一张地图都是其作者辛勤投入的见证，而其中不少作品也曾不止一次重新回到聚光灯下。与此同时，新的制图作者仍在不断加入，资深创作者们也持续构思新的轨道空间站，或不断打磨已有的星球战场。
 
-Mapmaking is no easy job—it requires creativity and technical prowess. Mapmaking is a unique way to hone your game design skills in an environment where your creations can be tested by some of the most skilled strategy gamers on the planet.
+制图从来都不是一件轻松的事，它既需要创意，也需要技术实力。制图是一种非常独特的方式，能够让你在一个作品可被世界上一些最顶尖策略玩家实际检验的环境中，持续磨练自己的游戏设计能力。
 
-With the latest TeamLiquid Map Contest now live, we wanted to follow up on our [last mapmaking update](https://web.archive.org/web/20170209153457/http://battle.net/sc2/blog/20097658) and focus our advice on the more technical side of mapmaking. This time, we’re looking at balance- and design-related improvements vs. performance. Be sure to take notes for any tips you aren't familiar with. As Egon Stetmann may have once said, ‘the dullest pencil is better than the sharpest mind’.
+随着最新一届 TeamLiquid 地图竞赛正式开启，我们想在[上一次制图更新](https://web.archive.org/web/20170209153457/http://battle.net/sc2/blog/20097658)的基础上，进一步把建议聚焦到更偏技术的制图层面。这一次，我们关注的是平衡与设计相关的改进，而不是性能。看到自己不熟悉的建议时，记得做笔记。正如埃贡·斯台特曼可能会说的那样：“最钝的铅笔，也胜过最利的脑子。”
 
-## Terrain
+## 地形
 
 [![img](./resources/mastering_mapmaking02.jpg)](./resources/mastering_mapmaking02.jpg)
 
-**Image A:** Here on Bel'shir Vestige, you can see a Marine positioned behind a Bunker in such a way that he cannot be attacked by melee units. This design flaw provides an unfair advantage to Bunker rush strategies.
+**图 A：** 在 Bel'shir Vestige 上，你可以看到一个陆战队员站在地堡后方的某个位置，以至于近战单位无法攻击到他。这个设计缺陷会给地堡速攻战术带来不公平优势。
 
-**Image B:** Here, a stone has been placed in the empty space where the Marine was standing. A Marine can no longer stand in this position, addressing the map flaw. Look for similar situations in all the main and natural bases.
+**图 B：** 这里，我们在陆战队员原本所站的空位上放了一块石头。这样陆战队员就无法再站到这个位置，从而修复了这项地图缺陷。请在所有主矿和自然扩张区域都检查类似情况。
 
 [![img](./resources/mastering_mapmaking03.jpg)](./resources/mastering_mapmaking03.jpg)
 
-**Image A:** Several maps have made this mistake over the years, here shown on Bel'Shir Vestige. With only two Pylons, a Probe was able to protect itself completely and place a Photon Cannon which could not be attacked by workers.
+**图 A：** 这些年来，很多地图都犯过这个错误，这里展示的是 Bel'Shir Vestige 上的一个例子。仅用两个水晶塔，一个探机就能完全自保，并立下一个无法被工人攻击到的光子炮。
 
-**Image B:** Two Pylons should never yield a complete wall for a Photon Cannon in the main, natural, or third base options. Adding some additional terrain to the left of this position made it so the Photon Cannon could no longer be so easily and cheaply protected from melee units.
+**图 B：** 在主矿、自然扩张或三矿附近，两个水晶塔都不应该形成一个能把光子炮完全封死保护起来的墙。通过在这个位置左侧补一些额外地形，光子炮就不再能如此轻松、廉价地躲开近战单位攻击。
 
 [![img](./resources/mastering_mapmaking04.jpg)](./resources/mastering_mapmaking04.jpg)
 
-**Image A:** Liberators are a powerful harassment tool in the early stages of the game, and to keep them in check, it is important that Marines are always able to attack a Liberator (without Advanced Ballistics) attacking their Mineral line. Here, the Marines cannot reach the Liberator.
+**图 A：** 解放者在游戏前期是一种很强的骚扰工具。为了限制它的强度，必须确保在它没有升级 Advanced Ballistics 时，只要它能攻击矿线，陆战队员就始终能反击到它。这里的陆战队员就够不到这架解放者。
 
-**Image B:** In Image B, we added extra terrain to ensure that Marines are always able to shoo away an early Liberator when it is able to attack the economy. This is an important map detail to include.
+**图 B：** 在图 B 中，我们增加了一些地形，确保只要前期解放者能攻击经济线，陆战队员就一定有办法把它赶走。这是地图中非常重要的一个细节。
 
 
 
 [![img](./resources/mastering_mapmaking05.jpg)](./resources/mastering_mapmaking05.jpg)
 
-**Image A:** This is a rather simple, yet surprisingly common map oversight. As you can see, Image A shows units clipping into doodads.
+**图 A：** 这是一个非常简单，却又出奇常见的地图疏漏。你可以看到，图 A 中单位模型会穿进 装饰物。
 
-**Image B:** Neither ground nor air units should be able to clip into doodads. In this example, the doodads were simply removed, fixing the problem.
+**图 B：** 无论地面单位还是空中单位，都不应该穿模进入 装饰物。在这个例子中，直接移除 装饰物 就解决了问题。
 
-## Pathing
+## 寻路
 
 [![img](./resources/mastering_mapmaking06.jpg)](./resources/mastering_mapmaking06.jpg)
 
-**Image A:** In this image, there are no spaces between the Mineral patches or Vespene geysers. This means that workers and harassment units have very limited options for moving around in this space.
+**图 A：** 在这张图里，矿脉和瓦斯之间没有留任何空隙。这意味着工人和骚扰单位在这片区域中的移动选择非常有限。
 
-**Image B:** As can be seen in this version, Mineral lines should always have some pathing behind them, as well as spaces between any Vespene geysers and at least one space within the Mineral line itself.
+**图 B：** 如图所示，矿线后方应始终留有一定寻路空间，瓦斯之间也应有间距，并且矿线内部至少要保留一个可通过空位。
 
 [![img](./resources/mastering_mapmaking07.jpg)](./resources/mastering_mapmaking07.jpg)
 
-**Image A:** Always thoroughly test blockers that impact air pathing. Here we can see an example of a blocker that could cause air units to get stuck. Issues typically occur when two or more air pathing blockers are placed next to each other, creating an area where air units get stuck.
+**图 A：** 一定要彻底测试会影响空中寻路的阻挡器。这里展示了一个可能导致空军单位卡住的阻挡示例。问题通常发生在两个或更多空中寻路阻挡器彼此相邻时，从而形成让空军单位卡住的区域。
 
-**Image B:** An easy solution is to just avoid using such a design. Only use air blockers when they are an important part of map design, and then only when they are tested thoroughly for unexpected behavior.
+**图 B：** 最简单的解决办法，就是尽量避免采用这种设计。只有当空中阻挡是地图设计中非常关键的一部分时才使用它，而且使用前必须经过充分测试，确认不会出现意外行为。
 
 ------
 
-That's all for now! We hope that these tips help make your maps as entertaining and balanced as possible. Good luck in this season's TeamLiquid Map Contest! Let us know if you have any questions or if there are other ways we can help in the comments section below. You may also want to bookmark this page as it should help on your quest to design the ultimate StarCraft II map!
+目前就先分享到这里！希望这些建议能帮助你把地图做得既有趣又平衡。也祝你在本赛季的 TeamLiquid 地图竞赛中好运！如果你有任何问题，或者希望我们在其他方面提供帮助，欢迎在下方评论区留言。你也可以把本页加入书签，它应该能在你打造终极《星际争霸 II》地图的道路上提供不少帮助！

@@ -1,133 +1,133 @@
-# Sounds
+# 声音
 
-Sound is the primary audio datatype of the Editor. It can represent either an individual file or collection of audio files, and is the source of almost every type of sound heard within the game. Things like music, sound effects, unit voiceovers, and narrative dialog are all stored in the game as a Sound type. This type is a building block asset, it takes raw files from data or import and configures them, readying them for play. These sound assets are then incorporated into gameplay using either a sound actor or direct operation through triggers. You can see a typical view of Sounds being manipulated in the Data Editor below.
+声音是编辑器中的主要音频数据类型。它既可以表示单个文件，也可以表示一组音频文件，并且几乎构成了游戏中所有声音的来源。音乐、音效、单位语音和叙事对话，都会以 `Sound` 类型的形式存储在游戏中。这种类型本质上是一种基础构件资源：它接收来自数据或导入的原始文件，对其进行配置，使其可以被播放。这些声音资源之后会通过声音 Actor，或通过触发器的直接操作，接入实际玩法。下图展示了数据编辑器中操作 Sound 的典型视图。
 
-[![Sound Data View](./resources/076_Sounds1.png)](./resources/076_Sounds1.png)
-*Sound Data View*
+[![声音数据视图](./resources/076_Sounds1.png)](./resources/076_Sounds1.png)
+*声音数据视图*
 
-## Finding Sounds In The Data Editor
+## 在数据编辑器中查找声音
 
-As a datatype, sounds are handled through the Data Editor. Once inside this module, you can open the sounds tab by selecting the green + and navigating to Edit Art and Sound Data ▶︎ Sounds, as shown below.
+作为一种数据类型，声音是通过数据编辑器来处理的。进入该模块后，你可以点击绿色 `+`，然后通过 `Edit Art and Sound Data ▶︎ 声音` 打开 声音 标签页，如下图所示。
 
-[![Navigating to Sounds in Data](./resources/076_Sounds2.png)](./resources/076_Sounds2.png)
-*Navigating to Sounds in Data*
+[![在数据中导航到声音](./resources/076_Sounds2.png)](./resources/076_Sounds2.png)
+*在数据中导航到声音*
 
-You should note that sounds differ from the data type Soundtracks. That type is largely designed for in-game ambient music and cinematic scoring. Opening the Sounds data tab will present you with the following view.
+需要注意，声音 与 `Soundtracks` 这个数据类型并不相同。后者主要是为游戏内环境音乐和过场配乐设计的。打开 声音 数据标签页后，你会看到如下视图。
 
-[![Sounds Data Listing](./resources/076_Sounds3.png)](./resources/076_Sounds3.png)
-*Sounds Data Listing*
+[![声音数据列表](./resources/076_Sounds3.png)](./resources/076_Sounds3.png)
+*声音数据列表*
 
-## Sound Categories
+## 声音分类
 
-The sounds tab is organized in the same way as any other datatype tab in the Data Editor. It is divided in two, with the left being a list of every sound in the current data scope, while the right offers a detailed view of the currently selected sound with all its fields available for review. The sound listing is shown below.
+声音 标签页的组织方式和数据编辑器中其他数据类型标签页是一样的。它分为左右两部分：左侧列出当前数据作用域中的全部声音，右侧则提供当前所选声音的详细视图，供你查看其全部字段。声音列表如下图所示。
 
-[![Sounds Category View](./resources/076_Sounds4.png)](./resources/076_Sounds4.png)
-*Sounds Category View*
+[![声音分类视图](./resources/076_Sounds4.png)](./resources/076_Sounds4.png)
+*声音分类视图*
 
-The sounds tab is separated into five categories for organization, described in following table.
+声音 标签页被分成五个分类，用于组织数据，具体如下表所示。
 
-| Field      | Details                                                        |
+| 字段 | 说明 |
 | ---------- | -------------------------------------------------------------- |
-| Sound Name | The name of the sound object.                                  |
-| Source     | The data source in which the sound object is located.          |
-| \#         | The sound object's index in the current scope.                 |
-| Race       | A race the sound object has been tagged to be associated with. |
-| Parent     | The template basis of the sound object.                        |
+| 声音名称 | 声音对象的名称。 |
+| 来源 | 声音对象所在的数据来源。 |
+| \# | 声音对象在当前作用域中的索引。 |
+| 种族 | 该声音对象被标记关联的种族。 |
+| 父级 | 声音对象所基于的模板。 |
 
-The Sound Name is often broken into a prefix and suffix with the format Unit\_SoundType. This allows the listing to be further broken down by unit and the types of sounds required for each unit. Some examples shown above view are Refinery\_Explode, Refinery\_Ready, and Refinery\_What. These three sounds are each connected to the refinery unit and are intended for three states that trigger sound.
+`Sound Name` 常常会按 `Unit_SoundType` 的格式拆成前缀和后缀。这样就能进一步按单位和该单位所需的声音种类来拆分列表。上图中的一些例子包括 `Refinery_Explode`、`Refinery_Ready` 和 `Refinery_What`。这三个声音都与精炼厂单位有关，并分别用于会触发声音的三种不同状态。
 
-## Sounds Detail View
+## 声音详细视图
 
-The basic view of the sound fields in the Editor will look as follows.
+在编辑器中，声音字段的基础视图大致如下。
 
-[![Sound Fields](./resources/076_Sounds5.png)](./resources/076_Sounds5.png)
-*Sound Fields*
+[![声音字段](./resources/076_Sounds5.png)](./resources/076_Sounds5.png)
+*声音字段*
 
-Here, the type is broken down into a variety of property fields and the 'Sound Assets' field, which contains the base sound file links. These sound assets are brought into the Editor in two formats, .ogg and .wav. The .ogg format makes up the majority of the sounds. Once inside the Editor, these assets must be made part of a Sound via this 'Sound Assets' field before they are useable in game.
+在这里，这个类型被拆分为多个属性字段，以及 `Sound Assets` 字段，后者包含基础声音文件的链接。这些声音资源会以两种格式导入编辑器：`.ogg` 和 `.wav`。其中大多数声音都采用 `.ogg`。进入编辑器后，这些资源必须先通过这个 `Sound Assets` 字段成为某个 `Sound` 的组成部分，才能在游戏中使用。
 
-Beyond illustrating this point, the basic view of the sound's fields doesn't offer an awful lot. Due to the number of files that can be packed into each Sound type, a much more extensive view was designed for this tab of the data editor. You can access it by switching the Data Editor into 'Detail View,' using the Data Bar. The button for this is shown below.
+除了说明这一点之外，声音字段的基础视图能提供的信息并不算太多。由于每个 `Sound` 类型中可以打包很多文件，因此数据编辑器专门为这个标签页设计了一个更完整的视图。你可以通过数据栏把数据编辑器切换到 `Detail View` 来访问它。对应按钮如下图所示。
 
-![Detail View Button](./resources/076_Sounds6.png)
-*Detail View Button*
+![详细视图按钮](./resources/076_Sounds6.png)
+*详细视图按钮*
 
-Once you have the detail view set up, highlighting a Sound in the sounds tab should present you with the following, hereafter referred to as the Sound Editor.
+当你启用详细视图后，在 声音 标签页中高亮某个 `Sound`，就会看到如下界面，后文将其称为“声音编辑器”。
 
-[![Sound Editor View](./resources/076_Sounds7.png)](./resources/076_Sounds7.png)
-*Sound Editor View*
+[![声音编辑器视图](./resources/076_Sounds7.png)](./resources/076_Sounds7.png)
+*声音编辑器视图*
 
-## Sound Editor
+## 声音编辑器
 
-The enhanced Sound Editor view gives you a much more useful look at the Sound datatype. Take note of the 'Sound Assets' box at the top of the editor as it's seen below.
+增强后的声音编辑器视图，会让你更有用地理解 `Sound` 数据类型。请注意编辑器顶部的 `Sound Assets` 框，如下图所示。
 
-[![Sound Assets Close-Up](./resources/076_Sounds8.png)](./resources/076_Sounds8.png)
-*Sound Assets Close-Up*
+[![声音资源特写](./resources/076_Sounds8.png)](./resources/076_Sounds8.png)
+*声音资源特写*
 
-The topmost box here shows the contents of the sound's 'Sound Assets' field. As previously described, this can contain one or multiple raw sound files, which in this case are .ogg. You'll also find the individual Pitch, Volume, and Weight values for each asset in this view. Further down are the individual controls that set these values, as well as some supporting options. These are broken down in the following table.
+这里最上方的框展示了该声音 `Sound Assets` 字段中的内容。正如前文所述，它可以包含一个或多个原始声音文件，本例中为 `.ogg` 文件。你还会在这个视图中看到每个资源各自的 `Pitch`、`Volume` 和 `Weight` 值。再往下则是设置这些值的具体控件，以及一些辅助选项。如下表所示。
 
-| Field          | Details                                                                                                                                                                                                                                       |
+| 字段 | 说明 |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Select Method  | Selects the play method for previewing sound assets as Sequential or Shuffle. Most in-game sounds use Shuffle to produce varied response noises. One notable exception is the \_Pissed series of sounds for each unit, which uses Sequential. |
-| Mode           | Selects the playing mode as 2D or 3D sound.                                                                                                                                                                                                   |
-| Pitch          | Sets the pitch alteration of the raw sound using a slider.                                                                                                                                                                                    |
-| Volume         | Sets the volume alteration of the raw sound using a slider.                                                                                                                                                                                   |
-| Weight         | Sets a value from 0-100, which determines the Chance to Play.                                                                                                                                                                                 |
-| Chance to Play | The weight of this sound asset divided by the total weight of all sound assets within the Sound. This works out to the percentage chance this sound will be played anytime the object is used.                                                |
+| 选择方法 | 选择在预览声音资源时使用 `Sequential` 还是 `Shuffle` 播放方式。大多数游戏内声音都使用 `Shuffle`，以产生更丰富的随机反馈。一个值得注意的例外是每个单位的 `_Pissed` 系列声音，它们使用 `Sequential`。 |
+| 模式 | 选择以 `2D` 还是 `3D` 声音模式播放。 |
+| 音高 | 通过滑块设置原始声音的音高变化。 |
+| 音量 | 通过滑块设置原始声音的音量变化。 |
+| 权重 | 设置一个 0-100 的值，用于决定 `Chance to Play`。 |
+| 播放概率 | 该声音资源的权重除以整个 `Sound` 中全部声音资源的总权重。换算后就是这个对象每次被使用时，该声音被播放的百分比概率。 |
 
-As you may have guessed while reading the properties above, a Sound composed of multiple sound assets will play a random one of its component sound files each time it is used in the game. The random chance is dependent on the individual Weight of each asset and is expressed exactly as a Chance to Play.
+从上面这些属性你应该已经猜到了：由多个声音资源组成的 `Sound`，每次在游戏中被使用时，都会从其组成文件中随机播放一个。随机概率取决于每个资源各自的 `Weight`，并会准确地体现在 `Chance to Play` 上。
 
-At the bottom of this section of the editor, you'll find eight flags that can be configured inside any Sound. These flags offer additional modifications to the sound's organizational properties, including its file handling, streaming status, and ability to be paused.
+在编辑器这一部分的底部，你会看到八个可在任意 `Sound` 内配置的标志。这些标志会对声音的组织属性提供额外修改，包括文件处理方式、流式状态以及是否可以暂停等。
 
-## Play Controls
+## 播放控制
 
-One of the most important features of the Sound Editor is its set of preview controls for sounds and sound editing. These are shown below.
+声音编辑器最重要的功能之一，就是它为声音及声音编辑提供的那组预览控制。如下图所示。
 
-![Play Controls Interface](./resources/076_Sounds9.png)
-*Play Controls Interface*
+![播放控制界面](./resources/076_Sounds9.png)
+*播放控制界面*
 
-These controls allow you to listen to raw sounds through the 'Asset Preview' button, while also giving you the option to test altered sounds with the 'In-game Preview' button. Having both of these features available is important when you're working with imported sound assets. Without such a feature, it would be extremely onerous to find the proper volume balance or effects controls for making custom assets sound right in-game.
+这些控件允许你通过 `Asset 预览` 按钮直接试听原始声音，同时也可以通过 `In-game 预览` 按钮测试经过修改后的声音效果。当你在处理导入声音资源时，这两个功能都非常重要。没有这样的功能，要想找到合适的音量平衡或效果参数，让自定义资源在游戏里听起来正常，就会变得极其麻烦。
 
-## Sound Group Volume Controls
+## 声音组音量控制
 
-Another section of the sound editor gives you the ability to set group volume controls. These controls are shown below.
+声音编辑器的另一部分则允许你设置组音量控制。如下图所示。
 
-[![Sounds Group Volume Controls](./resources/076_Sounds10.png)](./resources/076_Sounds10.png)
-*Sounds Group Volume Controls*
+[![声音组音量控制](./resources/076_Sounds10.png)](./resources/076_Sounds10.png)
+*声音组音量控制*
 
-Sound groups offer an additional level of control for sound properties by allowing you to add individual sound assets to a specific channel. This channel can then be altered with an extensive level of sound options, which are best demonstrated and understood through experimentation with the preview controls. Below you can see a table showing the many channels available for use.
+声音组通过允许你把单个声音资源加入特定频道，为声音属性再提供一层额外控制。随后，这个频道可以通过一整套广泛的声音选项进行调整，而理解这些选项的最佳方式，仍然是结合预览控制亲自实验。下表展示了可用的众多频道。
 
 | Alert    | Alert       | Build          | Combat     |
 | -------- | ----------- | -------------- | ---------- |
-| Death    | Dialogue    | Doodad         | Flames     |
-| Foliage  | Gather      | Master Effects | Missions   |
+| Death    | Dialogue    | 装饰物         | Flames     |
+| Foliage  | Gather      | Master 效果 | Missions   |
 | Movement | Movie       | Music          | Other      |
 | Ready    | Set Ambient | Set Emitters   | Set Pieces |
 | Spell    | TV          | UI             | Voice      |
 
-It's worth noting here that sound channels can be affected by players' personal settings. For example, if a player has their music disabled, they will not hear any sound that is in the music channel.
+这里还值得注意的一点是，声音频道可能会受到玩家个人设置的影响。例如，如果玩家关闭了音乐，那么他们就听不到任何被分配到音乐频道的声音。
 
-One consequence of the extensive controls found in the Sound Editor is a common confusion between the group sound controls and the individual sound options. The image below should help you to avoid this confusion.
+由于声音编辑器中的控制非常多，常见的一个困惑就是把组声音控制和单个声音选项混淆。下图能帮助你避免这种误解。
 
-[![Individual and Group Volume Controls](./resources/076_Sounds11.png)](./resources/076_Sounds11.png)
-*Individual and Group Volume Controls*
+[![单个与组音量控制](./resources/076_Sounds11.png)](./resources/076_Sounds11.png)
+*单个与组音量控制*
 
-The individual volume controls used to set each sound asset's volume are found in the upper highlighted box. The lower highlighted box allows you to set the sound alteration for each channel.
+用于设置每个声音资源音量的单独音量控制，位于上方高亮框中；下方高亮框则用于设置每个频道的声音调整。
 
-## Sound Properties
+## 声音属性
 
-Selecting any individual file from the 'Sound Assets' box and double clicking it will open a new window called 'Sound Properties,' as shown below.
+在 `Sound Assets` 框中选中任意单独文件并双击，会打开一个名为 `Sound Properties` 的新窗口，如下图所示。
 
-[![Sound Properties View](./resources/076_Sounds12.png)](./resources/076_Sounds12.png)
-*Sound Properties View*
+[![声音属性视图](./resources/076_Sounds12.png)](./resources/076_Sounds12.png)
+*声音属性视图*
 
-Here you'll find a number of important secondary controls dealing with how and when a sound asset will play. The Loop Count controls how many times a specific asset will play in a row when used in-game. Usually, most sounds won't need to be played more than once, but there are exceptions.
+在这里，你会看到若干重要的次级控制项，用来处理声音资源将在何时、以何种方式播放。`Loop Count` 控制某个特定资源在游戏中被使用时会连续播放多少次。通常大多数声音都不需要播放超过一次，但也有例外。
 
-Importantly music files are usually set on a constant loop during gameplay. To get this specific behavior, set the Loop Count to -1. Loop Time supports this by setting a random minimum and maximum length for a loop playthrough. Offset will apply a random offset in between its minimum and maximum to the sound file's playback. The Speaker and Animation controls are configured for narrative dialogue. They allow you to tag a piece of pre-recorded audio with information and details that can be useful in setting up a story-type campaign or cinematic.
+尤其要注意，音乐文件在游戏过程中通常会被设置为持续循环。若想达到这种具体效果，请把 `Loop Count` 设为 `-1`。`Loop Time` 则通过设置一次循环播放时长的随机最小值和最大值来配合这一行为。`Offset` 会在其最小值和最大值之间应用一个随机偏移，用于声音文件的播放起始位置。`Speaker` 和 `Animation` 控件则主要是为叙事对话准备的，它们允许你给一段预录音频打上相关信息和细节标签，这在制作剧情战役或过场动画时会很有用。
 
-## Sound Editor Data View
+## 声音编辑器数据视图
 
-If you look to the top tabs of the Sound Editor, you'll find another set of useful options under the data tab. These options are shown below.
+如果你查看声音编辑器顶部的标签页，会发现 `data` 标签下还有另一组实用选项。如下图所示。
 
-[![Sounds Editor Data Tab](./resources/076_Sounds13.png)](./resources/076_Sounds13.png)
-*Sounds Editor Data Tab*
+[![声音编辑器数据标签页](./resources/076_Sounds13.png)](./resources/076_Sounds13.png)
+*声音编辑器数据标签页*
 
-These controls allow you to set the speaker-centric volume properties of each sound. Due to the vast number of options, the best way for you to figure out how to use this panel is to experiment with the play controls.
+这些控件允许你设置每个声音以扬声器为中心的音量属性。由于这里的选项非常多，想真正弄清这个面板该怎么用，最好的办法仍然是配合播放控制自己动手试验。

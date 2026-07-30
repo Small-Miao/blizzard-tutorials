@@ -1,108 +1,108 @@
-# Buttons
+# 按钮
 
-The term 'button' is used broadly in StarCraft to refer to any interactive interface element, be it a menu button, a dialog, or anything clickable. Conversely, in the context of the Data Editor the term refers very specifically to an art datatype. These Buttons are the visuals for abilities in the command card, the section of a player's UI with which they can interact directly. A typical view of a command card filled with buttons is shown below.
+在《星际争霸 II》中，`button` 这个词的使用范围很广，几乎可以指任何可交互的界面元素，无论是菜单按钮、对话框，还是任何可以点击的东西。相对地，在数据编辑器语境下，这个术语特指一种美术数据类型。这些按钮就是指令卡中技能图标的视觉表现，也就是玩家 UI 中可以直接交互的那一块区域。下图展示了一个填满按钮的典型指令卡视图。
 
-[![Templar Command Card with Buttons](./resources/075_Buttons1.png)](./resources/075_Buttons1.png)
-*Templar Command Card with Buttons*
+[![带按钮的圣堂武士指令卡](./resources/075_Buttons1.png)](./resources/075_Buttons1.png)
+*带按钮的圣堂武士指令卡*
 
-Here there are eight Buttons on the templar's command card including 'Psi Storm,' 'Feedback,' and the basic control elements, such as 'Move,' 'Attack,' and 'Stop.' Each button has been tied into the unit through its command card field. This sets the button's look as well as some supplementary properties for use inside the interface.
+这里，圣堂武士的指令卡上有八个按钮，包括 `Psi Storm`、`Feedback`，以及 `Move`、`Attack`、`Stop` 这些基础控制元素。每个按钮都通过单位的指令卡字段连接到单位上。这不仅决定了按钮的外观，也会设置一些在界面中使用的辅助属性。
 
-## Button Data Fields
+## 按钮数据字段
 
-Compared with the varied, multi-purpose buttons of the engine at large, the Button datatype is quite scant. The properties contained in this type are broken down in the table below.
+与引擎中那些用途多样、功能繁复的按钮相比，Button 数据类型本身其实相当精简。该类型包含的属性如下表所示。
 
-| Field         | Details                                                                                                                                                                                    |
+| 字段 | 说明 |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Icon          | Sets the texture with which the button will be made. This typically uses a member of the specially styled set of 76x76 textures included with the Editor, identified by their prefix btn-. |
-| Hotkey        | Sets a keyboard key that, when pressed, will automatically trigger the button in the UI. In StarCraft hotkeys are almost universally used to speed player input.                           |
-| Tooltip       | Sets the text displayed during button mouseover.                                                                                                                                           |
-| Name          | Sets the name displayed during button mouseover.                                                                                                                                           |
-| Tint By Race  | Colorizes the button overlay based on race selection. The races are colorized as follows: Zerg -- Orange, Terran -- Green, and Protoss -- Blue.                                            |
-| Universal     | Adds the button and its hotkey to every unit. Typically used for only the elementary unit actions, 'Move,' 'Attack,' 'Stop,' 'Cancel,' and so forth.                                       |
-| Alert Icon    | The alert panel can make use of the Button type to push warning or teaching information out to the player. This sets the icon sent by this button's ability.                               |
-| Alert Tooltip | Similar to the Alert Icon, but sets a tooltip to be delivered for alerts.                                                                                                                  |
-| Alert Name    | Similar to the Alert Icon, but sets a name to be delivered for alerts.                                                                                                                     |
-| Race          | Sets a race attribute of the button, for organizational purposes.                                                                                                                          |
+| 图标 | 设置按钮所使用的纹理。通常会使用编辑器中那套专门设计的 `76x76` 纹理，其文件名前缀一般为 `btn-`。 |
+| 热键 | 设置一个键盘按键，当玩家按下时，会在 UI 中自动触发该按钮。在《星际争霸 II》中，热键几乎被普遍用于加快玩家操作。 |
+| 提示 | 设置鼠标悬停在按钮上时显示的文本。 |
+| 名称 | 设置鼠标悬停在按钮上时显示的名称。 |
+| 按种族着色 | 根据种族选择对按钮边框进行染色。颜色规则为：虫族 -- 橙色，人类 -- 绿色，星灵 -- 蓝色。 |
+| 通用 | 将该按钮及其热键添加到所有单位上。通常只用于 `Move`、`Attack`、`Stop`、`Cancel` 之类的基础单位动作。 |
+| 警报图标 | 警报面板可以利用 Button 类型向玩家推送警告或教学信息。这个字段设置由该按钮对应技能发送出去的图标。 |
+| 警报提示 | 与 `Alert Icon` 类似，但设置的是警报中显示的提示文本。 |
+| 警报名称 | 与 `Alert Icon` 类似，但设置的是警报中显示的名称。 |
+| 种族 | 为按钮设置一个种族属性，用于组织分类。 |
 
-Leaving the mouse idle over a button will display a dialog containing its Tooltip and Name, along with times relevant to the connected ability. This dialog is shown below.
+当鼠标停留在按钮上不动时，会弹出一个对话框，其中包含该按钮的 `Tooltip` 和 `Name`，以及与所连接技能相关的一些时间信息。如下图所示。
 
-[![Button Mouseover Tooltip and Name](./resources/075_Buttons2.png)](./resources/075_Buttons2.png)
-*Button Mouseover Tooltip and Name*
+[![按钮悬停提示与名称](./resources/075_Buttons2.png)](./resources/075_Buttons2.png)
+*按钮悬停提示与名称*
 
-## Creating A Button
+## 创建按钮
 
-Open the Data Editor and move to the buttons tab. If it isn't already open, you can navigate there via + ▶︎ Edit Art and Sound Data ▶︎ Buttons, as shown.
+打开数据编辑器并切换到 按钮 标签页。如果尚未打开，可通过 `+ ▶︎ Edit Art and Sound Data ▶︎ 按钮` 进入，如下所示。
 
-[![Navigating to Buttons in Data](./resources/075_Buttons3.png)](./resources/075_Buttons3.png)
-*Navigating to Buttons in Data*
+[![在数据中导航到按钮](./resources/075_Buttons3.png)](./resources/075_Buttons3.png)
+*在数据中导航到按钮*
 
-Create a new button by right-clicking in the main window view and selecting 'Add Button.'
+在主窗口视图中右键，并选择 `Add Button` 来创建一个新按钮。
 
-[![Creating a New Button](./resources/075_Buttons4.png)](./resources/075_Buttons4.png)
-*Creating a New Button*
+[![创建新按钮](./resources/075_Buttons4.png)](./resources/075_Buttons4.png)
+*创建新按钮*
 
-This will launch the 'Button Properties' window. There you can set the 'Name' of the new button, then hit 'Suggest' to generate an ID. Note that typically a button is named for the ability it will represent, rather than being named as a button itself. So choose a name like 'Attack' or 'Plague' rather than 'Attack Button' or 'Plague Button.' A typical creation screen is shown below, filled out with the name 'Demo.'
+这会打开 `Button Properties` 窗口。你可以在这里设置新按钮的 `Name`，然后点击 `Suggest` 生成 ID。需要注意的是，按钮通常会以它所代表的技能来命名，而不是把自己命名成某个“按钮”。所以更合适的名字是 `Attack` 或 `Plague`，而不是 `Attack Button` 或 `Plague Button`。下图展示了一个典型的创建界面，这里填写的名称是 `Demo`。
 
-![Completed Button Creation Screen](./resources/075_Buttons5.png)
-*Completed Button Creation Screen*
+![已完成的按钮创建界面](./resources/075_Buttons5.png)
+*已完成的按钮创建界面*
 
-## Setting The Button Icon
+## 设置按钮图标
 
-The primary button field you'll need to set is the icon field. This will determine the texture to be transformed into a Button. Highlight the 'icon' field and double click it to launch an 'Object Values' window. Clicking 'Browse' here will launch the Archive Browser. Inside the browser, you can select any texture for use as a button, but the standard is 76x76 and with the filetype .dds. You can find a large collection of these textures by searching with the prefix btn-, as shown below.
+你首先需要设置的关键字段是图标字段。它决定哪张纹理会被转换成按钮。高亮 `icon` 字段并双击，打开 `Object Values` 窗口。在这里点击 `Browse` 会启动资源浏览器。你可以在浏览器中选择任意纹理作为按钮图标，不过标准尺寸是 `76x76`，文件类型通常为 `.dds`。如下图所示，你可以通过搜索前缀 `btn-` 来找到大量这类纹理。
 
-[![Icon Selection with the Archive Browser](./resources/075_Buttons6.png)](./resources/075_Buttons6.png)
-*Icon Selection with the Archive Browser*
+[![通过资源浏览器选择图标](./resources/075_Buttons6.png)](./resources/075_Buttons6.png)
+*通过资源浏览器选择图标*
 
-In this demo, the texture btn-tips-hotkeys.dds has been selected. Note that these textures lack the colored border typical of in-game buttons. This is because the border is overlaid by the engine and colorized using the Tint By Race field. You can see the many types of borders within the textures by searching under the prefix btn-border.
+在本演示中，选择的是纹理 `btn-tips-hotkeys.dds`。注意，这些纹理本身并没有游戏内按钮常见的彩色边框。原因在于，边框是由引擎后期叠加上去的，并通过 `Tint By Race` 字段来染色。你也可以通过搜索前缀 `btn-border` 查看多种不同样式的边框。
 
-## Setting The Button Tooltip
+## 设置按钮提示
 
-To provide helpful information to the player, a button is usually fitted with a tooltip to be displayed by the game on button mouseover. To create that text, navigate to the 'Tooltip' field and double click to open an 'Object Values' editing window.
+为了向玩家提供有用信息，按钮通常会带有一个提示文本，在鼠标悬停时由游戏显示。要创建这段文本，请定位到 `Tooltip` 字段并双击，打开 `Object Values` 编辑窗口。
 
-![Image](./resources/075_Buttons7.png)
+![图像](./resources/075_Buttons7.png)
 
-For this demo, sample text has been inputted containing the message, 'This is a button built for a tutorial demo.' At this point, it is common to also set this for the Alert Tooltip field using the same procedure.
+在本演示中，输入了一段示例文字：`This is a button built for a tutorial demo.`。做到这里时，通常也会用同样的方法顺手设置 `Alert Tooltip` 字段。
 
-## Setting The Button Hotkey
+## 设置按钮热键
 
-For many players, buttons are seldom clicked in what might be considered the 'standard' fashion. They are usually interacted with via their hotkeys. A hotkey sets up an automatic 'pressing' of the target button in response to the direct press of a player's keyboard key. This is an arrangement built for speed, but some prefer it for simple convenience.
+对很多玩家来说，按钮很少会以所谓“标准”的点击方式来使用。它们通常是通过热键触发的。热键的作用，是在玩家直接按下某个键盘按键时，自动“按下”目标按钮。这种设计主要是为了提高手速，但也有人只是觉得更方便。
 
-While these hotkeys can be decided by players through the game's 'Hotkeys' section, base hotkeys are set through data. To do so, move to the 'Hotkeys' field in the Data Editor and double click it. This will launch an 'Object Values' window, presenting you with the following view.
+虽然玩家可以通过游戏中的 `Hotkeys` 菜单自行决定热键，但默认热键本身依然是通过数据设定的。要进行设置，请定位到数据编辑器中的 `Hotkeys` 字段并双击。这样会打开一个 `Object Values` 窗口，呈现如下视图。
 
-[![No Hotkey Assigned](./resources/075_Buttons8.png)](./resources/075_Buttons8.png)
-*No Hotkey Assigned*
+[![未分配热键](./resources/075_Buttons8.png)](./resources/075_Buttons8.png)
+*未分配热键*
 
-From here you can set the hotkey by clicking inside the 'Hotkey' box, where the value is currently Unknown. This will turn the current hotkey value red and allow for keyboard input. Pressing a key at this time will set it as the hotkey. For this demonstration, the D key was hit, giving the following result.
+在这里，你可以点击 `Hotkey` 框来设置热键；当前值是 `Unknown`。点击后，当前热键值会变成红色，并允许你直接进行键盘输入。此时按下任意按键，就会将其设为热键。本演示中按下的是 `D` 键，结果如下。
 
-![Hotkey Assigned](./resources/075_Buttons9.png)
-*Hotkey Assigned*
+![已分配热键](./resources/075_Buttons9.png)
+*已分配热键*
 
-Clicking 'Ok' at this point will save the hotkey and return to the main Editor view.
+此时点击 `Ok`，就会保存热键并返回编辑器主视图。
 
-## Adding A Button To A Unit
+## 将按钮添加到单位
 
-Buttons are specifically designed to slot into a unit's command card. In this exercise, you'll slot the demo button into a pre-existing unit. To do this, move to the units tab via + ▶︎ Edit Game Data ▶︎ Units. Any unit would be useable here, but for this instance select the 'Marine.' Then select its 'Command Card' field as shown below.
+按钮本来就是为塞进单位指令卡而设计的。在这个练习中，你要把刚做好的演示按钮插入一个预先存在的单位中。做法是通过 `+ ▶︎ Edit Game Data ▶︎ 单位` 进入 单位 标签页。这里用任何单位都可以，但本例中请选择 `Marine`。然后选中它的 `Command Card` 字段，如下图所示。
 
-[![Command Card Field](./resources/075_Buttons10.png)](./resources/075_Buttons10.png)
-*Command Card Field*
+[![指令卡字段](./resources/075_Buttons10.png)](./resources/075_Buttons10.png)
+*指令卡字段*
 
-Double clicking the field will open a subeditor view for configuring a unit's command card. You can add a new button by navigating to an unoccupied slot in the command card and clicking the green +. This will launch a window called 'Choose Button.' Inside that window, select the 'Demo' button for addition to the command card. This procedure is shown below.
+双击该字段后，会打开一个用于配置单位指令卡的子编辑器视图。你可以在指令卡中找到一个空位，然后点击绿色 `+` 来添加新按钮。这会打开一个名为 `Choose Button` 的窗口。在窗口中，选择 `Demo` 按钮并将其加入指令卡。流程如下图所示。
 
-[![Adding a Button to the Command Card](./resources/075_Buttons11.png)](./resources/075_Buttons11.png)
-*Adding a Button to the Command Card*
+[![向指令卡添加按钮](./resources/075_Buttons11.png)](./resources/075_Buttons11.png)
+*向指令卡添加按钮*
 
-Click 'Ok' to add the button to the command card. You will now need to link an ability to the button in order for it to be functional and display in game. Select the new button in the command card subeditor and set its 'Command Type' to 'Ability Command,' set its 'Ability' to 'Move,' and then set its 'Ability Command' to 'Move.' This will give you the following view.
+点击 `Ok` 把按钮加入指令卡。接下来，你还需要把一个技能链接到这个按钮上，它才能在游戏中正常工作并显示出来。请在指令卡子编辑器中选中新按钮，把它的 `Command Type` 设为 `Ability Command`，把 `Ability` 设为 `Move`，再把 `Ability Command` 设为 `Move`。这样你会得到如下视图。
 
-![Completed Linked Button](./resources/075_Buttons12.png)
-*Completed Linked Button*
+![已完成链接的按钮](./resources/075_Buttons12.png)
+*已完成链接的按钮*
 
-From here, you can complete the button by hitting 'Ok.' For this demo, the 'Move' ability is being used as a stand-in for what would normally be at least a non-traditional skill on the unit, if not a completely custom ability. For the purposes of this demonstration, the ability itself isn't all that relevant. Your button should now be visible in game on the command card. You can confirm this by launching the map with 'Test Document' and checking it.
+到这里，点击 `Ok` 即可完成按钮设置。在本演示中，使用的是 `Move` 技能来代替本应当是单位上某种不太常规的技能，甚至可能是完全自定义的技能。就本次演示而言，技能本身并不那么重要。现在你的按钮应已能在游戏中的指令卡上看到。你可以通过使用 `Test Document` 启动地图来确认。
 
-Doing so should give you a result like the one pictured below.
+这样做后，你应会看到类似下图的结果。
 
-[![Custom Button In-Game](./resources/075_Buttons13.png)](./resources/075_Buttons13.png)
-*Custom Button In-Game*
+[![游戏中的自定义按钮](./resources/075_Buttons13.png)](./resources/075_Buttons13.png)
+*游戏中的自定义按钮*
 
-## Attachments
+## 附件
 
- * [075_Buttons.SC2Map](./maps/075_Buttons.SC2Map)
+ * [075_按钮.SC2Map](./maps/075_Buttons.SC2Map)

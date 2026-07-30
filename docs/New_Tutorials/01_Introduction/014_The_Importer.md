@@ -1,63 +1,63 @@
-# The Importer
+# 导入器
 
-The Importer allows you to incorporate custom assets from outside the standard StarCraft libraries into your projects.
+导入器允许你把标准《星际争霸》资源库之外的自定义资源整合进项目中。
 
-# Navigating The Importer
+# 导航导入器
 
-Open the Importer by navigating to Module ▶︎ Importer. This will present you with the following view.
+通过 `Module ▶︎ Importer` 打开导入器。你会看到如下界面。
 
 [![The Importer](./resources/014_The_Importer01.png)](./resources/014_The_Importer01.png)
-*The Importer*
+*导入器*
 
-On the left, you'll see a subview tagged 'Document Files.' This is where all imported files are listed in their respective directories. On the right, you'll see a subview tagged 'File Info.' This is an information window showing details on the current file. The importer in an active file will look something like the image below.
+左侧是名为 “Document Files” 的子视图，这里会按各自目录列出所有已导入文件。右侧则是名为 “File Info” 的子视图，用于显示当前文件的详细信息。一个已载入项目中的导入器大致如下图所示。
 
 [![Importer in an Active Project](./resources/014_The_Importer02.png)](./resources/014_The_Importer02.png)
-*Importer in an Active Project*
+*活动项目中的导入器*
 
-As you can see, the files maintain their file structure within the Importer, even after they have been imported to the project. While its name suggests that the Importer is a tool solely for introducing new files your project, it also acts as a sort of 'Import Module' from which you can view any assets from outside the engine and see their current file structure.
+如你所见，即使文件已经导入到项目中，它们仍会在导入器里保留原本的文件结构。虽然名字看上去像是一个专门用来添加新文件的工具，但导入器实际上也像是一种“导入模块”，你可以通过它查看所有来自引擎外部的资源，并了解它们当前的文件结构。
 
-## Importing A File
+## 导入文件
 
-Import a file by right-clicking in the 'Document File' area and navigating to Import Files. This will launch the 'Import Files' window shown below.
+在 “Document File” 区域右键并选择 `Import Files` 来导入文件。这会打开如下所示的“导入文件”窗口。
 
 [![Importing Files](./resources/014_The_Importer03.png)](./resources/014_The_Importer03.png)
-*Importing Files*
+*导入文件*
 
-This window will be automatically populated with all of the files in the selected directory. Each file marked with a check will be imported to the Importer once you click the 'OK' button. You may activate or deactivate all files in a specific folder by checking or unchecking the top of the hierarchy of folders.
+这个窗口会自动填入所选目录中的全部文件。每个被勾选的文件都会在你点击 “OK” 后导入导入器。你可以通过勾选或取消勾选文件夹层级顶部的项，来一次性启用或停用某个文件夹中的所有文件。
 
-Checking the topmost folder, in this case 'Desktop,' will prepare every directory file for import. Once you've made a selection, you can set the file structure in the Importer using the 'Import Path' field. The image above shows an asset borrowed from the Blizzard custom map StarJeweled. It will be imported to the path 'Assets/Textures.' This will place the texture 'StarJeweled\_Gem\_Black.dds' in a pre-existing location in the StarCraft asset structure.
+勾选最顶层文件夹，本例中是 `Desktop`，就会让该目录下的所有文件都准备好导入。完成选择后，你可以通过 “Import Path” 字段设置这些文件在导入器中的路径。上图使用的是来自暴雪自定义地图 StarJeweled 的资源，它会被导入到 `Assets/纹理` 路径下。这会把纹理 `StarJeweled_Gem_Black.dds` 放进《星际争霸》资源结构中一个预先存在的位置。
 
-## Imported File Directories
+## 已导入文件目录
 
-Returning to the Importer, you'll see that the filename is colored green. This indicates that the file has been imported, but is unsaved. There are several color-coded states in the importer, broken down in the table below.
+回到导入器后，你会看到文件名显示为绿色。这表示文件已导入，但尚未保存。导入器中还存在其他几种颜色状态，见下表。
 
-| Color | State                                          |
+| 颜色 | 状态 |
 | ----- | ---------------------------------------------- |
-| Green | File has been imported but is unsaved.         |
-| Red   | File has been removed but is unsaved.          |
-| Blue  | File has been moved or renamed but is unsaved. |
-| Black | File is saved.                                 |
+| 绿色 | 文件已导入，但尚未保存。 |
+| 红色 | 文件已移除，但尚未保存。 |
+| 蓝色 | 文件已移动或重命名，但尚未保存。 |
+| 黑色 | 文件已保存。 |
 
-At this point, you should save to cement the file in its position in the project's file structure, as shown below.
+此时你应当保存一次，以便把文件正式固定在项目文件结构中的当前位置，如下图所示。
 
 [![Imported File Structure](./resources/014_The_Importer04.png)](./resources/014_The_Importer04.png)
-*Imported File Structure*
+*导入后的文件结构*
 
-Next, confirm that the file is in the correct directory. Remember that the file was set to be pathed to the 'Assets/Textures' folder, but it seems to have retained its 'StarJeweled Assets' folder from its original location. You can remedy this using the Importer's file-moving functionality.
+接下来，确认文件是否位于正确目录。请记住，这个文件本应被设置到 `Assets/纹理` 文件夹下，但它似乎仍然保留了原始位置中的 `StarJeweled Assets` 文件夹。你可以使用导入器的文件移动功能来修正这一点。
 
-## Moving Files
+## 移动文件
 
-You can move a file by right-clicking on it and navigating to Move Files. Once you've done that, the 'Move Files' window will appear. This window offers the options to move the asset either to an 'Existing Path' or to a 'New Path.' Select 'New Path' and enter 'Assets/Textures' to move the file to the directory into which it should have been placed originally.
+右键点击某个文件并选择 `Move Files` 即可移动它。执行后会出现 “Move Files” 窗口。该窗口允许你将资源移动到 “Existing Path” 或 “New Path”。请选择 “New Path” 并输入 `Assets/纹理`，把文件移动到它原本应该被放入的目录中。
 
 ![Altering a File Path](./resources/014_The_Importer05.png)
-*Altering a File Path*
+*修改文件路径*
 
-Checking the Importer after saving the file should show you the result pictured below.
+保存文件后再次查看导入器，应当能看到如下结果。
 
 ![Imported File with Corrected Directory](./resources/014_The_Importer06.png)
-*Imported File with Corrected Directory*
+*目录已修正的导入文件*
 
-Now the file appears to be in the proper location. For a final check, you can open the Archive Browser by navigating to Window ▶︎ Console. Type browse into the console. Use the browser's search function with the asset's name to confirm its place in the file structure. The result of this operation is shown below.
+现在这个文件看起来已经位于正确位置了。为了最终确认，你可以通过 `Window ▶︎ Console` 打开 Archive Browser。然后在控制台中输入 `browse`。使用浏览器的搜索功能，输入资源名称来确认它在文件结构中的位置。结果如下图所示。
 
 ![](./resources/014_The_Importer07.png)
-*Archive Browser Confirming Proper File Structure*
+*Archive Browser 确认文件结构正确*

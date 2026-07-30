@@ -1,45 +1,45 @@
-# Resource Placement For Competitive Play
+# 竞技玩法中的资源摆放
 
-Every element placed in a melee map has at least a small gameplay connotation, this varies from a single grass doodad shaping the way a battlefield feels, to the paths and terrain layout that shape the possible styles of gameplay that might emerge.
+近战地图中摆放的每一个元素，至少都会带有一点玩法含义。影响范围可以小到一株塑造战场氛围的草丛装饰物，也可以大到道路与地形布局本身，它们共同决定了地图上可能出现哪些玩法风格。
 
-As a melee map maker, your greatest adventure is in exploring and experimenting with this relationship between shape, look, and gameplay. However, there is one area in which you have very little room to experiment. For competitive play, there is an established model dictating how resources need to be placed on the map. Introducing even the smallest variation to this layout can have a profound impact on the game's resource model, altering the state of balance for the competitive game.
+作为近战地图作者，你最大的乐趣之一，就是探索并尝试这种“形状、外观与玩法”之间的关系。不过，有一个领域几乎没有太多实验空间。对于竞技玩法来说，资源的摆放方式有一套成熟范式。哪怕只对这种布局做极其微小的改动，也可能深刻影响游戏的资源模型，进而改变竞技环境中的平衡状态。
 
 ![](./resources/086_Resource_Placement_for_Competitive_Play1.png)
-*Cassandra Gemini's Well Designed Third by SeinGalton*
+*SeinGalton 制作的 Cassandra Gemini 中设计良好的三矿*
 
-## Map Symmetry
+## 地图对称
 
-Placing melee resources properly is fairly simple, but there are a few rules and techniques you'll need to use to meet the requirements. Begin by going over map symmetry, as this will save time compared with configuring every base individually. Access the symmetry controls by navigating to Map ▶︎ Map Symmetry, this will launch the 'Map Properties' window shown below.
+正确摆放近战资源其实并不复杂，但你仍需要掌握一些规则和技巧，才能满足要求。首先从地图对称开始，因为相比逐个基地手动配置，它能节省很多时间。前往 `地图` ▶︎ `地图对称` 打开对称设置，这会弹出下图所示的“地图属性”窗口。
 
-![Map Symmetry Controls](./resources/086_Resource_Placement_for_Competitive_Play2.png)
-*Map Symmetry Controls*
+![地图对称控制](./resources/086_Resource_Placement_for_Competitive_Play2.png)
+*地图对称控制*
 
-Applying a 'Symmetry Type' results in the construction of a mirror axis, across which all units created in the map will be duplicated. Connecting a map design to symmetry doesn't necessarily need to be permanent; you can use it and then toggle it off later without losing the results.
+应用某种“对称类型”后，地图上会建立一条镜像轴线，之后你在地图中创建的所有单位都会沿这条轴线自动复制。把地图设计与对称功能绑定并不一定是永久性的；你完全可以先利用它完成布局，再在之后关闭它，而不会丢失结果。
 
-## Placement Considerations
+## 摆放注意事项
 
-When preparing to place resources, consider using the 'Placement Grid' overlay available in the Editor. You can activate it by navigating to View ▶︎ Show Placement Grid ▶︎ Show Grid. This overlay will show the area of three units around any resource item in which players can't place a command centre. This overlay is shown below.
+准备摆放资源时，建议启用编辑器中的“摆放网格”叠加层。你可以通过 `视图` ▶︎ `显示摆放网格` ▶︎ `显示网格` 打开它。这个叠加层会显示资源物体周围三格范围内、玩家无法放置指挥中心的区域。如下图所示。
 
-[![Placement Grid](./resources/086_Resource_Placement_for_Competitive_Play3.png)](./resources/086_Resource_Placement_for_Competitive_Play3.png)
-*Placement Grid*
+[![摆放网格](./resources/086_Resource_Placement_for_Competitive_Play3.png)](./resources/086_Resource_Placement_for_Competitive_Play3.png)
+*摆放网格*
 
-Next, consider the possible resource layouts for a base. There are two standard plans that account for almost all of the competitive layouts. Those two plans are shown in the images below.
+接着，考虑一个基地可能采用的资源布局。覆盖绝大多数竞技布局的标准方案主要有两种。如下图所示。
 
-[![Same-sides Vespene Base Layout](./resources/086_Resource_Placement_for_Competitive_Play4.png)](./resources/086_Resource_Placement_for_Competitive_Play4.png)
-*Same-sides Vespene Base Layout*
+[![同侧高能瓦斯基地布局](./resources/086_Resource_Placement_for_Competitive_Play4.png)](./resources/086_Resource_Placement_for_Competitive_Play4.png)
+*同侧高能瓦斯基地布局*
 
-[![Both-sides Vespene Base Layout](./resources/086_Resource_Placement_for_Competitive_Play5.png)](./resources/086_Resource_Placement_for_Competitive_Play5.png)
-*Both-sides Vespene Base Layout*
+[![两侧高能瓦斯基地布局](./resources/086_Resource_Placement_for_Competitive_Play5.png)](./resources/086_Resource_Placement_for_Competitive_Play5.png)
+*两侧高能瓦斯基地布局*
 
-## Placing Resources
+## 摆放资源
 
-Now it's finally time to place some resources. You can find them in the Units Layer of the Terrain Editor. Navigate to the Units Palette and set the 'Object Type' search filter to Resources. This will show all of the available melee resources, as in the image below.
+现在终于可以开始摆放资源了。你可以在地形编辑器的单位图层中找到它们。打开单位面板，并把“对象类型”搜索筛选器设为 `Resources`。这样就会显示所有可用的近战资源，如下图所示。
 
-![Resources in the Unit Palette](./resources/086_Resource_Placement_for_Competitive_Play6.png)
-*Resources in the Unit Palette*
+![单位面板中的资源](./resources/086_Resource_Placement_for_Competitive_Play6.png)
+*单位面板中的资源*
 
-Select the minerals and lay them out in your base structure, keeping the standard layouts in mind. Remember that the traditional base plan contains eight mineral fields, and two vespene geysers. There are also high-yield bases with six mineral fields and a pair of geysers. Although these standards are negotiable, be aware that every liberty you take with a competitive map endangers its chances of play. Despite this, some experimentation and play is required in every map.
+选择矿物，并按照基地结构摆放，同时牢记标准布局。传统的基地方案通常包含八个晶体矿和两个高能瓦斯间歇泉。也有高产基地采用六个晶体矿加一对间歇泉的做法。虽然这些标准并非完全不可调整，但要明白，对竞技地图做出的每一次偏离，都会削弱它被采用的机会。即便如此，每张地图仍然都需要一定程度的尝试和实战检验。
 
-You should avoid placing vespene geysers diagonally, as it can cause a reduced harvesting rate. You can see this in a test by checking to see if the geyser can support a fourth worker. Testing in general can be a great method for feeling out whether or not your resource placement is correct. Resources are so fundamental to the feel of a melee game that the slightest changes in their layout can be discernible even to amateur players.
+你应避免把高能瓦斯间歇泉斜向摆放，因为这样可能降低采集效率。你可以通过测试来验证这一点，例如观察该气矿是否还能支持第四名工作单位采气。总的来说，测试是判断资源摆放是否合理的绝佳手段。资源对于近战对局的手感太过基础，以至于哪怕布局上极其细微的变化，也常常能被普通玩家察觉。
 
-Note, that you should also consider the version of StarCraft that you are designing for. In Legacy of the Void, there is a different resource model than the earlier incarnations of the game. These require different values inside mineral deposits.
+还要注意，你也应考虑自己面向的是哪个版本的《星际争霸》。在《虚空之遗》中，资源模型与更早版本不同，因此矿物矿脉内部需要设置的数值也不一样。

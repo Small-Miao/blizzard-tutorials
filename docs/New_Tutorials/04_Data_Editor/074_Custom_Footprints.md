@@ -1,74 +1,74 @@
-# Custom Footprints
+# 自定义足迹
 
-The Editor features a wide range of footprints that are often repurposed in the creation of new objects, actors, and units. That said, it can still be useful to understand how to create a custom footprint. This will allow you to create footprint designs with custom shapes and pathing for very specific applications.
+编辑器内置了大量足迹，在创建新对象、Actor 和单位时，人们经常会直接拿来复用。即便如此，理解如何创建自定义足迹仍然很有价值。这样你就能为一些非常具体的用途设计出具有自定义形状和寻路逻辑的足迹。
 
-## Pathing Grid
+## 寻路网格
 
-Footprints apply pathing logic to the map in terms of map units. It can be difficult to visualize the units of the StarCraft engine, but fortunately the Editor provides some utilities to help you. First, enable all of the pathing layer visibility options by navigating to View ▶︎ Show Pathing and checking each category, as shown below. Then navigate to View ▶︎ Show Placement Grid and enable all of the options there too.
+足迹是以地图单位为尺度，把寻路逻辑应用到地图上的。要直观理解《星际争霸 II》引擎中的单位尺度并不容易，不过好在编辑器提供了一些辅助工具。首先，通过 `视图 ▶︎ Show Pathing` 打开所有寻路层可见性选项，把每个类别都勾上，如下图所示。接着再前往 `视图 ▶︎ Show Placement Grid`，把其中的所有选项也全部启用。
 
-[![Turning Visibility Options On](./resources/074_Custom_Footprints1.png)](./resources/074_Custom_Footprints1.png)
-*Turning Visibility Options On*
+[![打开可见性选项](./resources/074_Custom_Footprints1.png)](./resources/074_Custom_Footprints1.png)
+*打开可见性选项*
 
-You should now be able to see the full pathing grid in the Editor. Green indicates pathable areas, while red shows the areas which are not pathable. The squares depicted in the grid each represent a 1 by 1 unit area, the same unit scale in which maps are created. This means a 96x96 map equates to a unit grid scale of 96 units squared. Footprints must adhere to the unit grid. This makes it very useful for figuring out placements and understanding the requirements for a specific custom footprint. You can see the grid in the images below.
+这样一来，你现在应该就能在编辑器中看到完整的寻路网格了。绿色表示可通行区域，红色表示不可通行区域。网格中的每一个方格都代表一个 `1 x 1` 的单位区域，也就是创建地图时使用的同一套单位尺度。这意味着一张 `96x96` 的地图，对应的单位网格大小就是 `96` 单位平方。足迹必须遵循这个单位网格，因此它对判断摆放位置以及理解某个自定义足迹的具体需求都非常有帮助。下图展示了这个网格。
 
-[![Footprint Grid Visibility](./resources/074_Custom_Footprints2.png)](./resources/074_Custom_Footprints2.png)
-*Footprint Grid Visibility*
+[![足迹网格可见性](./resources/074_Custom_Footprints2.png)](./resources/074_Custom_Footprints2.png)
+*足迹网格可见性*
 
-## Creating A Footprint
+## 创建足迹
 
-To create a footprint first move to the Data Editor. If the 'Footprints' tab is not already open, add it by navigating to + ▶︎ Edit Game Data ▶︎ Footprints. Right-click in the main data view and select 'Add Footprint.' This should give you the following view.
+要创建足迹，先进入数据编辑器。如果 `Footprints` 标签页尚未打开，就通过 `+ ▶︎ Edit Game Data ▶︎ Footprints` 把它加进来。然后在主数据视图中右键，选择 `Add Footprint`。你应会看到如下界面。
 
-[![Adding Footprint in Data](./resources/074_Custom_Footprints3.png)](./resources/074_Custom_Footprints3.png)
-*Adding Footprint in Data*
+[![在数据中添加足迹](./resources/074_Custom_Footprints3.png)](./resources/074_Custom_Footprints3.png)
+*在数据中添加足迹*
 
-This will launch the 'Footprint Properties' window. For this exercise, you'll create a custom footprint in an octagonal shape. Enter 'Octagon 3x3' as the 'Name' field for the pop up, click suggest to generate an ID, then click 'Ok.'
+这会打开 `Footprint Properties` 窗口。本练习中，你将创建一个八角形的自定义足迹。在弹窗的 `Name` 字段中输入 `Octagon 3x3`，点击 `suggest` 生成 ID，然后点击 `Ok`。
 
-![Footprint Properties Window](./resources/074_Custom_Footprints4.png)
-*Footprint Properties Window*
+![足迹属性窗口](./resources/074_Custom_Footprints4.png)
+*足迹属性窗口*
 
-Once you've returned to the main Data Editor view, navigate to the 'Layers' field of the newly created footprint and double click it to launch the Footprint Editor.
+返回数据编辑器主视图后，定位到新建足迹的 `Layers` 字段，并双击打开足迹编辑器。
 
-[![Launching Footprint Editor](./resources/074_Custom_Footprints5.png)](./resources/074_Custom_Footprints5.png)
-*Launching Footprint Editor*
+[![启动足迹编辑器](./resources/074_Custom_Footprints5.png)](./resources/074_Custom_Footprints5.png)
+*启动足迹编辑器*
 
-## Footprint Editor
+## 足迹编辑器
 
-[![Editor View](./resources/074_Custom_Footprints6.png)](./resources/074_Custom_Footprints6.png)
-*Editor View*
+[![编辑器视图](./resources/074_Custom_Footprints6.png)](./resources/074_Custom_Footprints6.png)
+*编辑器视图*
 
-The Footprint Editor offers a specific tool for creating footprints and controlling their pathing and placement logic. It's a little off the beaten path, but you can access it from either of the two fields in the 'Footprints' data type, 'Layers' and 'Shapes.' Selecting either of these fields launch will launch the same editor. This is because the Footprint Editor populates itself with the data from both the layer and shape fields for a single footprint object. Note that manually editing the footprint data and avoiding this subeditor is still an option. However, it is often more intuitive do so using the footprint editor due to the visual nature of footprints. The properties of the subeditor are broken down in the table below.
+足迹编辑器提供了一套专门用于创建足迹、并控制其寻路与放置逻辑的工具。它在编辑器里不算特别显眼，但你其实可以通过 `Footprints` 数据类型中的任意一个字段进入它，也就是 `Layers` 和 `Shapes`。选中这两个字段中的任意一个，都会打开同一个编辑器。原因在于，足迹编辑器会同时读取同一足迹对象的 layer 与 shape 字段数据来填充自己。需要注意的是，你当然也可以绕开这个子编辑器，直接手动编辑足迹数据；不过由于足迹本身具有强烈的可视化特征，使用足迹编辑器往往会更直观。下表拆解了这个子编辑器的属性。
 
-| Property   | Effect                                                                                                                                                                                                                                                                                                                                                           |
+| 属性 | 作用 |
 | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Size       | Sets the unit grid size of the footprint.                                                                                                                                                                                                                                                                                                                        |
-| Value      | Selects a pathing type to be applied. Choices include None, No Building, Unpathable Terrain, Ground, and Cliff. The None setting is the default value for all units of the map.                                                                                                                                                                                  |
-| Brush Size | Sets the pathing application area in cells. The settings are Triangle: 1 cell, Sub-cell: 4 cells, and Cell: 16 cells.                                                                                                                                                                                                                                            |
-| Resolution | Sets the number of cells which can be pathed within a single unit. The settings are Large (4 cells per unit), Medium (16 cells per unit), Small (64 cells per unit), and Tiny (256 cells per unit).                                                                                                                                                              |
-| Layer      | Sets the logic layer being altered. Options include Pathing, Placement Apply, and Placement Check. This will be described in more detail later in the article.                                                                                                                                                                                                   |
-| Unit       | Selects a preview model to test footprint size. Model will list the unit path, while Facing and Scale allow you to alter the model's properties.                                                                                                                                                                                                                 |
-| Complexity | An estimate of the footprint's performance cost. Increasing Resolution, using many pathing types, and creating unusual geometry are the primary concerns here.                                                                                                                                                                                                   |
-| Type       | Selects the footprint's main behavior from Standard, Overlay, or Persistent. Standard overlays are by far the most common and alter pathing on the same level of cliff height. Overlay footprints alter non-ground pathing and are seldom used. Persistent footprints cannot be removed during gameplay, only altered. They usually see use with bridge objects. |
+| 大小 | 设置足迹的单位网格尺寸。 |
+| 值 | 选择要应用的寻路类型。可选项包括 None、No Building、Unpathable Terrain、Ground 和 Cliff。None 是地图上所有单位格的默认值。 |
+| 画笔大小 | 设置寻路应用区域的单元格大小。选项分别是 Triangle：1 格、Sub-cell：4 格，以及 Cell：16 格。 |
+| 分辨率 | 设置单个单位内可用于寻路绘制的单元格数量。可选项为 Large（每单位 4 格）、Medium（每单位 16 格）、Small（每单位 64 格）以及 Tiny（每单位 256 格）。 |
+| 图层 | 设置当前正在修改的逻辑层。包括 Pathing、Placement Apply 和 Placement Check。后文会进一步说明。 |
+| 单位 | 选择一个预览模型来测试足迹大小。Model 会列出单位路径，而 Facing 和 Scale 则允许你修改模型属性。 |
+| 复杂度 | 对足迹性能开销的估算。提高分辨率、使用多种寻路类型以及创建不规则几何形状，是这里的主要成本来源。 |
+| 类型 | 选择足迹的主要行为，可选为 Standard、Overlay 或 Persistent。Standard 足迹最为常见，用于修改同一悬崖高度上的寻路。Overlay 足迹会修改非地面寻路，较少使用。Persistent 足迹在游戏过程中不能被移除，只能被修改，通常用于桥梁对象。 |
 
-Pathing is created in the subeditor in three separate layers, Pathing, Placement Apply, and Placement Check. Pathing allows for the size, shape, and type of pathing to be determined. This is the layer visible in the grid view of the Terrain Editor. It's worth noting that multiple pathing types are supported within a single cell. This isn't immediately obvious, as the subeditor will only show the first painted color. Once you have designed a pathing footprint, you may find that you need to close the Editor and reload the map before it will show any updated footprints in the Terrain Editor.
+在这个子编辑器中，寻路是通过三个独立图层创建的：Pathing、Placement Apply 和 Placement Check。Pathing 用于决定寻路的大小、形状和类型。这也是你在地形编辑器网格视图中能看到的图层。需要指出的是，在单个格子里其实可以同时支持多种寻路类型，只是这点并不直观，因为子编辑器只会显示第一个涂上的颜色。当你设计好一个寻路足迹后，如果发现地形编辑器里还没有显示更新结果，你可能需要先关闭编辑器并重新加载地图。
 
-The placement layers, Placement Apply and Placement Check, affect the application of specific placement flags. Each of these allows you to set four distinct layers of options. Placement Apply will apply these options to the area on the map within its footprint. Placement Check requires the options to exist within the set areas or the object owning the footprint cannot be created. You should be aware that, for the option layers to be painted on the footprint, they must first be set using 'Define Sets.' Clicking this button will launch a 'Footprint Set Definitions' window. Be careful, make sure to use the dropdown at the top of the window to select the proper layer being set. A typical view of this layer is shown below.
+放置图层，也就是 Placement Apply 和 Placement Check，会影响特定放置标志的应用。它们都允许你设置四层不同的选项。Placement Apply 会把这些选项应用到地图上足迹覆盖的区域内；Placement Check 则要求这些选项必须存在于设定区域中，否则拥有该足迹的对象将无法创建。你还需要知道，若想把这些选项图层真正绘制到足迹上，必须先通过 `Define Sets` 进行设置。点击这个按钮会打开 `Footprint Set Definitions` 窗口。请务必小心，记得使用窗口顶部的下拉框来选择当前要设置的正确图层。下图展示了这一层的典型视图。
 
 ![](./resources/074_Custom_Footprints7.png)
-*Placement Application Layer and Definition Popup*
+*放置应用图层与定义弹窗*
 
-Now, head back to the 'Octagon 3x3' footprint and paint an octagonal footprint using the pathings No Building and Unpathable Terrain. As a hint, you should use the Tiny resolution and make the triangular cutouts have a base length of six cells. The result should look as pictured below.
+现在，回到 `Octagon 3x3` 足迹，使用 `No Building` 和 `Unpathable Terrain` 两种寻路类型，绘制一个八角形足迹。给你一个提示：应使用 `Tiny` 分辨率，并让三角切角的底边长度为六个单元格。结果应如下图所示。
 
-[![Hexagon 3x3 Pathing](./resources/074_Custom_Footprints8.png)](./resources/074_Custom_Footprints8.png)
-*Hexagon 3x3 Pathing*
+[![六边形 3x3 寻路](./resources/074_Custom_Footprints8.png)](./resources/074_Custom_Footprints8.png)
+*六边形 3x3 寻路*
 
-## Linking A Footprint To An Object
+## 将足迹链接到对象
 
-Now that you've created your custom footprint, you'll place it inside a doodad for testing. Navigate to the actors tab within the Data Editor and select the 'Ice World Rock Large' doodad. Highlight the 'Footprint' field and double click it to launch the 'Object Values' window. Find your 'Octagon 3x3' footprint, select it, and hit 'Ok'. This should leave you with the following.
+现在你已经创建了自定义足迹，接下来把它放进一个装饰物里做测试。进入数据编辑器中的 Actor 标签页，选中 `Ice World Rock Large` 装饰物。高亮其 `Footprint` 字段并双击，打开 `Object Values` 窗口。找到你的 `Octagon 3x3` 足迹，选中后点击 `Ok`。结果应如下所示。
 
-[![Adding Footprint in Data](./resources/074_Custom_Footprints9.png)](./resources/074_Custom_Footprints9.png)
-*Adding Footprint in Data*
+[![在数据中添加足迹](./resources/074_Custom_Footprints9.png)](./resources/074_Custom_Footprints9.png)
+*在数据中添加足迹*
 
-Testing the doodad in the Terrain Editor should give an updated footprint, which differs from the doodad's square 3x3 default. Locate the doodad within the Doodads Layer, select it, and place it in the map to investigate. If the footprint has not yet updated or remains blank, you may have to try closing the Editor and relaunching. The footprint in its before and after states should appear as shown below.
+在地形编辑器中测试这个装饰物后，你应会看到一个更新后的足迹，它与该装饰物默认的方形 `3x3` 足迹不同。在装饰物层中找到这个装饰物，选中并摆放到地图上进行观察。如果足迹尚未更新或仍为空白，你可能需要尝试关闭编辑器再重新启动。它在修改前后的效果应如下图所示。
 
-[![Default and Custom Footprint](./resources/074_Custom_Footprints10.png)](./resources/074_Custom_Footprints10.png)
-*Default and Custom Footprint*
+[![默认与自定义足迹](./resources/074_Custom_Footprints10.png)](./resources/074_Custom_Footprints10.png)
+*默认与自定义足迹*

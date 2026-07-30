@@ -1,116 +1,116 @@
 # Actor cheats
 
-With Patch 1.4.0, modders can now use actor cheats to create and manipulate actors on the fly while running a test map from the editor. This is useful for quickly testing ideas without having to set up data or execute triggers.
+从 Patch 1.4.0 开始，Mod 制作者可以在编辑器中运行测试地图时，使用 Actor cheat 在运行中即时创建和操作 Actor。这对于快速验证想法非常有用，因为你不必先配置数据或执行触发器。
 
-The cheats can also be used to modify and inspect almost any actor while a test map is running, which can be useful for debugging run time actor issues.
+这些 cheat 也可以在测试地图运行时，用于修改和检查几乎任意 Actor，对于调试运行时 Actor 问题非常有帮助。
 
-The cheats can be used to send several newly-enabled dump messages, such as AnimDumpDB, AttachDump, HostedPropDump, RefDump and TextureDump. These messages enable modders to inspect some internal aspects of certain actors while the game is running, which can be helpful as an additional debugging aid.
+这些 cheat 还能向 Actor 发送若干新启用的 dump 消息，例如 AnimDumpDB、AttachDump、HostedPropDump、RefDump 和 TextureDump。这些消息允许制作者在游戏运行期间检查某些 Actor 的内部状态，可作为额外的调试手段。
 
-## Actor Cheat Concepts
+## Actor Cheat 概念
 
 ### Ref Names
 
-The term "Ref Name" is shorthand for "Actor Reference Name", which uniquely identifies a type of system variable known as an actor reference ("actor ref" or just "ref" for short). An actor reference can be resolved into a given actor, depending on 1) the meaning of the ref name and 2) the context in which it is used. Ref names can be used in many of the cheats, where specified. Their availability may vary, depending upon the context in which they are used:
+“Ref Name” 是 “Actor Reference Name” 的简称，它唯一标识了一类系统变量，即 Actor 引用（“actor ref” 或简称 “ref”）。一个 Actor 引用能否解析为某个具体 Actor，取决于 1）该 ref name 的含义，以及 2）它所处的上下文。Ref name 可在多个 cheat 中使用，只要该 cheat 明确支持。它们是否可用，会随使用场景而变化：
 
-- D - from within Actor(D)ata
-- T - from within actor-related functions in (t)riggers
-- C - via actor (c)heats
+- D - 在 Actor(D)ata 中
+- T - 在触发器中的 Actor 相关函数里
+- C - 通过 Actor (c)heats
 
-The currently available ref names are:
+当前可用的 ref name 如下：
 
-| **::HoverTarget**       | C    | The actor under the mouse cursor.                            |
+| **::HoverTarget**       | C    | 鼠标指针下方的 Actor。 |
 | ----------------------- | ---- | ------------------------------------------------------------ |
-| **::LastCreated**       | DTC  | From triggers, this resolves to the last actor successfully created directly via a trigger function (but not through any of the other means, such as via message in data as a result of a trigger call). From everywhere else, it also includes actors created explicitly via the Create message (i.e. Create SomeActor). This is intended to maximize consistency across the different variations of the LastCreated() mechanism in the triggers while still attempting to adhere to the rule of least surprise everywhere else. |
-| **::LastCreatedActual** | DTC  | The last actor successfully created by the user through whatever means. Includes actors created by the Create message, actor request creates, or actors created internally by the system (such as when CActorAction creates squibs). |
-| **::Main**              | DTC  | The "main" actor of the ::User scope                         |
-| Doodad                  |      | The CActorDoodad.                                            |
-| Unit                    |      | The CActorUnit.                                              |
-| The rest                |      | The first actor created in the scope.                        |
-| **::PortraitGame**      | DTC  | The main actor for the game portrait window, right now, regardless of what is selected. |
-| **::PortraitGameSelf**  | DTC  | The portrait for the main actor in this actor's scope. Useful for sending messages from any actor in a unit's scope to its portrait actor. Returns nothing if the portrait is for a unit other than the current one. |
-| **::Self**              | D    | The actor receiving an event.                                |
-| **::User**              | TC   | Contains the results from the most recent ActorFrom cheat.   |
-| **::global.<RefName>**  | DTC  | An actor ref from the global reference table.                |
-| **::scope.<RefName>**   | DTC  | An actor ref from the containing scope reference table.      |
-| **::actor.<RefName>**   | DTC  | An actor ref from the containing actor reference table.      |
-| **TargetKey**           | TC   | The actor represented by the key from the ::User scope. Only returns the first one when there are multiple hits in the result set. |
+| **::LastCreated**       | DTC  | 在触发器中，它会解析为最近一次通过触发器函数直接成功创建的 Actor（不包括通过其他方式创建的 Actor，例如因为触发器调用而在数据中通过消息创建的 Actor）。在其他场景中，它还包括通过 Create 消息显式创建的 Actor（例如 Create SomeActor）。这样设计是为了在尽可能保持各类 LastCreated() 机制一致性的同时，也尽量符合最小惊讶原则。 |
+| **::LastCreatedActual** | DTC  | 用户以任何方式最近一次成功创建的 Actor。包括通过 Create 消息创建的 Actor、Actor 请求创建的 Actor，以及系统内部创建的 Actor（例如当 CActorAction 创建爆散碎片时）。 |
+| **::Main**              | DTC  | ::User scope 中的“主”Actor |
+| 装饰物                  |      | CActor装饰物。 |
+| Unit                    |      | CActorUnit。 |
+| The rest                |      | 该 scope 中创建的第一个 Actor。 |
+| **::PortraitGame**      | DTC  | 当前游戏头像窗口的主 Actor，无论当前选中了什么。 |
+| **::PortraitGameSelf**  | DTC  | 当前 Actor 所在 scope 中主 Actor 的头像。适合从单位 scope 中的任意 Actor 向其头像 Actor 发送消息。如果头像对应的是当前单位之外的其他单位，则不会返回任何内容。 |
+| **::Self**              | D    | 接收事件的 Actor。 |
+| **::User**              | TC   | 包含最近一次 ActorFrom cheat 的结果。 |
+| **::global.<RefName>**  | DTC  | 来自全局引用表的一个 Actor ref。 |
+| **::scope.<RefName>**   | DTC  | 来自包含 scope 的引用表的一个 Actor ref。 |
+| **::actor.<RefName>**   | DTC  | 来自包含 Actor 的引用表的一个 Actor ref。 |
+| **TargetKey**           | TC   | 由 ::User scope 中的 key 所表示的 Actor。如果结果集中有多个命中，只返回第一个。 |
 
 ### Branch Ref Names
 
 |                  |      |                                                              |
 | ---------------- | ---- | ------------------------------------------------------------ |
-| **::Creator**    | DTC  | The creator of the ::User actor                              |
-| Hosts            |      | A host actor is one that an actor inherits data from, such as bearings, hosted props, etc. |
-| **::Host**       | DTC  | The main host. Used for bearings and hosted props.           |
-| **::HostImpact** | DTC  | Used to position the impact point of a beam.                 |
-| **::HostLaunch** | DTC  | Used to position the launch point of a beam.                 |
-| **::HostReturn** | DTC  | The host a tentacle uses as the target for its return trip.  |
-| **::Supporter**  | DTC  | Used to link the lifetime of an actor to a "supporting" actor (typically to set up events that tell an actor to die when its supporting actor has died). |
+| **::Creator**    | DTC  | ::User Actor 的创建者 |
+| Hosts            |      | host Actor 是指一个 Actor 会从其继承数据的 Actor，例如朝向、挂接属性等。 |
+| **::Host**       | DTC  | 主 host。用于朝向与挂接属性。 |
+| **::HostImpact** | DTC  | 用于定位 beam 的命中点。 |
+| **::HostLaunch** | DTC  | 用于定位 beam 的发射点。 |
+| **::HostReturn** | DTC  | 触手返回时所使用的目标 host。 |
+| **::Supporter**  | DTC  | 用于将一个 Actor 的生命周期绑定到某个“支撑”Actor 上（通常用于设置事件，使支撑 Actor 死亡时该 Actor 也随之死亡）。 |
 
 
 ### Scope Ref Names
 
-| **::Actor**        | TC   | The scope of the ::User actor.                               |
+| **::Actor**        | TC   | ::User Actor 的 scope。 |
 | ------------------ | ---- | ------------------------------------------------------------ |
-| **::LastCreated**  | TC   | The last scope successfully created by the user via cheat or client code. Irrelevant from within data, since data doesn't create scopes. |
-| **::PortraitGame** | TC   | The scope of the game portrait window.                       |
-| **::Selection**    | C    | The scope of the selected unit. Returns a single scope even if multiple units are selected. |
-| **::User**         | TC   | Contains the result from the most recent ActorScopeFrom cheat. Automatically gets set to the value ::LastCreated when that ref is populated with a new valid actor scope. |
+| **::LastCreated**  | TC   | 用户最近一次通过 cheat 或客户端代码成功创建的 scope。在数据中无意义，因为数据本身不会创建 scope。 |
+| **::PortraitGame** | TC   | 游戏头像窗口的 scope。 |
+| **::Selection**    | C    | 当前选中单位的 scope。即使选中了多个单位，也只返回一个 scope。 |
+| **::User**         | TC   | 包含最近一次 ActorScopeFrom cheat 的结果。当该 ref 被填入新的有效 Actor scope 时，会自动设为 ::LastCreated 的值。 |
 
 ### Content Keys
 
-Create messages can take between 1 and 3 content keys. These enable triggers and cheats to more easily create a variety of actor instances using the same data entry, but with different "content" parameters. For instance:
+Create 消息可以接受 1 到 3 个 content key。这样一来，触发器和 cheat 就能更方便地用同一份数据条目创建多种 Actor 实例，只是“内容”参数不同。例如：
 
 `ActorCreateAt Model Hydralisk `
 
 `ActorCreateAt Model Marine`
 
-Both cheats create a CActorModel called "Model". The first one creates it with the "Hydralisk" asset and the second one creates it with the "Marine" asset. The various types of actors support different creation parameter styles on a case-by-case basis. What follows is a list of actors that support content parameters, and the order in which they are specified.
+这两个 cheat 都会创建一个名为 “Model” 的 CActorModel。前者会用 “Hydralisk” 资源创建它，后者则用 “Marine” 资源创建。不同类型的 Actor 会按各自情况支持不同的创建参数形式。下面列出支持 content 参数的 Actor 类型，以及参数指定顺序。
 
 #### CActorBeam ModelLink RefLaunch RefImpact
 
-* **ModelLink** - the name of the modelData entry used for the beam.
-* **RefLaunch** - the ref name used to populate the beam's ::HostLaunch.
-* **RefImpact** - the ref name used to populate the beam's ::HostImpact.
+* **ModelLink** - beam 所使用的 modelData 条目名称。
+* **RefLaunch** - 用于填充 beam 的 ::HostLaunch 的 ref name。
+* **RefImpact** - 用于填充 beam 的 ::HostImpact 的 ref name。
 
 #### CActorList RefName
 
-* **RefName** - source ref name from which to populate the list.
+* **RefName** - 用来填充该列表的来源 ref name。
 
 #### CActorModel
 
-* **ModelLink** - the name of the modelData entry to be used for the model.
-* **Variation** - the specific variation number for the model, if desired (otherwise it picks randomly).
+* **ModelLink** - 模型所使用的 modelData 条目名称。
+* **Variation** - 若需要，指定模型使用的变体编号（否则随机选择）。
 
 #### CActorSound
 
-* **SoundLink** - the name of the sound to be used.
+* **SoundLink** - 要使用的声音名称。
 
 #### CActorSplat
 
-* **ModelLink** - the name of the modelData entry to be used for the splat.
+* **ModelLink** - splat 所使用的 modelData 条目名称。
 
 
 
-## Actor Cheat Usage
+## Actor Cheat 用法
 
-The user can enter actor cheats into the chat line when running his map from the editor.
+用户可以在通过编辑器运行地图测试时，把 Actor cheat 输入到聊天栏中。
 
-Output goes into the Alert.txt log, which can be found in the user's "StarCraft II/GameLogs" directory. The Alert.txt log has a date and time stamp prepended to its file name, so a real world example actually has a name like: "2011-08-08 10.30.05 Alerts.txt".
+输出会写入 Alert.txt 日志，日志位于用户的 `StarCraft II/GameLogs` 目录。Alert.txt 日志的文件名前会自动附加日期与时间戳，因此现实中的文件名可能会类似于：`2011-08-08 10.30.05 Alerts.txt`。
 
-Shortcuts are not currently supported, but may be added at a later time.
+目前暂不支持快捷写法，但未来可能会加入。
 
 
 
-### Actor Cheat List
+### Actor Cheat 列表
 
-In the given syntax for each command, a parameter surrounded by curly brackets {} denotes an optional parameter. On successful execution of some of these cheats, two global variables, "::User actor" and "::User scope" values are set, which other cheats can act upon. Cheats that kill actors and scopes exclude those actors and scopes that would break currently active units and effects.
+在每条命令给出的语法中，被花括号 `{}` 包围的参数表示可选参数。某些 cheat 成功执行后，会设置两个全局变量：“::User actor” 和 “::User scope”；其他 cheat 可以继续基于它们操作。用于销毁 Actor 和 scope 的 cheat 会排除那些会破坏当前活动单位和效果树的 Actor 与 scope。
 
 #### ActorCreateAt
 
-Creates an actor at the specified location. Sets the ::User actor to this actor and the ::User scope to its scope.
+在指定位置创建一个 Actor。会将 ::User actor 设为该 Actor，并将 ::User scope 设为其所在 scope。
 
-This cheat is useful for directly creating an actor on a test map, in order to observe its properties and interact with it, without waiting for the map to encounter a situation that would create the actor normally. The coordinates enable the user to position actors precisely for combat tests and the like.
+这个 cheat 适合直接在测试地图中创建一个 Actor，以便观察其属性并与其交互，而不用等地图自然运行到会生成该 Actor 的场景。坐标参数允许用户精确放置 Actor，适合战斗测试等用途。
 
 ##### Syntax
 
@@ -123,9 +123,9 @@ This cheat is useful for directly creating an actor on a test map, in order to o
 
 #### ActorCreateAtCursor
 
-Creates an actor (and an actor scope to contain it) at the mouse cursor. Sets the ::User actor to this actor and the ::User scope to its scope.
+在鼠标指针处创建一个 Actor（以及一个容纳它的 Actor scope）。会将 ::User actor 设为该 Actor，并将 ::User scope 设为其所在 scope。
 
-This cheat is useful for directly creating an actor on a test map, in order to observe its properties and interact with it, without waiting for the map to encounter a situation that would create the actor normally. It places the actor at the cursor location, so the user doesn't have to worry about getting specific coordinates to position the actor in a readily visible location.
+这个 cheat 适合直接在测试地图里创建 Actor，以便立即观察与交互，而不必等待地图进入某个会正常生成该 Actor 的情境。由于它直接在光标位置创建 Actor，所以用户也不需要手动输入精确坐标，就能把 Actor 放在一个容易看见的位置。
 
 ##### Syntax
 
@@ -138,21 +138,21 @@ This cheat is useful for directly creating an actor on a test map, in order to o
 
 #### ActorDumpAutoCreates
 
-Dumps a list of all actors that are created as the result of data like this:
+输出所有由于如下这类数据而被创建的 Actor 列表：
 
 ```xml
 <On Terms="UnitBirth.Marine" Send="Create"/>
 ```
 
-This type of actor creation pattern is called autocreation, since the actor automatically creates itself in response to a message. This is different than a creation pattern like this:
+这种 Actor 创建模式称为 autocreation，也就是 Actor 会在收到某条消息时自动创建自己。这不同于下面这种创建模式：
 
 ```xml
 <On Terms="ActorCreation" Send="Create SomeActor"/>
 ```
 
-Because here the Create message is explicitly specifying an actor to create.
+因为这里的 Create 消息明确指定了要创建哪个 Actor。
 
-ActorDumpAutoCreates can be used to track down whether actors are unintentionally being created by certain events.
+ActorDumpAutoCreates 可用于追踪某些事件是否在意外地创建 Actor。
 
 ##### Syntax
 
@@ -160,9 +160,9 @@ ActorDumpAutoCreates can be used to track down whether actors are unintentionall
 
 #### ActorDumpEvents
 
-Dumps a list of all actors events seen by the ::User actor, excluding autocreation events.
+输出 ::User Actor 所见到的所有 Actor 事件列表，不包括 autocreation 事件。
 
-This cheat can be used to perform various text searches on all the actor events in a map, like if one wants to see all the actors that respond to a given Signal event, regardless of which dependency they are in.
+这个 cheat 可用于对地图中的所有 Actor 事件做各种文本搜索。例如，当你想看看有哪些 Actor 会响应某个特定的 Signal 事件时，它非常有用，而且不管这些 Actor 来自哪个依赖项。
 
 ##### Syntax
 
@@ -170,9 +170,9 @@ This cheat can be used to perform various text searches on all the actor events 
 
 #### ActorDumpLeakRisks
 
-Dumps a list of actors older than a particular age that have the possibility of leaking. The user can check if a muzzle flash model is over a minute old, for instance, since muzzle flashes never typically last that long. Some kinds of actors never show up the list of leak risks, since they are automatically cleaned up by the system and therefore cannot typically be leaked by bad data.
+输出所有“年龄超过指定值且有可能泄漏”的 Actor 列表。例如，用户可以检查某个 muzzle flash 模型是否已经存活了超过一分钟，因为 muzzle flash 通常不应该存在这么久。某些类型的 Actor 永远不会出现在泄漏风险列表中，因为系统会自动清理它们，因此通常不会因为错误数据而泄漏。
 
-If a map gets progressively slower as time passes, this cheat can determine if leaking actors is the cause.
+如果地图随着时间推移越来越卡，这个 cheat 可用于判断是否是 Actor 泄漏导致的。
 
 ##### Syntax
 
@@ -182,9 +182,9 @@ If a map gets progressively slower as time passes, this cheat can determine if l
 
 #### ActorDumpLive
 
-Dumps a list of living actors on the entire map, sorted by containing scope.
+输出整张地图上当前仍存活的 Actor 列表，并按其所在 scope 排序。
 
-This cheat is helpful for determining if actors exist, despite them not appearing where they are expected to be in the game world. An actor that mistakenly appears at 0,0 will still show up in the list of live actors.
+这个 cheat 很适合用来确认某些 Actor 是否实际存在，即使它们并没有出现在你预期的游戏世界位置。一个错误出现在 0,0 的 Actor，依然会显示在 live actors 列表中。
 
 ##### Syntax
 
@@ -194,9 +194,9 @@ This cheat is helpful for determining if actors exist, despite them not appearin
 
 #### ActorFrom
 
-Sets a new ::User actor from a live actor, given a ref name.
+根据指定的 ref name，从一个当前存活的 Actor 中设置新的 ::User actor。
 
-This cheat is crucial for setting various actors in the game world into the ::User ref, so that the user can send cheat commands to them.
+这个 cheat 对把游戏世界中的各类 Actor 放入 ::User ref 非常关键，这样用户才能继续向它们发送 cheat 命令。
 
 ##### Syntax
 
@@ -209,9 +209,9 @@ This cheat is crucial for setting various actors in the game world into the ::Us
 
 #### ActorFromActor
 
-Sets the ::User actor to an actor referenced via another actor and a branch ref name.
+通过另一个 Actor 和一个 branch ref name，把 ::User actor 设为所引用的 Actor。
 
-This cheat is useful for setting various parent and child actors in the game world into the ::User ref, so that the user can send cheat commands to them. It is commonly used to perform operations on the ::Host ref of an actor.
+这个 cheat 可用于把游戏世界中的父 Actor 和子 Actor 放入 ::User ref，以便用户继续向它们发送 cheat 命令。它常用于对某个 Actor 的 ::Host 引用执行操作。
 
 ##### Syntax 
 
@@ -221,17 +221,17 @@ This cheat is useful for setting various parent and child actors in the game wor
 
 ```ActorFromActor ::Host```
 
-Sets the ::User actor to the actor that it was hosting from.
+把 ::User actor 设为它当前所寄主的那个 Actor。
 
 ```ActorFromActor ::Creator```
 
-Sets the ::User actor to the actor that created it.
+把 ::User actor 设为创建它的那个 Actor。
 
 #### ActorKillAll
 
-Kills all actors, except those that are part of live units and effect trees.
+销毁所有 Actor，但不包括那些属于存活单位和效果树的 Actor。
 
-Useful for clearing a test map of actors so that individual actors can subsequently be tested in isolation.
+适合在测试地图中清空 Actor，以便之后单独测试某些 Actor，而不受其他 Actor 干扰。
 
 #### Syntax: 
 
@@ -239,9 +239,9 @@ Useful for clearing a test map of actors so that individual actors can subsequen
 
 #### ActorKillClass
 
-Kills all actors of a specified class within a given radius from the cursor. If the radius is not specified, it is infinite.
+在光标周围指定半径内，销毁指定类别的所有 Actor。如果未指定半径，则视为无限范围。
 
-Can be used to clear an area (or the whole map) of a given type of actor, if they are making it hard to focus on a problem that the user is investigating. For instance, it might make sense to kill all doodad actors to confirm whether they are the cause of a performance problem.
+当某类 Actor 让用户难以专注调查某个问题时，这个 cheat 可用于清空一片区域（甚至整个地图）中的该类 Actor。例如，如果你怀疑 装饰物 Actor 导致了性能问题，就可以先把它们全部清掉来验证。
 
 #### Syntax: 
 
@@ -254,9 +254,9 @@ Examples:
 
 #### ActorKillLink 
 
-Kills all actors with a specified actor link within a given radius from the cursor. If the radius is not specified, it is infinite.
+在光标周围指定半径内，销毁具有指定 actor link 的所有 Actor。如果未指定半径，则视为无限范围。
 
-Can be used to clear an area (or the whole map) of all instances of a specific actor entry, if they are making it hard to focus on a problem that the user is investigating. For instance, it might make sense to kill all the models of a particular name in an area of effect (AoE) attack, if too many are being created and obscuring some other part of the graphical FX for an attack that the user is debugging. Or, the user might kill all sounds with a given name to see if he can hear other sounds also associated with an effect.
+当某个具体 Actor 条目的所有实例让用户难以排查问题时，这个 cheat 可用于清空某个区域（甚至整张地图）里的所有该实例。例如，如果某个范围伤害攻击创建了太多同名模型，遮挡了你正在调试的其他图形效果部分，就可以把它们全部删除。又或者，用户也可以销毁某个特定名称的全部声音，以便确认是否能听到与某个效果相关联的其他声音。
 
 #### Syntax: 
 
@@ -266,9 +266,9 @@ Can be used to clear an area (or the whole map) of all instances of a specific a
 
 ##### ActorSend
 
-Sends a valid user message to the currently active ::User actor.
+向当前激活的 ::User actor 发送一条合法的用户消息。
 
-By far the most used actor cheat, and the main way in which developers (internal or external) interact with actors via cheats.
+这是使用频率最高的 Actor cheat，也是开发者（无论内部还是外部）通过 cheat 与 Actor 交互的主要方式。
 
 
 #### Syntax: 
@@ -282,9 +282,9 @@ By far the most used actor cheat, and the main way in which developers (internal
 
 #### ActorSendTo
 
-Sends a message to a system actor reference, using the ::User actor to help resolve the system actor reference. In other words, this routine sends messages to branch ref names (though it also works on the ::Main ref name).
+向一个系统 Actor 引用发送消息，并使用 ::User actor 来辅助解析该系统 Actor 引用。换句话说，这个命令主要用于向 branch ref name 发送消息（当然它也能作用于 ::Main ref name）。
 
-This cheat can be a shorthand way of sending messages to branch actors; the user does not need to first use the ActorFromActor cheat to set them into the ::User ref.
+这个 cheat 可以作为向 branch Actor 发送消息的简写方式；用户不必先通过 ActorFromActor cheat 把它们设到 ::User ref 中。
 
 
 Syntax: 
@@ -297,9 +297,9 @@ ActorSendTo ::Host SetOpacity 0.5 ActorSendTo ::Main SetTintColor {255,0,0}
 
 #### ActorScopeDumpLive
 
-Dumps a list of living scopes on the entire map.
+输出整张地图上所有当前存活 scope 的列表。
 
-This cheat can be useful for looking for actors scopes that are needlessly consuming resources, but no longer have any (useful) actors in them.
+这个 cheat 可用于查找那些无谓占用资源、却已不再包含任何有用 Actor 的 Actor scope。
 
 
 Syntax: 
@@ -312,7 +312,7 @@ ActorScopeDumpLive
 
 **ActorScopeFrom**
 
-This cheat is crucial for setting various scopes in the game world into the ::User scope ref, so that the user can easily find and send messages to any of the actors in that scope.
+这个 cheat 对于把游戏世界中的各类 scope 放入 ::User scope ref 非常关键，这样用户就能方便地找到并向该 scope 中的任意 Actor 发送消息。
 
 
 Syntax: 
@@ -323,9 +323,9 @@ Examples:
 
 ActorScopeFrom ::PortraitGame ActorScopeFrom ::Selection
 
-Kills the currently set ::User actor and ::User scope. This command cannot kill scopes for live units or effects to prevent unexpected results.
+销毁当前设置的 ::User actor 和 ::User scope。为了避免意外结果，这个命令不能销毁属于存活单位或效果的 scope。
 
-This cheat is an effective way to kill one or more actors that the user has been experimenting with, by just killing their containing scope (since this kills all actors inside the scope).
+这个 cheat 是一种高效方式，可用于销毁用户正在试验的一组或多组 Actor，因为只要销毁其所在 scope，该 scope 中的所有 Actor 都会一起被销毁。
 
 
 Syntax: 
@@ -336,7 +336,7 @@ ActorScopeKill
 
 **ActorScopeOrphan**
 
-This cheat can be used to test the effects of the ActorOrphan message on actors inside the ::User scope.
+这个 cheat 可用于测试 ActorOrphan 消息对 ::User scope 内 Actor 的影响。
 
 
 Syntax: 
@@ -349,9 +349,9 @@ ActorScopeOrphan
 
 **ActorScopeSend**
 
-Useful in the rare cases where the user wants to send a message to all actors in a scope.
+适用于那些比较少见的情况：用户希望向某个 scope 中的所有 Actor 广播一条消息。
 
-(As an aside, while it might seem like this cheat is a good way to tint all models in an actor scope red [for instance], it is typically better to have child actors host off of the ::Main actor and inherit the tintColor property. Then the user merely sends the SetTintColor messages to the scope's ::Main actor, and relies on hostedProp inheritance to percolate the color change. This latter method is typically superior when a scope can have actors that shouldn't be tinted red (such as enemy impact squibs) along with the actors that are intended to be red. Broadcasting the tintColor message turns all models in the scope red, regardless.)
+（顺带一提，虽然看上去这个 cheat 很适合把某个 Actor scope 中的所有模型都染成红色，但通常更好的做法，是让子 Actor 以 ::Main Actor 为 host，并继承 tintColor 属性。这样用户只需向 scope 的 ::Main Actor 发送 SetTintColor 消息，再依靠 hostedProp 继承来把颜色变化传递下去。这种方式通常更优，因为一个 scope 中可能同时包含“不应被染红”的 Actor，例如敌方命中碎片。直接广播 tintColor 消息则会把 scope 中所有模型一并染红。）
 
 
 Syntax: 
@@ -367,7 +367,7 @@ ActorScopeSend Destroy
 
 **ActorUsersDump**
 
-This is useful if the user forgets what these refs are currently set to.
+当用户忘记这些 ref 当前指向什么时，这个命令就很有用。
 
 
 Syntax: 
@@ -378,7 +378,7 @@ ActorUsersDump
 
 **ActorUsersFromHoverTarget**
 
-Very useful for being able to inspect and operate upon any actor in the game world that does not belong to an object that can be selected.
+非常适合检查和操作游戏世界中那些不属于任何可选对象的 Actor。
 
 
 Syntax: 
@@ -389,7 +389,7 @@ ActorUsersFromHoverTarget
 
 **ActorUsersFromPortraitGame**
 
-Useful for being able to inspect and operate upon the actors contained by the portrait window.
+适合检查和操作头像窗口中所包含的 Actor。
 
 
 Syntax: 
@@ -400,7 +400,7 @@ ActorUsersFromPortraitGame
 
 **ActorUsersFromSelection**
 
-Very useful for being able to inspect and operate upon any actor in the game world that belongs to an object that can be selected.
+非常适合检查和操作游戏世界中那些属于可选对象的 Actor。
 
 
 Syntax: 
@@ -411,7 +411,7 @@ ActorUsersFromSelection
 
 **ActorWorldParticleFXDestroy**
 
-Can be used to immediately clear the world of obscuring particle and ribbon FX (typically while the game is paused), in order to closely inspect models or some other part of some visual FX.
+可用于立刻清除世界中遮挡视线的粒子和 ribbon 特效（通常会在游戏暂停时使用），从而更仔细地检查模型或某个视觉特效的其他部分。
 
 
 Syntax: 
@@ -427,35 +427,35 @@ Actor Dump Messages
 
 
 
-The user can send actor dump messages to actors to get useful debugging-related information from them.
+用户可以向 Actor 发送 dump 消息，以获得对调试很有帮助的信息。
 
 
 
 
 **AliasDump**
 
-Prints out all the actor aliases currently associated with the actor.
+输出当前与该 Actor 关联的所有别名。
 
 
 
 
 **AnimDumpDB**
 
-Prints out all the animations available to the model associated with the actor. Prints the duration for each animation, along with whether it is a looping animation.
+输出与该 Actor 关联模型可用的所有动画。会同时列出每个动画的持续时间，以及它是否为循环动画。
 
 
 
 
 **AttachDump**
 
-Prints out all the attach points that exist on the model associated with the actor. Also prints the user-specified attach keys and target attach volumes associated with each attach point.
+输出与该 Actor 关联模型上存在的所有挂点。同时也会输出用户指定的 attach key，以及与每个挂点关联的目标挂点体积。
 
 
 
 
 **HostedPropDump**
 
-Prints out all the information associated with the specified hostedProp if it exists on the actor. If the IncludeChildren parameter is 1, it prints out the information for that prop for the target actor along with all of its children.
+输出指定 hostedProp 在该 Actor 上存在时的全部信息。如果 IncludeChildren 参数为 1，它还会继续输出目标 Actor 及其所有子 Actor 上该 prop 的信息。
 
 Examples:
 
@@ -464,14 +464,14 @@ HostedPropDump 0 TintColor HostedPropDump 1 TeamColor
 Syntax: 
 HostedPropDumpAll IncludeChildren
 
-Prints out all the information associated with all the hosted props that exist on the actor. If the IncludeChildren parameter is 1, it does the same for all of the target actor's children as well.
+输出该 Actor 上所有 hosted prop 的全部信息。如果 IncludeChildren 参数为 1，也会对目标 Actor 的所有子 Actor 做同样的输出。
 
 
 
 
 **RefDump**
 
-Prints out debugging information on the actor specified by the refName. Currently, this only works for actor refs in system ref tables, which means refs of the format ::actor.someUserRef, ::scope.someUserRef and ::global.someUserRef.
+输出由 refName 指定的 Actor 的调试信息。目前它只适用于系统 ref 表中的 Actor ref，也就是格式为 ::actor.someUserRef、::scope.someUserRef 和 ::global.someUserRef 的引用。
 
 
 Examples:
@@ -483,7 +483,7 @@ RefDump ::actor.someUserRef
 
 **RefTableDump**
 
-Prints out debugging information on all the actor refs in a given ref table. The RefTableType parameter is case sensitive, and expects the tokens Actor, Scope or Global.
+输出某个给定 ref 表中所有 Actor ref 的调试信息。RefTableType 参数区分大小写，期望值为 Actor、Scope 或 Global。
 
 
 Examples:
@@ -495,11 +495,11 @@ RefDumpAll Actor
 
 **TextureDump**
 
-Prints out all the textures currently being used by the model associated with the target actor. Indicates which ones are associated with texture slots and whether they have been swapped out and replaced by other dynamic textures.
+输出与目标 Actor 关联模型当前正在使用的所有贴图。还会标明哪些贴图与纹理槽位绑定，以及它们是否被其他动态纹理替换过。
 
 
 
 
 **TextureDumpDB**
 
-Prints out all the textures available for dynamic texture swapping on the model associated with the target actor.
+输出与目标 Actor 关联模型上，所有可供动态纹理替换使用的贴图。

@@ -1,89 +1,78 @@
-# Navigating the Interface
+# 界面导航
 
-The Editor is split into eight distinct Modules, each presenting a different view of the game-building process. This division is very useful in separating and understanding each part of the development process. However, the number of different views available means that it can take a little time to understand the basic rules for navigating both the general environment and each individual Module. Below you'll find a quick description of the toolbars, views, and utilities available globally throughout the Editor.
+编辑器被划分为八个不同的模块，每个模块都呈现游戏构建流程中的一种不同视图。这种划分对于拆分并理解开发流程的各个部分非常有帮助。不过，可用视图种类很多，因此理解整体环境以及各个模块的基本导航规则可能需要一些时间。下面你会看到一个简要说明，介绍编辑器中全局通用的工具栏、视图和实用功能。
 
-If you'd like to learn more about the interface specific to each Module, you can refer to the articles that cover those Modules in more depth.
+如果你想进一步了解各个模块专属的界面，可以参考那些更深入介绍模块的文章。
 
-## Toolbars
+## 工具栏
 
-At the top of any Module, you'll find a collection of tabs and toolbars that will follow you through each view of the Editor. These components will change slightly according to which view you have of the Editor, offering relevant options for each Module. From top to bottom, its main components are, the Title Bar, the File Bar, and the Main Toolbar.
+在任意模块顶部，你都会看到一组会伴随你穿梭于编辑器各个视图的标签和工具栏。这些组件会根据你当前所处的视图略有变化，为不同模块提供相应选项。从上到下，其主要部分依次是标题栏、菜单栏和主工具栏。
 
 ![The Toolbar and Tab Collection](./resources/003_Navigating_the_Interface01.png)
 
-The Main Toolbar, is a constant throughout the Editor. Despite looking
-like a single, solid bar, it is in fact composed of three components.
-Two of those components, the leftmost Utility Bar, and the rightmost
-Navigation Bar are constant, maintaining the same buttons regardless of
-your location in the Editor. The central portion of the toolbar is a bar
-that targets the current Module. These include the Terrain Bar, Trigger
-Bar, Data Bar, AI Bar, UI Bar, Cutscene Bar. The Importer and Text
-Editor have no specific bar, but you'll find an Overview Bar in the
-Overview Manager. The main toolbar is pictured below.
+主工具栏在整个编辑器中都是固定存在的。虽然它看起来像是一整条连续的栏位，但实际上由三个部分组成。其中左侧的实用栏和右侧的导航栏始终不变，无论你在编辑器中的哪个位置，这两部分按钮都相同。工具栏中央部分则会对应当前模块变化，包括地形栏、触发栏、数据栏、AI 栏、UI 栏和过场动画栏。导入器和文本编辑器没有专属栏位，但你可以在概览管理器中找到概览栏。主工具栏如下图所示。
 
 ![Main Toolbar](./resources/003_Navigating_the_Interface02.png)
 
-## Utility Bar
+## 实用栏
 
-The Utility Bar offers several standard functions that are relevant to
-every Module. You can identify this bar by its green buttons. Below you
-will find an image of the bar and a breakdown of its functions.
+实用栏提供若干与所有模块都相关的标准功能。你可以通过绿色按钮识别这一区域。下面给出了该栏位的图片以及功能说明。
 
 ![Utility Bar](./resources/003_Navigating_the_Interface03.png)
 
-| Button         | Functionality                                                |
-| -------------- | ------------------------------------------------------------ |
-| New (Ctrl+N )  | Launches the 'New Document' window, allowing you to create new maps and mods. |
-| Open (Ctrl+O)  | Launches the 'Open Document' window, allowing you to open either local files or files to be downloaded from Battle.net. |
-| Save (Ctrl+S)  | Saves the current file.                                      |
-| Undo (Ctrl+Z)  | Reverts the last change made in the current Module.          |
-| Redo (Ctrl+Y)  | Reapplies the last reverted change made with Undo.           |
-| Cut (Ctrl+X)   | Removes the current selection and saves it to the clipboard. |
-| Copy (Ctrl+C)  | Copies the current selection to the clipboard.               |
-| Paste (Ctrl+V) | Places the elements currently stored in the clipboard.<br />For Cut, this will also clear the clipboard. For Copy, the clipboard retains its selection. |
+| 按钮             | 功能 |
+| ---------------- | ---- |
+| 新建 (Ctrl+N )   | 打开“新建文档”窗口，用于创建新地图和模组。 |
+| 打开 (Ctrl+O)    | 打开“打开文档”窗口，用于打开本地文件或从 Battle.net 下载的文件。 |
+| 保存 (Ctrl+S)    | 保存当前文件。 |
+| 撤销 (Ctrl+Z)    | 撤销当前模块中的上一次更改。 |
+| 重做 (Ctrl+Y)    | 重新应用通过撤销恢复的上一次更改。 |
+| 剪切 (Ctrl+X)    | 移除当前选择，并将其保存到剪贴板。 |
+| 复制 (Ctrl+C)    | 将当前选择复制到剪贴板。 |
+| 粘贴 (Ctrl+V)    | 放置当前存储在剪贴板中的元素。<br />对于剪切，这也会清空剪贴板。对于复制，剪贴板会保留其内容。 |
 
 
 
-Note that these operations are context sensitive, you can use them on different types of elements depending on your current Module in the Editor. This means that, if you are in the Trigger Editor, copy and
-paste will operate on things like triggers, actions, or events. Similarly, if you are in the Terrain Editor, you can copy and paste entirely different elements, like units or doodads.
+注意，这些操作具有上下文敏感性。你可以根据当前所在模块，对不同类型的元素使用它们。这意味着如果你在触发编辑器中，复制和粘贴操作的对象可能是触发器、动作或事件；同样地，如果你在地形编辑器中，你复制和粘贴的则可能是单位或装饰物等完全不同的元素。
 
-## Navigation Bar
+## 导航栏
 
-The **Navigation Bar** is used for moving from Module to Module. You can identify it by its blue buttons. Below you'll find an image of the bar and a description of its functions.
+**导航栏**用于在各个模块之间切换。你可以通过蓝色按钮识别它。下面给出了该栏位的图片及功能说明。
 
 ![Navigation Bar](./resources/003_Navigating_the_Interface04.png)
 
-| Function                   | Effect                                                       |
-| -------------------------- | ------------------------------------------------------------ |
-| Terrain Editor (F5)        | Navigates to the Terrain Editor.                             |
-| Trigger Editor (F6)        | Navigates to the Trigger Editor.                             |
-| Data Editor (F7)           | Navigates to the Data Editor.                                |
-| Text Editor (F8)           | Navigates to the Text Editor.                                |
-| Importer (F9)              | Navigates to the Importer.                                   |
-| AI Editor (Shift+F5)       | Navigates to the AI Editor.                                  |
-| UI Editor (Shift+F6)       | Navigates to the UI Editor.                                  |
-| Cutscene Editor (Shift+F7) | Navigates to the Cutscene Editor.                            |
-| Overview Manager (F12)     | Navigates to the Overview Manager.                           |
-| Test Document (Ctrl+F9)    | Launches the current map for testing, as specified in 'Preferences.' |
+| 功能 | 作用 |
+| ---- | ---- |
+| 地形编辑器 (F5) | 切换到地形编辑器。 |
+| 触发编辑器 (F6) | 切换到触发编辑器。 |
+| 数据编辑器 (F7) | 切换到数据编辑器。 |
+| 文本编辑器 (F8) | 切换到文本编辑器。 |
+| 导入器 (F9) | 切换到导入器。 |
+| AI 编辑器 (Shift+F5) | 切换到 AI 编辑器。 |
+| UI 编辑器 (Shift+F6) | 切换到 UI 编辑器。 |
+| 过场动画编辑器 (Shift+F7) | 切换到过场动画编辑器。 |
+| 概览管理器 (F12) | 切换到概览管理器。 |
+| 测试文档 (Ctrl+F9) | 按“首选项”中的设置启动当前地图进行测试。 |
 
-This bar hosts the incredibly useful 'Test Document' function, which you'll be using a lot. You can also use it to navigate to the Overview Manager, which functions as a sort of bird's eye view of the entire project and each module.
+这一区域包含极其实用的“测试文档”功能，你会频繁使用它。你也可以用它进入概览管理器，它相当于整个项目及各个模块的鸟瞰视图。
 
-## Additional Bars
+## 其他栏位
 
-The Title Tab displays the current location in the Editor, as well as the current location and file structure of your active project. An example is shown below.
+标题标签会显示你在编辑器中的当前位置，以及当前活动项目的位置与文件结构。示例如下。
 
 ![Title Bar](./resources/003_Navigating_the_Interface05.png)
 
-When accessing a file from battle.net, the file structure will take the form of \[Battle.net: FileName\].
+当访问来自 Battle.net 的文件时，文件结构会显示为 `[Battle.net: FileName]`。
 
-The File Bar is also where you'll find many tabs with options relevant to all aspects of a project. Similar to the Main Toolbar, it offers the File, Edit, View, Map, Modules, Window, and Help tabs regardless of your location. You'll find several other context-sensitive options depending on your current location in the Editor.
+菜单栏也是你找到许多与项目各方面相关选项卡的位置。与主工具栏类似，无论你当前在编辑器中的什么位置，它都会提供 File、Edit、View、Map、Modules、Window 和 Help 标签。此外，根据你的当前位置不同，还会出现若干其他上下文相关选项。
 
 ![File Bar](./resources/003_Navigating_the_Interface06.png)
 
-The Editor also offers a context-sensitive bar with functions only available and relevant to your current location. These are discussed in more detail in the articles that describe the main locations in the Editor, the eight Modules and the Overview Manager.
+编辑器还提供一个只在当前位置可用、并且仅与当前位置相关的上下文栏。这些内容会在介绍编辑器主要区域，也就是八个模块和概览管理器的文章中进一步展开。
 
-## Hotkeys
+## 快捷键
 
-The Editor has extensive support for hotkeys, it also allows complete customization of all of its standard controls. You can set hotkeys for almost any function available, most of which do not have any default hotkeys. You can access the hotkey controls by navigating to File ▶︎ Configure Controls. This will launch the 'Configure Controls' window, which is shown below.
+编辑器对快捷键有非常广泛的支持，并且允许你完全自定义其所有标准控制。几乎所有可用功能都可以设置快捷键，其中大多数默认并没有绑定。你可以通过 `文件 ▶︎ Configure Controls` 进入快捷键设置。这会打开“配置控制”窗口，如下图所示。
 
 ![Hotkey Configuration](./resources/003_Navigating_the_Interface07.png)
 

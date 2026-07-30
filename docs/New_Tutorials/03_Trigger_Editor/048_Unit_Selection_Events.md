@@ -1,76 +1,75 @@
-# Unit Selection Events
+# 单位选择事件
 
-The 'Unit Selection' category of events can be very useful when it comes to adding ways to interact with units. These events are triggered by changes in the state of a Unit that occur in response to the mouse actions of a Player. There are three types of change, which are broken down in the table below.
+'Unit Selection' 这一类事件在为单位增加交互方式时非常有用。这些事件会在玩家用鼠标操作某个 Unit 并导致其状态变化时触发。这里的变化共有三种，见下表。
 
-| Ev en t                 | Details                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| 事件 | 说明 |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Un it Se le ct ed       | Triggers the first time a Player clicks on the Unit, this selects the Unit. The Unit now enters its Selected state. Once the Unit is in this state, it cannot be selected again until it is deselected by the Player and returns to its Basic State. A unit may also be deselected when the Player selects any other game entity. A Player may select many units with a single action either by using a box select with the mouse or holding the CTRL key while clicking a unit.            |
-| Un it Cl ic ke d        | Triggers every time the Unit is clicked with the mouse by a Player. Can occur indefinitely. The first click on a deselected Unit meets the criteria for both a Unit Clicked event and a Unit Selected event. A Player may only click on a single unit at a time.                                                                                                                                                                                                                            |
-| Un it Hi gh li gh te d/ | The highlighted and unhighlighted events trigger is based on the mouse position of the Player as it enters or leaves the area of the Unit respectively. When the mouse pointer first crosses the area of the Unit, the unit triggers its Unit Highlighted event and becomes Highlighted. When the mouse pointer leaves the area of the Highlighted unit, the unit triggers its Unit UnHighlighted event, returning to its Basic state. A Player can only highlight a single unit at a time. |
-| Un Hi gh li gh te d     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Unit Selected | 当玩家第一次用鼠标点击某个 Unit 时触发，此时该单位会被选中并进入 Selected 状态。一旦单位处于这个状态，在玩家取消选择并让其回到 Basic State 之前，就不能再次触发选中。玩家选择其他游戏实体时，该单位也可能被取消选择。玩家还可以通过鼠标框选或按住 CTRL 再点击单位，一次性选择多个单位。 |
+| Unit Clicked | 每当玩家用鼠标点击某个 Unit 时都会触发，可以无限次发生。对一个未选中单位的第一次点击，同时满足 Unit Clicked 与 Unit Selected 的条件。玩家一次只能点击一个单位。 |
+| Unit Highlighted/UnHighlighted | 高亮与取消高亮事件取决于玩家鼠标位置是否进入或离开该 Unit 的范围。当鼠标首次进入单位范围时，会触发 Unit Highlighted，单位进入 Highlighted 状态；当鼠标离开该高亮单位范围时，会触发 Unit UnHighlighted，单位回到 Basic State。玩家一次只能高亮一个单位。 |
 
-## Selection States
+## 选择状态
 
-StarCraft's UI offers some help with identifying selection states, as shown in the image below. The caption following the image explains each state.
+《星际争霸 II》的 UI 会帮助你识别这些选择状态，如下图所示。图片后的说明解释了每种状态。
 
-[![Image](./resources/048_Unit_Selection_Events1.png)](./resources/048_Unit_Selection_Events1.png)
+[![图像](./resources/048_Unit_Selection_Events1.png)](./resources/048_Unit_Selection_Events1.png)
 
-Unit Basic State -- Unit Highlighted -- Unit Selected & Highlighted -- Unit Selected
+单位基础状态 -- 单位高亮 -- 单位已选中且高亮 -- 单位已选中
 
-The leftmost picture here shows the unit in its Basic state, it is neither Selected nor Highlighted and there are no special alterations to its model as a result. In the second picture from the left, the mouse has entered that unit's area, making the unit Highlighted. At this point, a Unit Highlighted event would trigger. Holding the cursor over a unit in the Highlighted state causes a pair of illustrative UI changes; the mouse pointer is altered to a targeting reticle and the unit is marked with a dashed circle. The color of the circle depends on the unit's owner, for a unit belonging to the player it is green, for an allied or neutral unit it is yellow, and for an enemy unit it is red.
+最左侧图片中的单位处于 Basic 状态，既没有被 Selected，也没有被 Highlighted，因此其模型在界面上不会有任何特殊变化。左起第二张图中，鼠标进入了该单位的范围，于是单位进入 Highlighted 状态。此时会触发 Unit Highlighted 事件。鼠标停留在高亮状态的单位上时，界面会发生两项可视化变化：鼠标指针变成瞄准准星，单位脚下出现一个虚线圆圈。圆圈颜色取决于单位归属：己方单位为绿色，盟友或中立单位为黄色，敌方单位为红色。
 
-In the third picture from the left, the unit has been clicked for the first time, the unit is now Selected. This change results in the both the Unit Selected and Unit Clicked events triggering. A Selected unit's model is marked in the UI with an unbroken circle. This circle has the same alliance-based coloring as the Highlighted cursor. In this case, the cursor remains on top of the unit, making the unit both Highlighted and Selected. As a result, both sets of UI features are superimposed. The unit has both the selection circle and the highlighted circle, and the cursor remains the highlighting reticle.
+左起第三张图中，该单位第一次被点击，因此进入 Selected 状态。这一变化会同时触发 Unit Selected 和 Unit Clicked 事件。被选中的单位在界面上会显示一个实线选中圆圈，其颜色规则与高亮圆圈一致。由于此时鼠标仍悬停在单位上，所以该单位同时处于 Highlighted 和 Selected 状态，因此两套界面效果会叠加出现：既有选中圆圈，也有高亮圆圈，鼠标光标也保持为高亮准星。
 
-In the rightmost picture the mouse has been moved from the area of the unit, resulting in the Unit Unhighlighted event. The unit is still selected and still marked with the unbroken selection circle. The cursor has returned to its basic pointer as the unit is no longer being highlighted.
+最右侧图片中，鼠标已经移出单位范围，因此触发了 Unit Unhighlighted 事件。此时单位仍被选中，仍显示实线选中圆圈；但由于不再高亮，鼠标光标已恢复为普通指针。
 
-## Selection Flags
+## 选择标志
 
-Although each unit in the StarCraft engine can be clicked and highlighted, the data messages that trigger the events are not enabled by default. You'll have to edit some game data to enable these behaviors. Navigate to the Data Editor then to + ▶︎ Edit Game Data ▶︎ Units. Find the Unit type that is going to be monitored for selection events. In this Unit, navigate to the 'Unit: Flags' field and double click to launch an 'Object Values' window. For an example, see the changes made to a stalker in the image below.
+虽然《星际争霸 II》引擎中的每个单位都可以被点击和高亮，但用于触发这些事件的数据消息默认并未开启。你需要在游戏数据中手动启用这些行为。进入数据编辑器，然后打开 + ▶︎ Edit Game Data ▶︎ 单位。找到你要监视选择事件的单位类型。进入该 Unit 后，找到 'Unit: Flags' 字段并双击，打开 'Object Values' 窗口。下图展示了一个追猎者的修改示例。
 
-[![Altering a Stalker's Unit: Flags Field](./resources/048_Unit_Selection_Events2.png)](./resources/048_Unit_Selection_Events2.png)
-*Altering a Stalker's Unit: Flags Field*
+[![修改追猎者的 Unit: Flags 字段](./resources/048_Unit_Selection_Events2.png)](./resources/048_Unit_Selection_Events2.png)
+*修改追猎者的 Unit: Flags 字段*
 
-Scroll down through the unit flags until you reach 'Cannot Be Clicked' and 'Cannot Be Highlighted.' These flags control the sending of the Unit Clicked and Unit Highlighted/UnHighlighted events respectively. Once these flags have been unchecked, the unit type will propagate any events of their respective type to the Trigger Editor, and should look as they do in the image below.
+向下滚动这些单位标志，直到看到 'Cannot Be Clicked' 和 'Cannot Be Highlighted.' 这两个标志分别控制 Unit Clicked 与 Unit Highlighted/UnHighlighted 事件是否会被发送。取消勾选后，该单位类型就会把相应事件传递到触发编辑器中，其效果如下图所示。
 
 ![](./resources/048_Unit_Selection_Events3.png)
-*Enabling Unit Clicked and Highlighted/UnHighlighted Events for a Unit*
+*为某单位启用 Unit Clicked 与 Highlighted/UnHighlighted 事件*
 
-## Examining Unit Selection Events
+## 观察单位选择事件
 
-Open the demo map provided with this article, which provides a course where you can tinker with selection events. This will help to build an intuitive feel for how selection events arise from a player's actions. The course should appear as follows.
+打开本文附带的演示地图，里面提供了一个可供你反复试验选择事件的场景。这有助于你直观理解，单位选择事件究竟如何从玩家操作中产生。场景如下所示。
 
-[![Demo Map Course](./resources/048_Unit_Selection_Events4.png)](./resources/048_Unit_Selection_Events4.png)
-*Demo Map Course*
+[![演示地图场景](./resources/048_Unit_Selection_Events4.png)](./resources/048_Unit_Selection_Events4.png)
+*演示地图场景*
 
-You'll see that the map contains several unit types that have been configured to accept both Unit Clicked and Unit Highlighted/UnHighlighted events via the Data Editor. Note that these units are also divided between the player, an allied player, an enemy player, and neutral. Move to the Trigger Editor to see how unit selection events will be used in this example.
+你会发现，地图中有多种单位已经通过数据编辑器配置为同时接受 Unit Clicked 与 Unit Highlighted/UnHighlighted 事件。注意，这些单位还分别属于玩家本人、盟友、敌人以及中立方。接着进入触发编辑器，看看这些单位选择事件在示例中是如何使用的。
 
 ![](./resources/048_Unit_Selection_Events5.png)
-*Output in Response to a Unit Selection Event*
+*对单位选择事件的响应输出*
 
-The map has been set with some utility revealers, alliance controls, and invulnerability triggers within the 'Map Init' trigger. Beyond that, there is a trigger for each major unit selection event: Highlighted, UnHighlighted, Selected, and Clicked. Like the 'Unit Highlighted' example trigger shown above, these triggers respond to their events with a debug message sent to screen space. Using this setup, the map can give direct feedback for every possible selection action a player can make. You can explore it by hitting the 'Test Document' button in the Editor.
+这张地图在 'Map Init' 触发器中设置了一些实用的显示器、联盟控制和无敌性逻辑。除此之外，还分别为 Highlighted、UnHighlighted、Selected 和 Clicked 四种主要单位选择事件准备了对应触发器。就像上图中的 'Unit Highlighted' 示例触发器一样，这些触发器在事件发生时会向屏幕输出一条调试消息。借助这套设置，地图能够对玩家做出的每一种选择操作给出直接反馈。你可以点击编辑器中的 'Test Document' 按钮亲自体验。
 
-Some illustrative examples of unit selection events are shown below.
+下面是一些具有说明性的单位选择事件示例。
 
 ![](./resources/048_Unit_Selection_Events6.png)
-*Marauder is Highlighted, then Clicked and Selected*
+*掠夺者先被高亮，随后被点击并选中*
 
-Here the enemy marauder has been moused over and then clicked. Doing so has produced a Unit Highlighted, Unit Clicked, and Unit Selected event in sequence. Note that the last two events happen at the same time in the Editor, but the clicked event will always occur first in any list. You can also see that the Marauder's UI alterations each display a red coloring, indicating its status as an enemy.
+这里，敌方掠夺者先被鼠标悬停，然后被点击。于是依次产生了 Unit Highlighted、Unit Clicked 和 Unit Selected 事件。要注意，后两者在编辑器中看起来是同时发生的，但在列表中 clicked 事件总是排在前面。你还能看到，该掠夺者对应的 UI 效果均呈红色，这表明它是敌方单位。
 
-[![Box Selecting all Controlled Units](./resources/048_Unit_Selection_Events7.png)](./resources/048_Unit_Selection_Events7.png)
-*Box Selecting all Controlled Units*
+[![框选所有受控单位](./resources/048_Unit_Selection_Events7.png)](./resources/048_Unit_Selection_Events7.png)
+*框选所有受控单位*
 
-In this next case, a box selection has been made around the units. Despite the units being covered by the box overlay, this alone does not trigger any events.
+在下一个例子中，玩家用鼠标框选了一批单位。尽管这些单位已被框选覆盖，但仅仅框住它们并不会立即触发任何事件。
 
 ![](./resources/048_Unit_Selection_Events8.png)
-*Stalker, Zealot, and Dark Templar Being Simultaneously Selected*
+*追猎者、狂热者和黑暗圣堂武士被同时选中*
 
-Releasing the box selection results in all units belonging to the player being selected at once. Each unit individually triggers a Unit Selected event, then proceeds to a Selected state.
+当释放框选时，所有属于玩家的单位会同时被选中。每个单位都会单独触发一个 Unit Selected 事件，然后进入 Selected 状态。
 
-[![Repeated Clicking of the Lyote](./resources/048_Unit_Selection_Events9.png)](./resources/048_Unit_Selection_Events9.png)
-*Repeated Clicking of the Lyote*
+[![反复点击 Lyote](./resources/048_Unit_Selection_Events9.png)](./resources/048_Unit_Selection_Events9.png)
+*反复点击 Lyote*
 
-In this example, a neutral Lyote critter has been repeatedly clicked. This demonstrates that a Unit can accept an unlimited number of player clicks, with each triggering a Unit Clicked event.
+这个例子里，一个中立的 Lyote 小动物被反复点击。这说明一个 Unit 可以无限次接受玩家点击，并且每次都会触发 Unit Clicked 事件。
 
-## Attachments
+## 附件
 
  * [048_Unit_Selection_Events.SC2Map](./maps/048_Unit_Selection_Events.SC2Map)

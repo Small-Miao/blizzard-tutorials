@@ -1,6 +1,6 @@
-# Text Editor Introduction
+# 文本编辑器简介
 
-The Text Editor is a central hub for controlling all of the text inputs present in an entire project. Here you'll find a top-down overview of every single text-containing entity found in the map. These may include mission screens and debriefings, game-time transmissions and written dialog, right down to variable and parameter names. The Text Editor offers a collected way of handling all text and is intended primarily for use as a time-saver for global edits and an entry point for inputting large amounts of text into the game for later use.
+文本编辑器是统一管理整个项目中所有文本输入的核心枢纽。在这里，你可以自上而下地查看地图里所有包含文本的内容，包括任务界面与任务总结、游戏中的传讯与书面对话，甚至变量名和参数名。文本编辑器提供了一种集中处理文本的方式，主要用于节省全局修改所花费的时间，也便于你先批量录入大量文本，再在游戏中后续调用。
 
-[![Styled Text Becoming a Gameplay Asset](./resources/077_Text_Editor_Introduction1.png)](./resources/077_Text_Editor_Introduction1.png)
-*Styled Text Becoming a Gameplay Asset*
+[![样式化文本成为游戏资源](./resources/077_Text_Editor_Introduction1.png)](./resources/077_Text_Editor_Introduction1.png)
+*样式化文本成为游戏资源*

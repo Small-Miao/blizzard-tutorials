@@ -1,45 +1,45 @@
-# Action Definitions
+# 动作定义
 
-Action Definitions allow you to create customized sequences of action statements. Once assembled, they can be used in the same context that their component actions would be. They also give support for parameters, input values that can alter the behavior of the definition. By organizing actions into larger hierarchical chunks, you can use action definitions to take procedures that repeat often and abstract them into a robust tool to be deployed as needed. Properly used, this will save you time, make your code easier to understand, and even optimize performance.
+动作定义允许你创建自定义的动作语句序列。组装完成后，它们可以像组成自身的那些动作一样，在相同上下文中被调用。动作定义也支持参数，也就是能够改变定义行为的输入值。通过把动作组织成更高层级的结构块，你可以把那些经常重复的流程抽象成一个稳固的工具，在需要时随时调用。正确使用动作定义，不仅能节省时间、提升代码可读性，还可能带来性能优化。
 
-## Demoing An Action Definition
+## 演示动作定义
 
-Open the demo map provided with this article and navigate to the Trigger Editor. This project contains a single trigger that runs on map initialization, populating the map with three distinct sets of a tree and a patch of grass, and using some actor modifications on the models as they are generated.
+打开本文附带的演示地图并进入触发编辑器。这个项目中有一个在地图初始化时运行的触发器，它会在地图上生成三组不同位置的树和草地，并在生成模型时对演员进行一些修改。
 
-[![Tree and Grass Generation Actions](./resources/038_Action_Definitions1.png)](./resources/038_Action_Definitions1.png)
-*Tree and Grass Generation Actions*
+[![生成树和草地的动作](./resources/038_Action_Definitions1.png)](./resources/038_Action_Definitions1.png)
+*生成树和草地的动作*
 
-The overall operation is fairly simple, but it consists of three similar procedures differentiated only by where they are creating objects. Redundant, bloated triggering should stand out as a possible location for an action statement. In this case, the repeated model creation options and their various actor messages could all be moved into an action definition.
+整体逻辑其实很简单，但它由三段非常相似的流程组成，彼此之间只是在创建对象的位置上有所区别。像这种重复、臃肿的触发逻辑，通常就是提炼动作定义的好机会。在这个例子里，反复出现的模型创建选项以及对应的各种演员消息，都可以迁移进一个动作定义中。
 
-To create an action definition, right-click on the Triggers Panel and navigate to New ▶︎ New Action Definition. Name the definition 'Create Tree.' Now, hold shift and select the first five actions of the main trigger. Copy these actions into the new action definition, so that you're left with the following view.
+要创建动作定义，请在触发器面板中右键，选择 新建 ▶︎ 新建动作定义。将该定义命名为 'Create Tree.' 然后按住 Shift，选中主触发器中的前五个动作，并把这些动作复制到新的动作定义中。完成后应如下所示。
 
-[![Create Tree Action Definition](./resources/038_Action_Definitions2.png)](./resources/038_Action_Definitions2.png)
-*Create Tree Action Definition*
+[![Create Tree 动作定义](./resources/038_Action_Definitions2.png)](./resources/038_Action_Definitions2.png)
+*Create Tree 动作定义*
 
-You have now refactored the redundant actions into a custom action definition. At this point, you can change the 'Create Trees' trigger to use the action definition three times, rather than its current bloat of code. Add the action definition to a trigger by accessing it from its 'call' location, the action list. Right-click on the trigger and select New Action, then find the 'Create Tree' definition, as shown below.
+现在，你已经把重复动作重构成了一个自定义动作定义。接下来，可以把 'Create Trees' 触发器改成调用这个动作定义三次，而不再保留当前这段臃肿代码。要在触发器中加入动作定义，需要从它的“调用位置”也就是动作列表中选取。右键点击触发器并选择 New Action，然后找到 'Create Tree' 定义，如下图所示。
 
-[![Using the New Action Definition](./resources/038_Action_Definitions3.png)](./resources/038_Action_Definitions3.png)
-*Using the New Action Definition*
+[![使用新的动作定义](./resources/038_Action_Definitions3.png)](./resources/038_Action_Definitions3.png)
+*使用新的动作定义*
 
-Repeat this action three times to reflect the three operations it is replacing and clear out all the unnecessary code. This should leave you with the following.
+重复添加三次，以对应它所取代的三段流程，并删除所有多余代码。结果应如下所示。
 
-[![Reorganized Main Trigger](./resources/038_Action_Definitions4.png)](./resources/038_Action_Definitions4.png)
-*Reorganized Main Trigger*
+[![重新整理后的主触发器](./resources/038_Action_Definitions4.png)](./resources/038_Action_Definitions4.png)
+*重新整理后的主触发器*
 
-## Action Definition Parameters
+## 动作定义参数
 
-Despite the main trigger being significantly cleaned up, something has been overlooked. Remember that each tree and grass grouping were being spawned at differing locations. As it stands now, the definition spawns a tree and grass patch at only one location, Point (20, 20).
+虽然主触发器已经明显简化，但这里还遗漏了一点。别忘了，每一组树和草地原本都是在不同位置生成的。而按照当前写法，这个定义只会在一个位置生成树和草地，也就是 Point (20, 20)。
 
-You can make your action definition have variable results using parameters. A parameter value can pass additional information to the action definition. Creation of objects in three differing locations will require you to use a varying Point parameter. You can arrange this by moving to the 'Create Tree' action definition, then right-clicking on the 'Parameters' heading and navigating to New ▶︎ New Parameter. Name the parameter 'Location' and set its type to Point. Select each action using the Point(20,20) as a location field, and alter it to the 'Location' variable. You should be presented with the following.
+你可以通过参数让动作定义产生可变结果。参数值能够向动作定义传入额外信息。若想在三个不同位置创建对象，就需要一个可变化的 Point 参数。操作方式是进入 'Create Tree' 动作定义，右键点击 'Parameters' 标题并选择 新建 ▶︎ 新建参数。把参数命名为 'Location'，类型设为 Point。随后，把每个以 Point(20,20) 作为位置字段的动作，都改为使用变量 'Location'。完成后应如下所示。
 
-[![Action Definition with Parameter](./resources/038_Action_Definitions5.png)](./resources/038_Action_Definitions5.png)
-*Action Definition with Parameter*
+[![带参数的动作定义](./resources/038_Action_Definitions5.png)](./resources/038_Action_Definitions5.png)
+*带参数的动作定义*
 
-Now return to the main trigger. Here you'll see each action requiring an input parameter for 'Location.' Alter the values for each action to match the original locations at which the trees were spawned. This will give you a functional final trigger, shown below.
+现在返回主触发器。此时你会看到每个动作都要求为 'Location' 提供输入参数。把这些值改回树木原先生成的三个位置后，就会得到一个可正常工作的最终触发器，如下图所示。
 
 [![image4](./resources/038_Action_Definitions6.png)](./resources/038_Action_Definitions6.png)
 
-## Attachments
+## 附件
 
  * [038_Action_Definitions_Start.SC2Map](./maps/038_Action_Definitions_Start.SC2Map)
  * [038_Action_Definitions_Completed.SC2Map](./maps/038_Action_Definitions_Completed.SC2Map)

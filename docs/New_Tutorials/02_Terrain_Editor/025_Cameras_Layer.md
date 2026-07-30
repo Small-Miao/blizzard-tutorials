@@ -1,70 +1,70 @@
-# Cameras Layer
+# 镜头层
 
-StarCraft is usually seen from the top-down view that characterizes the standard melee game.
+《星际争霸》通常以标准对战中典型的俯视视角呈现。
 
 [![Standard Melee View](./resources/025_Cameras_Layer1.png)](./resources/025_Cameras_Layer1.png)
-*Standard Melee View*
+*标准对战视角*
 
-It's easy to overlook the fact that this view is a central point of much of the game's visual design. Despite the engine's cinematic usage throughout the single player campaign, players can often forget that they're looking through a dynamic, fully moveable camera.
+人们很容易忽视这样一个事实：这个视角其实是游戏大量视觉设计的核心之一。尽管引擎在单人战役中经常被用于电影化镜头表现，玩家还是常常忘记自己看到的是一个动态、可完全移动的镜头视图。
 
-Using the Cameras Layer, unique perspectives, effects, and movements can be described using a type of game object called a camera. This layer offers you the ability to hop inside these objects easily, allowing you to see from their viewpoint and configure them for use. You can then use the Trigger Editor and the Cutscene Editor to use cameras in various cinematic or gameplay capacities to offer your players a richer experience. To learn more about cameras, move to the Cameras Layer from the Terrain Bar using the icon pictured below.
+使用镜头层，你可以通过一种称为 camera 的游戏对象来描述独特的视角、效果和运动。这个图层允许你很方便地进入这些对象内部，从它们的视点观察并配置它们的用途。之后你还可以借助触发编辑器和过场动画编辑器，在各种电影化或玩法场景中调用这些镜头，为玩家带来更丰富的体验。若想进一步了解镜头，请通过地形栏中下图所示图标切换到镜头层。
 
 ![Cameras Layer Icon](./resources/025_Cameras_Layer2.png)
-*Cameras Layer Icon*
+*镜头层图标*
 
-## Camera Objects
+## 镜头对象
 
-Once created, cameras appear as marker objects in the Editor, showing their position and orientation just like an actual camera. Cameras will only appear within the Editor, where they are displayed as a phantom 3D model, as shown below.
+镜头创建后，会以标记对象的形式出现在编辑器中，像真实摄像机一样显示它的位置与朝向。镜头只会出现在编辑器内，并以半透明 3D 模型的方式显示，如下图所示。
 
 [![Camera Object](./resources/025_Cameras_Layer3.png)](./resources/025_Cameras_Layer3.png)
-*Camera Object*
+*镜头对象*
 
-Despite its illustrative appearance, the camera in the left of this frame is essentially the same as a point that would be found on the Points Layer. The camera is closely related to a '3D Point' in that it is a point in space with an X, Y, and Z value. The big difference between a camera and a 3D point is that the camera also has a vector. This vector is an arrow in 3D space describing a direction.
+尽管它看起来像一个具体的摄像机模型，但图中左侧这个镜头本质上和点层中的点对象非常接近。镜头与 “3D Point” 关系尤其密切，因为它同样是空间中的一个点，拥有 X、Y 和 Z 三个数值。镜头与 3D 点最大的区别在于，镜头还额外拥有一个向量。这个向量是在 3D 空间中描述方向的一支箭头。
 
-The combination of the camera's point and vector equate to a location and viewpoint. When you introduce a camera object, the camera transmits information describing 'Where it is' and 'Where it is looking' to the game, setting the view for the player. Looking through the lens of the above camera gives you the view below.
+镜头的点和向量结合在一起，就构成了位置和视角。当你引入一个镜头对象时，它会向游戏传递“它在哪里”和“它在看哪里”的信息，从而为玩家设定视图。通过上图那个镜头所看到的视角如下图所示。
 
 [![Camera View](./resources/025_Cameras_Layer4.png)](./resources/025_Cameras_Layer4.png)
-*Camera View*
+*镜头视图*
 
-Remember the 3D model that marks the camera in the Editor view and it's easy understand as a representation of a point and vector. The point is roughly where the center of the lens is, while the vector is represented by the projection coming out of lens.
+只要记住编辑器里标记镜头的 3D 模型，其实就是一个点和一个向量的可视化表示，就很容易理解它。点大致位于镜头中心，而向量则由镜头前方伸出的投射方向表示。
 
-Maintaining your understanding of the Editor's cameras as physical cameras will make them easier to work with. At some point, you may find yourself managing many cameras as you build game scenes and cinematics. In these situations, it helps to think of yourself as a director, setting scenes and placing particular camera shots.
+始终把编辑器里的镜头理解为真实摄像机，会让你更容易操作它们。在构建游戏场景和过场时，你最终可能会管理大量镜头。这种情况下，把自己当作导演来思考会很有帮助：你是在安排场景，并放置特定镜头机位。
 
-## Cameras Palette
+## 镜头面板
 
-You'll find cameras and camera creation controls as part of the Cameras Layer under the Cameras Palette, shown below.
+你可以在镜头层的 Cameras Palette 中找到镜头以及镜头创建控制项，如下图所示。
 
 ![Cameras Palette](./resources/025_Cameras_Layer5.png)
-*Cameras Palette*
+*镜头面板*
 
-The main list on this palette tracks each camera available in the current map. You can look through any camera by selecting them from this list and clicking View Selected Camera. Here you will also find support for exporting camera configurations to files through the Save View to File option. Cameras are created using the Create Camera button here, which spawns a camera in the Editor at your current viewpoint.
+该面板的主列表会追踪当前地图中的每个镜头。你可以从列表中选中任意镜头，然后点击 View Selected Camera 来查看它的视角。这里还支持通过 Save View to File 选项把镜头配置导出到文件中。使用这里的 Create Camera 按钮，则会在编辑器中以你当前视角的位置生成一个镜头。
 
-## Camera Properties
+## 镜头属性
 
-Once you've created a camera, you can configure it through its 'Camera Properties.' This is accomplished by right-clicking on a camera in the Cameras Palette and navigating to Camera Properties. You will then be presented with the 'Camera Properties' window, which is shown below, followed by a breakdown of its options.
+创建镜头后，你可以通过它的 “Camera Properties” 进行配置。方法是在 Cameras Palette 中右键某个镜头，并选择 Camera Properties。之后会打开如下图所示的“镜头属性”窗口，下面也附有各项选项的说明。
 
 ![Camera Properties](./resources/025_Cameras_Layer6.png)
-*Camera Properties*
+*镜头属性*
 
-| Property        | Description                                                                                                                                                               |
+| 属性 | 说明 |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Distance        | Determines the space between the camera and its target.                                                                                                                   |
-| Roll            | Rotates the angle of the camera in the plane of the page. If the camera were your head, consider Roll as rotating in the direction that would turn your view upside down. |
-| Yaw             | Rotates the camera side to side. If the camera were your head, this would be equivalent to looking from left to right or shaking your head in a 'no' motion.              |
-| Pitch           | Rotates the camera up and down. If the camera were your head, this would be equivalent to nodding your head in a yes motion.                                              |
-| Target X        | The X coordinate of the map that the camera vector is pointing to.                                                                                                        |
-| Target Y        | The Y coordinate of the map that the camera vector is pointing to.                                                                                                        |
-| Target Z Offset | The differential between the camera and target point. Essentially the Z coordinate or height of the camera. Also known as Height Offset.                                  |
-| Depth of Field  | An effect that blurs components of the view to resemble real world vision. This setting sets the start, end, and magnitude of this effect.                                |
-| Field of View   | Controls the extent of the game world visible to the camera.                                                                                                              |
-| Near Clip       | The distance of the closest clipping plane, closer than which no game elements will be rendered. Essentially the starting distance in 3D space at which rendering begins. |
-| Far Clip        | The distance of the furthest clipping plane, beyond which no game elements will be rendered. Essentially the distance in 3D space at which rendering stops.               |
-| Shadow Clip     | The minimum distance at which shadows are drawn.                                                                                                                          |
-| Custom Color    | Tints the camera model within the Editor.                                                                                                                                 |
+| Distance | 决定镜头与目标点之间的距离。 |
+| Roll | 旋转镜头在画面平面中的角度。如果把镜头想象成你的头部，那么 Roll 就相当于把头侧转到足以让视角上下颠倒的方向。 |
+| Yaw | 左右旋转镜头。如果把镜头想象成你的头部，这就相当于左右看，或做出摇头表示“否”的动作。 |
+| Pitch | 上下旋转镜头。如果把镜头想象成你的头部，这就相当于点头。 |
+| Target X | 镜头向量所指向的地图 X 坐标。 |
+| Target Y | 镜头向量所指向的地图 Y 坐标。 |
+| Target Z Offset | 镜头与目标点之间的高度差。其本质是镜头的 Z 坐标或高度，也叫 Height Offset。 |
+| Depth of Field | 一种通过模糊部分画面来模拟真实视觉的效果。此设置用于设定该效果的起点、终点和强度。 |
+| Field of View | 控制镜头可见的游戏世界范围。 |
+| Near Clip | 最近裁切平面的距离，比它更近的游戏元素将不会被渲染。也就是 3D 空间中开始渲染的起始距离。 |
+| Far Clip | 最远裁切平面的距离，比它更远的游戏元素将不会被渲染。也就是 3D 空间中停止渲染的距离。 |
+| Shadow Clip | 阴影开始被绘制的最小距离。 |
+| Custom Color | 在编辑器中为镜头模型着色。 |
 
-## Free Camera Controls
+## 自由镜头控制
 
-The Editor offers a set of hotkeys for moving its viewpoint in 3D space, known as the free camera controls. By orienting the viewpoint before using the Create Camera tool, you can use these controls as an intuitive way of designing cameras. These controls can be viewed by navigating to File ▶︎ Configure Controls, then searching for the Free Camera labels, as shown below.
+编辑器提供了一组用于在 3D 空间中移动视角的快捷键，被称为自由镜头控制。你可以先用这些控制调整好视角，再使用 Create Camera 工具，这会成为一种非常直观的镜头设计方式。你可以通过 `文件 ▶︎ Configure Controls`，然后搜索 Free Camera 相关条目来查看这些控制项，如下图所示。
 
 [![Free Camera Controls](./resources/025_Cameras_Layer7.png)](./resources/025_Cameras_Layer7.png)
-*Free Camera Controls*
+*自由镜头控制*

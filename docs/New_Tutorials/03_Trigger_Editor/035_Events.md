@@ -1,35 +1,35 @@
-# Events
+# 事件
 
-Events are the starting point for any typical trigger in the editor. By selecting an event, you are choosing a set of circumstances that the game will watch for. When this set of circumstances occurs, the associated trigger is, you may have guessed, triggered. The trigger then proceeds from top to bottom, creating changes in the game. Every map has some sort of event recognition at its core. Even melee maps contain a single trigger that responds to a 'Map Initialization' event, as you can see below.
+事件是编辑器中绝大多数触发器的起点。选择一个事件，本质上就是告诉游戏要去监视哪一组情况。一旦这组情况发生，相关联的触发器就会被触发。随后，触发器会自上而下执行，在游戏中制造变化。每张地图的核心都离不开某种事件识别机制。即便是近战地图，也包含一个响应 'Map Initialization' 事件的触发器，如下图所示。
 
-[![Default Melee Trigger](./resources/035_Events1.png)](./resources/035_Events1.png)
-*Default Melee Trigger*
+[![默认近战触发器](./resources/035_Events1.png)](./resources/035_Events1.png)
+*默认近战触发器*
 
-## Setting Up An Event
+## 设置事件
 
-Create a trigger by right-clicking in the **Triggers Panel**, then navigating to New ▶︎ New Trigger. Select this new trigger to populate the Main Tab with the trigger details. These details will be broken down under several headings, double click the 'Events' heading to open the 'Configure Events' window.
+在 **触发器面板** 中右键，选择 新建 ▶︎ 新建触发器 来创建一个触发器。选中这个新触发器后，主标签页会显示它的详细信息。这些信息按多个标题分组显示，双击“事件”标题即可打开“配置事件”窗口。
 
-[![Configure Event Window](./resources/035_Events2.png)](./resources/035_Events2.png)
-*Configure Event Window*
+[![配置事件窗口](./resources/035_Events2.png)](./resources/035_Events2.png)
+*配置事件窗口*
 
-This window displays the library of events available to your current project. The leftmost view allows you to sort the events by any types they've been labeled with. It also offers you the ability to search as well as some brief tooltips explaining the selected event's use. It's worth noting that each event has also been marked with a source. In this case, each event will list 'Built-in.' The source heading describes if the event is from the StarCraft trigger libraries or a custom definition.
+此窗口会显示当前项目可用的事件库。最左侧视图允许你按照事件所带标签进行分类，也支持搜索，并会显示简短提示，说明当前选中事件的用途。还要注意，每个事件都标明了来源。在这里，这些事件都会显示为 '内置'。来源字段用于说明该事件来自星际触发库，还是来自自定义定义。
 
-Take some time to browse the event possibilities, then find the 'Key Pressed' event under the label 'UI'. Double click this event to select it.
+你可以先浏览一下可用事件，然后在 'UI' 标签下找到 'Key Pressed' 事件，双击它进行选择。
 
-## Composition Of An Event
+## 事件的构成
 
-Unlike the 'Melee Initialization' event seen previously, most events consist of several sub-options requiring configuration. Once you've selected it, the 'Key Pressed' event will show its options in the main tab's subview, as shown below. If these options are not visible, make sure to select the 'Use Subviews' option from the Trigger Bar.
+和前面看到的 '近战初始化' 事件不同，大多数事件都由多个需要配置的子选项组成。选中后，'Key Pressed' 事件会在主标签页的子视图中显示其选项，如下图所示。如果你看不到这些选项，请确认已在触发器栏中启用“使用子视图”。
 
-[![Event View with Sub-Options](./resources/035_Events3.png)](./resources/035_Events3.png)
-*Event View with Sub-Options*
+[![带子选项的事件视图](./resources/035_Events3.png)](./resources/035_Events3.png)
+*带子选项的事件视图*
 
-The sub-options are presented in two formats. The format labeled 'A' presents the sub-options in pairings. This gives a vertical list where each heading takes the form 'Variable Type: Variable Input.' Alternately, the 'B' format shows a plain-language interpretation of the variables listed. Each underlined word in blue represents the variable component. Pay attention to both cases, because in some instances these formats can differ. The most common occurrence is 'A' offering additional options that are not presented by 'B'.
+这些子选项会以两种格式呈现。标记为 'A' 的格式会把子选项按成对字段展示，形成一个纵向列表，每个标题都采用“变量类型: 变量输入”的形式。另一种 'B' 格式则会把这些变量解释成自然语言语句，其中蓝色下划线的词就是可配置的变量部分。两种格式都值得留意，因为某些情况下它们并不完全一致。最常见的情况是，'A' 会提供一些 'B' 中没有展示的附加选项。
 
-Moving down the list in 'A,' the options you can set for this event are as follows.
+沿着 'A' 的列表往下看，这个事件可以设置的选项如下。
 
-| Sub-Option        | Description                                                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Player            | Sets the player to be watched for key presses.                                                                         |
-| Key               | Sets the key being monitored for presses.                                                                              |
-| Down              | Sets the direction of key presses being monitored. Each keystroke on a keyboard produces a downstroke and an upstroke. |
-| Shift/Control/Alt | Defines the modifiers permitted when pressing the key. These are exclusive, so any combinations available are valid.   |
+| 子选项 | 说明 |
+| --- | --- |
+| Player | 设置要监视哪个玩家的按键输入。 |
+| Key | 设置要监视的按键。 |
+| Down | 设置监视按键按下还是抬起。一次键盘敲击会产生一次按下和一次抬起。 |
+| Shift/Control/Alt | 定义按下该键时允许哪些修饰键。这些选项是互斥配置，因此列出的任意组合都有效。 |

@@ -1,36 +1,36 @@
-# Terrain Editor Introduction
+# 地形编辑器简介
 
-The Terrain Editor provides the tools for controlling the look of the world in your projects. The terrain editor lets you work in seven layers, so you can build your map to suit your needs, whether competitive or creative.
+地形编辑器为你提供控制项目世界外观的工具。地形编辑器允许你在七个图层中工作，因此无论你的目标是竞技地图还是创意项目，都可以按需构建地图。
 
 ![](./resources/018_Terrain_Editor_Introduction1.png)
-*Masvard's Terrain Piece 'One Wicked Dream'*
+*Masvard 的地形作品 “One Wicked Dream”*
 
-## Layers
+## 图层
 
-![Image](./resources/018_Terrain_Editor_Introduction2.png)
+![图像](./resources/018_Terrain_Editor_Introduction2.png)
 
-This is the lowest layer for world-building. Here you can raise or lower the basic landscape to form hills and valleys. The ground is painted with a dynamic painting system, applying a variable palette of grass, dirt, metal, rock, and more. You can add foliage, water, cliffs, and ramps on top of this.
+这是构建世界的最底层。在这里，你可以抬高或降低基础地形，塑造山丘与谷地。地表通过一套动态绘制系统进行涂绘，可使用草地、泥土、金属、岩石等多种纹理。你还可以在此基础上继续添加植被、水域、悬崖和坡道。
 
-![Image](./resources/018_Terrain_Editor_Introduction3.png)
+![图像](./resources/018_Terrain_Editor_Introduction3.png)
 
-This level allows you to place any units, buildings, or destructible terrain.
+这一层允许你放置任何单位、建筑或可破坏地形。
 
-![Image](./resources/018_Terrain_Editor_Introduction4.png)
+![图像](./resources/018_Terrain_Editor_Introduction4.png)
 
-This layer allows you to place any of the thousands of decorative elements supplied with the Editor. These doodads can be carefully tooled and altered to the minutest detail, giving you the ability to add flavour to your landscape.
+这一层允许你放置编辑器提供的数千种装饰元素。这些装饰物可以被精细调整到极其微小的细节，让你能够为地形增添风味与层次。
 
-![Image](./resources/018_Terrain_Editor_Introduction5.png)
+![图像](./resources/018_Terrain_Editor_Introduction5.png)
 
-This layer is where you lay down points, which are used to mark locations in the data and trigger portions of the game. This is how you'll plan where designed effects will be placed.
+这一层用于放置点，它们会在游戏的数据和触发器部分中用来标记位置。你可以借此规划各种设计效果应当出现在哪里。
 
-![Image](./resources/018_Terrain_Editor_Introduction6.png)
+![图像](./resources/018_Terrain_Editor_Introduction6.png)
 
-Much like points, regions allow you to mark out entire areas with specific gameplay conditions. By building these in the Editor view, you'll be able to get a visual impression of how your project's logic and actual gameplay will fit together.
+与点类似，区域可以让你标记整片带有特定玩法条件的区域。通过在编辑器视图中构建这些区域，你可以直观了解项目逻辑与实际玩法将如何结合。
 
-![Image](./resources/018_Terrain_Editor_Introduction7.png)
+![图像](./resources/018_Terrain_Editor_Introduction7.png)
 
-You can arrange and set up cameras in this layer. The Editor has robust options allowing you to set camera objects anywhere in 3d space, test them, and then use them for cutscenes or games. There is also a variety of visual effects available while working with cameras, which you can export to carry on to new projects.
+你可以在这一层中布置和设置镜头。编辑器提供了强大的选项，让你可以把镜头对象放置在 3D 空间中的任意位置、进行测试，并把它们用于过场动画或游戏玩法。在使用镜头时，还有多种视觉效果可用，并且可以导出以便在新项目中继续使用。
 
-![Image](./resources/018_Terrain_Editor_Introduction8.png)
+![图像](./resources/018_Terrain_Editor_Introduction8.png)
 
-The Pathing Layer is where you set the rules for specific unit types, whether ground-based or fliers, and determine which areas of the map are passable. Correct control over pathing means that you decide where your players can travel.
+寻路层是你为特定单位类型设定规则的地方，无论它们是地面单位还是空中单位，也是在这里决定地图哪些区域可以通行。正确控制寻路，意味着由你来决定玩家能够去往哪里。

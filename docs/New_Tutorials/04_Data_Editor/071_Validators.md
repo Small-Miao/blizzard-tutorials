@@ -1,53 +1,53 @@
-# Validators
+# 验证器
 
-Validators conduct tests. While they are a data type themselves, their purpose is to hook into other data types and perform tests, checking if a statement is true or false. Depending on the result, the hosting data type will make a choice and take certain actions accordingly. As such, validators control data in a manner reminiscent of the way conditions control triggers. Still, the application of validators is quite unique and they have extensive uses, from building game objects to controlling AI.
+验证器负责执行测试。虽然它本身也是一种数据类型，但其真正用途是挂接到其他数据类型上，并判断某个陈述是真还是假。根据结果不同，承载它的数据类型会做出选择，并据此执行某些操作。因此，验证器控制数据的方式有些类似于条件控制触发器的方式。不过，验证器的应用场景非常独特，用途也极其广泛，从构建游戏对象到控制 AI 都能看到它们。
 
-## Validator Details
+## 验证器详情
 
-How you apply validators depends on the type of validator and the hosting type where the validator will be used. There are many types of validator available and they can be used in effects, behaviors, abilities, and actors, taking on a slightly different role each time. To get a feel for these myriad configurations, it's best to start by looking at the many examples of their use in the existing data libraries. You can find validators in the Data Editor by navigating to + ▶︎ Edit Game Data ▶︎ Validators, as shown below.
+验证器的应用方式取决于验证器本身的类型，以及它将被使用在哪种宿主类型中。可用的验证器类型很多，它们可以被用于效果、行为、技能和 Actor，每次承担的角色都会略有不同。要熟悉这些繁多的配置方式，最好的起点是先查看现有数据资料库中它们的用例。你可以通过 `+ ▶︎ Edit Game Data ▶︎ 验证器` 在数据编辑器中找到验证器，如下图所示。
 
-[![Navigating to Validators in Data](./resources/071_Validators1.png)](./resources/071_Validators1.png)
-*Navigating to Validators in Data*
+[![在数据中导航到验证器](./resources/071_Validators1.png)](./resources/071_Validators1.png)
+*在数据中导航到验证器*
 
-This will launch the validators tab.
+这样就会打开 验证器 标签页。
 
-[![Validators Tab Listing](./resources/071_Validators2.png)](./resources/071_Validators2.png)
-*Validators Tab Listing*
+[![验证器 标签页列表](./resources/071_Validators2.png)](./resources/071_Validators2.png)
+*验证器 标签页列表*
 
-In this view, all of the validators are organized by their Validator Name, Source, \#, and a Validator Type. You'll see that validators typically have names look like sentence fragments. Examples include, 'Threatens Baneling,' 'Is Phoenix,' and 'Can Charge.' This reflects the fact that validators slot into other things and conduct a test. The names make more sense when phrased in terms of their host, like 'Can this Zealot Charge?' or 'Is this unit a phoenix?' As a result, a validator's name can give a clue to its eventual use. When you're creating your own custom validators, this is a good style to mimic.
+在这个视图中，所有验证器都会按 Validator Name、Source、`#` 和 Validator Type 组织。你会发现，验证器的命名通常都像句子片段，例如 `Threatens Baneling`、`Is Phoenix` 和 `Can Charge`。这是因为验证器会被塞进别的对象里并执行测试。如果把它们放回宿主语境中，这些名称就更容易理解，例如“这个狂热者能冲锋吗？”或者“这个单位是不是凤凰？”因此，一个验证器的名称通常能提示它最终会被用于什么地方。自己创建自定义验证器时，也很适合模仿这种命名风格。
 
-From the validators tab, highlight the 'Caster Not Attacking' validator in the main editor view to reveal its fields, as shown below.
+在 验证器 标签页中，在主编辑器视图里高亮 `Caster Not Attacking` 验证器，就能看到它的字段，如下图所示。
 
-[![Validators Fields View](./resources/071_Validators3.png)](./resources/071_Validators3.png)
-*Validators Fields View*
+[![验证器字段视图](./resources/071_Validators3.png)](./resources/071_Validators3.png)
+*验证器字段视图*
 
-This 'Caster Not Attacking' validator is a Unit Order Queue validator. This type tests if a unit has been ordered by a player to use a certain Ability. Having selected the validator, the rightmost view will now show fields that enable and support this test. Most validator fields are type specific, but examining a typical validator's composition will help you understand how to break them down. There are three main fields to the Unit Order Queue validator, which are broken down in the table below.
+这个 `Caster Not Attacking` 验证器属于 Unit Order Queue 验证器。它会测试某个单位是否已被玩家下令使用某个特定技能。选中该验证器后，右侧视图就会显示能够启用并支持这项测试的字段。大多数验证器字段都是类型专属的，但分析一个典型验证器的组成，能帮助你理解该如何拆解它们。对于 Unit Order Queue 验证器来说，主要有三个字段，下表进行了说明。
 
-| Field        | Details                                                                                              |
+| 字段 | 说明 |
 | ------------ | ---------------------------------------------------------------------------------------------------- |
-| Ability      | Sets the ability to be tested.                                                                       |
-| Find         | Checks the status of the ability. Enabled means it is occurring, Disabled means it is not occurring. |
-| Unit - Value | Sets the unit being tested by the validator.                                                         |
+| 技能 | 设置要测试的技能。 |
+| 查找 | 检查该技能的状态。Enabled 表示正在发生，Disabled 表示未在发生。 |
+| 单位 - 值 | 设置由验证器测试的单位。 |
 
-For the validator you're examining now, the Ability being tested is Attack, the Find status is Disabled, and the Unit -- Value is Caster or the user of the ability. Together, these will check if a unit is currently not using the attack ability, which is neatly covered by its name, 'Caster Not Attacking.'
+对你现在正在查看的这个验证器来说，被测试的技能是 `Attack`，`Find` 状态是 `Disabled`，而 `Unit -- Value` 是 `Caster`，也就是技能使用者。把这些合在一起，就是检查某个单位当前是否没有在使用攻击技能，而这一点正好也被它的名称 `Caster Not Attacking` 准确概括了。
 
-## Validator Applications
+## 验证器的应用
 
-Validators see application in effects, behaviors, and abilities. To apply a validator to any of these data types, you can navigate to its field, 'Validators,' and double click to launch the 'Object Values' window. There, click the green + to add a new validator. This will trigger a new 'Object Value (Array)' window where the validator is selected. This procedure should look as it does in the image below.
+验证器常见于效果、行为和技能中。要把验证器应用到这些数据类型中的任意一种，你可以定位到它的 `验证器` 字段，并双击打开 `Object Values` 窗口。然后点击绿色 `+` 添加一个新验证器。这会进一步打开一个新的 `Object Value (Array)` 窗口，在其中选择具体的验证器。整个流程如下图所示。
 
-[![Applying a Validator](./resources/071_Validators4.png)](./resources/071_Validators4.png)
-*Applying a Validator*
+[![应用验证器](./resources/071_Validators4.png)](./resources/071_Validators4.png)
+*应用验证器*
 
-For effects, validators are used to test if the effect should be applied. This test will occur at the normal application time for each effect type. If the validator returns false, the effect will not take action. If it returns true, it will proceed as normal. You can see an example of an effect validator below.
+对于效果来说，验证器用于测试该效果是否应该被应用。这个测试会在各类效果的正常应用时机执行。如果验证器返回 false，效果就不会生效；如果返回 true，它就会按常规继续执行。下图展示了一个效果验证器的例子。
 
-[![Effects Validators](./resources/071_Validators5.png)](./resources/071_Validators5.png)
-*Effects Validators*
+[![效果验证器](./resources/071_Validators5.png)](./resources/071_Validators5.png)
+*效果验证器*
 
-Here, the MULE -- Repair effect has a set of five validators. Should a unit for example be Warping In, then the first validator will fail, resulting in the effect not being applied. In this case, every validator must be found to be true for the effect to take action.
+这里，`MULE -- Repair` 效果挂载了一组由五个验证器组成的列表。举例来说，如果某个单位正处于 Warping In 状态，第一个验证器就会失败，从而导致该效果不被应用。在这个例子中，所有验证器都必须为 true，效果才会执行。
 
-In behaviors, validators allow you to either disable or completely remove a behavior based on the response of a test. This is shown in the example below.
+在行为中，验证器可以让你根据测试结果来禁用行为，或将其彻底移除。下面的例子展示了这一点。
 
-[![Behaviors Validators](./resources/071_Validators6.png)](./resources/071_Validators6.png)
-*Behaviors Validators*
+[![行为验证器](./resources/071_Validators6.png)](./resources/071_Validators6.png)
+*行为验证器*
 
-The validators are broken up into Validators(Disable) and Validators(Remove). Each case will apply its specific action to the behavior when the validator fails. For Validators(Disable), a false result of a validator test causes the behavior to be disabled, but remain within the unit for further testing. For Validators(Remove), a false test causes the behavior to be stripped from the unit permanently. In this example, the Ghost -- Cloak will be removed once the unit runs out of energy. For the next cloak, the behavior will need to be reapplied by another 'Add Behavior' effect.
+这些验证器被分成 `验证器(Disable)` 与 `验证器(Remove)` 两类。当验证器失败时，它们会分别对行为施加对应动作。对 `验证器(Disable)` 来说，验证器测试结果为 false 时，行为会被禁用，但仍然保留在单位内部，以便后续再次测试。对 `验证器(Remove)` 来说，测试为 false 则会把行为永久从单位身上剥离。在这个例子中，`Ghost -- Cloak` 会在单位能量耗尽时被移除。若想再次隐形，就必须通过另一个 `Add Behavior` 效果重新施加该行为。

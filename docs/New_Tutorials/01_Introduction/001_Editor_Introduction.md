@@ -1,56 +1,56 @@
 ---
-title: Editor Introduction
+title: 编辑器简介
 author: jrepp
 category: 01_Introduction
 
 ---
-# Introduction
+# 简介
 
-The StarCraft II Editor is a suite of tools for game development bundled with StarCraft II. These are the very same tools Blizzard themselves used in the development of the latest version of StarCraft. Together with Battle.net and the Blizzard Arcade, the Editor offers a robust game-development platform, hosting system, and multiplayer network.
+《星际争霸 II》编辑器是一套随《星际争霸 II》附带的游戏开发工具。暴雪在开发最新版《星际争霸》时，正是使用了这套工具。结合 Battle.net 和 Blizzard Arcade，编辑器提供了完善的游戏开发平台、托管系统以及多人联机网络。
 
 ![Editor Tool Suite](./resources/001_Editor_Introduction01.png)
 
-The StarCraft II Editor was first released with Wings of Liberty in 2010, giving players access to all of the game\'s art and assets. This continues Blizzard's tradition of offering its player community full access to its own creative tools, which began with the release of WarCraft II: Tides of Darkness in 1994. With each edition of StarCraft II, more has been added to the Editor, including an official pack containing all of Warcraft III\'s assets.
+《星际争霸 II》编辑器最早随 2010 年的 自由之翼 一同发布，让玩家能够使用游戏中的全部美术资源与素材。这延续了暴雪向玩家社区开放自家创作工具的传统，而这一传统最早可以追溯到 1994 年 WarCraft II: Tides of Darkness 的发布。随着《星际争霸 II》各个版本推出，编辑器中又陆续加入了更多内容，其中还包括一个收录《魔兽争霸 III》全部资源的官方资源包。
 
-## The Arcade
+## Arcade
 
-The StarCraft II modding community has responded by creating thousands of custom maps and mods. All of their creations can be found on a Blizzard-hosted platform called the Arcade, which players can access using the StarCraft II game client. In the Arcade players can discover, play, and share in a vibrant online game development community. Using the Editor will give you access to this community, including the ability to exhibit your own projects, present them to an audience, get feedback, explore other people\'s games, get inspired, and most of all play.
+《星际争霸 II》模组社区对此做出的回应，是创作了数以千计的自定义地图与模组。所有这些作品都可以在暴雪托管的平台 Arcade 上找到，玩家可通过《星际争霸 II》客户端访问它。在 Arcade 中，玩家可以在一个活跃的线上游戏开发社区里发现、游玩并分享作品。使用编辑器，你也能进入这个社区，展示自己的项目、面向玩家发布作品、获取反馈、体验他人的游戏、寻找灵感，当然最重要的是亲自游玩。
 
 ![Games in the Arcade](./resources/001_Editor_Introduction02.png)
 
-## Capabilities
+## 能力
 
-The Editor is a professional-quality game engine with a broad range of features, including its own scripting language. Despite that, you won't need coding experience to get started. If you\'d like to start educating yourself on how to use the Editor, then you've come to the right place. This site serves as an essential manual and course plan for anyone learning to use the StarCraft II Editor. So read on for an introduction, then start exploring the site.
+编辑器是一套具备专业水准的游戏引擎，拥有十分广泛的功能，甚至包含它自己的脚本语言。即便如此，你也不需要编程经验就能开始上手。如果你正想学习如何使用编辑器，那你来对地方了。这个站点会作为学习《星际争霸 II》编辑器时的重要手册与课程路线图。继续读下去，先完成入门，再开始探索网站中的其他内容。
 
-Thanks to its history as one of the first community tools for map design, the Editor is often referred to as the 'Map Editor.' However, the Editor stretches far beyond simple map creation. It is robust game engine that you can use to build a diverse range of games, maps, and modifications to the StarCraft II experience.
+由于它在社区地图设计工具中的历史地位，编辑器经常被称为“地图编辑器”。不过，它的能力远远不止制作地图这么简单。它是一套强大的游戏引擎，你可以用它构建各种各样的游戏、地图以及对《星际争霸 II》体验本身的修改内容。
 
 ![Some of the Varied Community Creations](./resources/001_Editor_Introduction03.png)
 
-If you're a fan of competitive StarCraft II, you can create new melee maps for other StarCraft II players to battle on. Your map could even become popular enough to be the setting for the decisive game in a premier eSports championship.
+如果你是竞技《星际争霸 II》的爱好者，你可以为其他玩家制作新的对战地图，供他们在上面交锋。你的地图甚至可能流行到成为顶级电子竞技赛事决胜局的比赛场地。
 
-From there, you can being to tweak and explore StarCraft's gameplay. You can apply custom data modifications to any existing StarCraft II melee map, including maps you've created yourself. You can then build your maps out into full custom campaigns, telling your own stories in the world of StarCraft.
+在此基础上，你还可以开始调整并深入探索《星际争霸》的玩法。你可以对任何现有的《星际争霸 II》对战地图应用自定义数据修改，其中也包括你自己制作的地图。之后，你还能将这些地图扩展成完整的自定义战役，在《星际争霸》的世界里讲述属于你自己的故事。
 
-Alternatively, you can set out to create your own game type. Developers have made things from simple environments, to complex tower defense maps, and even sprawling RPG epics. You can draw inspiration from the long history of custom games from Warcraft and StarCraft, a vibrant modding culture that birthed genres like Tower Defence and Hero Brawlers, such as DotA and our own Heroes of the Storm (a game whose prototypes were built in the StarCraft II Editor).
+或者，你也可以着手创造一种全新的游戏类型。开发者们已经用它制作出从简单场景到复杂塔防地图，甚至庞大 RPG 史诗等各种作品。你可以从《魔兽争霸》和《星际争霸》悠久的自定义游戏历史中汲取灵感。正是这种充满活力的模组文化催生了 Tower Defence、Hero Brawlers 等类型，以及 DotA 和《风暴英雄》这样的作品（后者的原型正是在《星际争霸 II》编辑器中完成的）。
 
-The Modules
+模块
 -----------
 
-Modules are major divisions of the main Editor. Each presents a smaller, more focused editor for a specific section of the game development process. As individuals tools each Module is highly specialized. As a whole, they give you the creative control you need to build an entire game.
+模块是主编辑器中的核心分区。每个模块都对应游戏开发流程中的一个具体部分，提供一个更小、更专注的编辑环境。单独来看，每个模块都高度专业化；合在一起，它们则能提供你构建完整游戏所需的创作控制力。
 
- * **Terrain Editor:** The terrain Editor allows you to sculpt the terrain and give game worlds. Melee mappers can paint landscapes for competitive battles, and for other type of creations this is the main tool for building a world's appearance.
- * **Trigger Editor:** The Trigger Editor is where you'll bring life and logic  to your game. You can choose to use either StarCraft II\'s internal  scripting language or a helpful GUI system suitable for newcomers to programming.
- * **Data Editor:** The Data Editor is the storehouse for both the existing game assets and your own unique creations. Here you can engineer things like units, buffs, abilities, effects, sounds, and more. As you gain experience creating games, these creations will always be there, ready to be repurposed in new playfields.
- * **Importer:** The Importer allows you to introduce custom-designed assets from outside the Editor, including 3D models, images, music, or anything else you need.
- * **UI Editor:** The UI Editor gives you the tools to define and create custom interfaces, or to alter those already found in StarCraft II.
- * **Cutscene Editor:** The Cutscene Editor allows you to create your own cinematics, serving as a tool for both in-game storytelling and Machinima content to be presented outside the game.
- * **Text Editor:** The Text Editor allows you to change fonts, styles, and other typographical effects in the game\'s texts.
- * **AI Editor:** The AI Editor is where you'll create and alter the artificial intelligence that determines unit actions, make an ultimate competitive foe, or define the thinking for your custom game\'s computer-controlled inhabitants.
+ * **地形编辑器：** 地形编辑器可让你塑造地貌并构建游戏世界。对战地图作者可以用它为竞技对局绘制地貌；而对于其他类型的作品来说，它则是搭建世界外观的主要工具。
+ * **触发编辑器：** 触发编辑器是你为游戏注入逻辑与生命的地方。你既可以使用《星际争霸 II》的内部脚本语言，也可以使用对编程新手更友好的图形化系统。
+ * **数据编辑器：** 数据编辑器既是现有游戏资源的仓库，也是你独特创作的存放处。你可以在这里设计单位、Buff、技能、效果、音效等等。随着你制作游戏经验的积累，这些成果也会一直保留下来，方便在新项目中重复利用。
+ * **导入器：** 导入器允许你把编辑器外部制作的自定义资源带进项目中，包括 3D 模型、图片、音乐以及任何你需要的内容。
+ * **UI 编辑器：** UI 编辑器为你提供定义和制作自定义界面的工具，也可以用来修改《星际争霸 II》现有界面。
+ * **过场动画编辑器：** 过场动画编辑器允许你制作自己的过场演出，既能用于游戏内叙事，也能制作在游戏外展示的 Machinima 内容。
+ * **文本编辑器：** 文本编辑器允许你修改游戏文本中的字体、样式以及其他排版效果。
+ * **AI 编辑器：** AI 编辑器是你创建和调整人工智能的地方。你可以在这里决定单位行动、打造终极竞技对手，或定义自定义游戏中电脑控制角色的思考方式。
 
-Onward!
+继续前进！
 -------
 
-Now is the perfect time to start learning and creating. This site will serve as a guidebook while you launch yourself into the many creative possibilities of the StarCraft II Editor. Read on, and remember to have fun.
+现在正是开始学习与创作的最佳时机。这个站点会在你踏入《星际争霸 II》编辑器的众多创作可能性时，充当你的指南。继续阅读，也别忘了享受其中的乐趣。
 
-![Image](./resources/001_Editor_Introduction04.png)
+![图像](./resources/001_Editor_Introduction04.png)
 
-Adventures await! (credit: njordys)
+冒险正在前方等待！（署名：njordys）

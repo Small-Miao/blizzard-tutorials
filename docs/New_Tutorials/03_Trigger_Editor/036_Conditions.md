@@ -1,94 +1,94 @@
-# Conditions
+# 条件
 
-Conditions are used within triggers to determine whether 'something about the game' is true or false. The ambiguity here is intentional, as conditions can be applied to almost any object and any occurrence in the game.
+条件用于在触发器中判断“游戏中的某件事”是真是假。这里故意说得比较模糊，因为条件几乎可以作用于游戏中的任何对象和任何事件。
 
-Essentially, conditions pose questions about the game. One example could be, 'Does this player have at least five units?' The game then responds with its knowledge of that property, the player's unit count, and answers -- true or false. Based on the answer, statements in the Editor can proceed in different ways, a notion typically called 'Control.'
+本质上，条件是在向游戏提问。比如，一个条件可以是：“这个玩家是否至少拥有五个单位？” 游戏会根据自己掌握的状态信息，也就是该玩家的单位数量，回答真或假。编辑器中的语句随后就可以依据这个答案采取不同流程，这通常称为“控制”。
 
-Control allows you to break the Editor's basic linear behavior. With conditions, elements like a trigger can become non-linear, avoiding certain segments of code, repeating certain segments multiple times, or completely stopping and jumping to entirely different locations altogether. Conditions allow for choices, and this is an important aspect of creating things that are dynamic, lively, and interesting.
+控制让你能够打破编辑器默认的线性执行方式。有了条件，触发器之类的元素就不再必须按直线运行，它们可以跳过某些代码段、重复执行某些部分，甚至完全停止并转向截然不同的位置。条件意味着选择，而选择正是让内容变得动态、生动且有趣的重要因素。
 
-The idea of conditions as questions is something you should try to keep in mind. This is a helpful habit that can be useful in figuring out if a condition is appropriate for a given scenario. It will also help when you start learning the mathematical notation that the StarCraft Editor expresses conditions in.
+把条件理解成“问题”是一个值得始终记住的思路。这种习惯有助于你判断某个场景是否适合使用条件，也能帮助你更快理解《星际争霸 II》编辑器是如何用数学式样来表达条件的。
 
-## Preparing A Trigger
+## 准备一个触发器
 
-To demonstrate the use of conditions you'll need to assemble a trigger. Use the following procedure to prepare the base trigger.
+为了演示条件的用法，你需要先搭建一个基础触发器。按下面的步骤准备。
 
-  - Create a new custom map and navigate to the Trigger Editor.
-  - Proceed to the "Melee Initialization" trigger and delete all of the default actions and events contained within it.
-  - Create a new event by navigating to Events ▶︎ Key Pressed.
-  - Set the 'Key' term of the event to the key '1.'
-  - Create a new variable via Local Variables ▶︎ New Element.
-  - Name the local variable 'Press Count' and set its type to 'Integer.'
-  - Create a new action by navigating to Actions ▶︎ Modify Variable (Integer).
-  - Set the 'Variable' term of the action to the variable 'Press Count.'
-  - Set the 'Value' term of the action to '1.'
+- 创建一张新的自定义地图，并进入触发编辑器。
+- 找到 "近战初始化" 触发器，删除其中默认包含的所有动作和事件。
+- 通过 Events ▶︎ Key Pressed 新建一个事件。
+- 把该事件的 'Key' 参数设为按键 '1.'
+- 通过 Local Variables ▶︎ New Element 新建一个变量。
+- 将这个局部变量命名为 'Press Count'，类型设为 'Integer.'
+- 通过 动作 ▶︎ Modify Variable (Integer) 新建一个动作。
+- 把该动作的 'Variable' 参数设为变量 'Press Count.'
+- 把该动作的 'Value' 参数设为 '1.'
 
-This should leave you with the following.
+完成后应如下所示。
 
-[![Trigger Basis](./resources/036_Conditions1.png)](./resources/036_Conditions1.png)
-*Trigger Basis*
+[![触发器基础结构](./resources/036_Conditions1.png)](./resources/036_Conditions1.png)
+*触发器基础结构*
 
-## Control Statements
+## 控制语句
 
-Conditions aren't relegated solely to the 'Conditions' heading in a trigger, they also appear in a type of action called Control Statements. One such action is 'If Then Else.' This action allows you to specify a condition that, depending on the result of a true or false question, will proceed to one of two possible blocks of statements, one for true and one for false. That block of statements is then run a single time, while the other block is skipped. The condition is specified under the 'If' heading of the control statement, while the block of statements for a true response is under a 'Then' heading, and the block of statements for a false response is under an 'Else' heading.
+条件并不只会出现在触发器里的“条件”标题下，它们也会出现在一类称为控制语句的动作中。其中一个典型例子就是 'If Then Else.' 这个动作允许你指定一个条件，然后根据这个真/假问题的结果，进入两个可能的语句块之一：真分支或假分支。被选中的那个语句块会执行一次，另一个则会被跳过。控制语句中的条件写在 'If' 标题下，真分支写在 'Then' 标题下，假分支写在 'Else' 标题下。
 
-As such, the 'If Then Else' control statement can be considered as question and response in the form, 'If this happens Then do this, Else do this.'
+因此，'If Then Else' 控制语句可以理解为这样一种问答结构：“如果发生这个，就做这个；否则就做那个。”
 
-You can investigate the 'If Then Else' control statement by adding it to your trigger below the 'Modify Press Count + 1' statement via New ▶︎ New Action ▶︎ If Then Else. You'll find the control statements under the ' -- General' category in the 'Actions' window.
+你可以通过在 'Modify Press Count + 1' 语句下方添加一个 If Then Else，来体验这种控制语句：选择 新建 ▶︎ 新建动作 ▶︎ If Then Else。在“动作”窗口中，控制语句位于 ' -- General' 分类下。
 
-[![Selecting If Then Else Action](./resources/036_Conditions2.png)](./resources/036_Conditions2.png)
-*Selecting If Then Else Action*
+[![选择 If Then Else 动作](./resources/036_Conditions2.png)](./resources/036_Conditions2.png)
+*选择 If Then Else 动作*
 
-## Condition Operators
+## 条件运算符
 
-Add a condition to the 'If Then Else' action by right-clicking on the 'If' heading and navigating to New ▶︎ New Condition. This will launch the 'Configure Condition' window shown below.
+要给 'If Then Else' 动作添加条件，请在 'If' 标题上右键并选择 新建 ▶︎ 新建条件。这会打开下方所示的“配置条件”窗口。
 
-[![Operators View](./resources/036_Conditions3.png)](./resources/036_Conditions3.png)
-*Operators View*
+[![运算符视图](./resources/036_Conditions3.png)](./resources/036_Conditions3.png)
+*运算符视图*
 
-Configuring a condition requires two things, assembling the terms of the condition and selecting what are known as the Operators. In the question model, the former involves what the condition is inquiring about, while the latter forms the type of question that a condition will ask. Each operator has their own specific function when it comes to forming conditions, which are described in the below table.
+配置一个条件需要完成两件事：组装条件的各个参数，以及选择所谓的运算符。在“提问”的模型里，前者决定条件在询问什么，后者则决定这个问题的提问方式。每种运算符在构造条件时都有特定用途，见下表。
 
-| Oper ator         | Details                                                                                                                                                                                                                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| And               | Creates a union between two terms. Both terms are then tested together.                                                                                                                                                                                                            |
-|                   | If both terms test true, then the result is true. If both terms test false, then the result is false. If one terms tests true but the other does not, then the result is false.                                                                                                    |
-| Comp aris on      | Evaluates and compares two terms. This is actually a group of operators, listed in the next six entries.                                                                                                                                                                           |
-| \!=               | If the terms are not equal, return true. If equal, return false.                                                                                                                                                                                                                   |
-| \<                | If the leftmost term is smaller than the rightmost term, return true. If not, return false. Equal terms return false.                                                                                                                                                              |
-| \<=               | If the leftmost term is smaller than the rightmost term, return true. If not, return false. Equal terms return true.                                                                                                                                                              |
-| \==               | If the terms are equal, return true. If not, return false.                                                                                                                                                                                                                         |
-| \>                | If the leftmost term is larger than the rightmost term, return true. If not, return false. Equal terms return false.                                                                                                                                                               |
-| \>=               | If the leftmost term is larger than the rightmost term, return true. If not, return false. Equal terms return true.                                                                                                                                                                |
-| Not               | Inverts the term. Testing the Not version of a term will provide a result that is the opposite the normal term's result.                                                                                                                                                           |
-| Or                | Creates a union between two terms. Both terms are then tested together.                                                                                                                                                                                                            |
-|                   | Differs from And in that if a single term tests true, then the result is true. If both terms test true, then the result is true. If both test false, then the result is false.                                                                                                     |
-| Text Has Been Set | Returns true if the text parameter being tested is not empty.                                                                                                                                                                                                                      |
-| With in Boun ds   | A composite operator that tests if a term is between two values. This will also return true if the Value is equal to either term, as it uses two \<= operators, in the form Min Value \<= Term \<= Max Value. This operator supports only the Integer, Byte, and Real value types. |
+| 运算符 | 说明 |
+| --- | --- |
+| And | 将两个条件项组合在一起，并同时测试它们。 |
+|  | 只有两个条件项都为真时结果才为真；两个都为假时结果为假；一个真一个假时结果也为假。 |
+| Comparison | 对两个条件项进行求值和比较。它实际上是一组运算符，下面六项都属于这一类。 |
+| \!= | 两项不相等则返回真；相等则返回假。 |
+| \< | 左侧项小于右侧项则返回真；否则返回假。相等时返回假。 |
+| \<= | 左侧项小于右侧项则返回真；否则返回假。相等时返回真。 |
+| \== | 两项相等则返回真；否则返回假。 |
+| \> | 左侧项大于右侧项则返回真；否则返回假。相等时返回假。 |
+| \>= | 左侧项大于右侧项则返回真；否则返回假。相等时返回真。 |
+| Not | 对条件项取反。测试某项的 Not 版本时，结果会与原本相反。 |
+| Or | 将两个条件项组合在一起，并同时测试它们。 |
+|  | 与 And 不同，只要任意一项为真，结果就为真；两项都真时结果也为真；两项都假时结果为假。 |
+| Text Has Been Set | 如果被测试的文本参数不为空，则返回真。 |
+| Within Bounds | 一个复合运算符，用于测试某项是否位于两个值之间。由于它实际上使用了两个 \<= 运算符，即 Min Value \<= Term \<= Max Value，因此当 Value 等于两端任一值时也会返回真。该运算符仅支持 Integer、Byte 和 Real 类型。 |
 
-## Configuring Your Condition
+## 配置你的条件
 
-Finish setting your condition by navigating to the 'Comparison' within the 'Configure Condition' window. Set the terms by clicking on the headings within the subview. 'Value 1' corresponds to the first term, while 'Value 2' corresponds to the second term, which follows the operator. Set the first term to the variable 'Press Count' by double clicking on 'Value 1' and navigating to Variable ▶︎ Press Count. Set the second term by double clicking on 'Value 2', navigating to Value, and inputting 10. Now set the operator by double clicking on 'Operator' and navigating to ==.
+接下来，在“配置条件”窗口中进入 'Comparison'，完成条件设置。通过点击子视图中的字段标题来设置各项参数。'Value 1' 表示第一个值，'Value 2' 表示位于运算符右侧的第二个值。双击 'Value 1'，选择 Variable ▶︎ Press Count，把第一个值设为变量 'Press Count'。双击 'Value 2'，进入 Value，并输入 10。然后双击 'Operator'，将运算符设为 ==。
 
-[![Setting the Term](./resources/036_Conditions4.png)](./resources/036_Conditions4.png)
-*Setting the Term*
+[![设置参数项](./resources/036_Conditions4.png)](./resources/036_Conditions4.png)
+*设置参数项*
 
-Click 'Ok' to return to the Trigger Editor. Now you can finish the trigger with the following procedure.
+点击 'Ok' 返回触发编辑器。现在按下面步骤补完整个触发器。
 
-  - Under the 'Then' heading, create a 'Text Message' action. Set the Message to 'High Reset.'
-  - Also here, create a 'Set Variable' action. Set the variable to Press Count and the value to '0.'
-  - Under the 'Else' heading, create a 'Text Message' action. Set the Message to 'Low.'
+- 在 'Then' 标题下创建一个 'Text Message' 动作，并把 Message 设为 'High Reset.'
+- 同样在这里创建一个 'Set Variable' 动作，把变量设为 Press Count，值设为 '0.'
+- 在 'Else' 标题下创建一个 'Text Message' 动作，并把 Message 设为 'Low.'
 
-You should now be left with something that looks like the image below.
+此时你的结果应类似下图。
 
-[![Completed Trigger](./resources/036_Conditions5.png)](./resources/036_Conditions5.png)
-*Completed Trigger*
+[![已完成的触发器](./resources/036_Conditions5.png)](./resources/036_Conditions5.png)
+*已完成的触发器*
 
-You have assembled a trigger that triggers every time the player presses the 1 key on the keyboard. This increments the variable each time. Then, depending on the condition Press Count == 10, one of two block statements will be run. A true statement results in the message 'High Reset,' a false statement results in the message 'Low.' As such, each trigger poses the question, 'Is the variable equal to 10?' It then determines which procedure to follow based on the condition's response.
+你已经搭建好了一个在玩家每次按下键盘 1 键时都会触发的触发器。每次触发都会让变量递增。之后会根据条件 Press Count == 10 来执行两个语句块中的一个。条件为真时会显示消息 'High Reset'；条件为假时会显示消息 'Low.' 也就是说，这个触发器每次都在提出同一个问题：“这个变量是否等于 10？” 然后根据条件的回答决定接下来执行哪条流程。
 
-In practice, this should be false for the first nine triggers, then true for the tenth. The 'High Reset' message will show on the tenth keypress. You can test the map to confirm that it's working correctly by navigating to File ▶︎ Test Document. If you've done everything right, you should get the result shown below.
+在实际运行中，前九次触发条件都会为假，第十次才会为真。也就是说，'High Reset' 会在第十次按键时出现。你可以通过 文件 ▶︎ Test Document 测试地图，以确认它是否工作正常。如果一切设置正确，就会得到下图所示结果。
 
-[![Successful Output](./resources/036_Conditions6.png)](./resources/036_Conditions6.png)
-*Successful Output*
+[![成功输出](./resources/036_Conditions6.png)](./resources/036_Conditions6.png)
+*成功输出*
 
-## Attachments
+## 附件
 
  * [036_Conditions.SC2Map](./maps/036_Conditions.SC2Map)

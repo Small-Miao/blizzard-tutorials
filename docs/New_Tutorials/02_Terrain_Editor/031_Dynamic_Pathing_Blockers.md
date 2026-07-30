@@ -1,66 +1,66 @@
-# Dynamic Pathing Blockers
+# 动态寻路阻挡器
 
-Dynamic Pathing Blockers let you build pathing zones that can be switched on and off during gameplay. This ability is based on the fact that they are actually units, meaning that they can be shown or hidden through trigger actions. Hiding a unit suspends its footprint, removing its pathing accordingly. When the blocker is shown again, its pathing will be restored.
+动态寻路阻挡器允许你创建可在游戏过程中开启和关闭的寻路区域。之所以能做到这一点，是因为它们本质上其实是单位，因此可以通过触发器动作来显示或隐藏。隐藏单位时，它的 footprint 会被暂停，其对应的寻路效果也会随之消失；当阻挡器再次显示出来时，寻路规则也会恢复。
 
-There are a number of uses for pathing on the fly like this. Most notably, you can restrict access to certain portions of the map until a condition or quest-type action is met. Dynamic pathing blockers will also show their footprints in the Terrain Editor, making them easier to work with than any other solutions for creating temporary blockages.
+这种可动态切换的寻路有不少用途，其中最常见的是：在某个条件满足，或者某种类似任务的操作完成之前，限制玩家进入地图的某些区域。动态寻路阻挡器在地形编辑器中还会显示它们的 footprint，因此与其他临时封路方案相比，它们往往更容易操作。
 
-## Creating Dynamic Pathing Blockers
+## 创建动态寻路阻挡器
 
-You can find pre-made dynamic pathing blockers in the Units Palette by searching for the term 'Dynamic.'
+你可以在单位面板中搜索 `Dynamic`，找到预制的动态寻路阻挡器。
 
 ![Dynamic Pathing Blockers](./resources/031_Dynamic_Pathing_Blockers1.png)
-*Dynamic Pathing Blockers*
+*动态寻路阻挡器*
 
-The name of each blocker typically notes its footprint size and shape, as well as the type of pathing it blocks. Dynamic pathing blockers are not to be confused with the dynamic pathing fill option in the Pathing Layer. The former is a pathing zone that can be altered during game-time, while the latter fills an area in the Editor with a 'No Pathing' zone.
+每种阻挡器的名称通常会标明它的 footprint 尺寸、形状以及阻挡的寻路类型。不要把动态寻路阻挡器与寻路层中的 dynamic pathing fill 选项混淆。前者是可以在游戏过程中改变状态的寻路区域，而后者则是在编辑器中把某片区域填充为 “No Pathing”。
 
-You can also build dynamic pathing blockers from scratch using the template PATHINGBLOCKER during unit creation, as shown in the image below.
+你也可以在创建单位时使用模板 `PATHINGBLOCKER` 从零开始制作动态寻路阻挡器，如下图所示。
 
 ![Dynamic Pathing Blockers](./resources/031_Dynamic_Pathing_Blockers2.png)
-*Dynamic Pathing Blockers*
+*动态寻路阻挡器*
 
-Once you've created it, you'll need to set the pathing blocker's 'Footprint' field to the desired Footprint object. It also needs to be connected to a unit actor in order to connect it to its standard models. The blueprint for a common blocker is shown below.
+创建完成后，你需要把阻挡器的 `Footprint` 字段设为想要使用的 Footprint 对象。它还需要连接到一个 unit actor，才能使用标准模型。一个常见阻挡器的数据蓝图如下图所示。
 
 ![Dynamic Pathing Blocker Data Composition](./resources/031_Dynamic_Pathing_Blockers3.png)
-*Dynamic Pathing Blocker Data Composition*
+*动态寻路阻挡器的数据构成*
 
-## Placing Dynamic Pathing Blockers
+## 放置动态寻路阻挡器
 
-The placement grid is particularly useful when placing dynamic pathing blockers. You can enable it by navigating to View ▶︎ Show Placement Grid, then checking all of its options.
+在放置动态寻路阻挡器时，放置网格会特别有帮助。你可以通过 `视图 ▶︎ Show Placement Grid` 打开它，并勾选其中所有选项。
 
 [![Placement Grid View Options](./resources/031_Dynamic_Pathing_Blockers4.png)](./resources/031_Dynamic_Pathing_Blockers4.png)
-*Placement Grid View Options*
+*放置网格视图选项*
 
-For this demo map, the dynamic placement blockers are used to simulate a sort of energy gate. This map uses a 'Protoss Energy Line (Blue)' doodad along with some cliff faces to give the placement blocker a visual element. You can see these in the image below.
+在这个演示地图中，动态放置阻挡器被用来模拟一种能量门。地图使用了 `Protoss Energy Line (Blue)` 装饰物，并配合若干悬崖立面，来为阻挡器提供视觉表现。下图展示了这一结构。
 
 [![Energy Gate Site](./resources/031_Dynamic_Pathing_Blockers5.png)](./resources/031_Dynamic_Pathing_Blockers5.png)
-*Energy Gate Site*
+*能量门位置*
 
-Due to the construction of the map, there is only an eight unit-wide area where the marines can pass through the gate. This is the ideal scenario to use dynamic pathing blockers, and the map has been fitted with four 'Dynamic Pathing Blocker 2x2' in order to fill the gap.
+由于地图结构的限制，机枪兵只能通过一条宽度为八个单位的通道穿过这道门。这正是使用动态寻路阻挡器的理想场景，因此地图中放置了四个 `Dynamic Pathing Blocker 2x2` 来填满这个缺口。
 
 ![](./resources/031_Dynamic_Pathing_Blockers6.png)
-*Energy Gate with Dynamic Pathing Blockers*
+*带有动态寻路阻挡器的能量门*
 
-Since the path is closed off by the dynamic blockers, you can turn them on and off to give the functionality of a doorway or gate.
+既然这条路是由动态阻挡器封住的，你就可以通过开关它们来实现门或闸门的功能。
 
-## Using Dynamic Pathing Blockers
+## 使用动态寻路阻挡器
 
-Because dynamic pathing blockers are units, they will only apply their footprints when they are active on the map. You can use the trigger action 'Show/Hide Unit' to change the blocker's status, effectively switching them on and off as needed. Any other actions that can target units can be used with dynamic pathing blockers to varying effect, useful choices include 'Kill Unit,' 'Create Units,' and 'Move Unit Instantly.'
+由于动态寻路阻挡器本质上是单位，只有当它们在地图上处于激活状态时，才会应用自己的 footprint。你可以使用触发器动作 `Show/Hide Unit` 来改变阻挡器状态，从而按需开启或关闭它们。其他所有可以以单位为目标的动作，也都能在不同程度上用于动态寻路阻挡器；常见的有 `Kill Unit`、`Create 单位` 和 `Move Unit Instantly`。
 
-In the demo exercise, the dynamic pathing blockers have been added to a group during map initialization. From there, the following trigger was added.
+在这个演示练习中，动态寻路阻挡器会在地图初始化时被加入到一个组里。之后又添加了如下触发器。
 
 [![Dynamic Pathing Blocker Toggling Trigger](./resources/031_Dynamic_Pathing_Blockers7.png)](./resources/031_Dynamic_Pathing_Blockers7.png)
-*Dynamic Pathing Blocker Toggling Trigger*
+*切换动态寻路阻挡器的触发器*
 
-This trigger alters the dynamic pathing blocker's status every five seconds. When the 'Line Hidden' variable is set to False, the gate is faded in using the SetOpacity actor message. This same statement block also activates the dynamic pathing blocker with the 'Show Unit' action. The closed gate will appear as follows.
+这个触发器会每五秒改变一次动态寻路阻挡器的状态。当变量 `Line Hidden` 设为 False 时，能量门会通过 SetOpacity actor 消息渐显出来。与此同时，同一段语句块还会通过 `Show Unit` 动作启用动态寻路阻挡器。关闭状态下的门如下图所示。
 
 [![Path Blocked by Closed Gate](./resources/031_Dynamic_Pathing_Blockers8.png)](./resources/031_Dynamic_Pathing_Blockers8.png)
-*Path Blocked by Closed Gate*
+*关闭大门阻断路径*
 
-When the variable is switched to True, the opacity and blocker status are toggled with SetOpacity and 'Hide Unit' respectively. This eliminates the gate and blocker from the map, allowing units to pass through.
+当该变量切换为 True 时，透明度和阻挡器状态会分别通过 SetOpacity 和 `Hide Unit` 被切换。这会把大门及阻挡器一并从地图中移除，从而允许单位通过。
 
 [![Path Revealed by Open Gate](./resources/031_Dynamic_Pathing_Blockers9.png)](./resources/031_Dynamic_Pathing_Blockers9.png)
-*Path Revealed by Open Gate*
+*开启大门后显露出的通路*
 
-## Attachments
+## 附件
 
  * [031_Dynamic_Pathing_Blockers.SC2Map](./maps/031_Dynamic_Pathing_Blockers.SC2Map)

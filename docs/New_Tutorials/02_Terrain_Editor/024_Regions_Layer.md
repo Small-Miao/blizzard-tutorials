@@ -1,100 +1,100 @@
-# Regions Layer
+# 区域层
 
-The Regions Layer allows you to create regions. Regions are marked zones of the map that communicate areas for use in other Modules. Regions differ from points in that they mark specific shapes on the map, rather than single coordinates. Select this layer from the Terrain Bar using the icon shown below.
+区域层允许你创建区域。区域是地图上被标记出来的一片范围，用于向其他模块传递区域信息。与点不同，区域标记的是地图上的具体形状，而不是单一坐标。你可以通过地形栏中下图所示图标切换到该图层。
 
 ![Region Layer Icon](./resources/024_Regions_Layer1.png)
-*Region Layer Icon*
+*区域层图标*
 
-## Regions Palette
+## 区域面板
 
-The Regions Palette is where you'll find the controls for creating regions, along with a list of any regions already on the map. This palette is on the left-hand side of the main viewport when the Regions Layer of the Terrain Editor is active. It looks like the image below.
+区域面板中包含创建区域的控制项，以及地图上现有区域的列表。当地形编辑器的区域层处于活动状态时，这个面板位于主视口左侧。它的样子如下图所示。
 
 ![Regions Palette](./resources/024_Regions_Layer2.png)
-*Regions Palette*
+*区域面板*
 
-Regions consist of shapes applied to the map using three tools: the rectangle, the circle, and the diamond. Areas in a region are marked in the Editor using a colored overlay, but are invisible during normal play. You can also build composite regions by combining any number of basic shapes. You can combine shapes either positively, so that their areas are added together, or negatively, so that an area is subtracted from an existing region.
+区域由三种工具绘制出的形状组成：矩形、圆形和菱形。区域会在编辑器中以彩色覆盖层的方式显示，但在正常游戏过程中不可见。你还可以通过组合任意数量的基础形状来构建复合区域。组合时既可以采用正向方式，把形状面积相加；也可以采用负向方式，从已有区域中减去某一块面积。
 
-You can check the composition of a region by selecting a region and consulting the bottommost subview of the Regions Palette. This list will show a tally of all the primitive forms contained within that region and if they were combined in the Positive or Negative method.
+你可以选中某个区域，并查看区域面板最下方的子视图，以确认其构成。列表会列出该区域中包含的所有基础形状，并标明它们是以 Positive 还是 Negative 方式参与组合的。
 
-## Region Properties
+## 区域属性
 
-Composite regions are built using the 'Region Properties' window. You can find this by double clicking on a pre-existing region either in the map view or within the Regions Palette. You can see an example of the Region Properties window in the image below.
+复合区域是在“区域属性”窗口中构建的。你可以通过在地图视图中，或在区域面板中双击某个已有区域来打开它。下图展示了一个区域属性窗口示例。
 
 ![Composite Region Building](./resources/024_Regions_Layer3.png)
-*Composite Region Building*
+*构建复合区域*
 
-Here, you can build a composite by beginning with a single, positive region. You can then add shapes by right-clicking on the shape listing and selecting Add Circle, Add Rectangle, or Add Diamond. Any of these shapes can be turned into cutouts by selecting the Negative option. Positive regions are displayed as a blue overlay, while negative regions are displayed in red. Back in the map view, the actual shape will be displayed as a colored overlay, with negative cut-out regions appearing transparent. In the map view, the example from above would appear as shown below.
+在这里，你可以先从一个单独的正向区域开始构建复合区域。然后通过在形状列表中右键，选择 Add Circle、Add Rectangle 或 Add Diamond 来继续添加形状。任意形状都可以通过选择 Negative 选项变成挖空区域。正向区域会显示为蓝色覆盖层，负向区域则显示为红色。回到地图视图后，实际形状会以彩色覆盖层显示，而被挖空的负向区域则会表现为透明。上面的示例在地图视图中看起来如下图所示。
 
 [![Composite Region in Editor](./resources/024_Regions_Layer4.png)](./resources/024_Regions_Layer4.png)
-*Composite Region in Editor*
+*编辑器中的复合区域*
 
-## Demoing Regions
+## 区域演示
 
-Open the demo map provided with this article. This map consists of a small fort on top of a hill, with a pair of player-owned hellions some distance away.
+打开本文附带的演示地图。地图内容是在山丘顶部有一座小型要塞，稍远处则有两辆属于玩家的恶蝠车。
 
 [![Demo Map Course](./resources/024_Regions_Layer5.png)](./resources/024_Regions_Layer5.png)
-*Demo Map Course*
+*演示地图场景*
 
-If you check the Trigger Editor in this map, you'll find that there is a brief action found under 'Player 1 Captures Base,' which will turn control of the fort's neutral units over to the player once a unit entering a region. To facilitate this, you'll create a region near the fort's entrance that can be hooked into this trigger.
+如果你查看这张地图的触发编辑器，就会发现 `玩家 1 Captures Base` 下有一组简短动作：当某个单位进入某个区域时，要塞中的中立单位就会转移给玩家。为了实现这一点，你需要在要塞入口附近创建一个区域，并把它接入该触发器。
 
-Create a region by clicking on one of the three region tools in the Regions Palette. The Add Region Diamond tool will be most appropriate here. Select it, then click and drag on the map view to draw the region. This should give you something that looks like the image below.
+点击区域面板中的任意一种区域工具即可创建区域。这里最适合使用 Add Region Diamond 工具。选中它，然后在地图视图中点击并拖拽绘制区域。完成后应类似下图。
 
 [![Creating a Region](./resources/024_Regions_Layer6.png)](./resources/024_Regions_Layer6.png)
-*Creating a Region*
+*创建区域*
 
-If you don't like the placement of your region, you can resize it by toggling the cursor into selection mode. Pressing Space on the keyboard will swap the mouse cursor between a normal pointer for selection mode and a pointer with a plus sign for region creation. Once you're in selection mode, clicking on a region will reactive it, allowing you to move it by clicking and dragging the region to another location. You can resize the region by holding down Ctrl and clicking on the edge of the region, dragging it to a new size.
+如果你不满意区域的位置，可以切换鼠标到选择模式进行调整。按下键盘上的 Space 可在普通选择指针和带加号的区域创建指针之间切换。进入选择模式后，点击某个区域即可重新激活它，然后你就可以拖拽移动它。若要调整区域大小，请按住 Ctrl 并点击区域边缘，然后拖动到新的尺寸。
 
-Now, click the region in the Regions Palette to launch its 'Region Properties' window, then navigate to the 'General' tab. Set the name to 'Capture Base.' The properties window should look like the one shown below.
+接着，在区域面板中点击该区域，打开“区域属性”窗口，然后进入 `General` 标签。把名称设为 `Capture Base`。此时属性窗口应如下图所示。
 
 ![Region Properties Contents](./resources/024_Regions_Layer7.png)
-*Region Properties Contents*
+*区域属性内容*
 
-You can edit the region in the leftmost view under the 'General' tab, as above. It's also worth noting that the dimensions and position of the region are presented under the 'Shapes' tab as Size and Center. You can confirm your region size here if you had any trouble during the original placement.
+和上图一样，你可以在 `General` 标签左侧视图中编辑区域。还值得注意的是，区域的尺寸和位置也会在 `Shapes` 标签下以 Size 和 Center 的形式显示。如果你在最初放置时对区域大小拿捏不准，也可以在这里确认。
 
-Next, return to the Terrain Module and prepare another region by selecting the Add Region Rectangle tool. This time, create the region so that it encompasses the entire hilltop fort. Rename this region 'Entire Base'. You should be left with something like the image below.
+接下来，回到地形模块，选中 Add Region Rectangle 工具，再准备一个新区域。这一次请让该区域覆盖整座山顶要塞，并把它命名为 `Entire Base`。完成后大致如下图。
 
 ![Current Region Layout](./resources/024_Regions_Layer8.png)
-*Current Region Layout*
+*当前区域布局*
 
-If you're having trouble seeing the entire scene, try either zooming out or setting the camera to a bird's eye view by going to View ▶︎ Entire Map. From this view, you can zoom in and get the perspective seen in the example image. Note that you can also highlight a specific region by selecting it in the map view, as has been done for the 'Capture Base' region above.
+如果你难以同时看清整个场景，可以尝试拉远镜头，或者通过 `视图 ▶︎ Entire Map` 将镜头切换到俯视模式。在这种视角下，你可以再缩放回示例图中的角度。还请注意，你也可以像上图那样，通过在地图视图中选中某个区域来高亮显示它，例如 `Capture Base` 区域。
 
-Unfortunately, there are now minerals fields and a vespene geyser inside the 'Entire Base' region. According to the actions in the Trigger Module, this would result in the player being given control of these resources. Resources typically must belong to the Neutral player. You can use a composite region to build a region that encompasses the base, but also makes allowance for these elements.
+不过现在，`Entire Base` 区域把水晶矿和一座瓦斯气泉也包含进去了。根据触发模块中的动作，这会导致玩家获得这些资源的控制权。而资源通常应始终属于 Neutral 玩家。你可以通过复合区域来构建一个既包围整座基地、又为这些资源留出空洞的区域。
 
-Prepare your composite region by creating two rectangular regions, one boxing around the mineral line and one around the vespene geyser. You can change these to Negative regions that will be cut out of the larger shape, ensuring that resources aren't included in the region. This procedure should result in the following view.
+要准备这个复合区域，请先创建两个矩形区域，一个框住矿线，一个框住瓦斯气泉。然后把它们改为 Negative 区域，这样它们就会从大区域中被挖掉，从而确保资源不会被包含进区域内。完成后应如下图所示。
 
 [![Cutout Regions Prepared](./resources/024_Regions_Layer9.png)](./resources/024_Regions_Layer9.png)
-*Cutout Regions Prepared*
+*已准备好的挖空区域*
 
-To make sure everything is easy to read, the new regions and 'Capture Base' have had custom colors applied to them. You can do this by heading to Region Properties ▶︎ General ▶︎ Custom Color. You can now create a composite region by selecting its three constituent regions, then navigating to the 'Region Properties' window. Select all the regions by holding shift and clicking on 'Capture Base,' 'Region 001,' and 'Region 002.' Now right-click in the Regions Palette and navigate to Edit ▶︎ Merge Selection.
+为了让画面更易读，新区域以及 `Capture Base` 都应用了自定义颜色。你可以通过 `Region Properties ▶︎ General ▶︎ Custom Color` 来设置。现在，你可以通过选中这三个组成区域来创建复合区域，然后打开“区域属性”窗口。按住 Shift，同时点击 `Capture Base`、`Region 001` 和 `Region 002` 以将它们全部选中。然后在区域面板中右键，前往 `Edit ▶︎ Merge Selection`。
 
 [![Collected Region Properties](./resources/024_Regions_Layer10.png)](./resources/024_Regions_Layer10.png)
-*Collected Region Properties*
+*已收集的区域属性*
 
-This view presents an abstraction of what you can see in the Terrain Editor. From here, you can create the cutouts by selecting the two smallest regions and changing their State to Negative. The negative shapes will be drawn in red, which should give you a result like the one shown in the Region Properties window below.
+这个视图是你在地形编辑器中所见区域的抽象表示。在这里，你可以通过选中两个较小区域并把它们的 State 改为 Negative 来创建挖空区域。负向形状会绘制为红色，因此结果应类似下方区域属性窗口中的效果。
 
 [![Constructed Composite Region](./resources/024_Regions_Layer11.png)](./resources/024_Regions_Layer11.png)
-*Constructed Composite Region*
+*构建完成的复合区域*
 
-Returning to the map view should now show the region containing the entire fort, but with two holes around the resources.
+回到地图视图后，你应当会看到这个区域覆盖了整座要塞，但在资源周围留出了两个空洞。
 
 [![Cutout Regions Prepared](./resources/024_Regions_Layer12.png)](./resources/024_Regions_Layer12.png)
-*Cutout Regions Prepared*
+*已准备好的挖空区域*
 
-Now that the regions make sense, you can move to the Trigger Editor and back to the 'Player 1 Capture Base' trigger. Select the 'Unit Enters/Leaves Region' event, and double click on the 'Region' field. This will launch a 'Regions' window populated with the active regions on the map. Select the composite region 'Capture Base' and click 'Ok,' as in the image below.
+现在区域逻辑已经合理，你可以切换到触发编辑器，回到 `玩家 1 Capture Base` 触发器。选中 `Unit Enters/Leaves Region` 事件，双击其中的 `Region` 字段。这会打开一个“区域”窗口，里面列出了地图上的所有活动区域。请选择复合区域 `Capture Base`，然后点击 “Ok”，如下图所示。
 
 [![Selecting Composite Region](./resources/024_Regions_Layer13.png)](./resources/024_Regions_Layer13.png)
-*Selecting Composite Region*
+*选择复合区域*
 
-Now move to the 'Change Owner' action and set the 'Region' field to 'Capture Base' using the method described earlier.
+接着找到 `Change Owner` 动作，并使用之前相同的方法把其中的 `Region` 字段设为 `Capture Base`。
 
-Now that the project is complete, you can take a moment to review its function. By moving the hellions at the base of the hill into the 'Capture Base' region, the trigger event will shift everything in the 'Entire Base' region into the player's control. Due to the cutouts in the composite region, the minerals and gas geyser should remain neutral entities.
+项目至此就完成了。你可以稍微回顾一下它的功能：当你把山脚下的恶蝠车移动进 `Capture Base` 区域时，触发器事件会把 `Entire Base` 区域内的所有内容转交给玩家控制。由于复合区域中设置了挖空部分，水晶矿和瓦斯气泉应继续保持中立。
 
-If everything is working, hitting 'Test Document' and leading the hellions into the fort's entrance should transfer ownership correctly, as shown below.
+如果一切工作正常，点击“测试文档”并把恶蝠车带入要塞入口后，所有权应当会像下图那样正确转移。
 
 [![Claiming the Fort](./resources/024_Regions_Layer14.png)](./resources/024_Regions_Layer14.png)
-*Claiming the Fort*
+*占领要塞*
 
-## Attachments
+## 附件
 
  * [024_Regions_Start.SC2Map](./maps/024_Regions_Start.SC2Map)
  * [024_Regions_Completed.SC2Map](./maps/024_Regions_Completed.SC2Map)

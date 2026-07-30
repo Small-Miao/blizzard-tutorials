@@ -1,36 +1,36 @@
-# Test A Mod Offline
+# 离线测试 Mod
 
-Testing is one of the primary components of development. A strong developer wants to make the eventual play session as effortless, focused, and productive for the tester as possible. Preparing your project prior to any shared testing is essential in ensuring you make the best use of your volunteers' time.
+测试是开发过程中最核心的组成部分之一。优秀的开发者会尽量让最终的试玩过程对测试者来说轻松、专注且高效。在进行任何共享测试之前，先把项目准备好，是充分利用志愿测试者时间的关键。
 
-For maps, the Editor has an obvious and upfront method for testing, simply navigating to the 'Test Map' function embedded in the Editor's Navigation Bar. However with mods there are some additional steps. This can cause beginning developers to fall into the most visible method, uploading both their mod and a map to Battle.net and testing there.
+对于地图来说，编辑器提供了非常直接的测试方式，只需使用导航栏中的“测试地图”功能即可。不过对于 mod，还需要额外几步。这往往会让初学者采用最直观的方法：把 mod 和地图都上传到 Battle.net，再到线上测试。
 
-This approach can cause some significant slowdown due to the publishing system's additional layer of protection, which is intended for release versions. By contrast, there are a couple agile methods of testing a mod with which you should familiarize yourself. The downside to these is that they are offline methods and as a result are only appropriate for testing practices available to a single player.
+这种做法可能会明显拖慢迭代，因为发布系统附带了一层额外保护，而那本来是给发布版本准备的。相比之下，还有几种更灵活的 mod 测试方式值得熟悉。它们的缺点在于都属于离线方法，因此只适合测试单人可用的内容。
 
-## Testing A Mod With A Targeted Map
+## 使用目标地图测试 Mod
 
-You should note that, when attempting to use the Editor's direct 'Test Map' function, you'll be instructed to set a map target for the active mod. This makes sense, as mod files contain no terrain data and have no setting for the assets and data they contain. Setting a targeted 'Default Map' for testing allows a direct, no-frills offline test of a mod system.
+你需要注意的是，当尝试直接使用编辑器的“测试地图”功能时，系统会要求你为当前 mod 设置一个目标地图。这很合理，因为 mod 文件本身不包含地形数据，也缺少用于承载其中资源与数据的地图设定。为测试设置一个目标“默认地图”，就能对 mod 系统进行一次直接、简洁的离线测试。
 
-You can set up a direct mod test by navigating to File ▶︎ Preferences ▶︎ Test Document. Here you'll note the heading 'Default Map.'
+你可以前往 `文件` ▶︎ `首选项` ▶︎ `测试文档` 来设置直接测试 mod。这里会看到“默认地图”这一项。
 
-[![Setting the Testing Target Map](./resources/082_Test_a_Mod_Offline1.png)](./resources/082_Test_a_Mod_Offline1.png)
-*Setting the Testing Target Map*
+[![设置测试目标地图](./resources/082_Test_a_Mod_Offline1.png)](./resources/082_Test_a_Mod_Offline1.png)
+*设置测试目标地图*
 
-Set the 'Default Map' to the desired target for your mod test by selecting the 'Browse' button, then navigating to a local map file. Click 'OK' to return to the main Editor. From now on, using the 'Test Map' function will result in the currently active mod file being slotted as a temporary dependency to the 'Default Map.' Then the map containing the mod will launch a test. The 'Default Map' setting will persist between projects. If you are using this function within several different mods at once, you'll need to make the change each time.
+点击“浏览”按钮，将“默认地图”设为你想用于测试 mod 的本地地图文件，然后点击“确定”返回主编辑器。从此以后，使用“测试地图”功能时，当前打开的 mod 文件会作为临时依赖项挂接到“默认地图”上。随后，这张带有该 mod 的地图就会启动测试。“默认地图”设置会在项目之间保留。如果你同时在多个不同 mod 中使用此功能，就需要每次手动改回对应设置。
 
-This system may remind you of a local version of the 'Extension Mod' system, where map and mod are combined at run time, but remain separated after the game.
+这个系统会让你联想到“扩展 mod”系统的本地版本：地图和 mod 在运行时组合在一起，但游戏结束后仍保持分离。
 
-## Testing With A Dependency
+## 通过依赖项测试
 
-Alternatively, you can test a mod by adding it as a dependency to an active map. With the map you wish to test open, navigate to File ▶︎ Dependencies. This will present the current list of document dependencies. A default view might look like the one shown below.
+另一种方法是把 mod 作为依赖项添加到当前地图中进行测试。打开你要测试的地图后，前往 `文件` ▶︎ `依赖项`。这会显示当前文档的依赖项列表。默认界面大致如下图所示。
 
-[![Setting the Testing Target Map](./resources/082_Test_a_Mod_Offline2.png)](./resources/082_Test_a_Mod_Offline2.png)
-*Setting the Testing Target Map*
+[![设置测试目标地图](./resources/082_Test_a_Mod_Offline2.png)](./resources/082_Test_a_Mod_Offline2.png)
+*设置测试目标地图*
 
-From here, select 'Add Other.' This will present you with the following view.
+在这里选择“添加其他”。随后你会看到如下界面。
 
-[![Setting the Test Dependency](./resources/082_Test_a_Mod_Offline3.png)](./resources/082_Test_a_Mod_Offline3.png)
-*Setting the Test Dependency*
+[![设置测试依赖项](./resources/082_Test_a_Mod_Offline3.png)](./resources/082_Test_a_Mod_Offline3.png)
+*设置测试依赖项*
 
-Select the custom mod you are interested in testing and hit 'OK.' Once you've returned to the dependency view again, click 'OK' to move back into your active map. There you can use the 'Test Document' function to test the map with its new dependency.
+选择你想测试的自定义 mod，然后点击“确定”。返回依赖项界面后，再次点击“确定”回到当前地图。此时，你就可以使用“测试文档”功能来测试这张带有新依赖项的地图。
 
-This method might be most appropriate if you're working on a map and are curious about some interaction with one or more of your existing mods. Rather than move to Battle.net, you can quickly alter your current map's dependencies by adding or removing mods, then run a trial with each configuration.
+如果你正在制作一张地图，并且想快速确认它与一个或多个现有 mod 的互动效果，那么这种方法尤其合适。你无需切换到 Battle.net，只要通过添加或移除 mod，快速修改当前地图的依赖项，然后逐个配置运行测试即可。

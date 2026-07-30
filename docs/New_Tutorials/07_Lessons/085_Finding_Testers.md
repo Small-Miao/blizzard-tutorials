@@ -1,53 +1,53 @@
-# Finding Testers
+# 寻找测试者
 
-Game development requires a lot of testing to produce good results. Many of the best developers acknowledge that close observation and experimentation with the game is likely the most important design practice. Games are constantly changing systems, which can often make them counterintuitive. There are many unexpected behaviors that are best discovered, remedied, or even harnessed by frequent testing. Proper observation of a game is a matter of time, technique, and perspective. Perspective is best achieved by getting out of your own head and enlisting some fresh eyes for assistance, usually in the form of game testers.
+游戏开发要想做出好结果，就离不开大量测试。许多顶尖开发者都承认，细致观察并反复试验游戏，很可能是最重要的设计实践。游戏是持续变化的系统，因此常常并不直观。很多意料之外的行为，最适合通过频繁测试来发现、修正，甚至加以利用。正确观察一款游戏，取决于时间、方法和视角。而视角最好的获取方式，就是跳出自己的思维惯性，请一些新鲜视角来帮忙，通常就是游戏测试者。
 
-The term 'tester' refers to a volunteer who will play an experimental Arcade game, battle on a new melee map, observe using a custom interface, or in any way use a creator's project, then report back on their experience. Despite the public's enthusiasm for creative projects using the Editor, it can often prove difficult or extremely time consuming to find testers who are both willing and effective. There are several practices that can help you combat this.
+“测试者”这个词，指的是愿意试玩实验中的 Arcade 游戏、在新近战地图上对战、使用自定义界面观察，或以任何方式体验创作者项目后再反馈感受的志愿者。尽管玩家群体对使用编辑器进行创作的项目颇有热情，但要找到既愿意参与、又能有效提供帮助的测试者，往往仍然很困难，也很耗时。下面这些做法可以帮助你改善这一点。
 
-## Preparing For A Session
+## 为测试做好准备
 
-Holding an effective test means preparation. Being the benefactor of other people's volunteer effort means taking on the responsibility of making the test productive, focused, and as interesting possible given the current state of the project. While a faulty map can weigh heavily on a developer's conscience, it is important to not rush to multiplayer testing as a first response. Always make sure to exercise your abilities to design, diagnose, and repair on your own first. While you need to get other people's perspectives to grow as a developer, it's also important to foster personal discipline.
+高效的测试离不开准备。既然别人愿意以志愿形式投入时间，你就有责任让测试尽可能高效、聚焦，并且在项目现阶段尽量保持有趣。即便有问题的地图会让开发者倍感压力，也不要把多人测试当成第一反应。务必先尽可能发挥你自己在设计、诊断和修复方面的能力。虽然想成长为开发者，必须听到其他人的视角，但培养个人的自律同样重要。
 
-When you're ready to move into multiplayer testing, you should consider uploading a project build, which is a version published separately from the main release. This can keep the standard version clean and helps make sure you don't disrupt any players currently enjoying your project. It can even allow you to share a low key, unlocked version of the game. This is useful if you're looking for perspective from other developers on matters internal to the map, like triggers or data.
+当你准备进入多人测试阶段时，可以考虑上传一个项目构建版本，也就是与正式版本分开发布的测试版本。这样既能保持标准版本整洁，也能避免打扰当前正在游玩的玩家。它甚至还能让你分享一个较低调、未锁定的游戏版本。如果你想从其他开发者那里获取关于地图内部问题的看法，比如触发器或数据，这会特别有用。
 
-Testing is a rather general term and proper preparations can vary wildly. Good testing could mean taking the time to find highly skilled players to gain insight on a particular competitive map design, or making sure interface elements are fine-tuned enough to let new players get to the meat of an Arcade game.
+测试是一个相当宽泛的概念，因此恰当的准备方式可能千差万别。好的测试，可能意味着花时间去找高水平玩家，以获取某张竞技地图设计上的洞见；也可能意味着把界面元素打磨到足够顺畅，让新玩家能尽快进入 Arcade 游戏的核心体验。
 
-In general, you want to isolate some part of your game. You should think about adding as many provisions as possible to proceed to the part of the game that is of particular interest and test it efficiently. This could mean introducing commands to skip opening cutscenes, or functions built into the game to repeat game elements for multiple tests. Ensure that each session has well-defined objectives and that these are made clear to your testers before beginning a test.
+总体来说，你应该尽量隔离出游戏中的某个部分来测试。可以考虑加入尽可能多的辅助措施，让测试者能够高效进入你真正想观察的部分并反复测试。例如，可以添加跳过开场过场动画的命令，或者内建一些能重复触发某些游戏环节的功能，以便多次实验。确保每次测试都有明确目标，并在开始前清楚地告知测试者。
 
-Some developers will use tests as promotional previews, a type of marketing. This won't be addressed here, but can be an effective tool in building a community. Any following your game gains can contribute to actual testing, more interested parties means more potential testers. As a rule of thumb for the would-be developer, marketing is best accomplished by just working to make a better game.
+有些开发者会把测试当作一种宣传预览，也就是营销的一部分。这里不展开讨论，但它的确可能成为建立社区的有效工具。随着游戏获得更多关注，也会带来真正的测试机会，因为感兴趣的人越多，潜在测试者也就越多。对有志于开发的人来说，一个经验法则是：最好的营销，通常还是把游戏做得更好。
 
-## Contacting Players
+## 联系玩家
 
-Contact potential testers through forums, chat clients, social media, and Battle.net's built-in community features. Take advantage of any available channels to get in touch with fellow StarCraft II players and developers. StarCraft II community sites and other game-focused communities often support their own active forums and IRC channels.
+通过论坛、聊天工具、社交媒体以及 Battle.net 自带的社区功能去联系潜在测试者。尽量利用一切可用渠道，与其他《星际争霸 II》玩家和开发者建立联系。《星际争霸 II》社区网站以及其他以游戏为中心的社区，通常也都有活跃的论坛和 IRC 频道。
 
-Keep a flexible schedule. Remember to publish your game to all regions, as interested testers could live anywhere in the world. Coordinate with the people in different regions and time-zones to include as many players as is possible. For players available at times outside your own schedule, you can always elect to have someone else host the test. If you are part of a team, you can divide and conquer, hosting several tests at once.
+安排时间时要保持灵活。记得把游戏发布到所有地区，因为有兴趣的测试者可能来自世界任何地方。和不同时区、不同地区的玩家协调好时间，尽可能把更多人纳入测试。如果有些玩家只在你日程之外的时间有空，你也可以让别人代为主持测试。如果你属于一个团队，还可以分头行动，同时进行多场测试。
 
-When you're ready to test, start by reaching out to your peers in the community. Developers can make for particularly strong testers, and offer a degree of technical help that the average player simply can't. Developers may also have their own contacts, willing testers to whom they could introduce you. All that aside, you could always try inviting players from Battle.net public chat channels such as 'SC2 Looking for Team' or 'Arcade.'
+当你准备开始测试时，先从社区中的同行入手。开发者往往是非常强的测试者，还能提供普通玩家难以做到的技术性帮助。开发者也可能掌握自己的联系人网络，愿意把你介绍给其他乐于测试的人。除此之外，你也可以尝试去 Battle.net 公共聊天频道邀请玩家，比如 `SC2 Looking for Team` 或 `Arcade`。
 
-![Arcade-centric Chat Channels](./resources/085_Finding_Testers1.png)
-*Arcade-centric Chat Channels*
+![以 Arcade 为核心的聊天频道](./resources/085_Finding_Testers1.png)
+*以 Arcade 为核心的聊天频道*
 
-## Organizing Testers
+## 组织测试者
 
-Now that you've built yourself a rolodex of interested players, you can begin testing your game. Rather than rounding up your tester team this way for every session, use Battle.net features to help you organize these events. Maintain more consistent contact through the use of chat channels and groups.
+当你已经积累起一批感兴趣的玩家后，就可以开始测试游戏了。与其每次测试都临时这样召集队伍，不如利用 Battle.net 的功能来组织这些活动。通过聊天频道和群组来维持更稳定的联系。
 
-Battle.net groups offer some tools for managing and communicating with testers. Create a group by navigating to the 'Groups' button on the main toolbar, found between 'Friends List' and 'Menu.' This will launch the 'Create A Group' window, where you'll prepare your group. Once you have everything decided, select 'Create' to add the group to Battle.net. These properties are relatively innocuous, but you'll likely want to set the group's 'Privacy' to public to facilitate visitors. You should also note that clans based around games do exist, but the fact that players can only be in a single clan at a time within Battle.net could discourage potential testers.
+Battle.net 群组提供了一些管理和沟通测试者的工具。你可以通过主工具栏中的“Groups”按钮创建群组，它位于“Friends List”和“Menu”之间。这样会打开“Create A Group”窗口，你可以在其中设置群组。全部决定好后，点击“Create”把群组加入 Battle.net。这些属性整体上并不复杂，但你大概率会希望把群组的“Privacy”设为公开，以便访客进入。你也应该注意到，Battle.net 中确实存在围绕游戏建立的战队，但由于玩家在 Battle.net 中同一时间只能加入一个战队，这可能会让一些潜在测试者有所顾虑。
 
-[![Group Creation](./resources/085_Finding_Testers2.png)](./resources/085_Finding_Testers2.png)
-*Group Creation*
+[![创建群组](./resources/085_Finding_Testers2.png)](./resources/085_Finding_Testers2.png)
+*创建群组*
 
-If you've published your game to the Arcade as Public, then you can use the 'Join Chat' button from the 'Game Info' screen to enter an automatically generated chat hub for the game. Otherwise, you can always make your own chat channels. An additional tip is to mention groups, chat rooms, and other community locations you are using in your game's 'Map Info' Description, in its loading screen, and in the game itself.
+如果你的游戏已作为公开项目发布到 Arcade，那么你可以在“Game Info”界面使用“Join Chat”按钮，进入系统为该游戏自动生成的聊天中心。否则，你也可以自行创建聊天频道。另一个实用建议是：把你使用的群组、聊天室以及其他社区据点，写进游戏的“地图信息”描述、加载界面以及游戏本体中。
 
-## Feedback
+## 反馈
 
-Make sure to provide a channel of communication, like email or social media, alongside your map. This can prove useful as a means of gathering feedback. Remember that Battle.net also offers a 'Reviews' window for active games, which can be another source of insight into how players are enjoying your game.
+务必在地图旁边提供一个沟通渠道，例如电子邮件地址或社交媒体账号。这会非常有助于收集反馈。也别忘了，Battle.net 还为已上线游戏提供“Reviews”窗口，这也是了解玩家如何体验你游戏的另一个信息来源。
 
-[![Reviews Screen](./resources/085_Finding_Testers3.png)](./resources/085_Finding_Testers3.png)
-*Reviews Screen*
+[![评价界面](./resources/085_Finding_Testers3.png)](./resources/085_Finding_Testers3.png)
+*评价界面*
 
-Finding tough-but-fair constructive criticism here can give you a great lead on potential testers. Don't hesitate to reach out to players who put effort into critiquing your game in a respectful manner. You can send them friend requests through Battle.net and strike up a conversation about their experience with the game. Good developers ask good questions.
+如果你能在这里发现那种严格但公平的建设性批评，它往往能成为寻找潜在测试者的很好线索。对于那些认真且尊重地评论你游戏的玩家，不必犹豫，主动联系他们。你可以通过 Battle.net 向他们发送好友申请，并聊聊他们对这款游戏的体验。优秀的开发者，往往也擅长提出好问题。
 
-[![Constructive Feedback](./resources/085_Finding_Testers4.png)](./resources/085_Finding_Testers4.png)
-*Constructive Feedback*
+[![建设性反馈](./resources/085_Finding_Testers4.png)](./resources/085_Finding_Testers4.png)
+*建设性反馈*
 
-If you're still struggling to build a tester base after all this, remember that some types of project seem to have better luck finding testers. Some games are more enjoyable to test, while others need to spend a long time in development just to be playable. Different genres demand very different amounts of time and skill from players. If you are plagued by a lack of testers, try solving the problem with design. You can always try imagining a game that's easier to test. This doesn't necessarily mean compromising your interests, be creative. Remember, more testing means more opportunities to observe play, make changes, and improve as a developer.
+如果做到这些后，你仍然很难建立测试者群体，那就记住：有些类型的项目天生更容易找到测试者。有些游戏测试起来本身就更有趣，而另一些则可能需要长时间开发到一定程度后才具备可测性。不同题材对玩家投入的时间和技巧要求也很不一样。如果你长期受困于测试者不足，不妨尝试从设计层面解决问题。你完全可以设想一种更容易测试的游戏。这不一定意味着牺牲你的兴趣，关键是发挥创造力。记住，测试越多，你就有越多机会去观察玩法、做出修改，并成长为更成熟的开发者。

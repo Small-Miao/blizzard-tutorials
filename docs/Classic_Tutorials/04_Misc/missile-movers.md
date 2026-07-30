@@ -1,458 +1,458 @@
-# Missile Movers
+# 导弹移动器
 
-The missile mover system uses a video editor metaphor. The map maker can chain up to 5 motion phases one after the other, transitioning between them via blends, as necessary. It is also possible to add extra motion overlays on top of the phases to further customize their look, similar to how one can overlay video processing effects on a video stream.
+导弹移动器系统借用了视频编辑器的思路。制图者最多可以把 5 个运动阶段首尾相连，并在需要时通过混合（blend）在阶段之间过渡。你还可以在这些阶段之上叠加额外的运动叠层（overlay），进一步定制视觉表现，就像在视频流上叠加后期处理效果一样。
 
-Missiles are typically used to configure missile-based attacks, but the underlying motion can also be used to drive a reaper's body when it jumps or a spine crawler's tentacle when it attacks.
-
-
-
-## Motion Drivers
-
-At the core of each motion phase is a driver. There are four types:
-
-1. **Guidance** - The missile moves after the target in 3D space, like a standard guided missile.
-2. **Ballistic** - The missile flies through the air with a parabolic trajectory.
-
-3. **Parabola** - Causes the missile to take a fixed parabolic arc, regardless of its acceleration and deceleration.
-4. **Throw** - The missile travels along an arbitrary linear path in a specified direction.
+导弹通常用于配置基于导弹的攻击，但其底层运动同样可以用于驱动死神跳跃时的身体运动，或刺蛇爬虫攻击时的触手运动。
 
 
 
-## Motion Overlays
+## 运动驱动器
 
-Overlays cause a missile to move around the core driver path in some spiffy way. The user can stack up to two different overlays on top of the same driver, for instance by using sine waves to vary motion on both horizontal and vertical axes simultaneously.
+每个运动阶段的核心都是一个驱动器，共有四种类型：
 
-While they alter the real in-game position of the missile, they do not actually alter the path of the motion driver underlying them. In other words, a guided missile moving with a sinusoidal motion overlay actually has an invisible guided path governing its arrival at the target, even though it appears to be moving in a sinusoidal fashion.
+1. **Guidance** - 导弹会在三维空间中追踪目标，类似标准制导导弹。
+2. **Ballistic** - 导弹以抛物线轨迹在空中飞行。
 
-There are three types:
-
-1. **Wave** - Enables missiles to wave back and forth as they move, in a sinusoidal fashion.
-2. **Orbit** - Enables missiles to have corkscrew, spiraling motion.
-
-3. **Revolver** - Similar to an orbit overlay, except the orbiting motion does not always travel the same direction -- it chases an arbitrary rotation on the movement axis that is generated at launch time. Depending on the speeds involved, this can send the missile revolving past the target, in which case, it slows down and revolves back in the other direction.
+3. **Parabola** - 让导弹走固定的抛物线路径，不受加速度和减速度影响。
+4. **Throw** - 导弹沿指定方向上的任意线性路径飞行。
 
 
 
-## PHASE TRANSITIONS AND BLENDING
+## 运动叠层
 
-The user configures the end of a phase by specifying its outro. An outro ends a phase by passing a "distance traveled" threshold relative to the source or "distance remaining" threshold relative to the target. Source-relative outros are positive and target-relative outros are negative.
+叠层会让导弹围绕核心驱动路径做出额外的花式运动。用户最多可以在同一个驱动器上叠加两个不同叠层，例如同时在水平和垂直轴上叠加正弦波变化。
 
-When you specify an outro in data, you have to specify a Blend At value and a Stop At value. If these two values are the same, then the missile will instantly switch over to the next phase once the specified outro distance is reached. If the two values are different, then the motion phases will blend between the two values. While a blend is active, two phases (the current and the next) run in parallel and their results are blended together. Generally speaking, blends result in smoother movement, particularly when the motion drivers on the blending phases are different. Blends are almost always necessary to avoid glitches.
+虽然这些叠层会改变导弹在游戏中的真实位置，但并不会真正改变其底层运动驱动器的路径。换句话说，一个带有正弦叠层的制导导弹，依然有一条不可见的制导路径来保证它最终到达目标，只是视觉上看起来在以正弦方式摆动飞行。
 
+共有三种类型：
 
+1. **Wave** - 让导弹以正弦形式左右摆动飞行。
+2. **Orbit** - 让导弹产生螺旋、盘旋式运动。
 
-## How it Works
-
-As with many other objects in StarCraft II, missiles have both a synchronous game part and an asynchronous actor part. Missiles simulate their game state 32 times per second, which is double the rate of a normal unit. As with everything else, they draw when there is enough time to do so, which means they can draw anywhere from many times between each game loop (if the game is running smoothly) to not at all for long periods (in dire frame rate situations). The game part of the missile simulates twice per game loop and then pushes the data over to the actor side of the missile, which interpolates between the data it has on hand. In dire frame rate situations, it is possible for the actor side to fall behind, in which case the user sees missiles jump.
-
-Because of the game/actor split, missiles actually have two flight paths: a game path and an actor path. The game path travels from the origin point of the attacker to the origin point of the target. The actor path travels from the launch attach point to the impact attach point. A process called adaption occurs internally to ensure that missile the user sees on the screen tracks the basic game path, while still moving directly between launch and impact attach points.
-
-Also of note is the fact that motion overlays are synchronous. This enables them to be much more dramatic, without causing jerky movement. They actually scale down the underlying driver movement such that the real missile velocity (with overlays included) matches the speed specified by the user.
+3. **Revolver** - 与 Orbit 叠层类似，但其绕行方向并不固定，而是追逐一个在发射时生成的、围绕移动轴的任意旋转。根据速度组合不同，它甚至可能会绕过目标飞到另一侧，然后减速再反向绕回来。
 
 
 
-## Data Configuration
+## 阶段过渡与混合
 
-### Relevant Catalogs
+用户通过配置某个阶段的 outro 来定义该阶段何时结束。一个 outro 可以在导弹相对于发射源“已飞行距离”达到阈值，或相对于目标“剩余距离”达到阈值时结束该阶段。相对于发射源的 outro 用正数表示，相对于目标的 outro 用负数表示。
 
-- *MoverData.xml* to determine the path the missile takes to its target.
-- *EffectData.xml* to configure the missile's Launch Missile effect, which will determine the source and target for the missile, and can pick the mover to use for the missile.
-
-- *UnitData.xml* to give the missile its unit, so it can be treated as an interactable object in the game world.
-
-- *WeaponData.xml* or *AbilData.xml* to configure the weapon or ability that triggers the Launch Missile effect.
-- *ActorData.xml* to declare the actor part of the missile and to configure the visuals and audio for the attack, via Actor Action. This includes choosing the launch and target attach points that the missile travels between.
-
-### Mover Data Editing Details
-
-To minimize Mover data entry, data from one motion phase automatically carries over to the next phase, unless it is irrelevant or overridden there.
-
-The user enters time data in seconds, and angle data in degrees.
+在数据中指定 outro 时，你必须同时指定 Blend At 和 Stop At 两个值。如果这两个值相同，那么导弹一旦达到指定的 outro 距离，就会立刻切换到下一个阶段。如果两者不同，那么运动阶段会在这两个值之间进行混合。混合生效期间，两个阶段（当前阶段与下一阶段）会并行运行，并将结果混合在一起。一般来说，混合能带来更平滑的运动，尤其是在两个阶段使用不同运动驱动器时更是如此。为了避免运动异常，混合几乎总是必要的。
 
 
 
-## Motion Phases in Detail
+## 工作原理
 
-Every motion phase has a number of generic fields that apply to two or more phase driver types, along with an array of fields that customize specific drivers. It also has a small array for varying the scale of the motion overlays present during that phase.
+与《星际争霸 II》中的许多其他对象一样，导弹同时拥有同步的游戏部分和异步的 Actor 部分。导弹每秒模拟 32 次游戏状态，是普通单位模拟频率的两倍。与其他一切对象一样，只要有足够时间就会进行绘制，因此在游戏运行流畅时，它可能在每次游戏循环之间被绘制多次；而在极端低帧率情况下，也可能长时间完全不绘制。导弹的游戏部分在每次游戏循环中会模拟两次，然后把数据推送给 Actor 端；Actor 端则在已有数据之间做插值。在极端低帧率下，Actor 端可能会跟不上，从而导致玩家看到导弹跳动。
 
-**Driver** - The type of motion that drives the entire phase: adaptable parabola, ballistic, guidance, or throw.
+正因为存在游戏/Actor 两层结构，导弹实际上有两条飞行路径：游戏路径和 Actor 路径。游戏路径从攻击者的原点飞向目标的原点；Actor 路径则从发射挂点飞向命中挂点。系统内部会进行一个名为 adaption 的过程，确保玩家在屏幕上看到的导弹既能跟随核心游戏路径，同时又能在视觉上直接从发射挂点飞向命中挂点。
 
-**Acceleration** - Controls how quickly the missile accelerates. Can be negative to decelerate the missile.
+另一个需要注意的点是，运动叠层是同步计算的。这样一来，它们就可以做得更加夸张，而不会产生明显卡顿。它们实际上会降低底层驱动器的运动量，使得导弹的真实速度（包含叠层后）依然与用户指定的速度匹配。
 
-**Acceleration Range** - The range for a random extra amount to add to the base Acceleration value.
+
+
+## 数据配置
+
+### 相关数据目录
+
+- *MoverData.xml*：决定导弹飞向目标的路径。
+- *EffectData.xml*：配置导弹的 Launch Missile 效果，用于决定导弹的来源与目标，并可指定导弹使用哪个 mover。
+
+- *UnitData.xml*：为导弹提供对应单位，使其在游戏世界中可以被当作一个可交互对象处理。
+
+- *WeaponData.xml* 或 *AbilData.xml*：配置触发 Launch Missile 效果的武器或技能。
+- *ActorData.xml*：声明导弹的 Actor 部分，并通过 Actor Action 配置攻击的视觉与音效。这其中也包括选择导弹在发射与命中之间所使用的挂点。
+
+### Mover 数据编辑细节
+
+为了减少 Mover 数据填写量，除非某项数据在下一个阶段中无意义或被显式覆盖，否则一个运动阶段中的数据会自动继承到后续阶段。
+
+用户输入的时间数据单位为秒，角度数据单位为度。
+
+
+
+## 运动阶段详解
+
+每个运动阶段都包含一批适用于两种或更多驱动器类型的通用字段，以及一组用于定制特定驱动器的字段。它还包含一个小型数组，用于控制该阶段中叠层的缩放比例。
+
+**Driver** - 驱动整个阶段的运动类型：adaptable parabola、ballistic、guidance 或 throw。
+
+**Acceleration** - 控制导弹加速的速度。也可以设为负值，使导弹减速。
+
+**Acceleration Range** - 在基础 Acceleration 之上额外附加的随机值范围。
 
 **Speed**
 
-The speed the missile starts the phase with. The user typically configures this value on the first phase, since the missile's actual speed, in most cases, automatically carries over to the next phase while it is flight. (Speed does not currently transfer into ballistic phases, nor does it transfer out of throw phases where the rotation of the missile is not pointing in the direction of the throw.)
+导弹在该阶段开始时的速度。通常用户会在第一阶段配置这个值，因为大多数情况下，导弹的实际速度会在飞行过程中自动继承到下一个阶段。（目前速度不会传入 ballistic 阶段；也不会从导弹朝向未指向 throw 方向的 throw 阶段中传出。）
 
-This field is uniquely interpreted as constant horizontal speed by the ballistic driver.
+对于 ballistic 驱动器，这个字段会被特殊解释为恒定水平速度。
 
-**Speed Range** - The range for a random extra amount to add to the base Speed value.
+**Speed Range** - 在基础 Speed 之上额外附加的随机值范围。
 
-**Min Speed** - The minimum speed the missile can possibly travel during the phase. Useful for ensuring deceleration doesn't stop a missile altogether.
+**Min Speed** - 导弹在该阶段内可能达到的最低速度。可用于确保减速不会让导弹完全停住。
 
-**Max Speed** - The maximum speed the missile can possibly travel during the phase.
+**Max Speed** - 导弹在该阶段内可能达到的最高速度。
 
-**Gravity** - The gravity experienced by the missile. By tuning this value, it is possible to make certain kinds of missiles appear "floaty" (low gravity) or extra aggressive in their motion (high gravity).
+**Gravity** - 导弹所受重力。通过调整该值，可以让某些导弹显得“更轻飘”（低重力），或者显得运动更猛烈（高重力）。
 
-**Clearance** - This is the closest the missile can come to the ground. It is useful for missile types that might collide with cliff edges when attacking targets from above or below. It is best avoided with ballistic drivers.
+**Clearance** - 导弹离地面的最小距离。对于从高处或低处攻击目标、可能撞上悬崖边缘的导弹非常有用。对 ballistic 驱动器通常不建议使用。
 
-**Clearance Look Ahead** - This value governs how far ahead to look for a possible collision with the ground. The farther ahead a unit looks, the earlier it can start adjusting its path, but the more performance cost it has.
+**Clearance Look Ahead** - 控制向前预判地面碰撞的距离。看得越远，导弹越早开始修正路径，但性能成本也越高。
 
-**Ignore Terrain** - This flag determines whether the missile uses the Clearance and Clearance Look Ahead fields or just clips through terrain.
+**Ignore Terrain** - 这个标志决定导弹是使用 Clearance 和 Clearance Look Ahead 字段，还是直接穿过地形。
 
 **Turn Type**
 
-Governs how a missile turns towards the target and whether it cares about the notion of up maintained by human fighter pilots. Can be three values:
+控制导弹如何朝目标转向，以及它是否遵守人类战斗机飞行员所维持的“上方向”概念。共有三种取值：
 
-- *Default.* The missile turns like a fighter pilot, by preferring to use whichever turn arc gets it to the target faster, yaw or pitch. This varies based on the yaw and pitch rate of the missile, along with the relative position of the target. Unlike a fighter pilot, the missile does not right itself, and happily remains upside down.
-- *Revert To Up.* The missile turns like a real fighter pilot, rotating back so that its up axis points towards the sky when not turning. This turn type can cause missiles to pull the famous "Immelman Turn" devised by the noted German WWI ace.
+- *Default.* 导弹会像战斗机飞行员那样转向，优先选择能更快对准目标的转向弧线，也就是偏航或俯仰中的较优者。这个行为取决于导弹的偏航率、俯仰率以及目标的相对位置。不过它与真正飞行员不同的一点在于，导弹不会自动回正，所以它完全可能一直保持倒飞状态。
+- *Revert To Up.* 导弹会更像真实飞行员那样，在不转向时自动回转，让自身的上轴重新指向天空。这个转向类型可能让导弹做出著名的 “Immelman Turn”。
 
-- *Optimal.* The missile uses quaternions to arrive at the optimal 3D rotation to use to reach the target as quickly as possible. This can result in non-intuitive rotations that appear to have no regard for the laws of physics.
+- *Optimal.* 导弹会使用四元数来计算到达目标所需的最优三维旋转。这可能产生一些看起来完全不讲物理的、难以直观理解的旋转方式。
 
 **Tracking**
 
-Tunes how a missile reacts when its target moves in ways that might cause the missile to appear to behave oddly:
+调节当目标移动并导致导弹视觉表现异常时，导弹会如何应对：
 
-- *No Hook.* The default. Causes the missile actor to track the synchronous motion, except for the asynchronous steps across the final synchronous step, where the actor continues on the course from the prior synchronous step. This prevents hooks when the missile is slightly off the destination, such that facing towards it would cause the missile to rotate radically during the final subseconds of its flight. Not using this setting can cause a missile to turn wildly just before hitting its target, while setting it in the wrong situation can cause a missile to appear to shoot past its target.
-- *Linear.* The missile always points in the direction established when it is first fired. Used by lasers, which should never appear to rotate. Causes them to slide sideways instead, as in the first StarCraft.
+- *No Hook.* 默认值。导弹 Actor 会跟随同步运动，唯独在最后一个同步步长的异步细分阶段，Actor 会继续沿用上一个同步步长的方向前进。这样可以避免导弹在距离目标非常近时，因为最后几分之一秒内急剧转向目标而出现“钩子”现象。不使用这个设置时，导弹可能会在命中前突然疯狂转向；但如果在错误场景下使用它，又可能让导弹看起来从目标身边飞过去。
+- *Linear.* 导弹始终保持发射时的朝向。激光类攻击通常会使用它，因为激光不应该看起来在旋转。结果是它们会像初代《星际争霸》里那样侧滑。
 
-- *Actual.* The missile stays facing the same direction across the final sync step, just like No Hook, but can still guide towards the precise impact point.
+- *Actual.* 导弹在最后一个同步步长中也会像 No Hook 一样维持当前朝向，但仍然可以继续精确制导到真实命中点。
 
 **Arrival Test Type**
 
-Controls how a missile tests whether it is close enough to its target to be considered "arrived". Can be three values:
+控制导弹如何判断自己是否已经足够接近目标，从而被视为“到达”。共有四种取值：
 
-- *Adaptive.* The default. The test automatically switches between 2D for target points and 3D for target units.
-- *2D.* The missile uses a 2D test, which means an EMP missile could detonate far above a target, while still being considered to have hit it.
+- *Adaptive.* 默认值。对于目标点自动使用 2D 检测，对于目标单位自动使用 3D 检测。
+- *2D.* 导弹使用 2D 检测，这意味着一个 EMP 导弹即使在目标上方很高处爆炸，也依然可能被视为命中。
 
-- *3D.* Means the missile looks at real 3D distance to determine arrival. Ballistic missiles typically perform 2D tests on point targets, but sometimes need 3D tests if they have very steep arcs. Without a 3D test, the ballistic missile explodes far above the target, since it is almost directly on top of it in the XY plane even though it is still far away in 3D space.
+- *3D.* 导弹根据真实三维距离判断是否到达。Ballistic 导弹通常对点目标使用 2D 检测，但当其飞行弧线很陡时，有时需要使用 3D 检测。否则它可能在 XY 平面上几乎正位于目标上方时就提前爆炸，尽管它在三维空间中仍然离目标很远。
 
-- *Never.* The missile will never impact. This is useful for cases where you want to throw a missile in a direction without a specific target, and have a behavior on that missile scan for targets around it.
+- *Never.* 导弹永远不会命中。这适用于你想让导弹朝某个方向飞出去而没有具体目标，并让其身上的某个行为在飞行途中扫描周围目标的情况。
 
 **Blend Type**
 
-Controls how blending occurs between overlapping phases. Can be three values:
+控制重叠阶段之间如何进行混合。共有三种取值：
 
-- *Linear.* Straight linear blend.
-- *Logarithmic.* Causes the blend to start rapidly but taper off. Results in very smooth looking curves.
+- *Linear.* 直接线性混合。
+- *Logarithmic.* 混合开始很快，然后逐渐减弱，能产生非常平滑的曲线效果。
 
-- *Exponential.* Causes the blend to start slowly but increase exponentially.
+- *Exponential.* 混合起步较慢，但随后会指数级增强。
 
 **Outro**
 
-A critical field that controls when and how the phase ends. It has 4 different values associated with it:
+这是一个非常关键的字段，决定阶段何时以及如何结束。它关联 4 个不同的值：
 
-- *Blend At.* Governs when a given phase starts to blend into the following phase. If the number is equal to Stop At, it means that the phase has a hard transition, and there is no blending.
-  If the number is positive, it means the blend starts when the missile has traveled that distance from the unit that fired the missile. If it is negative, it means the blend starts when the missile is that distance from the target. It can be zero on the first phase, meaning a blend starts immediately, or it can be zero if it is the only entry on the last phase. In the latter case, it means the phase ends when the missile strikes the target. Regardless, this is distance along the core motion driver (for instance, the core guidance path of the guidance driver), and does not account for the extra distance the missile traverses due to overlays.
-- *Stop At.* Controls when the phase actually ends if there is a blend.
+- *Blend At.* 控制某个阶段从何时开始与后续阶段混合。如果这个值与 Stop At 相等，就表示这是一个硬切换，不会进行混合。
+  如果这个值是正数，表示当导弹离发射单位飞行了这么远时开始混合；如果是负数，则表示当导弹距离目标还剩这么远时开始混合。它在第一阶段中可以为 0，表示立即开始混合；在最后阶段中若这是唯一一个值，也可以为 0，此时表示导弹命中目标时阶段结束。无论哪种情况，这里测量的都是沿核心运动驱动器路径的距离（例如 guidance 驱动器的核心制导路径），不计算叠层造成的额外飞行距离。
+- *Stop At.* 如果发生混合，控制该阶段实际结束的时机。
 
-- *Blend At Range.* The upper bound of a random value that gets added to the Blend At value. It causes missile flight paths to vary with each subsequent launch. It cannot cause the Blend At position to go past the Stop At position. Always positive.
+- *Blend At Range.* 会附加到 Blend At 上的随机值上限。它会让导弹每次发射时的飞行路径产生差异。这个随机值不会让 Blend At 超过 Stop At。始终为正数。
 
-- *Stop At Range.* The upper bound of a random value added to Stop At. Always positive.
+- *Stop At Range.* 附加到 Stop At 上的随机值上限。始终为正数。
 
 **Rotation Launch Actor Type**
 
-Configures the rotation of the visual part of the missile when it launches, so that its apparent rotation doesn't need to match the game launch rotation.
+配置导弹视觉部分在发射时的旋转方式，从而允许其视觉朝向不必与游戏逻辑中的发射旋转完全一致。
 
-- *None.* The default. The missile actor's launch rotation matches the missile's game rotation.
-- *Launch To Target.* Causes the missile to face directly at its impact point at launch time. This may not be a good choice if the missile launches out the side of a vehicle.
+- *None.* 默认值。导弹 Actor 的发射旋转与游戏中的导弹旋转一致。
+- *Launch To Target.* 发射时让导弹直接朝向命中点。如果导弹是从载具侧面发射出来的，这通常不是好选择。
 
-- *Launch To Target 2D.* Like Launch To Target, but the missile stays parallel to the ground.
+- *Launch To Target 2D.* 与 Launch To Target 类似，但导弹始终与地面平行。
 
-- *Supplied.* Indicates that the missile actor's launch rotation is being supplied to the actor internally via game code. It is used by tentacles.
+- *Supplied.* 表示导弹 Actor 的发射旋转由游戏代码内部提供给 Actor。触手类对象会用到它。
 
 **Rotation Actor Type**
 
-Configures the rotation of the missile while it travels, so that its apparent rotation doesn't necessarily relate to its actual travel path.
+配置导弹飞行期间的旋转方式，从而让它的视觉朝向不一定反映其真实飞行路径。
 
-- *None.* The default. The missile actor's rotation matches the missile's game rotation.
-- *Docking.* Causes the missile to arrive at the position and reversed rotation of the actor determining its impact point. This type of actor rotation is used when a tentacle returns, to ensure that the tentacle's "head" precisely matches its recoil animation. If the impact point of a missile has a forward vector of 0, -1, 0, the missile will have a forward vector of 0, 1, 0 as it moves towards its target. This is because the missile is pointing towards the tentacle's owner, even though the tentacle appears to still be pointing at its target.
+- *None.* 默认值。导弹 Actor 的旋转与游戏逻辑中的导弹旋转一致。
+- *Docking.* 让导弹在抵达时匹配决定其命中点的 Actor 的位置和反向旋转。这个旋转类型通常用于触手返回时，确保触手“头部”能准确匹配其回收动画。如果某导弹命中点的前向向量为 0, -1, 0，那么导弹在向目标移动时会使用 0, 1, 0 作为前向向量。这是因为导弹此时是朝向触手拥有者，而视觉上触手看起来却仍指向目标。
 
-- *Look At Target.* Causes the missile to face directly at its impact point, no matter how it moves. Useful for having air-to-ground missiles appear to drop from the fuselage of a fighter plane before ignition, while still facing towards the impact point.
+- *Look At Target.* 无论导弹如何运动，它始终直接朝向命中点。适合让空对地导弹看起来先从战机机腹下落，在点火前就已经朝向目标。
 
-- *Look At Target 2D.* Like Look At Target, but the missile always stays parallel to the ground. Could be used for a UFO-type projectile, that always appears to move laterally across the ground, regardless of direction.
-- *Upright.* The missile always appears upright (like a humanoid walking), regardless of its current direction. In other words, it has neither a pitch nor a roll.
+- *Look At Target 2D.* 与 Look At Target 类似，但导弹始终与地面平行。可用于那种无论朝哪个方向都像在地面上平移的 UFO 式投射物。
+- *Upright.* 导弹始终保持直立（像一个人形单位在行走），无论它当前朝哪个方向。换句话说，它既没有俯仰也没有翻滚。
 
-- *Zero Roll.* The missile never has any roll, though it may have a varying pitch.
+- *Zero Roll.* 导弹永远不会翻滚，但可以有变化的俯仰角。
 
 **Timeout**
 
-Causes a phase to terminate after a certain amount of time has elapsed. If the phase has a blend, it starts the blend and causes the end of the blend to be as far away from the blend start as it would normally be (i.e. if a blend and stop are set at 5 and 7, then a timeout that causes the blend to start at 2 will also cause the stop to occur at 4).
+让某个阶段在经过一定时间后强制终止。如果该阶段存在混合，那么它会从 timeout 触发的时刻开始进入混合，并让混合结束点与混合起点之间的距离保持与原设定相同（例如原本 blend 和 stop 在 5 与 7，那么一个让 blend 提前在 2 触发的 timeout，也会让 stop 提前在 4 发生）。
 
 **Overlays**
 
-An array of up to two scale values. (The system does not support more, because the effect of individual overlays become hard to discern if there are too many.) Scale controls how big an overlay appears. For a wave overlay, scale control the wave's amplitude, while for orbit and revolver overlays, it controls the revolution radius.
+这是一个最多包含两个缩放值的数组。（系统不支持更多，因为叠层过多时，单个叠层效果会很难辨认。）Scale 控制叠层的幅度。对于 Wave 叠层，scale 决定波动振幅；对于 Orbit 和 Revolver 叠层，scale 则决定旋转半径。
 
 
 
-## The Guidance Driver in Detail
+## Guidance 驱动器详解
 
-The guidance driver supports the canonical guided missile. It causes the missile to chase the target, regardless of where it moves. Most missiles that are not simple ballistic projectiles have a guided driver phase somewhere.
+Guidance 驱动器支持最经典的制导导弹行为。它会让导弹无论目标移动到哪里都持续追踪。大多数不是简单抛射物的导弹，都会在某个阶段使用 guidance 驱动器。
 
 **Orientation**
 
-Individually limit how fast the missile can turn in the three traditional rotational axes used by pilots (yaw, pitch, and roll). This enables the user to configure a missile like a fighter plane, which rolls faster than it can pitch and pitches faster than it can yaw.
+分别限制导弹在飞行员使用的三种传统旋转轴（偏航、俯仰、翻滚）上的最大转向速度。这允许用户把导弹配置得像一架战斗机，例如翻滚速度比俯仰快，而俯仰又比偏航快。
 
-Yaw, pitch, and roll are represented as degrees per second. This field also supports the special "MAX" value, which means that the missile can turn at the maximum possible rate per missile simulation on that axis. This value is critical for enabling missiles to always hit their targets when they get close enough.
+偏航、俯仰和翻滚都以“度/秒”为单位。这个字段还支持一个特殊值 “MAX”，表示在该轴上导弹每次模拟都以可能的最大速度转向。这个值对确保导弹在接近目标时一定能命中至关重要。
 
-**Orientation Range** - Like Orientation, but each value is the upper bound on a rotational rate variance added to the base yaw, pitch, and roll values.
+**Orientation Range** - 与 Orientation 类似，但每个值代表附加到基础偏航、俯仰、翻滚速率上的随机变化上限。
 
-**Orientation Acceleration** - Enables the user to accelerate the various turn rates.
+**Orientation Acceleration** - 允许用户让各类转向速率本身也具有加速度。
 
-**Orientation Acceleration Range** - Like Orientation Range, but for turn acceleration.
+**Orientation Acceleration Range** - 与 Orientation Range 类似，但作用于转向加速度。
 
 **Powerslide Angle**
 
-Enables missiles to powerslide -- just like cars in racing games -- but in 3D. If the missile is pointed farther than this angle from the target, it starts to powerslide. This causes the missile to skid along its original course, decelerating as it goes. As the missile moves ever more slowly, its acceleration value increases (like how a race car's wheels get more traction as it skids more slowly), enabling the missile to eventually escape the powerslide.
+允许导弹像赛车游戏中的车辆一样做 powerslide，只不过是在三维空间中。如果导弹朝向与目标之间的夹角大于这个值，它就会开始滑行。这会让导弹沿原来的轨迹打滑并减速。随着导弹越来越慢，它的加速度值会提升（就像赛车打滑速度降低时轮胎抓地力会恢复一样），最终导弹便能摆脱滑行状态。
 
 **Powerslide Deceleration**
 
-The rate at which a powersliding missile leaves the powerslide. If this value is high, the missile escapes the powerslide quickly.
+控制进行 powerslide 的导弹脱离滑行状态的速度。如果这个值很高，导弹会很快结束滑行。
 
 
 
-## The Ballistic Driver in Detail
+## Ballistic 驱动器详解
 
-The ballistic driver enables the user to create the typical catapult-like projectiles. They are configured by horizontal speed or Flight Time, but not both.
+Ballistic 驱动器允许用户制作典型的投石机式抛射物。它们通过水平速度或飞行时间来配置，但不能同时使用两者。
 
 **Speed**
 
-This is the generic field used by all drivers, but uniquely interpreted by the ballistic driver to mean constant horizontal velocity. This enables the user to treat the ballistic driver like a standard guided missile for purpose of balance. It also makes it impossible to create degenerate combinations of target distances, launch angles and launch speeds.
+这是所有驱动器共用的通用字段，但在 ballistic 驱动器中会被特殊解释为恒定的水平速度。这使用户可以像平衡普通制导导弹那样来平衡 ballistic 驱动器，同时也避免了目标距离、发射角度和发射速度之间出现退化组合。
 
 **Flight Time**
 
-Controls the time it takes for the projectile to reach the target, regardless of distance. Enables the user to schedule ballistic projectile arrival and also makes it impossible to create degenerate ballistic missile configurations.
+控制抛射物无论飞多远，都在固定时间后到达目标。这使用户可以精准安排 ballistic 抛射物的到达时机，同时也避免出现退化型弹道配置。
 
 **Outro Altitude**
 
-Like a standard outro, except by percentage, and correlated to altitude. Positive values refer to progress up the flight parabola, whereas negative values are progress down the parabola. For instance, a value of 0.9 means 90% towards the apex on the ascent, whereas a value of -0.9 means 90% towards the apex, but on the descent.
+这和标准 outro 类似，但按百分比、并与高度相关。正值表示抛物线上升过程中的进度，负值表示抛物线下降过程中的进度。例如，0.9 表示在上升过程中已接近顶点 90%；而 -0.9 表示在下降过程中也相当于接近顶点 90%。
 
 
 
-## The Parabola Driver in Detail
+## Parabola 驱动器详解
 
-The parabola driver is best used for jumping types of behavior, like with the Reaper (the unit for which it was developed). It allows precise control over movement speed throughout the parabola without causing the parabolic arc to be deformed in any way.
+Parabola 驱动器最适合用来制作跳跃类行为，例如死神的跳跃动作（这个驱动器最初就是为它开发的）。它允许你精确控制单位在整个抛物线过程中的移动速度，同时不会让抛物线轨迹本身发生任何变形。
 
 **Parabola Upright**
 
-When enabled, ensures that the missile is always parallel to the ground, which enables a unit like the Reaper to always appear upright throughout its flight path. If this flag is not set, the parabola controls the forward vector of the missile to give it the expected upward and downward pitch as the missile travels up and down its flight arc (like the nose of a football points first upward then downward as it travels).
+启用后，可确保导弹始终与地面平行，这样像死神这样的单位在整条飞行路径中都会保持直立。如果不启用该标志，抛物线会控制导弹的前向向量，使其在上升与下降过程中具备符合预期的抬头与低头俯仰（类似橄榄球飞行时，球头会先朝上再朝下）。
 
 **Parabola Clearance**
 
-Specifies how much loft (i.e. additional height) the mover creates over the higher of either the launch or destination points. This is a variator, so can be a base plus a random range, in order to provide visual variance.
+指定 mover 在发射点和落点中较高者之上再额外抬高多少，也就是增加多少“腾空高度”。这个值可以是基础值加随机范围，从而产生视觉变化。
 
 **Parabola Distance**
 
-This is an array of numbers that specify the lengths of 4 parabola "hotspots".
+这是一个数字数组，用于指定 4 个抛物线“热点”的长度。
 
-- *Launch.* This is the first part of the parabola and usually represents some kind of take-off.
-- *Before Apex.* A distance from the vertex on the leading edge of the parabola. It is used to start decelerating to give the path some loft.
+- *Launch.* 抛物线的起始部分，通常代表某种起跳动作。
+- *Before Apex.* 位于抛物线顶点前方的一段距离，用于开始减速，从而让路径显得更有腾空感。
 
-- *After Apex.* A distance from the vertex on the trail edge of the parabola. It is used to reduce loft deceleration or even start accelerating out of the loft.
+- *After Apex.* 位于抛物线顶点后方的一段距离，用于减弱腾空减速，甚至开始重新加速离开腾空区。
 
-- *Land.* A distance before the final landing point. Usually represent some kind of touch down.
+- *Land.* 距最终落地点之前的一段距离，通常代表某种落地过程。
 
 
 **Parabola Acceleration**
 
-This is an array of numbers that specify the acceleration in different parts of the parabola. The different parts are:
+这是一个数字数组，用于指定抛物线不同区段中的加速度。不同区段分别是：
 
-- *Launch.* The first part of the parabola.
-- *Ascent.* Between launch and apex.
+- *Launch.* 抛物线的起始部分。
+- *Ascent.* 从发射到顶点之间。
 
-- *Apex.* The "hump" of the parabola.
+- *Apex.* 抛物线的“隆起”顶端。
 
-- *Descent.* Between launch and land.
+- *Descent.* 从顶点到落地之间。
 
-- *Land.* The distance before the final landing point.
+- *Land.* 最终落地点之前的一段距离。
 
-It is often best to have a Before Apex value that is longer than the After Apex value, if one wants to use deceleration to make the missile appear to "loft" realistically.
+如果你想通过减速来让导弹看起来更自然地“抛高”，通常最好让 Before Apex 的值大于 After Apex 的值。
 
 
 
-## The Throw Driver in Detail
+## Throw 驱动器详解
 
-Causes the missile to move along an arbitrary linear path. While seemingly of limited use, this is actually the most flexible and powerful driver from a visual punch perspective. When strung together with blends and varied across groups of simultaneously fired missiles, throw drivers can create stunningly unique visual patterns.
+Throw 驱动器会让导弹沿任意线性路径移动。虽然看起来用途有限，但从视觉冲击力来说，它其实是最灵活、最强大的驱动器。通过与混合组合使用，再对同一批同时发射的导弹设置差异化参数，throw 驱动器可以创造出极其惊艳且独特的视觉模式。
 
 **Throw Rotation Type**
 
-*None.* The default. The missile travels in the direction of the throw if it is the first phase, but will otherwise continue in its current direction, since throws can deflect the direction of a missile without affecting its rotation.
+*None.* 默认值。如果这是第一阶段，导弹会朝着 throw 方向飞行；否则它会保持当前朝向，因为 throw 可以改变导弹的飞行方向而不改变旋转。
 
-- *Launcher Forward.* Causes the missile to face in the direction of the firing unit or the firing unit's turret (if it has one) at the beginning of the phase. Only useful on the first phase.
-- *Look At Target.* Causes the missile to face directly at its impact point, throughout its throw.
+- *Launcher Forward.* 在阶段开始时，让导弹朝向发射单位或其炮塔（如果有的话）所朝的方向。只适合用于第一阶段。
+- *Look At Target.* 让导弹在整个 throw 过程中始终朝向命中点。
 
-- *Look At Target 2D.* Like Look At Target, but the missile always stays parallel to the ground.
+- *Look At Target 2D.* 与 Look At Target 类似，但导弹始终保持与地面平行。
 
-- *Throw Forward.* Causes the missile to face in the direction of the throw.
+- *Throw Forward.* 让导弹始终朝向 throw 的飞行方向。
 
-- *Vectored.* Enables the user to configure an arbitrary facing direction in local coordinates. Useful for causing missiles to throw from the firing unit in some exaggerated "dormant" pose before they activate (the fact that the missiles point elsewhere is what drives the visual message in this case). For instance, a throw can be used to drop a missile like a bomb, and the vectored value can be used to keep the missile pointing straight ahead while it drops to ignition level.
+- *Vectored.* 允许用户以局部坐标配置一个任意朝向。它适合用于让导弹在真正“启动”前，先以某种夸张的“待机姿态”从发射单位上抛出（此时导弹指向别处本身就构成了视觉表达）。例如，可以用 throw 像投炸弹一样把导弹丢出去，再用 vectored 值让它在下降到点火高度前一直保持笔直朝前。
 
 **Throw Vector**
 
-The local coordinates of the throw. They do not need to be normalized.
+Throw 的局部坐标向量，不需要归一化。
 
 **Throw Band Yaw**
 
-Enables the user to configure throw variance along the yaw plane, as a deflection with respect to the core throw axis.
+允许用户在偏航平面上为 throw 配置偏差范围，相对于核心 throw 轴线进行偏转。
 
-- *Positive Max.* Controls the outer yaw limit of the throw variance in the positive (clockwise) direction. Can actually be negative, for non-symmetric variances.
-- *Negative Max.* Optional. Controls the outer yaw limit of the throw variance in the negative (counter-clockwise) direction. Can actually be positive, for non-symmetric variances.
+- *Positive Max.* 控制偏差在正方向（顺时针）的最大偏航角。也可以设为负值，用于非对称偏差。
+- *Negative Max.* 可选。控制偏差在负方向（逆时针）的最大偏航角。也可以设为正值，用于非对称偏差。
 
-- *Positive Min.* Optional, but must have a Negative Max and Negative Min configured if used. Can be used to open up a gap in the yaw band, so that missiles either come out far to the left or far to the right, but not in the middle.
+- *Positive Min.* 可选，但若使用，必须同时配置 Negative Max 和 Negative Min。它可用于在偏航带中挖出一个空缺，使导弹只会朝较左或较右发射，而不会穿过中间。
 
-- *Negative Min.* Optional, but must have a Negative Max and Positive Min configured if used. Like Positive Min, but in the negative direction.
+- *Negative Min.* 可选，但若使用，必须同时配置 Negative Max 和 Positive Min。作用与 Positive Min 类似，只是对应负方向。
 
-In other words, the user can specify a throw arc with or without biases towards the right or left side, and he can prevent missiles from firing out in a gap within that arc, so that they do not appear to fly through the fuselage of the attacking craft. These numbers also make it easier to create: A) starfish-type burst patterns and B) exaggerated "whip-strike" attacks that cause the missile to flare out in a particular direction before striking the target.
+换句话说，用户既可以定义一个对左右有偏好或无偏好的 throw 扇形，也可以在这个扇形中留出一个空隙，以防导弹看起来像是穿过攻击单位机身飞出去。这些数值也让你更容易制作：A）海星状爆发图案；B）夸张的“甩鞭式”攻击，让导弹先朝特定方向甩开，再击中目标。
 
 **Throw Band Pitch**
 
-Like Throw Band Yaw, but for pitch. When all four yaw and pitch min values are used, it means that missiles come out in a square ring, rather than a across the entire area of the square. As mentioned above, this is useful for creating certain kinds of flare-out missile patterns.
+与 Throw Band Yaw 类似，但控制的是俯仰方向。当四个偏航/俯仰最小值都被使用时，导弹会从一个方环区域中飞出，而不是覆盖整个正方形区域。正如前文提到的，这对某些张开式导弹图案非常有用。
 
 **Throw Forward**
 
-A vector in local coordinate space that configures an arbitrary facing when using the Vectored rotation type.
+在使用 Vectored 旋转类型时，这个局部坐标空间中的向量用来配置任意朝向。
 
 
 
-## Overlays in Detail
+## 叠层详解
 
-Unlike phases, overlays apply to the entire flight path of the missile. The user can have up to two simultaneous overlays on a given missile, and each overlay contributes equally to the final missile position.
+与阶段不同，叠层会作用于导弹的整个飞行路径。单枚导弹最多可以同时拥有两个叠层，而且每个叠层对最终导弹位置的贡献权重相同。
 
-Overlays have a concept of scale which is how far they deflect motion from the core driver's flight path. Scale is zero at both endpoints of the flight path, but can be varied on a per-phase basis during the middle of the flight. The overlay system automatically uses cubic splines to blend smoothly between the scale values as the missile moves. The missile achieves the scale for a given phase at its midpoint.
+叠层有一个“scale”概念，用于表示它让运动偏离核心驱动路径的幅度。飞行路径两端的 scale 都是 0，但在飞行中段，它可以按阶段进行变化。叠层系统会自动使用三次样条在不同 scale 值之间平滑插值。导弹会在某个阶段的中点达到该阶段设定的 scale。
 
-The extra distance a missile travels because of its overlays does not affect phase outros; those are governed entirely by core driver motion (this extra distance would be very hard to predict with any accuracy, and actually significantly alters missile phase changes in ways that are too variable).
+导弹因为叠层而额外飞行的距离，不会影响阶段 outro；阶段切换完全由核心驱动路径决定（因为额外路径长度很难精确预测，而且会以过于不可控的方式扰动阶段切换）。
 
 **Type**
 
-The type of overlay, whether Wave, Orbit, or Revolver.
+叠层类型，可以是 Wave、Orbit 或 Revolver。
 
 **Polarity**
 
-Enables the user to govern which direction an overlay travels in. For Wave overlays, this controls the direction of the first "hump", whether positive or negative. For Orbit overlays, it controls whether the orbit travels clockwise (positive) or counter-clockwise (negative). It can be useful to control these when trying to coordinate the combined look of pairs of missiles. Polarity supports several values:
+允许用户控制叠层朝哪个方向运动。对于 Wave 叠层，它控制第一个“波峰”是正向还是负向；对于 Orbit 叠层，它控制旋转是顺时针（正向）还是逆时针（负向）。当你需要协调一对导弹的组合视觉时，这个参数会非常有用。Polarity 支持以下几种值：
 
-- *Positive.* The overlay travels in the positive direction.
-- *Negative.* The overlay travels in the negative direction.
+- *Positive.* 叠层沿正方向运动。
+- *Negative.* 叠层沿负方向运动。
 
-- Random. The overlay has a 50% chance of traveling in either the positive or negative direction.
+- Random. 叠层有 50% 概率沿正方向，也有 50% 概率沿负方向。
 
-- *Alternating.* The overlay travels in a direction determined by an ongoing rolling index. This index increments for each attack or operation performed by the attacking unit, and as such, can be used to regularly vary polarity in a striping-type pattern.
+- *Alternating.* 叠层方向由一个持续滚动的索引决定。该索引会在攻击单位每次执行攻击或操作时递增，因此可用来以条纹式规律持续交替方向。
 
 **Polarity Driver**
 
-A key that specifies the rolling index or execution index to use to drive the Alternating type of polarity. The string "::RollingIndex" specifies that the overlay's polarity is alternated by rolling index whereas a relevant effect ID specifies that it is alternated by each subsequent execution of that effect within a given effect tree. ::RollingIndex alternates the polarity across attacks, whereas specifying an effect alternates the polarity within a given attack.
+指定用于驱动 Alternating 极性的滚动索引或执行索引的键。字符串 "::RollingIndex" 表示叠层极性按滚动索引交替；而某个相关效果 ID 则表示它会在某个效果树中的每次执行之间交替。::RollingIndex 是跨多次攻击交替，而指定效果则是在同一次攻击内的连续执行之间交替。
 
 **Axis**
 
-A vector in local coordinates that controls the axis around which the overlay motion is applied. For Wave overlays, this controls the direction of the sine wave. For Orbit and Revolver overlays, it controls the axis of revolution. In most cases, this will either be 0,-1,0 (forward) or 0,1,0 (backwards). However, it is possible to create unusual and skewed overlays by varying it. (For instance, creating a lateral revolution axis for an orbit creates a vertical cycloid flight pattern.)
+局部坐标中的一个向量，用于控制叠层围绕哪根轴发生运动。对于 Wave 叠层，它决定正弦波方向；对于 Orbit 和 Revolver 叠层，它决定公转轴。多数情况下，这会是 0,-1,0（前方）或 0,1,0（后方）。当然，你也可以通过改变它来创造一些非常规、倾斜的叠层效果。（例如，若给 orbit 设置一个横向公转轴，就会得到一种垂直摆线式的飞行图案。）
 
 **Wavelength**
 
-Specifies the distance it takes to complete an entire 360 degree sine wave for Wave overlays, or the distance it takes to complete an entire revolution for Orbit overlays.
+指定 Wave 叠层完成一个完整 360 度正弦波所需的距离，或 Orbit 叠层完成一整圈公转所需的距离。
 
-Base. This controls the minimum wavelength distance.
+Base. 控制最小波长距离。
 
-Range. The outer bound of a random value that gets added to the base distance. This causes sine waves and orbits to vary noticeably, which frequently results in a more real world look.
+Range. 附加到基础距离上的随机值上限。它会让正弦波与轨道运动产生明显变化，通常能带来更接近真实世界的观感。
 
 **Wavelength Change Probability**
 
-A percentage chance that the wavelength will be recalculated on each half-wave (i.e. after each wave "hump") or half-orbit.
+在每个半波（即每个波峰之后）或半圈轨道之后，重新计算波长的概率百分比。
 
 
 
-## Revolver Overlays in Detail
+## Revolver 叠层详解
 
-Revolvers are like Orbits that do not always move in the same direction. They are meant to simulate Robotech-style "drunken missiles� which have missiles moving in lazy, rolling orbits that vary slowly direction and speed.
+Revolver 类似 Orbit，但它不会始终朝同一个方向运动。它的设计目标是模拟《超时空要塞》风格的“醉酒导弹”：导弹沿着松弛、滚动的轨道飞行，同时缓慢改变方向与速度。
 
-- **Revolver Speed** - Specifies the rotational velocity of the revolution.
-- **Revolver Speed Range** - The range for a random extra amount to add to the base Revolver Speed value.
+- **Revolver Speed** - 指定公转的角速度。
+- **Revolver Speed Range** - 在基础 Revolver Speed 上额外附加的随机值范围。
 
-- **Revolver Max Speed** - Specifies the maximum rotational velocity of the revolution.
+- **Revolver Max Speed** - 指定公转的最大角速度。
 
-- **Revolver Max Speed Range** - The range for a random extra amount to add to the base Revolver Max Speed value.
+- **Revolver Max Speed Range** - 在基础 Revolver Max Speed 上额外附加的随机值范围。
 
-- **Revolver Acceleration** - Specifies the rotational acceleration of the revolution.
+- **Revolver Acceleration** - 指定公转的角加速度。
 
-- **Revolver Acceleration Range** - The range for a random extra amount to add to the base Revolver Acceleration value.
-
-
-
-## Supporting Systems
-
-**The Previewer**
-
-Necessary for easily and clearly observing the location of model attach points that missiles launch from and impact upon.
-
-**Effects**
-
-Several Effects are necessary for actually launching the missiles:
-
-*Launch Missile Effect.* The effect that launches missiles and therefore mandatory for all missile creation. Useful fields include:
-
-- Impact Range. The distance from the missile's target that will trigger impact. Enables proximity-based detonation.
-
-- Retarget Filters. Determines what kind of targets a missile considers for attack should its target die before it arrives.
-
-- Retarget Range. Units within this range are viable candidates for retargeting.
-
-- Retarget flag. Located in the Flags field. Indicates that this missile can retarget.
+- **Revolver Acceleration Range** - 在基础 Revolver Acceleration 上额外附加的随机值范围。
 
 
-The Launch Missile Effect also allows the user to configure a dynamic set of movers for the missile to use based on various conditions:
 
-- Movers - Link. A list of movers that from which the missile can choose at launch time.
+## 配套系统
 
-- Movers - Range Less Than or Equal. A list that corresponds to the list of movers. The distance between the launcher and the target must be less than or equal to this value in order for the corresponding mover to be a candidate for selection.
+**预览er**
 
-- Mover Rolling Pattern. Can be Stripe or Bounce. Stripe chooses movers in a pattern like 12341234, whereas bounce chooses them in a pattern like 1234321234.
+这是观察模型发射挂点与命中挂点位置的必要工具，能帮助你更清楚地查看导弹从哪里发射、命中哪里。
 
-- Mover Rolling Jump. Indicates how many mover array items to jump each time a new attack occurs.
+**效果**
 
-- Mover Execute Pattern. Like Mover Rolling Pattern but for executions of the parent Launch Missile effect.
+真正发射导弹还需要若干效果配合：
 
-- Mover Execute Jump. Like Mover Rolling Jump, but for parent Launch Missile effect execution.
+*Launch Missile Effect.* 所有导弹创建都必须使用的核心效果。比较有用的字段包括：
 
-- Mover Execute Range. Controls the number of stripes or bounces in a single execution burst.
+- Impact Range. 距目标多远时会触发命中。可用于实现近炸效果。
+
+- Retarget Filters. 决定当当前目标在导弹抵达前死亡时，导弹会考虑哪些类型的新目标。
+
+- Retarget Range. 在这个范围内的单位都可能成为重新索敌候选。
+
+- Retarget flag. 位于 Flags 字段中。表示这枚导弹允许重新锁定目标。
 
 
-For instance a Rolling Jump of 4, an Execute Jump of 1, an Execute Range of 4, and a Mover Execute Pattern of bounce with a burst of 7 attacks would produce this pattern:
+Launch Missile Effect 还允许用户根据不同条件，为导弹动态配置可选 mover 集合：
+
+- 移动器 - Link. 一个 mover 列表，导弹会在发射时从中选择一个使用。
+
+- 移动器 - Range Less Than or Equal. 一个与 mover 列表一一对应的阈值列表。只有当发射者与目标之间的距离小于等于该值时，对应 mover 才有资格被选中。
+
+- Mover Rolling Pattern. 可设为 Stripe 或 Bounce。Stripe 会按 12341234 这种顺序选择 mover，而 Bounce 则会按 1234321234 这种顺序选择。
+
+- Mover Rolling Jump. 表示每次新攻击发生时，在 mover 数组中跳过多少个项目。
+
+- Mover Execute Pattern. 与 Mover Rolling Pattern 类似，但用于父级 Launch Missile 效果的多次执行。
+
+- Mover Execute Jump. 与 Mover Rolling Jump 类似，但用于父级 Launch Missile 效果执行。
+
+- Mover Execute Range. 控制单次执行连发中条纹或往返模式的次数。
+
+
+例如，若 Rolling Jump 为 4、Execute Jump 为 1、Execute Range 为 4，并且 Mover Execute Pattern 为 bounce，那么在一次包含 7 发的攻击连射中，就会得到如下模式：
 
 0.1.2.3.2.1.0 4.5.6.7.6.5.4 8.9.10.11.10.9.8
 
-Also relevant is the Return Movers field which is used for tentacles. The return mover is chosen by how far the tentacle is from its source at the time it needs to return.
+另一个相关字段是 Return 移动器，供触手类对象使用。返回 mover 的选择依据是触手在需要返回时距离源头有多远。
 
-- *Create Persistent effect.* This is necessary for causing bursts of missiles to spread to specific points on a user-controlled schedule.
+- *Create Persistent effect.* 当你希望按用户可控节奏将一连串导弹分散到特定点位时，它是必需的。
 
-**Attach Methods** - These control how the game chooses which attach points to launch from and impact upon. Specify an attach method to use in the Action actor that controls the attack.
+**Attach Methods** - 控制游戏如何选择从哪些挂点发射，以及命中哪些挂点。你需要在负责该攻击的 Action Actor 中指定 attach method。
 
-**Missile actors** - This component of the actor system enables data to correlate animations to the beginning and end of phases. It is also possible to trigger animations based on time elapsed from any of these points.
+**Missile actors** - Actor 系统中的这个部分允许数据把动画与阶段开始或结束关联起来。你也可以根据距这些时间点过去了多久来触发动画。
 
 
 
-## TIPS AND TECHNIQUES
+## 技巧与建议
 
-This section contains useful advice for achieving certain visuals or avoiding known pitfalls.
+这一节提供一些实用建议，帮助你实现特定视觉效果，或避免已知问题。
 
-**Giving missiles short "charge up" animations**
+**让导弹具备短暂的“蓄力”动画**
 
-For instance, the Yamato Cannon appears to draw energy together before firing. The best way to do something like this is to give a guided missile phase 0 speed and acceleration, but a timeout of the desired animation duration.
+例如，大和炮在发射前会先聚集能量。实现这类效果的最佳方式，是让某个 guidance 导弹阶段的速度和加速度都为 0，但设置一个等于所需动画时长的 timeout。
 
-**Preventing perpetually looping missiles**
+**防止导弹无限循环飞行**
 
-This happens when a missile does not have a sufficient turn rate to ever arrive at a static target. It can occur when a target moves at the last moment and then either dies or becomes stationary, such that it is just inside the missile's ability to turn towards it. The way around this is to give a missile a "terminator phase", which is a guidance phase with a MAX Orientation. This enables the missile to turn on a dime, which makes it impossible to escape.
+这种情况会在导弹转向能力不足、无法最终命中一个静止目标时发生。典型场景是目标在最后一刻移动，然后死亡或停下，使自己刚好处在导弹理论上能转到、但实际上永远也拐不过去的位置。解决方法是给导弹加一个“终结阶段（terminator phase）”，也就是一个 Orientation 为 MAX 的 guidance 阶段。这样导弹可以原地急转，目标就不可能逃掉。
 
-**Forcing powersliding missiles to reach the target**
+**强制 powerslide 导弹最终命中目标**
 
-Without using these techniques, enterprising players can forever kite powersliding missiles by "juking" their units just before they are hit. The most direct technique for handling the problem is to give the powersliding motion phase a timeout. When doing this, it is important to remember to that the next phase needs a steep powerslide deceleration, but 0 powerslide angle. This enables the missile to move out of the slide quickly, but without being abrupt. Another technique for this is to give powerslide missiles a positive outro. This causes them to transition out of the powerslide after they have traveled a specific distance.
+如果不使用这些技巧，操作好的玩家可以在导弹即将命中前通过突然变向，无限风筝 powerslide 导弹。最直接的解决方案，是为 powerslide 阶段添加 timeout。这样做时，需要记得下一阶段应有很高的 powerslide deceleration，但 powerslide angle 为 0。这样导弹能快速从滑行中恢复出来，同时又不会显得突兀。另一种做法是给 powerslide 导弹设置一个正值 outro。这样它在飞行一定距离后就会自动退出滑行阶段。
 
-**Avoiding missiles that hang in space if the launching unit is killed**
+**避免发射单位死亡后导弹悬停在空中**
 
-If a unit is configured to use a Create Persistent effect to launch a burst or barrage of missiles, then that Create Persistent effect must be marked as channeled. This ensures that the unit does not accidentally try to create missiles while it is playing its death model, since this can cause the missiles to get empty configuration data.
+如果某单位通过 Create Persistent 效果发射一组连发或齐射导弹，那么这个 Create Persistent 效果必须被标记为 channeled。这样可以确保单位不会在播放死亡模型时误尝试继续创建导弹，否则导弹可能拿到空配置数据。
 
-**Eliminating backwards-looking loops with revolvers**
+**消除 revolver 导弹向后打圈的异常**
 
-If a missile turns sharply enough and it attempts to revolve slowly through the inside of the turn, it can cause kinking. Revolvers always try to rotate around the flight path, so hairpin turns can actually cause the missile's position to appear to move backwards as the rapidly rotating driver causes the final overlay position of the missile to rotate around the focus point of the hairpin turn. The solution to this is to increase the rotational speed of the revolver so that it rapidly jumps past the point where it is on the inside of the turn. Alternatively, one can avoid hairpin turns or reduce the scale of the overlay to minimize how noticeable this side effect is. It is often possible to simply reduce the overlay scale only at the hairpin turn itself with very little overall visual impact.
+如果导弹转弯足够急，同时它又试图慢速从弯道内侧进行 revolver 运动，就可能产生扭结。Revolver 总是试图围绕飞行路径旋转，因此当驱动路径发生发夹弯时，导弹的最终叠层位置可能会绕着发夹弯的焦点疯狂旋转，导致其视觉位置看起来在向后移动。解决办法是提高 revolver 的旋转速度，让它更快越过“位于弯道内侧”的那一瞬间。另一种做法是尽量避免发夹弯，或减小叠层 scale，以降低这个副作用的可见度。通常你只需要在发夹弯那一小段单独降低叠层 scale，就能在整体视觉几乎不受影响的情况下解决问题。
 
-**Preventing overlay missiles from skipping past the target**
+**防止叠层导弹从目标旁边飞过去**
 
-This happens when an overlay missile is configured to use No Hook actor tracking (the default, no less), which causes the missile to lock onto a final course as it nears the target. The problem is that overlays can cause the missile to be pointing in the wrong direction when this happens, which causes the missile's visual representation to go careening off into the wild blue yonder. The solution is to simply set the missile to use actual actor tracking, since it exists to handle this case.
+这种情况发生在叠层导弹使用 No Hook Actor tracking（而这还是默认值）时。该设置会让导弹在接近目标时锁定最终飞行方向。问题在于，叠层可能让导弹在锁定时刚好朝着错误方向，于是导弹的视觉表现就会一头冲向远方。解决方法很简单：把导弹改为使用 actual actor tracking，因为这个模式正是为处理这种情况而存在的。

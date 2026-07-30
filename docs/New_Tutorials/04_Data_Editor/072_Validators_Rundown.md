@@ -1,144 +1,144 @@
-# Validators Rundown
+# 验证器概览
 
-This article gives a breakdown of some of the different types of validators. Each section describes the fields of its validator, as well as providing some details on its use and application.
+本文会拆解几种不同类型的验证器。每一节都会说明对应验证器的字段，并补充一些有关其用途和应用方式的细节。
 
 ## Combine
 
-The Combine validator joins a list of validators together. While 'Validators' fields typically support multiple validators, combining them like this can be a useful tool for organization and clarity. Combine validators can be sequenced indefinitely by repeatedly inserting a combine validator into themselves.
+Combine 验证器会把一组验证器组合在一起。虽然 `验证器` 字段通常本身就支持多个验证器，但像这样显式组合起来，仍然有助于组织结构和提升可读性。通过把 Combine 验证器反复插入到自身中，你还可以无限扩展这类组合序列。
 
-| Field             | Details                                                                                                                                                                                                                           |
+| 字段 | 说明 |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Type              | Selects an AND or OR combination of the terms. The AND combination requires that every validator be true for the combined validator to be true. By contrast, the OR combination is true as long as one of its validators is true. |
-| Combines          | Sets the validators to be combined. These can contain another combine validator.                                                                                                                                                  |
-| Negate            | Reverses the test result, any true results will draw as false and vice versa. This is also known as a NOT operator.                                                                                                               |
-| Result -- Failure | Sets the error message to be distributed on failure.                                                                                                                                                                              |
+| 类型 | 选择以 AND 还是 OR 的方式组合各项条件。AND 组合要求每个验证器都为 true，整个组合验证器才会为 true；相对地，OR 组合只要其中任意一个验证器为 true，整体就为 true。 |
+| 组合项 | 设置要组合的验证器。这里面也可以继续包含另一个 Combine 验证器。 |
+| 取反 | 反转测试结果，所有 true 会变成 false，false 会变成 true，这也被称为 NOT 运算。 |
+| 失败结果 | 设置在失败时要分发的错误信息。 |
 
-You can see an example of a combine validator below.
+下图展示了一个 Combine 验证器的例子。
 
-[![Combine Validator Example](./resources/072_Validators_Rundown1.png)](./resources/072_Validators_Rundown1.png)
-*Combine Validator Example*
+[![Combine 验证器示例](./resources/072_Validators_Rundown1.png)](./resources/072_Validators_Rundown1.png)
+*Combine 验证器示例*
 
-Here, three individual validators have been combined, Caster Not Dead, Energy Not Full Caster, and Not Dead. You can use the Object Explorer and Data Navigator to see this link in detail, as shown in the following image.
+这里组合了三个独立验证器：`Caster Not Dead`、`Energy Not Full Caster` 和 `Not Dead`。你可以使用对象浏览器和数据导航器更详细地查看这一链接关系，如下图所示。
 
-[![Combine Validators Linkage Views](./resources/072_Validators_Rundown2.png)](./resources/072_Validators_Rundown2.png)
-*Combine Validators Linkage Views*
+[![Combine 验证器链接视图](./resources/072_Validators_Rundown2.png)](./resources/072_Validators_Rundown2.png)
+*Combine 验证器链接视图*
 
-You should note that these visualizations will only ever display a single hierarchical level of combinations. If the combine validator is sequenced, you'll have to select any additional levels of combine validators to see their component validators.
+需要注意的是，这些可视化永远只会显示一层层级的组合关系。如果某个 Combine 验证器本身又继续嵌套了其他 Combine 验证器，你就必须逐个选中这些额外层级，才能看到其中的组成验证器。
 
 ## Enumerate Area
 
-The Enumerate Area validator performs a test by counting the objects in an area and then comparing its count with a test value. Depending on the result of this test, the validator will draw a true or false. It can count objects in general or count only objects that test positively for a certain validator.
+Enumerate Area 验证器通过统计某个区域中的对象数量，并将统计结果与测试值进行比较来执行测试。根据比较结果，它会返回 true 或 false。它既可以统计区域中的全部对象，也可以只统计那些能通过某个特定验证器测试的对象。
 
-| Field          | Details                                                                                                                                                                                                                              |
+| 字段 | 说明 |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Areas          | Defines a list of areas to be searched. You can also define a validator for each area that will cause the search to only count objects with the validator. Not setting any validator in any area will result in a simple unit count. |
-| Compare        | Defines the operator for comparing the number of objects located in the Areas with the Count.                                                                                                                                        |
-| Count          | Sets the test value against which the located objects are compared.                                                                                                                                                                  |
-| Location       | Checks the status of the ability. Enabled means it is occurring, Disabled means it is not occurring.                                                                                                                                 |
-| Search Filters | Sets the point on the map where the Areas are created and then searched.                                                                                                                                                             |
-| Search Flags   | Sets some option flags. Extend by Unit Radius will expand the area by the unit's Radius value. Same Cliff Level will only search for units sharing the same cliff level as the validator's host.                                     |
+| 区域 | 定义要搜索的一组区域。你还可以为每个区域定义一个验证器，使搜索只统计能通过该验证器的对象。如果所有区域都没有设置验证器，那么结果就是简单的单位计数。 |
+| 比较 | 定义用于将 Areas 中找到的对象数量与 Count 进行比较的运算符。 |
+| 计数 | 设置用来比较的测试值。 |
+| 位置 | 检查技能状态。Enabled 表示正在发生，Disabled 表示未在发生。 |
+| 搜索过滤器 | 设置在地图上创建并搜索这些区域的起点。 |
+| 搜索标志 | 设置一些选项标志。`Extend by Unit Radius` 会用单位的 Radius 值扩大搜索区域；`Same Cliff Level` 则只会搜索与验证器宿主处于相同悬崖层级的单位。 |
 
-Once activated, an enumerate area validator creates its Areas at a Location. It then counts how many objects meet its criteria within the Areas, whether that means simply existing or having a defined validator. That value is then compared with the Count test value by the operator defined by Compare. If the value is successfully compared, it returns true, if it is unsuccessful, it returns false. You can see an example of an enumerate area Areas field being built below.
+激活后，Enumerate Area 验证器会先在某个 `Location` 创建其定义的 Areas。然后它会统计这些区域内有多少对象符合条件，无论条件只是“存在于此”，还是“拥有某个指定验证器”。接着，这个统计值会通过 `Compare` 定义的运算符，与 `Count` 测试值进行比较。比较成功则返回 true，失败则返回 false。下图展示了一个 Enumerate Area 的 Areas 字段构建示例。
 
-[![Enumerate Areas Search Area](./resources/072_Validators_Rundown3.png)](./resources/072_Validators_Rundown3.png)
-*Enumerate Areas Search Area*
+[![Enumerate Area 搜索区域](./resources/072_Validators_Rundown3.png)](./resources/072_Validators_Rundown3.png)
+*Enumerate Area 搜索区域*
 
 ## Function
 
-The Function validator allows you to construct controlled sequences of validators. Each step of the sequence tests a validator, then either returns a result or moves on to the next test. The function validator can contain an indefinite number of terms and each test can return several types of unique results. This distinguishes it from the other conditional validator, Combine, which must be sequenced to extend beyond two terms and has tests that can each only return a simple true or false result. The function validator is typically used to construct extensive AI procedures.
+Function 验证器允许你构建受控的验证器序列。序列中的每一步都会测试一个验证器，然后要么返回结果，要么继续进入下一个测试。Function 验证器可以包含任意数量的项，而且每次测试都可以返回多种不同结果。这一点使它与另一种条件型验证器 Combine 区别开来：Combine 若想扩展到两个条件以上，必须继续嵌套自身，而且每一项测试只能返回简单的 true 或 false。Function 验证器通常用于构建较为复杂的 AI 流程。
 
-Function validators are built in a subeditor view that you can access through the Line field. The function validator proceeds through its tests on a line by line basis in the order of the line Index, moving from top to bottom. Each test measures if the validator set in its line is true. Then, depending on which of the five fields the validator has been placed under, an action is taken. An example of a function validator is shown below.
+Function 验证器是在一个子编辑器视图中构建的，你可以通过 `Line` 字段进入。它会按照 `Index` 行号从上到下逐行执行测试。每一行都会先判断该行设置的验证器是否为 true，然后再根据它被放在五种字段中的哪一种下方，决定采取何种动作。下图展示了一个 Function 验证器的示例。
 
-[![Function Validator Composition](./resources/072_Validators_Rundown4.png)](./resources/072_Validators_Rundown4.png)
-*Function Validator Composition*
+[![Function 验证器构成](./resources/072_Validators_Rundown4.png)](./resources/072_Validators_Rundown4.png)
+*Function 验证器构成*
 
-In this case, the first test is made on Caster Force Unburrow. If this validator is found true, then the function validator returns Failure and concludes. If the validator is found false, then the next line is executed. The next line, Index 1, tests if Tactical Burrow Hostile Search Empty is true. This happens to be an Enumerate Area validator. A true result from it will result in the validator returning Ignored. This will end the function validator. A false result will run the next line. This process continues until the Index is exhausted. Clearly, this validator can deliver a very robust profile of results. A breakdown of the individual fields is shown in the table below.
+在这个例子中，第一项测试是 `Caster Force Unburrow`。如果这个验证器为 true，那么 Function 验证器就会返回 `Failure` 并结束。如果这个验证器为 false，则执行下一行。下一行，也就是 `Index 1`，会测试 `Tactical Burrow Hostile Search Empty` 是否为 true。它恰好是一个 Enumerate Area 验证器。如果它返回 true，整个验证器就会返回 `Ignored`，并结束；如果返回 false，则继续执行下一行。这个过程会一直持续到所有 `Index` 被耗尽。显然，这种验证器能够提供极其丰富的结果画像。下表拆解了各个字段。
 
-| Field            | Details                                                                                                                                                                                                             |
+| 字段 | 说明 |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Line             | Sets the tests to be made by the validator on a line by line basis. There are five possible return results: Failure, Ignored, Return, Success, and Test. Break, described below, offers another control option.     |
-| Break            | Stops the validator once reached.                                                                                                                                                                                   |
-| Failure          | If the selected validator is true, returns a Fail for the function validator overall and exits the test. This also displays any error messages that have been set.                                                  |
-| Ignored          | If the selected validator is true, returns a Fail for the function validator overall and exits the test. This does not display any error messages.                                                                  |
-| Return           | Returns the same True or False result as the selected validator                                                                                                                                                     |
-| Success          | If the selected validator is true, returns True for the function validator overall and exits the test.                                                                                                              |
-| Test             | If the selected validator returns true, then the other validators in the line are skipped. This can be used with an additional Failure, Ignored, Return, or Success validator to make an upfront test of an object. |
-| Result - Failure | Selects the error message to be displayed on failure.                                                                                                                                                               |
+| 行 | 设置验证器逐行执行的测试。可返回的结果有五种：Failure、Ignored、Return、Success 和 Test。下文提到的 Break 还提供了另一种控制手段。 |
+| Break | 一旦执行到这里，就停止整个验证器。 |
+| Failure | 如果选中的验证器为 true，则整个 Function 验证器返回 Fail，并退出测试。这也会显示任何已设置的错误信息。 |
+| Ignored | 如果选中的验证器为 true，则整个 Function 验证器返回 Fail，并退出测试，但不会显示任何错误信息。 |
+| Return | 返回与选中验证器相同的 true 或 false 结果。 |
+| Success | 如果选中的验证器为 true，则整个 Function 验证器返回 True，并退出测试。 |
+| Test | 如果选中的验证器返回 true，则跳过当前行中的其他验证器。这可以配合额外的 Failure、Ignored、Return 或 Success 验证器，一开始就对对象做一次预检查。 |
+| 失败结果 | 选择在失败时显示的错误信息。 |
 
 ## Location Range
 
-Location Range validates the distance between two objects. Depending on whether or not that range meets a test value, a true or false value is returned. An example of a location range validator is shown below.
+Location Range 会验证两个对象之间的距离。根据该距离是否满足测试值，会返回 true 或 false。下图展示了一个 Location Range 验证器的示例。
 
-[![Location Range Validator](./resources/072_Validators_Rundown5.png)](./resources/072_Validators_Rundown5.png)
-*Location Range Validator*
+[![Location Range 验证器](./resources/072_Validators_Rundown5.png)](./resources/072_Validators_Rundown5.png)
+*Location Range 验证器*
 
-| Field             | Details                                                                  |
+| 字段 | 说明 |
 | ----------------- | ------------------------------------------------------------------------ |
-| Range             | Sets the distance to be tested using the Compare operator.               |
-| Compare           | Defines the operator for comparing the Range from one object to another. |
-| Location          | Sets the starting point for measurement.                                 |
-| Value - Value     | Sets the end point for measurement.                                      |
-| Result -- Failure | Sets the error message to be displayed on failure.                       |
+| 距离 | 设置要通过 `Compare` 运算符进行测试的距离值。 |
+| 比较 | 定义用于比较两个对象间 Range 的运算符。 |
+| 位置 | 设置测量的起点。 |
+| 值 - 值 | 设置测量的终点。 |
+| 失败结果 | 设置在失败时显示的错误信息。 |
 
 ## Player Requirement
 
-The Player Requirements validator tests the status of a certain requirement for a player.
+Player Requirement 验证器会测试某个玩家是否满足指定需求的状态。
 
-[![Player Requirement Validator](./resources/072_Validators_Rundown6.png)](./resources/072_Validators_Rundown6.png)
-*Player Requirement Validator*
+[![Player Requirement 验证器](./resources/072_Validators_Rundown6.png)](./resources/072_Validators_Rundown6.png)
+*Player Requirement 验证器*
 
-| Field               | Details                                                                                                                                                                                                                                                                                                           |
+| 字段 | 说明 |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Value               | Sets the Requirement to be tested.                                                                                                                                                                                                                                                                                |
-| Find                | Selects how the unit will be tested. Enabled means the unit being identified as the selected unit type will return as True, while not being identified will return as False. Disabled means a unit being identified as the selected unit type will return as False, and not being identified will return as True. |
-| Player - Value      | Specifies the player that the validator will target.                                                                                                                                                                                                                                                              |
-| Result -- No Player | Selects the error message to be distributed if a player is not set or found.                                                                                                                                                                                                                                      |
+| 值 | 设置要测试的 Requirement。 |
+| 查找 | 选择如何测试单位。Enabled 表示：如果单位被识别为指定单位类型，则返回 True；若未被识别为该类型，则返回 False。Disabled 则相反：若被识别为指定单位类型则返回 False，未被识别为该类型则返回 True。 |
+| 玩家 - 值 | 指定验证器要针对的玩家。 |
+| 无玩家结果 | 选择在未设置或找不到玩家时要分发的错误信息。 |
 
 ## Unit Type
 
-The Unit Type validator tests whether or not a unit is of a specified type. You can see one example of a unit type validator below.
+Unit Type 验证器会测试一个单位是否属于指定类型。下图展示了一个 Unit Type 验证器的例子。
 
-[![Unit Type Validator](./resources/072_Validators_Rundown7.png)](./resources/072_Validators_Rundown7.png)
-*Unit Type Validator*
+[![Unit Type 验证器](./resources/072_Validators_Rundown7.png)](./resources/072_Validators_Rundown7.png)
+*Unit Type 验证器*
 
-| Field            | Details                                                                                                                                                                                                                                                                                                                  |
+| 字段 | 说明 |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Unit - Value     | Sets the Unit to be tested.                                                                                                                                                                                                                                                                                              |
-| Value            | Sets the type of unit which the Unit - Value will be tested to be.                                                                                                                                                                                                                                                       |
-| Find             | Selects how the unit will be tested. Enabled means that the unit being identified as the selected unit type will return as True, while not being identified will return as False. Disabled means a unit being identified as the selected unit type will return as False, while not being identified will return as True. |
-| Result - Failure | Selects the error message to be distributed on failure.                                                                                                                                                                                                                                                                  |
+| 单位 - 值 | 设置要测试的单位。 |
+| 值 | 设置 `Unit - Value` 将被拿来比较的单位类型。 |
+| 查找 | 选择如何测试单位。Enabled 表示：如果单位被识别为指定单位类型，则返回 True；未被识别则返回 False。Disabled 则表示：如果单位被识别为指定单位类型，则返回 False；未被识别则返回 True。 |
+| 失败结果 | 选择在失败时要分发的错误信息。 |
 
 ## Unit Filters
 
-The Unit Filters validator checks whether or not a unit contains the specified filters.
+Unit Filters 验证器会检查某个单位是否包含指定过滤器。
 
-[![Unit Filters Validator](./resources/072_Validators_Rundown8.png)](./resources/072_Validators_Rundown8.png)
-*Unit Filters Validator*
+[![Unit Filters 验证器](./resources/072_Validators_Rundown8.png)](./resources/072_Validators_Rundown8.png)
+*Unit Filters 验证器*
 
-| Field            | Details                                                     |
+| 字段 | 说明 |
 | ---------------- | ----------------------------------------------------------- |
-| Filters          | Sets the filters to be tested for.                          |
-| Unit - Value     | Sets the Unit which will be examined for the filter states. |
-| Result - Failure | Sets the error message to be displayed on failure.          |
+| 过滤器 | 设置要测试的过滤器。 |
+| 单位 - 值 | 设置将被检查过滤器状态的单位。 |
+| 失败结果 | 设置在失败时显示的错误信息。 |
 
-Filter selection can target both a unit's state and its alliance status, as shown below.
+过滤器的选择既可以针对单位状态，也可以针对其同盟关系，如下图所示。
 
-![Filter Selection View](./resources/072_Validators_Rundown9.png)
-*Filter Selection View*
+![过滤器选择视图](./resources/072_Validators_Rundown9.png)
+*过滤器选择视图*
 
 ## Unit Compare Behavior Count
 
-The Unit Compare Behavior Count validator compares the behavior stack count on a unit with a test value. Depending on the comparison, a true or false value is returned.
+Unit Compare Behavior Count 验证器会把某个单位身上的行为层数与测试值进行比较，并根据比较结果返回 true 或 false。
 
-[![Unit Compare Behavior Count Validator](./resources/072_Validators_Rundown10.png)](./resources/072_Validators_Rundown10.png)
-*Unit Compare Behavior Count Validator*
+[![Unit Compare Behavior Count 验证器](./resources/072_Validators_Rundown10.png)](./resources/072_Validators_Rundown10.png)
+*Unit Compare Behavior Count 验证器*
 
-| Field            | Details                                                                        |
+| 字段 | 说明 |
 | ---------------- | ------------------------------------------------------------------------------ |
-| Behavior         | Sets the Behavior to be tested for.                                            |
-| Compare          | Defines the operator for comparing the behavior stack count with a test value. |
-| Value            | Sets the test value that the behavior stack count is compared to.              |
-| Unit - Value     | Sets the unit being tested for the Behavior.                                   |
-| Result - Failure | Sets the error message to be displayed on failure.                             |
+| 行为 | 设置要测试的行为。 |
+| 比较 | 定义用于将行为层数与测试值进行比较的运算符。 |
+| 值 | 设置行为层数要比较的测试值。 |
+| 单位 - 值 | 设置要测试该行为的单位。 |
+| 失败结果 | 设置在失败时显示的错误信息。 |
 
-You should note that a unit is typically considered to have a behavior at a stack count of 1. As such, this validator is commonly employed to test if a behavior can be applied to a unit or if that unit already possesses that behavior. In this case, the test examines if the behavior stack is Equal To a test Value of 0. If this returns True, the unit does not currently possess the Behavior and it may be applied. If it returns False, the unit already has the Behavior and should not receive an additional stack as the design does not support this.
+需要注意的是，一个单位通常只要行为层数为 `1`，就会被视为拥有该行为。因此，这个验证器常被用来测试某个行为是否可以施加到单位上，或者该单位是否已经拥有该行为。在这种情况下，测试内容是判断行为层数是否 `Equal To` 测试值 `0`。如果返回 True，说明单位当前尚未拥有该行为，因此可以施加；如果返回 False，则说明单位已经拥有该行为，而设计又不支持额外叠层，因此就不应再给它添加新的层数。

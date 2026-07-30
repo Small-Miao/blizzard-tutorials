@@ -1,46 +1,46 @@
-# Pathing Layer
+# 寻路层
 
-The Pathing Layer is where you control pathing within your map. As a concept, pathing describes which actions are permissible within an area, such as moving, building, or flying. Laying down pathing zones determines the rules governing where these actions can take place. You can access this layer from the Terrain Bar by clicking on the icon pictured below.
+寻路层是你控制地图中寻路规则的地方。作为一个概念，寻路描述的是某个区域内允许执行哪些动作，例如移动、建造或飞行。铺设寻路区域，就是在决定这些行为分别可以在哪里发生。你可以通过点击地形栏中下图所示图标进入这一层。
 
 ![Pathing Layer Icon](./resources/026_Pathing_Layer1.png)
-*Pathing Layer Icon*
+*寻路层图标*
 
-## Pathing Palette
+## 寻路面板
 
-No matter how clearly you delineate an environment in the Editor, players will always probe at its edges and explore beyond the intended boundaries of the map. As a result, maps require information about where certain types of basic actions should and shouldn't be allowed, otherwise gameplay falls apart. You can introduce this information to the map using rule-enforcing pathing zones.
+无论你在编辑器中把环境边界划得多么清楚，玩家总会去试探边缘，尝试探索地图设计意图之外的区域。因此，地图必须包含哪些基础行为应该被允许、哪些不应该被允许的信息，否则玩法就会崩坏。你可以通过具有规则约束作用的寻路区域，把这些信息写入地图。
 
-Creating pathing zones is fairly straightforward. All you'll need is an understanding of what the specific types of zones prohibit, then all you need to do is decide on where to apply these rules. You can find the tools for creating pathing zones in the Pathing Palette. The palette itself is in the Terrain Editor at the Pathing Layer.
+创建寻路区域其实相当直接。你需要做的，只是理解各种区域类型分别会禁止什么，然后决定这些规则应该应用在什么地方。创建寻路区域的工具都位于 寻路调色板 中，而它本身就在地形编辑器的寻路层里。
 
-[![Pathing Palette Views](./resources/026_Pathing_Layer2.png)](./resources/026_Pathing_Layer2.png)
-*Pathing Palette Views*
+[![寻路调色板 Views](./resources/026_Pathing_Layer2.png)](./resources/026_Pathing_Layer2.png)
+*寻路面板视图*
 
-## Pathing Types
+## 寻路类型
 
-![Image](./resources/026_Pathing_Layer6.png) several types of pathing zones using a brush-like tool. These zones are painted onto the terrain as an overlay, coloring the map with a different shade for each of the four different pathing types. When a player launches your game, the pathing rules will be applied to the marked areas. Below you'll find a breakdown of the modifiers available for this tool.
+![图像](./resources/026_Pathing_Layer6.png) 这是一种使用类似刷子的工具来创建多种寻路区域的方法。这些区域会作为覆盖层被涂绘到地形上，地图会根据四种不同的寻路类型显示为不同颜色。当玩家启动你的游戏时，这些寻路规则就会应用到被标记区域。下表列出了该工具可用的修饰项。
 
-| Property       | Effect                                                                                                                                    |
+| 属性 | 作用 |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| Add Pathing    | Applies the selected pathing type to the target area.                                                                                     |
-| Remove Pathing | Removes all pathing from the target area.                                                                                                 |
-| Size           | Changes the size of the area to which pathing is being applied.                                                                           |
-| Shape          | Changes the shape of the area to which pathing is being applied.                                                                          |
-| No Pathing     | This pathing type prevents any units from pathing into this area. Colorized red.                                                          |
-| Ground         | This pathing type describes the area, as Ground, which has special rules set for certain abilities and other data types. Colorized green. |
-| No Building    | This pathing type prevents any units from building structures in the area. Colorized yellow.                                              |
-| No Burrowing   | This pathing type prevents any units from using a burrow ability in the area. Colorized blue.                                             |
+| Add Pathing | 将所选寻路类型应用到目标区域。 |
+| Remove Pathing | 从目标区域移除全部寻路标记。 |
+| Size | 调整应用寻路的区域大小。 |
+| Shape | 调整应用寻路的区域形状。 |
+| No Pathing | 这种寻路类型会阻止任何单位进入该区域。显示为红色。 |
+| Ground | 这种寻路类型将区域标记为 Ground，它会对某些技能和其他数据类型产生特殊规则影响。显示为绿色。 |
+| No Building | 这种寻路类型会阻止任何单位在该区域建造建筑。显示为黄色。 |
+| No Burrowing | 这种寻路类型会阻止任何单位在该区域使用钻地类技能。显示为蓝色。 |
 
-The following image shows an area making use of painted pathing.
+下图展示了一块使用了涂绘寻路的区域。
 
 [![Painted Pathings](./resources/026_Pathing_Layer4.png)](./resources/026_Pathing_Layer4.png)
-*Painted Pathings*
+*绘制出的寻路区域*
 
-Note that the tower structures have been marked with No Pathing zones, to prevent units being dropped to their decorative high grounds. An area on the ground has been marked with a No Building zone. Here the designer has deemed the metal grates of this area to be an unrealistic target for any building.
+请注意，图中的高塔结构被标记为 No Pathing 区域，以防止单位被空投到这些纯装饰性的高台上。地面上还有一片区域被标记为 No Building。设计者认为这片区域的金属栅格看起来并不适合作为建筑的放置地点。
 
-![Image](./resources/026_Pathing_Layer6.png) option for creating No Pathing zones. It will set everything at the destination point's terrain level to not support pathing as a sort of flood fill.
+![图像](./resources/026_Pathing_Layer6.png) 这是另一种用于创建 No Pathing 区域的选项。它会以一种类似泛洪填充的方式，把目标点所在地形高度上的全部区域设为不支持寻路。
 
-![Image](./resources/026_Pathing_Layer6.png) Pathing Fill, but apply to flying units pathing over the area.
+![图像](./resources/026_Pathing_Layer6.png) 这个选项与 寻路填充 类似，但它作用于飞行单位经过该区域时的寻路。
 
-You can find both of the last two pathing options under a separate view of the Pathing Palette. This view provides a list of every active dynamic pathing object, similar to the lists found in the Points Layer and Regions Layer. Unlike the colorized regions of Painted Pathing, dynamic pathing objects are displayed within the Editor using markers, as you can see in the image below.
+你可以在 寻路调色板 的另一个视图中找到最后这两种寻路选项。这个视图会列出当前所有活动的动态寻路对象，类似于点层和区域层中的列表。与“绘制寻路”所显示的彩色覆盖区域不同，动态寻路对象会在编辑器中以标记形式显示，如下图所示。
 
-[![Dynamic Pathing Fill and No Fly Zone](./resources/026_Pathing_Layer7.png)](./resources/026_Pathing_Layer7.png)
-*Dynamic Pathing Fill and No Fly Zone*
+[![Dynamic 寻路填充 and 禁飞区](./resources/026_Pathing_Layer7.png)](./resources/026_Pathing_Layer7.png)
+*动态寻路填充与禁飞区*

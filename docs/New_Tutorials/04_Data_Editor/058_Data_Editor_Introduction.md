@@ -1,175 +1,175 @@
-# Data Editor Introduction
+# 数据编辑器简介
 
-The Data Editor houses all of the data assets in the Editor. Every piece of a project's data is built using the basic types found here. It is a deep and powerful system that offers users a great deal of control, the most ever seen in a Blizzard editing suite.
+数据编辑器容纳了编辑器中的全部数据资源。项目里的每一项数据，都是由这里提供的基础类型构建出来的。它是一个深度很高、功能也非常强大的系统，给予用户的控制力在暴雪的编辑器套件中可谓前所未有。
 
-[![Data Editor in Use](./resources/058_Data_Editor_Introduction1.png)](./resources/058_Data_Editor_Introduction1.png)
-*Data Editor in Use*
+[![正在使用的数据编辑器](./resources/058_Data_Editor_Introduction1.png)](./resources/058_Data_Editor_Introduction1.png)
+*正在使用的数据编辑器*
 
-Inside the Data Editor you'll find a robust feature set supporting its editing functionality. You should note that data will update dynamically while you work, allowing changes to propagate quickly throughout the whole project. There are also several visualization options offering an overview of any data construct. These are great for building a tactile sense of how the engine operates. Perhaps most importantly, all of StarCraft's assets are made available and can be viewed through the Data Editor. Here you can examine them closely and learn from them, or repurpose them for use in your own mods.
+在数据编辑器中，你会看到一整套完善的编辑功能。需要注意的是，数据会在你工作时动态更新，让改动能够迅速传播到整个项目中。这里也提供了多种可视化选项，用于总览各种数据结构；它们很适合帮助你建立对引擎运作方式的直观认识。也许最重要的一点是，《星际争霸》的全部资源都能通过数据编辑器查看。你可以在这里仔细研究它们、从中学习，或将其重新用于你自己的模组。
 
-## Data Catalogs
+## 数据目录
 
-Data in the Editor is organized into Catalogs, each containing a list of every instance of a specific data type currently active in the project. You must navigate to a specific data type's catalog to create or manage any data of that specific type. Each catalog provides a view of all the data fields of its associated type, as well as some context appropriate options. There are 87 catalogs in total in the Data Editor, though most users will find that their work concentrated in a small fraction of them. Most of that 87-catalog count is made up by highly specific types of data, many of which you'll seldom use.
+编辑器中的数据按数据目录进行组织，每个数据目录都包含当前项目里某一种特定数据类型的全部实例列表。要创建或管理某种数据类型的数据，你必须切换到该类型对应的数据目录。每个数据目录都会展示其对应类型的全部字段，并提供一些与该上下文相符的选项。数据编辑器中一共有 87 个数据目录，不过大多数用户实际会集中使用其中很小的一部分。那 87 个目录里有很多都属于高度专门化的数据类型，你平时很少会碰到。
 
-Some examples of catalogs include familiar game types like Abilities and Units, and art assets like Models and Sound. Some of the more specific types mentioned above include Physics Materials, Cursors, and Achievements. You'll find a full list of the engine's catalogs below this paragraph. It's worth noting that the catalogs are organized into broad categories, such as Game Data or Actor Data, to reflect the different purposes of different data types.
+常见的数据目录包括技能、单位这样的游戏类型，以及模型、声音这样的美术资源。前面提到的更细分类型则包括物理材质、光标和成就等。你可以在本段下方看到引擎中完整的数据目录列表。值得注意的是，这些数据目录会按较大的类别进行分组，例如“游戏数据”或“Actor 数据”，以体现不同数据类型的用途差异。
 
-  - GAME DATA \[13\]
-
-<!-- -->
-
-  - Abilities --- Behaviors --- Effects
-  - Footprints --- Items --- Loot
-  - Movers --- Requirements --- Turrets
-  - Units --- Upgrades --- Validators
-  - Weapons
+  - 游戏数据 \[13\]
 
 <!-- -->
 
-  - CAMPAIGN DATA \[13\]
+  - 技能 --- 行为 --- 效果
+  - 足迹 --- 物品 --- 掉落物
+  - 移动器 --- 需求 --- 炮塔
+  - 单位 --- 升级 --- 验证器
+  - 武器
 
 <!-- -->
 
-  - Army Categories --- Army Units --- Army Upgrades
-  - Bank Conditions --- Campaigns --- Characters
-  - Commanders --- Conversations --- Conversation States
-  - Locations --- Maps --- Objectives
-  - Preload
+  - 战役数据 \[13\]
 
 <!-- -->
 
-  - ACTOR DATA \[3\]
-    
-    \--- Actors --- Attach Methods --- Beams
+  - 军队分类 --- 军队单位 --- 军队升级
+  - 银行条件 --- 战役 --- 角色
+  - 指挥官 --- 对话 --- 对话状态
+  - 地点 --- 地图 --- 目标
+  - 预加载
 
-  - ART AND SOUND DATA \[12\]
-    
-    \--- Buttons --- Digital Sound Effects --- Lens Flare Sets
-    
-    \--- Lights --- Models --- Reverb Effects
-    
-    \--- Shapes --- Sounds --- Sound Exclusivities
-    
-    \--- Sound Mix Snapshots --- Soundtracks --- Textures
+<!-- -->
 
-  - TERRAIN DATA \[9\]
+  - Actor 数据 \[3\]
     
-    \--- Terrain Cliffs --- Terrain Cliff Meshes --- Fog of War Data
+    \--- Actor --- 附加方法 --- 光束
+
+  - 美术与声音数据 \[12\]
     
-    \--- Physics Materials --- Terrain Types --- Terrain Objects
+    \--- 按钮 --- 数字音效 --- 镜头光晕组
     
-    \--- Terrain Textures --- Terrain Roads --- Water
-
-  - HERO DATA \[11\]
+    \--- 灯光 --- 模型 --- 混响效果
     
-    \--- Artifacts --- Artifact Slots --- Configs
+    \--- 形状 --- 声音 --- 声音互斥
     
-    \--- Heroes --- Hero Abilities --- Hero Statistics
+    \--- 声音混音快照 --- 原声音乐 --- 纹理
+
+  - 地形数据 \[9\]
     
-    \--- Mounts --- Skins --- Talents
+    \--- 地形悬崖 --- 地形悬崖网格 --- 战争迷雾数据
     
-    \--- Talent Profiles --- Voice Overs
-
-  - INTERFACE DATA \[6\]
+    \--- 物理材质 --- 地形类型 --- 地形对象
     
-    > \--- Alerts --- Bundles --- Cameras
+    \--- 地形纹理 --- 地形道路 --- 水体
 
-\--- Cursors --- Game UI Data --- Pings
-
-  - ADVANCED DATA \[20\]
+  - 英雄数据 \[11\]
     
-    \--- Achievements --- Achievement Terms --- Boosts
+    \--- 圣物 --- 圣物槽位 --- 配置
     
-    \--- Gameplay Data --- Herds --- Herd Nodes
+    \--- 英雄 --- 英雄技能 --- 英雄属性
     
-    \--- Item Classes --- Item Containers --- Kinetics
+    \--- 坐骑 --- 皮肤 --- 天赋
     
-    \--- Races --- Requirement Nodes --- Rewards
+    \--- 天赋配置档 --- 语音
+
+  - 界面数据 \[6\]
     
-    \--- Score Results --- Score Values --- Tactical AI Cooldowns
+    > \--- 警报 --- 资源包 --- 摄像机
+
+\--- 光标 --- 游戏 UI 数据 --- 标记点
+
+  - 高级数据 \[20\]
     
-    \--- Tactical AI Data --- Target Finds --- Target Sorts
+    \--- 成就 --- 成就条件 --- 增益项
     
-    \--- Trophies --- User Types
+    \--- 游戏玩法数据 --- 兽群 --- 兽群节点
+    
+    \--- 物品类别 --- 物品容器 --- 动力学
+    
+    \--- 种族 --- 需求节点 --- 奖励
+    
+    \--- 计分结果 --- 计分值 --- 战术 AI 冷却
+    
+    \--- 战术 AI 数据 --- 目标查找 --- 目标排序
+    
+    \--- 战利品 --- 用户类型
 
-## The Interface
+## 界面
 
-[![Data Editor Interface View](./resources/058_Data_Editor_Introduction2.png)](./resources/058_Data_Editor_Introduction2.png)
-*Data Editor Interface View*
+[![数据编辑器界面视图](./resources/058_Data_Editor_Introduction2.png)](./resources/058_Data_Editor_Introduction2.png)
+*数据编辑器界面视图*
 
-You can navigate the Data Editor's catalogs using the Catalog Tabs, shown below.
+你可以通过下方所示的数据目录标签页来浏览数据编辑器中的各个数据目录。
 
-[![Catalog Tabs](./resources/058_Data_Editor_Introduction3.png)](./resources/058_Data_Editor_Introduction3.png)
-*Catalog Tabs*
+[![数据目录标签页](./resources/058_Data_Editor_Introduction3.png)](./resources/058_Data_Editor_Introduction3.png)
+*数据目录标签页*
 
-Each catalog has an associated tab that gives access to their data listings. You can bring the tab into a project using the green, plus-sign shaped Catalog Opener. Once you have selected a tab, it will populate the catalog's data in the Object List, as shown below.
+每个数据目录都有一个对应的标签页，可用于访问其数据列表。你可以通过绿色的加号形“数据目录打开器”把这个标签页加入当前项目。选中某个标签页后，该数据目录中的数据就会显示在对象列表中，如下图所示。
 
-[![Object List](./resources/058_Data_Editor_Introduction4.png)](./resources/058_Data_Editor_Introduction4.png)
-*Object List*
+[![对象列表](./resources/058_Data_Editor_Introduction4.png)](./resources/058_Data_Editor_Introduction4.png)
+*对象列表*
 
-This list organizes the entire data catalog based on several context sensitive properties, such as Source, ID \#, Object Family, and Race. As you can see in the image below, the full hierarchy of a data structure is displayed for the selected instance within the Object Explorer.
+这个列表会根据若干与上下文相关的属性来组织整个数据目录，例如来源、ID 编号、对象族和种族。如你在下图中所见，选中实例的完整数据层级会显示在对象浏览器中。
 
-[![Object Explorer](./resources/058_Data_Editor_Introduction5.png)](./resources/058_Data_Editor_Introduction5.png)
-*Object Explorer*
+[![对象浏览器](./resources/058_Data_Editor_Introduction5.png)](./resources/058_Data_Editor_Introduction5.png)
+*对象浏览器*
 
-For higher level constructs like Units, this explorer offers a crucial top-down look at all of the contents of a piece of data. Any piece of data in the Object Explorer or Object List will display its data fields in the Fields Listing, as shown below.
+对于单位这类更高层级的结构来说，这个浏览器能从顶层向下清楚展示一份数据所包含的全部内容。对象浏览器或对象列表中的任意数据项，都会在字段列表中显示其数据字段，如下图所示。
 
-[![Fields Listing](./resources/058_Data_Editor_Introduction6.png)](./resources/058_Data_Editor_Introduction6.png)
-*Fields Listing*
+[![字段列表](./resources/058_Data_Editor_Introduction6.png)](./resources/058_Data_Editor_Introduction6.png)
+*字段列表*
 
-The Fields Listing is the data entry segment of the Data Editor. Here data can be altered directly through user input. Since there is so much variety in the types of catalogs and fields available for editing, there is a selection of viewing options to make the listing as accessible as possible. You'll find these in the Data Bar.
+字段列表是数据编辑器中实际录入数据的区域。你可以在这里直接通过输入来修改数据。由于可编辑的数据目录和字段类型非常多样，因此这里提供了一组选项，让字段列表更易于查看和使用。你可以在数据栏中找到这些选项。
 
-[![Data Bar](./resources/058_Data_Editor_Introduction7.png)](./resources/058_Data_Editor_Introduction7.png)
-*Data Bar*
+[![数据栏](./resources/058_Data_Editor_Introduction7.png)](./resources/058_Data_Editor_Introduction7.png)
+*数据栏*
 
-Below is a breakdown of the various viewing options.
+下表列出了各个查看选项的作用。
 
-| Action                      | Effect                                                                                                         |
+| 操作 | 效果 |
 | --------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| View Raw Data               | Changes all the data to its raw ID values used in the back-end code, rather than its more useable Name values. |
-| Display Object List as Tree | Displays the Object List as a set of structured folders.                                                       |
-| Display All Object Sources  | Displays the original, unaltered source data alongside any current versions of the data.                       |
-| Show Object Explorer        | Toggles the availability of the Object Explorer.                                                               |
-| View in Data Navigator      | Visualizes the currently selected data instance in the Data Navigator.                                         |
-| Table View                  | Displays the Fields Listing as a tabled list of all its individual fields.                                     |
-| Detail View                 | Displays the Fields Listing as a combination of its entry windows or subeditors.                               |
-| XML View                    | Displays the Fields Listing as its raw XML file.                                                               |
-| Sort Fields by Source       | Organizes the listing by the data sources of each field.                                                       |
-| Show Basic Field Labels     | Displays the (Basic) label on the any data fields originating from that source.                                |
-| Show Field Categories       | Displays any category headings for each piece of data.                                                         |
-| Combine Structure Values    | Combines any related fields into a single field.                                                               |
-| Show Field Differences      | Displays any differences in the data fields.                                                                   |
-| XML Syntax Highlighting     | Enables colored, type-based highlighting for the XML view.                                                     |
-| Commit XML Changes          | Saves any currently unsaved changes to the XML files.                                                          |
+| 查看原始数据 | 将所有数据切换为后端代码使用的原始 ID 值，而不是更易读的名称值。 |
+| 以树形显示对象列表 | 将对象列表显示为结构化文件夹。 |
+| 显示所有对象来源 | 将原始未修改的源数据与当前版本的数据一并显示。 |
+| 显示对象浏览器 | 切换对象浏览器的显示状态。 |
+| 在数据导航器中查看 | 在数据导航器中可视化当前选中的数据实例。 |
+| 表格视图 | 将字段列表显示为包含全部单独字段的表格式列表。 |
+| 详细视图 | 将字段列表显示为输入窗口或子编辑器的组合。 |
+| XML 视图 | 将字段列表显示为其原始 XML 文件。 |
+| 按来源排序字段 | 按每个字段的数据来源组织列表。 |
+| 显示基本字段标签 | 为来自该来源的字段显示 `(Basic)` 标签。 |
+| 显示字段分类 | 显示每项数据的分类标题。 |
+| 合并结构值 | 将相关字段合并为单一字段。 |
+| 显示字段差异 | 显示数据字段之间的差异。 |
+| XML 语法高亮 | 为 XML 视图启用按类型着色的高亮显示。 |
+| 提交 XML 更改 | 保存当前尚未写入 XML 文件的修改。 |
 
-These options include the structured Fields Listing views: Table View, Detail View, and XML View. These are shown below.
+这些选项中包括几种结构化的字段列表视图：表格视图、详细视图和 XML 视图。如下图所示。
 
-[![Table View - Detail View -- XML View](./resources/058_Data_Editor_Introduction8.png)](./resources/058_Data_Editor_Introduction8.png)
-*Table View - Detail View -- XML View*
+[![表格视图 - 详细视图 -- XML 视图](./resources/058_Data_Editor_Introduction8.png)](./resources/058_Data_Editor_Introduction8.png)
+*表格视图 - 详细视图 -- XML 视图*
 
-These viewing options are also accessible from the View Tab of the Data Editor.
+这些查看选项也可以在数据编辑器的“视图”标签页中找到。
 
-![View Tab](./resources/058_Data_Editor_Introduction9.png)
-*View Tab*
+![视图标签页](./resources/058_Data_Editor_Introduction9.png)
+*视图标签页*
 
-There are different options available in each layer. You can access them from the large panel on the leftmost side of the main terrain view. This is called the UI Panel.
+每一层都有不同的可用选项。你可以在主地形视图最左侧的大面板中访问它们，这个区域称为 UI 面板。
 
-The **UI Panel** changes depending on your current layer; each layer has a Palette that offers most of the major controls for that layer. These Palettes are geared specifically for use in the current layer. You should also note that the top File Tab offers many options. These are broken down into subtabs, which are described in the following sections.
+**UI 面板** 会随着你当前所在的层而变化；每一层都有一个调色板，提供该层的大部分主要控件。这些调色板都是专门为当前层准备的。你也应注意顶部的文件标签页，其中包含许多选项。这些选项又被拆分为多个子标签页，后续章节会进行说明。
 
-## Subeditors
+## 子编辑器
 
-In some cases, you'll find that there are more specialized, nested editors available during field editing. These Subeditors include the Actor Events Editor, the Footprints Editor, and the Sound Editor. These are shown in the image below.
+在某些情况下，你会发现字段编辑过程中还提供了更专业的嵌套编辑器。这些子编辑器包括 Actor 事件编辑器、足迹编辑器和声音编辑器，如下图所示。
 
 ![](./resources/058_Data_Editor_Introduction10.png)
-*Actor Events Editor -- Footprint Editor -- Sound Editor*
+*Actor 事件编辑器 -- 足迹编辑器 -- 声音编辑器*
 
-## Data Visualization
+## 数据可视化
 
-As the data structures within your project grow and are woven together, it can be useful to have some visualization options so that you can get a better look at what your project is doing. The Data Editor offers a few options for this, most notably the Data Navigator shown below.
+随着项目中的数据结构不断增长并彼此交织，一些可视化选项会很有帮助，让你更直观地看清项目究竟在做什么。数据编辑器为此提供了几种工具，其中最值得一提的是下方所示的数据导航器。
 
-[![Data Navigator](./resources/058_Data_Editor_Introduction11.png)](./resources/058_Data_Editor_Introduction11.png)
-*Data Navigator*
+[![数据导航器](./resources/058_Data_Editor_Introduction11.png)](./resources/058_Data_Editor_Introduction11.png)
+*数据导航器*
 
-The navigator draws the links between each piece of data, presenting the entire instance's data hierarchy in a readable manner. Another useful provision is the Show Explain Link option available for use with the Object Explorer. This will display a simpler version of the data connections to an output panel, as shown in the image below.
+数据导航器会绘制各项数据之间的链接，以可读的方式展示整个实例的数据层级。另一个实用功能是可配合对象浏览器使用的“显示解释链接”选项。它会将更简化的数据连接关系输出到一个面板中，如下图所示。
 
-![Show Explain Link](./resources/058_Data_Editor_Introduction12.png)
-*Show Explain Link*
+![显示解释链接](./resources/058_Data_Editor_Introduction12.png)
+*显示解释链接*

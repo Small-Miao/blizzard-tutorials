@@ -1,99 +1,99 @@
-# Trigger Organization
+# 触发器组织
 
-As your project grows and incorporates more and more elements, it's probably going to trend toward some degree of disorder. This can be pretty hazardous. In programming, the quality of work often depends on how easily the developer is able to understand how the whole system works together. A big mess of elements is directly opposed to this sort of clear understanding, so developing a system for organizing your project is a must. To support this, there are several tools in the Trigger Editor to help you clean up. Organizing a project can have a pretty drastic effect, as the image below shows.
+随着项目不断变大并引入越来越多的内容，它大概率会逐渐变得混乱。这会相当危险。在编程中，工作的质量往往取决于开发者是否能轻松理解整个系统如何协同工作。大量杂乱无章的元素与这种清晰理解正好相反，因此为项目建立一套组织方式是必须的。为此，触发编辑器提供了多种工具来帮助你整理内容。一个项目是否有组织，差异往往会非常明显，如下图所示。
 
 ![](./resources/052_Trigger_Organization1.png)
-*Disorganized Triggers -- Triggers with Organization Measures*
+*杂乱的触发器 -- 采用组织措施后的触发器*
 
-## Folders
+## 文件夹
 
-Folders are a fundamental element of organizing work on a computer, so they likely need little explanation. They work pretty much as you'd expect them to within the Editor. A Trigger Editor folder offers the ability to group items into a container object that can be opened or collapsed through its left-side + or - control.
+文件夹是计算机中组织工作的基础元素，因此大概不需要太多解释。它们在编辑器中的运作方式也和你预期的差不多。触发编辑器中的文件夹可以把项目分组到一个容器对象中，并通过左侧的 `+` 或 `-` 控件展开或折叠。
 
-Create a folder by right-clicking inside the Triggers Panel and navigating to New ▶︎ New Folder, or by using the New Folder button found in the Trigger Bar. These procedures are shown below.
+你可以在触发器面板内右键，然后依次选择 `新建 ▶︎ New Folder` 来创建文件夹；也可以使用触发器栏中的 `New Folder` 按钮。如下所示。
 
 ![](./resources/052_Trigger_Organization2.png)
-*Creating Folders From Trigger Panel -- From Trigger Bar*
+*从触发器面板创建文件夹 -- 从触发器栏创建*
 
-Moving or creating a folder inside another folder will create a subfolder. You can repeat this process to create a hierarchy for your project. While you should avoid getting too carried away with this, a couple of layers of hierarchy can be a strong first step for organization. The following image shows the means by which the official StarCraft campaign maps are organized, first broken into folders by their general type (MAIN, GAMEPLAY, OBJECTIVES, and CINEMATIC), then by their specific purposes, such as 'Global Variables,' 'AI,' or 'Victory Cinematic.'
+把一个文件夹移动到另一个文件夹内，或直接在另一个文件夹中创建文件夹，就会形成子文件夹。你可以重复这个过程来为项目建立层级结构。虽然不应该过度嵌套，但建立两三层层级通常已经是很好的组织起点。下图展示了官方《星际争霸》战役地图的一种组织方式：先按总体类型分成文件夹，如 `MAIN`、`GAMEPLAY`、`OBJECTIVES` 和 `CINEMATIC`，再按具体用途细分为 `Global Variables`、`AI` 或 `Victory Cinematic` 等内容。
 
-[![Folder Organization in a Campaign Map](./resources/052_Trigger_Organization3.png)](./resources/052_Trigger_Organization3.png)
-*Folder Organization in a Campaign Map*
+[![战役地图中的文件夹组织](./resources/052_Trigger_Organization3.png)](./resources/052_Trigger_Organization3.png)
+*战役地图中的文件夹组织*
 
-## Comments
+## 注释
 
-Comments are a tool for project documentation. They add a text element that is written directly into the Editor. These elements have no effect on gameplay and stay inside the Editor, where they provide a useful communication tool for describing how a section of a project works. You can make comments for personal use or for other users who may see your map, whether teammates or the community at large. Extended comment sections can also be used for many utility purposes, including manuals, release histories, lists of debugs codes, and to-do lists. Some typical comments are shown below, denoted by their green text and [![Image](./resources/052_Trigger_Organization9.png)](./resources/052_Trigger_Organization9.png)
+注释是项目文档化工具。它会直接在编辑器中加入一个文本元素。这些元素不会对游戏玩法产生任何影响，只会留在编辑器内，作为说明项目某一部分如何工作的实用沟通工具。你可以为自己写注释，也可以为其他可能查看这张地图的人写注释，无论是队友还是更广泛的社区用户。较长的注释区块还可以承担很多辅助用途，包括手册、发布历史、调试代码列表以及待办事项清单。下面展示了一些典型注释，它们以绿色文字以及 [![图像](./resources/052_Trigger_Organization9.png)](./resources/052_Trigger_Organization9.png) 标识。
 
-[![Commented Trigger](./resources/052_Trigger_Organization5.png)](./resources/052_Trigger_Organization5.png)
-*Commented Trigger*
+[![带注释的触发器](./resources/052_Trigger_Organization5.png)](./resources/052_Trigger_Organization5.png)
+*带注释的触发器*
 
-You can create comments from either the Triggers Panel or the Trigger Content Panel. Do so by right-clicking in either location then navigating to New ▶︎ New Comment. Alternatively, you can also do so using the New Comment button in the Trigger Bar, which will create a comment at the cursor's current location.
+你可以从触发器面板或触发器内容面板创建注释。做法是在任一位置右键，然后依次选择 `新建 ▶︎ New Comment`。另外，也可以使用触发器栏中的 `New Comment` 按钮，它会在光标当前位置创建一个注释。
 
 ![](./resources/052_Trigger_Organization6.png)
-*Creating Comments From Trigger Content Panel -- From Trigger Bar*
+*从触发器内容面板创建注释 -- 从触发器栏创建*
 
-Adding comments within the Triggers Panel is considered less useful, as it tends to be messy. Still, the option is available for small notes that describe things like folder contents.
+通常认为在触发器面板内添加注释的实用性较低，因为看起来往往比较乱。不过，如果只是给文件夹内容之类的信息留个简短说明，这个选项仍然可用。
 
-## Libraries
+## 库
 
-Libraries allow you to organize elements of the Trigger Editor into collections that you can share between projects using their import and export functions. You can see which libraries are active in a project in the Libraries Panel, which will typically include Built-In, Liberty, Swarm, Void, and so forth. These are trigger libraries from the standard dependencies, and they are the source of all pre-made actions, conditions, functions, and events in the Editor. You can see a standard view of a project's libraries below, denoted by their [![Image](./resources/052_Trigger_Organization9.png)](./resources/052_Trigger_Organization9.png)
+库允许你把触发编辑器中的元素组织成可共享的集合，并通过导入和导出功能在不同项目之间复用。你可以在库面板中看到当前项目启用了哪些库，通常会包括 `内置`、`Liberty`、`Swarm`、`Void` 等等。它们都是标准依赖项提供的触发器库，也是编辑器中所有预制动作、条件、函数和事件的来源。下图展示了项目库的标准视图，它们以 [![图像](./resources/052_Trigger_Organization9.png)](./resources/052_Trigger_Organization9.png) 标识。
 
-[![Project Libraries](./resources/052_Trigger_Organization8.png)](./resources/052_Trigger_Organization8.png)
-*Project Libraries*
+[![项目库](./resources/052_Trigger_Organization8.png)](./resources/052_Trigger_Organization8.png)
+*项目库*
 
-## Labels
+## 标签
 
-Next to every Trigger Editor element is a small illustrative icon, known as a Label. Each label categorizes its element via the icon, and may also change the element's description to a color associated with the label. Whenever you create an element from the standard library in the Trigger Content Panel, it is assigned a pre-determined label. For example, any action of the 'Camera' category will be set next to the [![Image](./resources/052_Trigger_Organization9.png)](./resources/052_Trigger_Organization9.png) standard labels and their description colors in the image below.
+每个触发编辑器元素旁边都有一个小型示意图标，称为标签。每个标签都会通过图标对其元素进行分类，也可能把元素描述文字改成与该标签对应的颜色。只要你在触发器内容面板中从标准库创建一个元素，它就会自动获得预设标签。例如，任何属于 `Camera` 类别的动作，旁边都会显示 [![图像](./resources/052_Trigger_Organization9.png)](./resources/052_Trigger_Organization9.png)。下图展示了标准标签及其描述文字颜色。
 
-![Element Labels](./resources/052_Trigger_Organization10.png)
-*Element Labels*
+![元素标签](./resources/052_Trigger_Organization10.png)
+*元素标签*
 
-These label presets are made available through the standard dependency libraries and may be repurposed for use in any project. An element's label is set by selecting it, right-clicking, and navigating to Label, as shown below.
+这些标签预设由标准依赖库提供，也可以重新用于任何项目。设置元素标签的方法是先选中该元素，右键后进入 `Label`，如下图所示。
 
-![Setting an Element's Label](./resources/052_Trigger_Organization11.png)
-*Setting an Element's Label*
+![设置元素标签](./resources/052_Trigger_Organization11.png)
+*设置元素标签*
 
-Setting a label for a definition will add both the icon and the chosen label to any elements of that definition. If you choose a label for an element that exists only in the Triggers Panel such as a trigger, variable, or record, the label will only change the color of the element. Labels are also useful when searching for elements using the 'Find' function of the Trigger Editor.
+为某个定义设置标签后，使用该定义创建的所有元素都会带上这个图标和所选标签。如果你为仅存在于触发器面板中的元素设置标签，例如触发器、变量或记录，那么标签只会改变该元素的颜色。在使用触发编辑器的 `Find` 功能搜索元素时，标签也很有帮助。
 
-If you find yourself looking for more customization, you may want to add custom labels. You can create a custom label by navigating to Data ▶︎ Modify Labels. This will launch the 'Trigger Labels' window shown below.
+如果你希望有更多自定义空间，可以添加自定义标签。你可以通过 `Data ▶︎ Modify Labels` 创建自定义标签，这会打开下方所示的 `Trigger Labels` 窗口。
 
-[![Creating a Custom Label](./resources/052_Trigger_Organization12.png)](./resources/052_Trigger_Organization12.png)
-*Creating a Custom Label*
+[![创建自定义标签](./resources/052_Trigger_Organization12.png)](./resources/052_Trigger_Organization12.png)
+*创建自定义标签*
 
-Here you can set the color and label. You can set any image sized 16 x 16 px as a label icon through the Archive Browser.
+在这里你可以设置颜色和标签。你还可以通过 Archive Browser，为任意 16 x 16 px 的图片设置为标签图标。
 
-## Records
+## 记录
 
-Records present layouts of variables that are typically useful for templating objects. This makes them a natural organizing tool as well. The image below shows a standard use of records to organize variables.
+记录提供了一种变量布局，通常很适合用来为对象建立模板。因此，它们也天然是一种组织工具。下图展示了使用记录来组织变量的常见方式。
 
-[![Record as a Variable Organizer](./resources/052_Trigger_Organization13.png)](./resources/052_Trigger_Organization13.png)
-*Record as a Variable Organizer*
+[![把记录作为变量组织器](./resources/052_Trigger_Organization13.png)](./resources/052_Trigger_Organization13.png)
+*把记录作为变量组织器*
 
-## Groups
+## 分组
 
-The main Trigger Content Panel is actually composed of organizers called Trigger Groups. Each group allows you to browse a separate element of the Trigger Editor in a division of the main content panel. The Editor supports up to three groups in a given project. Opening an additional group will divide the panel space, as shown below.
+主触发器内容面板实际上由名为 Trigger Group 的组织单元构成。每个分组都允许你在主内容面板的一个分区中浏览触发编辑器的不同元素。编辑器在单个项目中最多支持三个分组。打开额外分组后，面板空间会像下图一样被拆分。
 
-![Trigger Content Divided Into Two Groups](./resources/052_Trigger_Organization14.png)
-*Trigger Content Divided Into Two Groups*
+![被拆分为两个分组的触发器内容](./resources/052_Trigger_Organization14.png)
+*被拆分为两个分组的触发器内容*
 
-Viewing things in parallel, as in the above image, can be an effective way of comparing different parts of your project. Overall, it offers versatility in the ways that users can configure their Editor. You can enable additional groups in the Trigger Editor view by going to View ▶︎ Show Groups. There you'll find four options for configuration.
+像上图这样并行查看内容，是比较项目不同部分的有效方式。总体来说，它为用户配置编辑器提供了很高的灵活性。你可以在触发编辑器视图中通过 `视图 ▶︎ Show Groups` 启用额外分组。那里共有四种配置选项。
 
-  - Smart -- Trigger groups will be continually added or removed, depending on the current needs.
-  - 1 -- Allows a single trigger group. This is the default setting.
-  - 2 -- Allows two trigger groups.
-  - 3 -- Allows three trigger groups.
+  - Smart -- 触发器分组会根据当前需要持续自动添加或移除。
+  - 1 -- 只允许一个触发器分组。这是默认设置。
+  - 2 -- 允许两个触发器分组。
+  - 3 -- 允许三个触发器分组。
 
-## Tabs
+## 标签页
 
-Tabs are sub-panels that exist within a certain trigger group. Tabs allow you to view any number of elements and quickly navigate between them using the tab headers at the top of the Trigger Content Panel. Tabbed browsing of trigger elements is shown in the image below.
+标签页是存在于某个触发器分组内部的子面板。标签页允许你查看任意数量的元素，并通过触发器内容面板顶部的标签头快速切换。下图展示了通过标签页浏览触发器元素的方式。
 
-![Tabbed Browsing within a Trigger Group](./resources/052_Trigger_Organization15.png)
-*Tabbed Browsing within a Trigger Group*
+![触发器分组内的标签页浏览](./resources/052_Trigger_Organization15.png)
+*触发器分组内的标签页浏览*
 
-You can open tabs to the currently active group by selecting multiple elements in the Triggers Panel, then hitting Enter. Once opened, you can close tabs by right-clicking the tab header and navigating to either Close Tab (CTRL+Shift+A) or Close All Tabs (CTRL+Alt+A). The combination of tabs and groups offers a significant amount of customization in how you organize the Trigger Editor. Below you can see an example of these features in use.
+你可以先在触发器面板中选中多个元素，然后按 Enter，把它们作为标签页打开到当前活动分组中。打开之后，可以右键标签头并选择 `关闭标签页 (CTRL+Shift+A)` 或 `关闭所有标签页 (CTRL+Alt+A)` 来关闭。标签页与分组结合后，能大幅提升你组织触发编辑器的自由度。下图展示了这些功能配合使用时的效果。
 
 ![](./resources/052_Trigger_Organization16.png)
-*Using Groups and Tabs Together in the Trigger Editor*
+*在触发编辑器中同时使用分组与标签页*
 
-## Attachments
+## 附件
 
  * [052_Trigger_Organization.SC2Map](./maps/052_Trigger_Organization.SC2Map)

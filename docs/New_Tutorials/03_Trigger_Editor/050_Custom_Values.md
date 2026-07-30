@@ -1,49 +1,49 @@
-# Custom Values
+# 自定义值
 
-Custom Values refer to a unit-centric storage array. Once a number is set to a unit's custom values, the array becomes active and any value can be set again, read, modified, and used in any fashion. These numbers are of the Real type, and are limited to an array of 64 values for each unit. Essentially, the custom values are an equivalent to a Real\[63\] that is stored at a special Unit scope.
+自定义值是以单位为中心的存储数组。只要给某个单位的自定义值设置过一个数字，这个数组就会被激活，此后其中的任意值都可以再次设置、读取、修改，并以任何方式使用。这些数字属于 Real 类型，每个单位最多有 64 个值位。本质上，自定义值等同于存放在特殊单位作用域中的 `Real[63]`。
 
-Custom values represent a type of organized data that is different from arrays or records. By providing it pre-organized within a unit, you are saved from having to declare or manage an array. Combined with the proximity of this data to its source, this makes for a straightforward approach that supports quick calculations and data-tracking for complex entities like hero units.
+自定义值代表了一种与数组或记录不同的有序数据形式。因为这些数据预先按单位组织好，你就不必再声明或管理一个额外数组。再加上这类数据天然贴近其来源单位，因此它非常适合用于快速计算，以及为英雄单位这类复杂实体跟踪数据。
 
-## Set Custom Value
+## 设置自定义值
 
-Custom values are set using the action Set Unit Custom Value. You can find this during action creation under the 'Unit' Label, as shown below.
+自定义值通过动作 `Set Unit Custom Value` 设置。创建动作时，你可以在 `Unit` 标签下找到它，如下所示。
 
-[![Custom Value Actions](./resources/050_Custom_Values1.png)](./resources/050_Custom_Values1.png)
-*Custom Value Actions*
+[![自定义值动作](./resources/050_Custom_Values1.png)](./resources/050_Custom_Values1.png)
+*自定义值动作*
 
-## Get Custom Value
+## 读取自定义值
 
-Custom values are extracted using the function Custom Value of Unit. You can find this during Real field filling under the 'Function' source.
+自定义值通过函数 `Custom Value of Unit` 读取。填写 Real 字段时，你可以在 `Function` 来源下找到它。
 
-[![Custom Value Functions](./resources/050_Custom_Values2.png)](./resources/050_Custom_Values2.png)
-*Custom Value Functions*
+[![自定义值函数](./resources/050_Custom_Values2.png)](./resources/050_Custom_Values2.png)
+*自定义值函数*
 
-## Demoing Custom Values
+## 自定义值示例
 
-Open the demo map provided with this article. Inside you'll find a view of the Zerg hero Dehaka lining up some foes in a forest clearing.
+打开本文附带的演示地图。进入后，你会看到虫群英雄德哈卡在林间空地上面对几名敌人。
 
-[![Demo Map Course](./resources/050_Custom_Values3.png)](./resources/050_Custom_Values3.png)
-*Demo Map Course*
+[![演示地图场景](./resources/050_Custom_Values3.png)](./resources/050_Custom_Values3.png)
+*演示地图场景*
 
-Inside the Trigger Editor, you'll find a set of triggers that will monitor and update a custom value belonging to Dehaka with a reading of the unit damage he's dealt out. The triggers will then update this custom value to a text tag.
+在触发编辑器中，你会找到一组触发器，它们会监视并更新属于德哈卡的一个自定义值，用来记录该单位造成的总伤害。随后，这些触发器会把这个自定义值更新到文本标签上。
 
-If you check the global variable scope, you'll find an important tip for custom value use. Creating an index Integer constant for any custom values is a useful habit for creating a consistent handle for the specific custom value. Then, on every occasion that that value is dealt with, the index can be inserted to avoid dealing with the hard-coded custom value array indices. Below you can see the trigger handling the custom value text tag.
+如果你查看全局变量作用域，会发现一个使用自定义值的重要技巧。为每个自定义值创建一个作为索引的 Integer 常量，是保持引用一致的好习惯。这样每次处理该值时，都可以直接插入这个索引，避免在各处硬编码自定义值数组下标。下图展示了负责处理自定义值文本标签的触发器。
 
-[![Text Tag Construction Trigger](./resources/050_Custom_Values4.png)](./resources/050_Custom_Values4.png)
-*Text Tag Construction Trigger*
+[![文本标签构造触发器](./resources/050_Custom_Values4.png)](./resources/050_Custom_Values4.png)
+*文本标签构造触发器*
 
-Here, a text tag has been neatly constructed and appended to Dehaka as a readout of his custom value. However, the key part of this exercise is found in the 'Custom Value Readout Updater' trigger, which you can see below.
+这里，一个文本标签被整齐地构造出来，并附着到德哈卡身上，用来显示他的自定义值。不过，本练习的关键部分在于下图所示的 `Custom Value Readout Updater` 触发器。
 
-[![Custom Value Readout Trigger](./resources/050_Custom_Values5.png)](./resources/050_Custom_Values5.png)
-*Custom Value Readout Trigger*
+[![自定义值读数触发器](./resources/050_Custom_Values5.png)](./resources/050_Custom_Values5.png)
+*自定义值读数触发器*
 
-This trigger runs an update after each instance of damage, then updates the custom value with the Set Custom Value action. Take note of the Integer index here of c\_TotalDamageDealt; it operates as a quick handle. After each update to the custom value, the text tag readout is also reset. Together, these actions amount to a visualization of the internal custom value through a text tag. Understanding custom values as unit-centric data like this is helpful when drafting ways to use them. If you test the map out for yourself, you should get a result like the one shown below.
+这个触发器会在每次造成伤害后执行更新，然后用 `Set Custom Value` 动作刷新自定义值。注意这里的 Integer 索引 `c_TotalDamageDealt`；它充当了一个便捷句柄。每次更新自定义值后，文本标签读数也会一起重设。组合起来，这些动作就把内部自定义值可视化成了一个文本标签。像这样把自定义值理解为以单位为中心的数据，有助于你构思它们的实际用法。如果你亲自测试这张地图，结果应该会类似下图。
 
-[![Custom Value Damage Tracking](./resources/050_Custom_Values6.png)](./resources/050_Custom_Values6.png)
-*Custom Value Damage Tracking*
+[![自定义值伤害追踪](./resources/050_Custom_Values6.png)](./resources/050_Custom_Values6.png)
+*自定义值伤害追踪*
 
-As a final note, custom values do not count as variables within the Trigger Debugger. That means that, when you're debugging systems like this demo or any other custom value centric designs, it will usually be worthwhile to develop a custom debug UI.
+最后需要注意的是，自定义值在触发调试器中并不算作变量。这意味着，当你调试像本示例这样以自定义值为核心的系统时，通常值得额外制作一套自定义调试 UI。
 
-## Attachments
+## 附件
 
  * [050_Custom_Values.SC2Map](./maps/050_Custom_Values.SC2Map)

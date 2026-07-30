@@ -1,84 +1,84 @@
-# Site Operations
+# 站点操作
 
-Site Operations is a family of actors that modify a host actor's physical properties. Since these modifications will be propagated to any visuals connected to an actor, site operations can be used to alter the looks and placements of models at game-time.
+站点操作是一类用于修改宿主 Actor 物理属性的 Actor。由于这些修改会传播到与 Actor 相连的所有可视内容上，因此站点操作可以用来在游戏运行时改变模型的外观和摆放方式。
 
-Site operations include staples like translations and rotations, but also extend to more elaborate controls. You can use operations to graft objects together or even dynamically update an object's properties over time, simulating independent movement or random variations in effects. It's also worth noting that operations are not exclusive, they can be stacked and combined in many ways. The image below shows some of the uses of site operations.
+站点操作既包括平移、旋转这样最常见的功能，也能扩展到更复杂的控制。你可以用这些操作把多个对象嫁接到一起，甚至随着时间动态更新对象属性，以模拟独立运动或效果中的随机变化。还要注意，操作之间并不是互斥的；它们可以以很多方式叠加和组合。下图展示了站点操作的一些用途。
 
-[![Image](./resources/066_Site_Operations1.png)](./resources/066_Site_Operations1.png)
+[![图像](./resources/066_Site_Operations1.png)](./resources/066_Site_Operations1.png)
 
-Terratron Built from Attachment Operations -- Random Variation Operation on Thor's Barrage Effect
+通过附加操作拼装出的 Terratron -- 应用于雷神弹幕效果的随机变化操作
 
-## Creating Site Operations
+## 创建站点操作
 
-As a type of actor, you can find site operations under the actors tab of the Data Editor. Open this tab by navigating to + ▶︎ Edit Actor Data ▶︎ Actors.
+作为一种 Actor，你可以在数据编辑器的 Actor 标签页中找到站点操作。通过 `+ ▶︎ Edit Actor Data ▶︎ Actor` 打开该标签页。
 
-[![Navigating to Actors in Data](./resources/066_Site_Operations2.png)](./resources/066_Site_Operations2.png)
-*Navigating to Actors in Data*
+[![在数据中导航到 Actor](./resources/066_Site_Operations2.png)](./resources/066_Site_Operations2.png)
+*在数据中导航到 Actor*
 
-You can create a site operation actor in the actors tab just as you would as any other actor, by right-clicking in the Object List and navigating to 'Add Actor.'
+你可以像创建其他任何 Actor 一样，在 Actor 标签页中创建站点操作 Actor：在对象列表中右键，然后选择 `Add Actor`。
 
-[![Creating a Site Operation Actor](./resources/066_Site_Operations3.png)](./resources/066_Site_Operations3.png)
-*Creating a Site Operation Actor*
+[![创建站点操作 Actor](./resources/066_Site_Operations3.png)](./resources/066_Site_Operations3.png)
+*创建站点操作 Actor*
 
-This will launch the 'Actor Properties' window. Use the 'Actor Type' dropdown and scroll down the list to the site operations. They have the prefix 'Site Operation' and are differentiated by their subtype in brackets. An example of this naming convention is the Site Operation (2D Rotation) actor type, which represents the 2D Rotation Site Operation responsible for rotation strictly in the XY plane. You can see the process of selecting a site operation actor below.
+这会打开 `Actor Properties` 窗口。使用 `Actor Type` 下拉框，向下滚动到站点操作部分。它们都以 `Site Operation` 为前缀，并通过括号中的子类型加以区分。比如 `Site Operation (2D Rotation)` 这种 Actor 类型，就表示负责在 XY 平面内旋转的 2D Rotation 站点操作。下图展示了选择站点操作 Actor 的过程。
 
-![Site Operation Actor List](./resources/066_Site_Operations4.png)
-*Site Operation Actor List*
+![站点操作 Actor 列表](./resources/066_Site_Operations4.png)
+*站点操作 Actor 列表*
 
-From here, select any site operation and click 'Ok' to finish creating the actor.
+在这里选中任意站点操作后，点击 `Ok` 即可完成创建。
 
-## Applying Site Operations
+## 应用站点操作
 
-You can apply site operations through the 'Host Site Operations' field of any applicable actor, an example of which is shown below.
+你可以通过任意适用 Actor 的 `Host Site Operations` 字段来应用站点操作，下面展示了一个示例。
 
-[![Site Operation Hosting Field](./resources/066_Site_Operations5.png)](./resources/066_Site_Operations5.png)
-*Site Operation Hosting Field*
+[![承载站点操作的字段](./resources/066_Site_Operations5.png)](./resources/066_Site_Operations5.png)
+*承载站点操作的字段*
 
-Double clicking on this field launches an 'Object Values' window, which provides a list of the currently hosted site operations, as shown below.
+双击这个字段会打开 `Object Values` 窗口，其中会列出当前已挂载的站点操作，如下图所示。
 
-[![Site Operations View](./resources/066_Site_Operations6.png)](./resources/066_Site_Operations6.png)
-*Site Operations View*
+[![站点操作视图](./resources/066_Site_Operations6.png)](./resources/066_Site_Operations6.png)
+*站点操作视图*
 
-In this case, the 'SOpShadow' and 'Terran Building Facing' site operations are already installed on this actor. These represent instances of the Shadow Site Operation and Explicit Rotation Site Operation respectively. A new site operation is added by selecting the 'Choose' field, which will launch the window below.
+在这个例子中，`SOpShadow` 和 `Terran Building Facing` 站点操作已经安装在该 Actor 上。它们分别是 Shadow 站点操作和 Explicit Rotation 站点操作的实例。要添加新的站点操作，可选择 `Choose` 字段，这会打开下方窗口。
 
-[![Selecting Site Operation for Addition](./resources/066_Site_Operations7.png)](./resources/066_Site_Operations7.png)
-*Selecting Site Operation for Addition*
+[![选择要添加的站点操作](./resources/066_Site_Operations7.png)](./resources/066_Site_Operations7.png)
+*选择要添加的站点操作*
 
-This window allows you to select a site operation. Once you've decided on one, click 'Ok' to return to the main site operations view. For the purposes of this exercise, choose the 'SOpHigherBy5' operation. This will take present you with the view shown below.
+这个窗口允许你选择一个站点操作。选定后，点击 `Ok` 返回站点操作主视图。作为本练习的一部分，请选择 `SOpHigherBy5` 操作。这样你会看到如下视图。
 
-[![Site Operation Readied for Addition](./resources/066_Site_Operations8.png)](./resources/066_Site_Operations8.png)
-*Site Operation Readied for Addition*
+[![已准备添加的站点操作](./resources/066_Site_Operations8.png)](./resources/066_Site_Operations8.png)
+*已准备添加的站点操作*
 
-You can now add the site operation to the actor by hitting the green '+' button on the right-hand side of the window. This will add it to the list of active site operations, as shown below.
+现在你可以点击窗口右侧的绿色 `+` 按钮，把这个站点操作添加到 Actor 上。它会进入活动站点操作列表，如下图所示。
 
-[![Site Operation Added to Actor](./resources/066_Site_Operations9.png)](./resources/066_Site_Operations9.png)
-*Site Operation Added to Actor*
+[![已添加到 Actor 的站点操作](./resources/066_Site_Operations9.png)](./resources/066_Site_Operations9.png)
+*已添加到 Actor 的站点操作*
 
-From here, click 'Ok' to save the addition and return to the main Data Editor view.
+然后点击 `Ok` 保存这个添加操作，并返回数据编辑器主视图。
 
-## Order Of Operations
+## 操作顺序
 
-It is important to note that site operations are order dependent. Applying site operations in different orders might have wildly varying effects or no noticeable difference at all. To help you manage this, the Editor features a 'Host Site Operations' subeditor that lets you change the order in which operations are applied.
+需要特别注意的是，站点操作依赖顺序。以不同顺序应用相同的站点操作，效果可能天差地别，也可能看不出变化。为帮助你管理这一点，编辑器提供了一个 `Host Site Operations` 子编辑器，让你可以调整各项操作的应用顺序。
 
-![Site Operation Ordering Controls](./resources/066_Site_Operations10.png)
-*Site Operation Ordering Controls*
+![站点操作排序控件](./resources/066_Site_Operations10.png)
+*站点操作排序控件*
 
-You'll find the controls for changing the order in which site operations are applied on the right-hand side of this window. To use them, select a site operation from the list, then click the up or down arrow buttons to move it in the operations list. Site operations will be applied in the order listed in this window, from top to bottom.
+你可以在该窗口右侧找到改变应用顺序的控件。使用时，先从列表中选中一个站点操作，再点击上下箭头按钮，把它在操作列表中上移或下移。站点操作会按这个窗口中从上到下的顺序依次应用。
 
-To understand the impact of the order in which site operations are applied, consider the 'Local Offset' and the 'Rotator.' The former operation will move an actor a certain distance in 3D space, while the latter rotates an actor around a point. In this example, both will be applied to a 'Game Ball' actor in different orders. Pictured below is a case in which the local offset was applied first.
+要理解应用顺序的影响，可以想想 `Local Offset` 和 `Rotator`。前者会把一个 Actor 在 3D 空间中移动一定距离，后者则会让 Actor 围绕某个点旋转。这个例子里，这两者会以不同顺序作用到一个 `Game Ball` Actor 上。下图展示的是先应用 Local Offset 的情况。
 
-![Local Offset then Rotator Site Operation](./resources/066_Site_Operations11.png)
-*Local Offset then Rotator Site Operation*
+![先 Local Offset 后 Rotator 的站点操作](./resources/066_Site_Operations11.png)
+*先 Local Offset 后 Rotator 的站点操作*
 
-The next image shows what happens when the rotator operation is applied before the local offset.
+下一张图展示的是在 Local Offset 之前先应用 Rotator 会发生什么。
 
-![Rotator then Local Offset Site Operation](./resources/066_Site_Operations12.png)
-*Rotator then Local Offset Site Operation*
+![先 Rotator 后 Local Offset 的站点操作](./resources/066_Site_Operations12.png)
+*先 Rotator 后 Local Offset 的站点操作*
 
-The most important takeaway here is that the results are not equal despite the same operations having been applied. Below is a breakdown of what has happened in these cases.
+这里最重要的结论是：即使应用的是同一组操作，结果也并不相同。下面逐条说明这两种情况发生了什么。
 
-  - You should note that the local offset was downward, equal to about 25% of the ball's height. The rotator was equal to about 90 degrees, or a quarter turn.
-  - Applying the local offset first offset the ball downwards, but also offset the axis of rotation for the rotator. This moves the axis of rotation outside the ball's center. As a result, rotation actually causes a change in the position of the ball, plunging it forward and into the ground. The ball has altered its rotation and positions in the X & Z axes.
-  - By contrast, applying the rotator first rotates the ball on the spot. It is then offset downwards into the ground. This means that the axis of rotation is still in the center of the ball. In this instance, the ball only sees rotation and change in its Z axis position.
+  - 需要注意，Local Offset 的方向是向下，距离大约等于球体高度的 25%；Rotator 则大约是 90 度，也就是四分之一圈。
+  - 先应用 Local Offset，会先把球向下偏移，但同时也会让 Rotator 的旋转轴跟着偏移。这样旋转轴就不再位于球心。结果就是，旋转不再只是旋转本身，还会改变球的位置，让它向前冲并陷入地面。球体的旋转以及 X、Z 轴位置都发生了变化。
+  - 相比之下，先应用 Rotator 则会让球在原地旋转，然后再整体向下偏移进入地面。这意味着旋转轴依然保持在球心。这种情况下，球只发生了旋转以及 Z 轴位置变化。
 
-As shown above, the sensitivity of site operations to the order in which they're applied can sometimes cause unpredictable results. The best remedy for this potential unpredictability is either careful planning or experimentation with how operations react when combined.
+正如上面所示，站点操作对顺序的敏感性有时会导致难以预测的结果。避免这种不确定性的最好办法，要么是事先仔细规划，要么就是多做实验，观察不同操作组合在一起时的反应。

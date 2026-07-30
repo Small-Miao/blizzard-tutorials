@@ -1,90 +1,90 @@
-# Doodad Actors
+# 装饰物 Actor
 
-Most users will understand doodads as a collection of elements in the Terrain Editor that can be used in maps for decorative, styling, or world-building purposes. Here, it will help if you have a more formal, data-oriented definition for them. Doodads are simple, visual objects that you can add directly into the game. You can do this using an actor subtype known as the Doodad Actor. You can see some doodads in use in the image below.
+大多数用户会把装饰物理解为地形编辑器中的一组元素，可用于地图中的装饰、风格塑造或世界构建。在这里，如果你能从数据角度更正式地理解它们，会更有帮助。装饰物是简单的可视对象，你可以直接把它们加入游戏中；实现这一点的方法，就是使用一种称为装饰物 Actor 的 Actor 子类型。下图展示了一些装饰物的实际使用效果。
 
-[![Doodads Shaping a Cliff face](./resources/064_Doodad_Actors1.png)](./resources/064_Doodad_Actors1.png)
-*Doodads Shaping a Cliff face*
+[![塑造悬崖表面的装饰物](./resources/064_Doodad_Actors1.png)](./resources/064_Doodad_Actors1.png)
+*塑造悬崖表面的装饰物*
 
-Doodads are primarily visual elements. As game objects, they're distinguished from Units by their removal from any computation regarding moving, combat, abilities, and so forth. This type exists to offer a lightweight method of sending Model types to the game with only some minor properties. Creating an actor as a doodad subtype means that it will be listed directly in the game, found in the Doodads Palette of the Terrain Editor, ready for placement. You can see this in the image below.
+装饰物主要是视觉元素。作为游戏对象，它们与单位的区别在于：不会参与移动、战斗、技能等相关计算。这种类型的存在，是为了以一种轻量方式把模型类型送入游戏，只带上少量附加属性。把一个 Actor 创建为装饰物子类型后，它就会直接出现在游戏的装饰物列表中，也就是地形编辑器的装饰物调色板里，随时可以摆放。如下图所示。
 
 ![](./resources/064_Doodad_Actors2.png)
-*Doodad Actor Demonstrated in the Terrain Editor*
+*地形编辑器中演示的装饰物 Actor*
 
-## Doodad Types
+## 装饰物类型
 
-Doodad actors are also given a subtype, listed under their 'Doodad Type' field. This is primarily an organizational tool and can be changed after you have created the actor. Beyond organization, subtypes enable a set of filters on the Doodads Palette. Searching with the 'Actor Type' Doodad and a specific 'Doodad Type' can greatly speed your work with doodads in the Terrain Editor.
+装饰物 Actor 还会拥有一个子类型，列在它们的 `装饰物类型` 字段下。这主要是一个组织工具，你在创建 Actor 后也依然可以修改它。除了组织作用之外，子类型还能为装饰物调色板提供一组筛选器。在地形编辑器中，通过 `Actor Type` 为 装饰物，再配合特定的 `装饰物类型` 搜索，能大大加快你处理装饰物的速度。
 
-[![Image](./resources/064_Doodad_Actors3.png)](./resources/064_Doodad_Actors3.png)
-*Doodad Type Filter in the Terrain Editor -- Tagging Doodad Actors with a Type in the Data Editor*
+[![图像](./resources/064_Doodad_Actors3.png)](./resources/064_Doodad_Actors3.png)
+*地形编辑器中的装饰物类型筛选器 -- 数据编辑器中为装饰物 Actor 标记类型*
 
-The rightmost view above shows the organization of doodads in the actors tab by their 'Doodad Type.' The leftmost view shows how these types can then be used as a search filter in the Doodads Palette.
+上图最右侧展示的是 Actor 标签页中按 `装饰物类型` 组织装饰物的方式；最左侧则展示了这些类型如何作为筛选条件，在装饰物调色板中使用。
 
-## Doodad Actor Details
+## 装饰物 Actor 详情
 
-There is a small number of fields that allow for the alteration of doodad actors. Given the nature of doodads, these are mostly visual modifiers and are described in the below table.
+可用于修改装饰物 Actor 的字段并不多。考虑到装饰物本身的性质，这些字段大多是视觉修饰项，具体如下表所示。
 
-| Field              | Details                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| 字段 | 说明 |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Art Model          | Sets the model which will be made into a doodad.                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Art Scale          | Allows for scaling of the model type in the X, Y, and Z axes.                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Random Scale Range | Applies a random scale factor to placed doodads on an individual basis. The scaling is applied across all three axes, and is selected from within a defined range.                                                                                                                                                                                                                                                                                                           |
-| Fog Visibility     | Sets the state the doodad enters when covered in fog of war. This is an important consideration if you are concerned with performance. In order of increasing performance, the possible states are as follows. Visible will keep the doodad fully active under fog of war. Dimmed will slightly darken the doodad and maintain all other animations. Snapshot freezes animations but maintains visibility. Hidden completely removes the doodad when it is under fog of war. |
-| Footprint          | Selects the doodad's pathing footprint. A doodad's pathing is its main logical component. This determines the interactions between the doodad's visual component, the Art Model, and the actions of other game objects on the map, such as unit movement or placement.                                                                                                                                                                                                       |
-| Events             | Sets the actor events for the doodad. This handles the basic creation and removal of doodads, but also things like sound emitters and animations.                                                                                                                                                                                                                                                                                                                            |
+| 美术模型 | 设置要变成装饰物的模型。 |
+| 美术缩放 | 允许在 X、Y、Z 三个轴向上对模型进行缩放。 |
+| 随机缩放范围 | 为每个已摆放的装饰物单独施加随机缩放因子。缩放会同时作用于三个轴向，并从指定范围中取值。 |
+| 迷雾可见性 | 设置装饰物被战争迷雾覆盖时进入的状态。如果你关心性能，这一点很重要。按性能从低到高排列，各状态如下：Visible 会让装饰物在迷雾下仍保持完整活动；Dimmed 会稍微变暗，同时保留其他动画；Snapshot 会冻结动画但保持可见；Hidden 则会在装饰物处于战争迷雾下时将其完全移除。 |
+| 足迹 | 选择装饰物的寻路足迹。装饰物的寻路是它主要的逻辑部分。它决定装饰物的视觉部分（即美术模型）与地图上其他游戏对象行为之间的交互方式，例如单位移动或放置。 |
+| 事件 | 设置装饰物的 Actor 事件。它负责处理装饰物的基本创建与移除，以及声音发射器、动画等内容。 |
 
-## Creating A Doodad Actor
+## 创建装饰物 Actor
 
-Assemble a new doodad by moving to the actors tab inside the Data Editor. If the tab isn't already open, you can open it by navigating to + ▶︎ Edit Actor Data ▶︎ Actors. Once inside, create a new actor by right-clicking in the main view and selecting 'Add Actor,' as shown below.
+要组装一个新的装饰物，请进入数据编辑器中的 Actor 标签页。如果该标签页尚未打开，可以通过 `+ ▶︎ Edit Actor Data ▶︎ Actor` 进入。进入后，在主视图中右键并选择 `Add Actor` 创建新 Actor，如下图所示。
 
-[![Creating a New Actor](./resources/064_Doodad_Actors4.png)](./resources/064_Doodad_Actors4.png)
-*Creating a New Actor*
+[![创建新 Actor](./resources/064_Doodad_Actors4.png)](./resources/064_Doodad_Actors4.png)
+*创建新 Actor*
 
-This will launch the 'Actor Properties' window. Inside this view, set a name, then hit suggest to generate an ID. Set the 'Actor Type' to Doodad. For this exercise the name Demo Doodad has been used.
+这会打开 `Actor Properties` 窗口。在这里先设置名称，然后点击 `Suggest` 生成 ID。把 `Actor Type` 设为 `装饰物`。本练习中使用的名称是 `Demo 装饰物`。
 
-![Creating a Doodad Actor](./resources/064_Doodad_Actors5.png)
-*Creating a Doodad Actor*
+![创建装饰物 Actor](./resources/064_Doodad_Actors5.png)
+*创建装饰物 Actor*
 
-Use the 'Doodad Type' dropdown to select the organization type for the doodad. For the purposes of the demo, you should select the Prop type. This is a subtype that is usually used to categorize man-made, non-structural objects. You can see what it looks like to select the subtype in the image below.
+使用 `装饰物类型` 下拉框选择这个装饰物的组织类型。为了演示，你应选择 `Prop` 类型。这个子类型通常用于归类人工制造、但并非建筑结构的对象。下图展示了选择该子类型时的样子。
 
-![Selecting Doodad Type](./resources/064_Doodad_Actors6.png)
-*Selecting Doodad Type*
+![选择装饰物类型](./resources/064_Doodad_Actors6.png)
+*选择装饰物类型*
 
-Once you're done, you can click 'Ok' to finish creating the doodad actor.
+完成后，点击 `Ok` 即可结束装饰物 Actor 的创建。
 
-## Setting The Doodad Actor'S Fields
+## 设置装饰物 Actor 的字段
 
-The essential part of the doodad actor is the 'Model,' so you should set that now. Highlight the new actor to view its fields in the Data Editor. Move to the 'Model' field and double click it to launch an editing window, as shown below.
+装饰物 Actor 最关键的部分是“模型”，所以现在就应先设置它。选中新 Actor，在数据编辑器中查看其字段。找到“模型”字段并双击，打开编辑窗口，如下图所示。
 
-[![Doodad Actor Model Selection](./resources/064_Doodad_Actors7.png)](./resources/064_Doodad_Actors7.png)
-*Doodad Actor Model Selection*
+[![装饰物 Actor 模型选择](./resources/064_Doodad_Actors7.png)](./resources/064_Doodad_Actors7.png)
+*装饰物 Actor 模型选择*
 
-This window displays all of the Model assets in a project's data, along with some searching options. Pick the desired model here, then hit 'Ok' to save the selection. For this exercise, you should choose the Colonist Supply Crate.
+这个窗口会显示项目数据中的全部模型资源，并附带一些搜索选项。在这里选择你想要的模型，然后点击 `Ok` 保存选择。本练习中应选择 `Colonist Supply Crate`。
 
-Next, move to the 'Events' field to set the actor events. Select this field and double click it to open the actor events subeditor shown below.
+接下来，定位到“事件”字段以设置 Actor 事件。选中该字段并双击，打开如下所示的 Actor 事件子编辑器。
 
-[![Doodad Actor Events Default](./resources/064_Doodad_Actors8.png)](./resources/064_Doodad_Actors8.png)
-*Doodad Actor Events Default*
+[![装饰物 Actor 默认事件](./resources/064_Doodad_Actors8.png)](./resources/064_Doodad_Actors8.png)
+*装饰物 Actor 默认事件*
 
-Doodad actors contain support for sound emitters and animation by default. The 'AnimPlay' message sets the animation to be played on doodad creation, selects a random animation frame to start playing at, and then sets it to loop indefinitely. The sound emitter begins its playing behavior as set out within its respective sound type. If these extended functions are not needed, as is the case with the demo crates, then you can delete them. Do this by selecting each term, right-clicking, and choosing 'Remove Selection.'
+装饰物 Actor 默认就支持声音发射器和动画。`AnimPlay` 消息会在装饰物创建时设置播放动画、从随机动画帧开始，并让它无限循环。声音发射器则会按照各自声音类型中的设定开始播放。如果这些扩展功能并不需要，就像本例中的箱子那样，你可以把它们删除。做法是逐个选中这些项，右键并选择 `Remove Selection`。
 
-Finally, you'll have to set the 'Footprint' field. This field allows you to select from a list of available or custom footprints and apply them to the doodad. The pathing will then be set on top of the doodad in the game, giving it the logic rules defined in the Footprints type. Add a footprint by highlighting the 'Footprint' field and double clicking to launch the editor window shown below.
+最后，你还需要设置“足迹”字段。这个字段让你可以从可用或自定义的足迹列表中选择一个，并应用到装饰物上。这样，足迹类型中定义的逻辑规则就会叠加到游戏中的该装饰物上。要添加足迹，请选中“足迹”字段并双击，打开如下所示的编辑窗口。
 
-![Setting Doodad Footprint](./resources/064_Doodad_Actors9.png)
-*Setting Doodad Footprint*
+![设置装饰物足迹](./resources/064_Doodad_Actors9.png)
+*设置装饰物足迹*
 
-For this exercise, you should choose a footprint of Footprint 2x2. The doodad is now ready and functional, but there are still several properties you should consider setting. These include Art Scale, Random Scale Range, and Fog Visibility. The completed demo doodad's fields are shown below.
+本练习中应选择 `Footprint 2x2`。到这里，装饰物已经可以正常工作了，不过你仍应考虑设置一些额外属性，包括美术缩放、随机缩放范围和迷雾可见性。完成后的演示装饰物字段如下图所示。
 
-[![Demo Doodad Fields](./resources/064_Doodad_Actors10.png)](./resources/064_Doodad_Actors10.png)
-*Demo Doodad Fields*
+[![演示装饰物字段](./resources/064_Doodad_Actors10.png)](./resources/064_Doodad_Actors10.png)
+*演示装饰物字段*
 
-## Placing The Doodad
+## 放置装饰物
 
-To place your custom doodad, navigate to the Terrain Editor and then to the Doodads Layer. The completed doodad will have been added to the Doodads Palette and you can find it either manually or using the search filters, like 'Doodad Type.' You can use the palette for this, as shown below.
+要放置你的自定义装饰物，请切换到地形编辑器，然后进入装饰物层。完成后的装饰物已经被加入装饰物调色板中，你既可以手动查找，也可以使用诸如 `装饰物类型` 之类的搜索筛选器。下图展示了如何通过调色板完成这件事。
 
-![Doodads Palette Search Filters Use](./resources/064_Doodad_Actors11.png)
-*Doodads Palette Search Filters Use*
+![装饰物调色板搜索筛选器的使用](./resources/064_Doodad_Actors11.png)
+*装饰物调色板搜索筛选器的使用*
 
-Placing the doodad in the Editor view should reveal its model and footprint on the map. Note that any scaling, and randomization of scale will occur as the model is placed and won't be reflected in the palette's previewer. You can see the exercise's custom doodad in the image below.
+将装饰物摆放到编辑器视图中后，你应该就能在地图上看到它的模型和足迹。注意，任何缩放以及随机缩放都会在模型被放置时才生效，因此不会体现在调色板预览器中。下图展示了本练习创建出的自定义装饰物。
 
-[![Custom Doodad in Game](./resources/064_Doodad_Actors12.png)](./resources/064_Doodad_Actors12.png)
-*Custom Doodad in Game*
+[![游戏中的自定义装饰物](./resources/064_Doodad_Actors12.png)](./resources/064_Doodad_Actors12.png)
+*游戏中的自定义装饰物*

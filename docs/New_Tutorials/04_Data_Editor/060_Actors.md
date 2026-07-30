@@ -1,134 +1,134 @@
-# Actors
+# Actor
 
-Actors control everything you see or hear in the game from the units model to the impact sound of an ability.
+Actor 控制着你在游戏中看到或听到的一切，从单位模型到技能命中的音效都属于它的职责范围。
 
-Actor logic is event based which means the actor itself can declare when its created. This is different from game logic (Units, Abilities, Effects, etc.) which are forward declared, e.g. an ability states which effect to execute on use. In that sense actor logic is reversed and unintuitive when first starting out.
+Actor 逻辑是基于事件的，这意味着 Actor 本身可以声明自己何时被创建。这与游戏逻辑（单位、技能、效果等）不同，后者通常是前向声明的；例如一个技能会声明自己在使用时要执行哪个效果。从这个角度来说，Actor 逻辑的思路是反过来的，刚接触时往往不太直观。
 
-Actors do not affect gameplay as they are calculated asynchronously on the player's local machine and are not synchronized across the network. This means the state of actors cannot be compared reliably, as some actors may only be created on certain graphic settings.
+Actor 不会影响玩法，因为它们是在玩家本地机器上异步计算的，并不会通过网络同步。这意味着 Actor 的状态不能被可靠地比较，因为有些 Actor 可能只会在特定图形设置下才被创建。
 
-In addition to the obvious Model and Sound actors, there are various other types of actors that control subsystems (e.g., Site Operations or Event Macros) or link other actors together (e.g., Action or Region actors).
+除了比较直观的模型 Actor 和声音 Actor 之外，还有许多其他类型的 Actor，用于控制子系统（例如站点操作或事件宏），或者把其他 Actor 彼此连接起来（例如 Action Actor 或 Region Actor）。
 
-You can find the actors section of the Editor by moving to the Data Editor and navigating to + ▶︎ Edit Actor Data ▶︎ Actors, as shown below.
+你可以按下图所示，进入数据编辑器后通过 `+ ▶︎ Edit Actor Data ▶︎ Actor` 找到编辑器中的 Actor 区域。
 
-![Navigating to Actors in Data](./resources/060_Actors6.png)
-*Navigating to Actors in Data*
+![在数据中导航到 Actor](./resources/060_Actors6.png)
+*在数据中导航到 Actor*
 
-This will bring you to the actors tab of the Data Editor, presenting you with the following view.
+这样就会打开数据编辑器中的 Actor 标签页，呈现如下视图。
 
-![Actors Tab View](./resources/060_Actors7.png)
-*Actors Tab View*
+![Actor 标签页视图](./resources/060_Actors7.png)
+*Actor 标签页视图*
 
-The fields in actors are described in the following section.
+Actor 中的字段会在下一节中说明。
 
-## Actor Details
+## Actor 详情
 
-Owing to the many types available for actors, a single treatment of every actor property would be too unwieldy to be useful. However, actors have a large list of common properties, which are broken down in the table below.
+由于 Actor 可用的类型很多，若把每个 Actor 属性都逐一完整讲解，内容会庞杂到失去实用性。不过，Actor 也有一大批通用属性，下表对此进行了拆解说明。
 
-| Field                       | Details                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| 字段 | 说明 |
 | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Aliases                     | Alternate reference names for actors. These offer a shortcut, making it easy for actors to send messages to one another. For example, unit actors have a common \_Unit alias. When a separate actor wants to access the unit actor, it may use this alias. This is preferable to looking up the actual actor name, which will differ each time.                                                                                    |
-| Copy Source                 | Sets another actor as a proxy parent. This means that any child actors of the current actor will acquire their properties from the Copy Source actor. The properties to be acquired must be set in the Copy Source actor's Accepted Property Transfers field and the child actor's Inherited Properties field.                                                                                                                     |
-| Filter                      | Sets the visibility of the actor to Ally, Enemy, Neutral, or Self groups of the actor's owner.                                                                                                                                                                                                                                                                                                                                     |
-| Filter Player               | Sets the visibility of the actor on a player basis.                                                                                                                                                                                                                                                                                                                                                                                |
-| Flags                       | Flags contains a number of additional options for the actor.                                                                                                                                                                                                                                                                                                                                                                       |
-| Add to External Finder      | Moves the actor to a global scope, making it usable by all other actors in the game.                                                                                                                                                                                                                                                                                                                                               |
-| Not Saved                   | Marks the actor to not save or load during a game save, reducing the time of these operations.                                                                                                                                                                                                                                                                                                                                     |
-| Response to Unit Player     | Sets the actor to automatically update its player ID when its unit actor changes owner.                                                                                                                                                                                                                                                                                                                                            |
-| Suppress Creation Errors    | Turns off the actor's creation error message. This is useful if an actor is designed to fail its creation event under certain circumstances.                                                                                                                                                                                                                                                                                       |
-| Fog Visibility              | Sets the actor's appearance under fog of war. The behavior options are as follows: Dimmed appears darkened, Hidden hides the actor completely, Snapshot will show the actor's last visible state before leaving vision, and Visible makes the actor remain visible under fog.                                                                                                                                                      |
-| Sharing                     | Sets the behavior for sharing the actor if it is requested by multiple functions. The options are: Always shared, Never shared, and Per Effect. Per Effect allows the you to configure sharing on an effect basis.                                                                                                                                                                                                                 |
-| Events                      | Allows the setting of actor events and messages, which are the internal logic language for actors.                                                                                                                                                                                                                                                                                                                                 |
-| Macros                      | Can add event macros here. Event macros are a collection of common Events that are reusable in many actors.                                                                                                                                                                                                                                                                                                                        |
-| Remove                      | Specify the removal of unwanted Events inherited from the parent actor.                                                                                                                                                                                                                                                                                                                                                            |
-| Terms                       | Sets conditions that must be passed for the actor to be created. Identical to the term of the creation event within Events and will overwrite that message if entered here. This has an application in data organization.                                                                                                                                                                                                          |
-| Host Supporter              | Host Supporter is used to specify a supporter actor. When the supporter dies a SupporterDesctruction message is sent to the actor which hosted it. This is often used to destroy that hosting actor, but can also be used to play animations or propagate messages.                                                                                                                                                                |
-| Accepted Property Transfers | Determines which of a set of properties will be passed on to child actors. Controlled via a set of flags. Some of the numerous options here include Model Scale, Opacity, Scale, Team Color, Visibility, and Decal. There are even more transfer properties within the continuation field, Accepted Transfers. Options within Accepted Transfers include Animation Properties, Fog of War Color, Position, Rotation, and Textures. |
-| Inherit Type                | Sets if the actor inherits its properties from its host on creation via Once, never via None, or in a dynamically updating fashion via Continuous.                                                                                                                                                                                                                                                                                 |
-| Inherited Properties        | Determines the set of properties this actor inherits from its parent actor. For a property to be inherited correctly, it must be selected in both the Inherited Properties and Accepted Property Transfers fields.                                                                                                                                                                                                                 |
+| 别名 | Actor 的替代引用名。它提供了一种快捷方式，让 Actor 之间更容易相互发送消息。例如，单位 Actor 通常有一个通用别名 `_Unit`。当其他 Actor 想访问这个单位 Actor 时，就可以使用这个别名，而不必去查实际的 Actor 名称，因为后者每次都可能不同。 |
+| 复制源 | 将另一个 Actor 设为代理父级。这意味着当前 Actor 的任意子 Actor 都会从该“复制源”Actor 获取属性。要传递的属性必须在 Copy Source Actor 的 Accepted Property Transfers 字段和子 Actor 的 Inherited Properties 字段中分别进行设置。 |
+| 过滤 | 将 Actor 的可见性限制为其拥有者的盟友、敌人、中立或自身分组。 |
+| 玩家过滤 | 按玩家粒度设置 Actor 的可见性。 |
+| 标志 | 为 Actor 提供若干附加选项。 |
+| 添加到外部查找器 | 将 Actor 放入全局作用域，使游戏中的所有其他 Actor 都能使用它。 |
+| 不保存 | 标记 Actor 在游戏存档时不进行保存或读取，从而减少这些操作所需的时间。 |
+| 响应单位玩家 | 当其单位 Actor 更换拥有者时，自动更新该 Actor 的玩家 ID。 |
+| 抑制创建错误 | 关闭 Actor 的创建错误消息。如果某个 Actor 在特定情况下本来就会故意创建失败，这个选项会很有用。 |
+| 迷雾可见性 | 设置 Actor 在战争迷雾下的表现。各选项行为如下：Dimmed 会显示为变暗状态，Hidden 会完全隐藏，Snapshot 会显示其离开视野前最后一次可见的状态，Visible 则会让 Actor 在迷雾下仍保持可见。 |
+| 共享 | 设置当多个功能请求同一个 Actor 时的共享行为。可选项有：Always shared、Never shared 和 Per Effect。Per Effect 允许你按效果逐项配置共享方式。 |
+| 事件 | 用于设置 Actor 事件和消息，它们构成了 Actor 的内部逻辑语言。 |
+| 宏 | 可在此添加事件宏。事件宏是一组可在多个 Actor 中复用的常用事件。 |
+| 移除 | 指定移除从父级继承而来的不需要事件。 |
+| 术语 | 设置 Actor 被创建前必须满足的条件。它与“事件”中的创建事件术语相同；如果在这里填写，会覆盖原来的那条消息。这在整理数据时很有用。 |
+| 宿主支撑者 | Host Supporter 用于指定一个支撑 Actor。当该支撑者死亡时，会向宿主它的 Actor 发送 SupporterDesctruction 消息。它通常用于销毁宿主 Actor，但也可以用来播放动画或继续传播消息。 |
+| 接受属性传递 | 决定一组属性中哪些会传递给子 Actor。它由一组标志控制。这里的众多选项包括模型缩放、不透明度、缩放、队伍颜色、可见性和贴花等。在后续字段 Accepted Transfers 中还可以设置更多传递属性，例如动画属性、战争迷雾颜色、位置、旋转和纹理。 |
+| 继承类型 | 设置 Actor 在创建时如何从宿主继承属性：Once 表示只继承一次，None 表示永不继承，Continuous 表示持续动态更新。 |
+| 继承属性 | 决定该 Actor 会从父 Actor 继承哪些属性。某项属性若要正确继承，必须同时在 Inherited Properties 和 Accepted Property Transfers 两个字段中被选中。 |
 
-## Actor Events
+## Actor 事件
 
-Actor Events is a communication system for actors. It allows for actors to speak to one another, creating context sensitive changes that can affect any aspect of the game. This system is composed of three basic elements, which are described below.
+Actor 事件是 Actor 之间的通信系统。它让 Actor 可以彼此“交谈”，从而产生与上下文相关的变化，并影响游戏中的任何方面。这个系统由三个基础元素组成，下面会逐一说明。
 
-[![Image](./resources/060_Actors1.png)](./resources/060_Actors1.png) Events - A specific development that can occur within the game.
+[![图像](./resources/060_Actors1.png)](./resources/060_Actors1.png) 事件 - 游戏中可能发生的一项具体发展。
 
-[![Image](./resources/060_Actors4.png)](./resources/060_Actors4.png) Terms - A confirmable set of properties of the game state.
+[![图像](./resources/060_Actors4.png)](./resources/060_Actors4.png) 术语 - 一组可以验证的游戏状态属性。
 
-[![Image](./resources/060_Actors5.png)](./resources/060_Actors5.png) Messages - Commands that can be communicated to elements of the game.
+[![图像](./resources/060_Actors5.png)](./resources/060_Actors5.png) 消息 - 可以发送给游戏元素的命令。
 
-These elements work together in a sequence, creating an actor event. The sequence unfolds as follows. Setting an actor's events makes the actor watch for a specific Event to occur. If it does, then the Terms are checked. If they are found to be true, the Messages are sent out to their targeted game elements.
+这些元素会按顺序协作，形成一条 Actor 事件。流程如下：当你为某个 Actor 设置事件后，这个 Actor 就会监视某个特定事件是否发生。如果发生了，就会检查对应术语；如果术语成立，消息就会发送给目标游戏元素。
 
-You may already have noticed that this is similar the Editor's other main communication system, triggers. The events, terms, and messages of the actor events system are parallel to the events, conditions, and actions of the trigger system. While the trigger system can apply to many gameplay elements, the actor events system deals primarily with data. Triggers are usually the option for specific instances of units, objects, and occurrences in a map. Actor events work for the general type of an object. Actor events design a unit and its interactions, while triggers can adjust and alter that unit during gameplay.
+你可能已经注意到，这和编辑器中的另一套主要通信系统“触发器”很相似。Actor 事件系统中的事件、术语和消息，对应着触发器系统中的事件、条件和动作。触发器系统可以作用于很多玩法元素，而 Actor 事件系统主要处理的是数据。触发器通常针对地图中的特定单位实例、对象实例和发生事件；Actor 事件则作用于对象的一般类型。Actor 事件负责设计一个单位及其交互，而触发器则可以在游戏进行时再去调整和改变该单位。
 
-You can find the actor events system by navigating to the 'Events' field of any actor type. A view of a typical events field is shown below.
+你可以在任意 Actor 类型的“事件”字段中找到 Actor 事件系统。一个典型事件字段的视图如下所示。
 
-[![Actor Events Field](./resources/060_Actors8.png)](./resources/060_Actors8.png)
-*Actor Events Field*
+[![Actor 事件字段](./resources/060_Actors8.png)](./resources/060_Actors8.png)
+*Actor 事件字段*
 
-Double clicking this field will launch the actor events subeditor.
+双击这个字段即可打开 Actor 事件子编辑器。
 
-[![Actor Events Subeditor](./resources/060_Actors9.png)](./resources/060_Actors9.png)
-*Actor Events Subeditor*
+[![Actor 事件子编辑器](./resources/060_Actors9.png)](./resources/060_Actors9.png)
+*Actor 事件子编辑器*
 
-This subeditor presents an organized view of the events, terms, and messages in an actor's 'Events' field. You should note that the elements are colorized by their data source. Gray elements indicate inheritance from the game's core data, Blue elements are from a Blizzard dependency, and green elements are from the current project.
+这个子编辑器会以有组织的方式显示某个 Actor“事件”字段中的事件、术语和消息。需要注意的是，这些元素会根据数据来源着色。灰色元素表示继承自游戏核心数据，蓝色元素来自暴雪依赖项，绿色元素则来自当前项目。
 
-## Actor Event Use
+## Actor 事件的使用
 
-You can set actor events by highlighting an element in the subeditor view, then selecting its type via the rightmost panel's 'Msg Type' or 'Term Type' dropdowns. Note that both events and messages are referred to using the term 'message.' This is because they're interchangeable, messages can be used as event triggers and vice versa.
+你可以在子编辑器视图中高亮某个元素，然后通过最右侧面板中的 `Msg Type` 或 `Term Type` 下拉框设置其类型。要注意，事件和消息都会统一用 `message` 这个术语来称呼，因为它们是可以互换的：消息可以作为事件触发器，反之亦然。
 
-Additional options, such as parameters or sources, typically control what the messages are communicating to. Any messages without a target will be sent by the actor to itself. Messages can also be targeted more granularly through the use of aliases. Although actors can be referred to by their direct name such as Marine, they usually have a type alias like \_Unit, and a system reference like ::Creator.
+参数、来源等附加选项通常决定消息实际在对什么对象进行通信。任何没有指定目标的消息，都会由该 Actor 发送给自己。通过使用别名，消息也可以更精细地指向目标。虽然 Actor 可以直接用诸如 Marine 这样的名称来引用，但它们通常会有像 `_Unit` 这样的类型别名，以及像 `::Creator` 这样的系统引用。
 
-Actor events are incredibly versatile. They can perform the fundamental handling of actors within data, such as creating them, destroying them, and linking them. However, actor events have many more nuanced functions, like playing animations, altering the physical properties of art and sound assets, applying physics, and controlling lighting. As an example of actor events' capabilities, note the following.
+Actor 事件极其灵活。它们既可以承担数据中 Actor 的基础处理工作，例如创建、销毁和链接，也可以完成更细致的功能，比如播放动画、改变美术和声音资源的物理属性、应用物理效果以及控制光照。下面这个例子可以说明 Actor 事件的能力。
 
-[![Sample Actor Event](./resources/060_Actors10.png)](./resources/060_Actors10.png)
-*Sample Actor Event*
+[![示例 Actor 事件](./resources/060_Actors10.png)](./resources/060_Actors10.png)
+*示例 Actor 事件*
 
-Here, an event has been set to respond to a zealot's charging behavior. In response to the charge starting, the zealot will send out a message to its own unit actor, resulting in its model being tinted to a reddish color. On testing, the gameplay results appeared as shown below.
+这里设置了一条事件，用来响应狂热者的冲锋行为。当冲锋开始时，狂热者会向自己的单位 Actor 发送一条消息，使其模型染上一层偏红的色调。经过测试，实际游戏中的效果如下图所示。
 
 ![](./resources/060_Actors11.png)
-*Zealots Tinting an Angry Red during Charge*
+*狂热者冲锋时变成愤怒的红色*
 
-## Actor Events & Triggers
+## Actor 事件与触发器
 
-As mentioned earlier, there are many parallels between the actor events and trigger systems despite their dealing with different segments of the game. While it can be useful to keep the two separate in your thinking, the fact is that the two systems frequently communicate with one another, overlap in functionality, and can be used to accomplish the same things in several different ways.
+如前所述，尽管 Actor 事件系统和触发器系统处理的是游戏的不同部分，但二者之间存在很多平行关系。把这两套系统在思维上分开当然有帮助，不过事实上，它们经常会彼此通信、在功能上重叠，并且能通过不同方法实现相同结果。
 
-An important example of this is that actor messages can be sent to specific actors using the Trigger Editor's 'Send Actor Message' action. You can see this in action below.
+一个重要例子是，Actor 消息可以通过触发器编辑器中的 `Send Actor Message` 动作发送给特定 Actor。你可以在下图中看到这一点。
 
-!['Send Actor Message' Actions](./resources/060_Actors2.png)
-*'Send Actor Message' Actions*
+!['Send Actor Message' 动作](./resources/060_Actors2.png)
+*'Send Actor Message' 动作*
 
-Above, an action statement in the body of a trigger has sent out a 'Set Tint Color' message to a hydralisk's unit actor. The unit actor has also received a message to change its team color. Together, these messages have dyed the unit's model a blue color, by speaking directly to its actors from triggers.
+上图中，触发器主体里的一个动作语句向一只刺蛇的单位 Actor 发送了一条 `Set Tint Color` 消息。该单位 Actor 还收到了一条改变队伍颜色的消息。通过从触发器直接与其 Actor 通信，这两条消息一起把单位模型染成了蓝色。
 
-[![Colorized Hydralisk](./resources/060_Actors3.png)](./resources/060_Actors3.png)
-*Colorized Hydralisk*
+[![被着色的刺蛇](./resources/060_Actors3.png)](./resources/060_Actors3.png)
+*被着色的刺蛇*
 
 
-## Actor Parents
+## Actor 父级
 
-Data parents exist for all types of data, but for actors in particular blizzard did a lot of work to create useful parents that can speedup your work creating actors as well as reduce the complexity when you just learn about actors.
-A parent is a template which if used the child object will inherit all its base settings. You can overwrite the base settings, if you need to change something. For some actor types a good parent is already chosen by default in the editor, like the `GenericUnitStandard` parent for `Unit` actors.
+所有数据类型都存在数据父级，但暴雪在 Actor 上尤其投入了很多工作，制作出许多实用的父级。这些父级既能加快你创建 Actor 的速度，也能在你初学 Actor 时减少复杂度。
+父级本质上就是模板；只要使用它，子对象就会继承其全部基础设置。如果你需要改动，也可以覆盖这些基础设置。对于某些 Actor 类型，编辑器甚至已经默认选好了合适的父级，例如 `Unit` Actor 默认使用的 `GenericUnitStandard`。
 
-Parents can define Tokens which a child object can fill out to automatically set part of its data. You can think of them as parameters to a function.
+父级可以定义 Token，子对象只需填写这些 Token，就能自动设置一部分数据。你可以把它们理解成函数的参数。
 
-Here is a list of very useful parents which you should consider using when creating actors.
+下面列出了一些非常实用的父级，创建 Actor 时应优先考虑使用它们。
 
-| Actor Type | Name | Details |
+| Actor 类型 | 名称 | 说明 |
 | ---------- | ---- | ------- |
-| Unit | GenericUnitStandard | This is the default parent used for Unit actors, so you dont have to think about it too much. If you want to learn about actor events you can look inside the units actor events and see how many events are necessary to have a basic unit function as you expect it. |
-| Action | GenericAttack | This is the default parent used Action actors. It comes with 3 effect tokens `Attack`, `Launch` and `Impact`. For beam or immediate attacks (like Marine) set `Attack` to the damage effect and for missile attacks set `Launch` to the launch missile effect and `Impact` to the impact effect of said launch missile effect. Do not set all 3 tokens. |
-| Model | ModelAddition | Use this if you want to attach a model to another actor, e.g. a model when a unit has a buff active. |
-| Model | ModelAnimationStyleContinuous | For non attached models where you control when the actor is destroyed, e.g. Psi Storms area. |
-| Model | ModelAnimationStyleOneShot | For one shot models like explosions which you want to automatically cleanup once the animation is done. For attacks its better to use the built in launch and impact models from Action actors. |
-| ModelMaterial | BehaviorGlaze | If you want to apply a glaze to a unit while a behavior is active. You only need to set the `buff` token and the Model. |
-| Beam | Beam Simple Animation Style Continuous | This is the default parent for Beam (Simple) actors. Used for beams where you control the destruction of the actor. |
-| Beam | Beam Simple Animation Style One Shot | Use this parent if you only want a beam which plays its animation once and then destroys itself. |
-| Range | Range Abil | This allows an easy setup if you want to show the ability range while an ability is in targeting mode. You only need to set the `Ability` token for it to work. It will automatically read the abilities casting range. |
-| Range | Range Behavior | Activates while a behavior is on a unit. You have to manually set the range. |
-| Range | Range Weapon | Same as Range Abil for a weapon. |
-| Splat | Cursor Splat | Creates a splat at the cursors position, mostly used for showing the impact area of an AOE ability like Psi Storm. You only need to set the `abil` token and the Model. |
-| Sound | SoundOneShot | Plays the sound once and then destroys itself. |
-| Sound | SoundContinuous | Plays the sound continuously until the actor is destroyed which you can control. |
+| Unit | GenericUnitStandard | 这是 `Unit` Actor 默认使用的父级，所以通常不用太多考虑它。如果你想学习 Actor 事件，可以查看单位的 Actor 事件，看看要让一个基础单位正常工作到底需要多少事件。 |
+| Action | GenericAttack | 这是 `Action` Actor 默认使用的父级。它带有 3 个效果 Token：`Attack`、`Launch` 和 `Impact`。对于光束攻击或即时攻击（例如陆战队员），把 `Attack` 设为伤害效果；对于导弹攻击，则把 `Launch` 设为发射导弹效果，再把 `Impact` 设为该发射导弹效果对应的撞击效果。不要把 3 个 Token 全部都设上。 |
+| Model | ModelAddition | 如果你想把一个模型附着到另一个 Actor 上，例如某单位拥有增益时显示一个附加模型，就使用它。 |
+| Model | ModelAnimationStyleContinuous | 用于不附着的模型，且你会自行控制该 Actor 何时销毁，例如灵能风暴区域。 |
+| Model | ModelAnimationStyleOneShot | 用于爆炸这类一次性模型，播放完动画后会自动清理。对于攻击表现，更推荐使用 Action Actor 内建的发射和撞击模型。 |
+| ModelMaterial | BehaviorGlaze | 如果你想在某个行为生效期间给单位加上一层釉面效果，可以使用它。你只需要设置 `buff` Token 和模型。 |
+| Beam | Beam Simple Animation Style Continuous | 这是 `Beam (Simple)` Actor 的默认父级。适用于由你自行控制销毁时机的光束。 |
+| Beam | Beam Simple Animation Style One Shot | 如果你只想要一条播放一次动画后自动销毁的光束，就使用这个父级。 |
+| Range | Range Abil | 如果你想在技能处于目标指定模式时显示技能射程，它能提供非常简便的设置。你只需要设置 `Ability` Token，它就会自动读取技能的施法范围。 |
+| Range | Range Behavior | 当某个行为存在于单位上时激活。射程需要你手动设置。 |
+| Range | Range Weapon | 与 Range Abil 类似，不过用于武器。 |
+| Splat | Cursor Splat | 在光标位置创建一个贴片，通常用于显示 AOE 技能（如灵能风暴）的作用范围。你只需要设置 `abil` Token 和模型。 |
+| Sound | SoundOneShot | 播放一次声音后自动销毁自身。 |
+| Sound | SoundContinuous | 持续播放声音，直到你控制 Actor 被销毁为止。 |
 
-Some parents are partially broken when using the data module due to how it fills certain values. This includes Range Abil, Range Behavior, Range Weapon and Cursor Splat. When you want to use them, after creating the actor and setting the token, right click on the *Events* field and select *Reset To Parent Value* and there select the parents name from the list. Alternatively you can open XML-View and delete the generated lines that start with `<On` for the newly created actor. 
+由于数据模块在填充某些值时的方式所致，有些父级在其中使用时会出现部分失效。这包括 Range Abil、Range Behavior、Range Weapon 和 Cursor Splat。想使用它们时，在创建 Actor 并设置好 Token 后，右键点击 *Events* 字段，选择 *Reset To Parent Value*，然后在列表中选择父级名称。另一种方法是打开 XML 视图，删除为新建 Actor 自动生成、且以 `<On` 开头的那些行。
 
-You can create your own parents as well. It is not recommended for beginners but once you have a better understanding of data it can help speedup creation of new data and makes it less error prone.
+你也可以创建自己的父级。不建议初学者一开始就这么做，但当你对数据有了更深入的理解后，它确实能加快新数据的创建速度，并减少出错概率。

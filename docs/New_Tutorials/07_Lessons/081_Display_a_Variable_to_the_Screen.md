@@ -1,56 +1,56 @@
-# Display A Variable To The Screen
+# 将变量显示到屏幕上
 
-Directly outputting variables from the trigger editor to screen space can be very useful. You can use it as a technique for quick diagnostic spot checks when testing a new function or for conveying information directly as part of a simple UI.
+在触发编辑器中把变量直接输出到屏幕空间非常有用。测试新函数时，你可以用它快速做诊断性检查；也可以把它作为简单 UI 的一部分，直接向玩家传达信息。
 
-This exercise will show you how to construct a basic counting timer, a type of variable, which will display to the screen.
+本练习将演示如何制作一个基础的计时器变量，并将其显示到屏幕上。
 
-## Building A Dialog
+## 创建对话框
 
-With this method, the timer will be displayed on the screen using a dialog. You'll begin by assembling both this dialog and the variable to be shown in it. Create a new document and start a melee map on any terrain type. Move to the Trigger Module and select the 'Melee Initialization' trigger. Delete the default actions from this trigger. Create a global variable of the type Timer, then name it 'Tutorial Timer.' From here, add the following actions, configuring them as described below.
+在这种方法中，计时器会通过一个对话框显示在屏幕上。你将先创建这个对话框，以及要在其中显示的变量。新建一个文档，并在任意地形类型上创建一张近战地图。切换到触发模块，选择 `近战初始化` 触发器。删除这个触发器中的默认动作。创建一个 `Timer` 类型的全局变量，并命名为 `Tutorial Timer`。然后按下述方式添加以下动作。
 
-  - 'Create Dialog,' leaving the default settings.
-  - 'Show/Hide Dialog Background,' setting the 'Visible' term to 'Hide.'
-  - 'Show/Hide Dialog,' setting the 'Visible' term to 'Show.'
+  - “创建对话框”，保留默认设置。
+  - “显示/隐藏对话框背景”，将“可见”项设为“隐藏”。
+  - “显示/隐藏对话框”，将“可见”项设为“显示”。
 
-Your trigger should look like the one shown below.
+你的触发器应当如下图所示。
 
-[![Base Dialog & Timer Variable Created](./resources/081_Display_a_Variable_to_the_Screen1.png)](./resources/081_Display_a_Variable_to_the_Screen1.png)
-*Base Dialog & Timer Variable Created*
+[![已创建基础对话框和计时器变量](./resources/081_Display_a_Variable_to_the_Screen1.png)](./resources/081_Display_a_Variable_to_the_Screen1.png)
+*已创建基础对话框和计时器变量*
 
-## Creating A Label
+## 创建标签
 
-From here, create a new action of the type 'Create Dialog Item (Label)' and change the terms 'Offset X,' 'Offset Y,' and 'Text' to Zero. Set 'Anchor' to 'Center,' and configure the 'Writeout Duration' to 0.0. Finally set the dialog dimensions to (200, 50).
+接下来，创建一个“创建对话框项（标签）”动作，并将“偏移 X”“偏移 Y”和“文本”三项都改为 `0`。将“锚点”设为“中心”，并把“逐字显示持续时间”设为 `0.0`。最后，将对话框尺寸设为 `(200, 50)`。
 
-This process has created the label, but it still requires a reference so that you can call on it easily later. Create a local variable for this purpose by navigating to Local Variables ▶︎ New ▶︎ New Variable. Name this variable to 'Timer Label.' Next, set the variable type to 'Dialog Item' so that it can properly hold the label.
+这个过程已经创建了标签，但你还需要一个引用，以便稍后方便调用它。为此，前往 `局部变量` ▶︎ `新建` ▶︎ `新建变量`，创建一个局部变量。将它命名为 `Timer Label`。然后把变量类型设为 `Dialog Item`，这样它才能正确保存这个标签。
 
-Moving back to the trigger body, create a 'Set Variable' action and configure the value term to 'Last created dialog item.' Now is a good time to make sure that the 'Set Variable' action is ordered beneath the 'Create Dialog Item' action. This order ensures that the label was the last created dialog item at the time of 'Set Variable' action. This means that the label will be set to the newly created local variable, completing your reference. The trigger's progress is shown below.
+回到触发器主体，创建一个“设置变量”动作，并将其值项设为“最后创建的对话框项”。现在也正好可以确认一下，这个“设置变量”动作位于“创建对话框项”动作之后。这样的顺序可确保执行“设置变量”时，标签确实是最后创建的对话框项。这样一来，标签就会被赋值给新建的局部变量，引用也就建立完成了。当前触发器进度如下图所示。
 
-[![Dialog Label Hooked Up](./resources/081_Display_a_Variable_to_the_Screen2.png)](./resources/081_Display_a_Variable_to_the_Screen2.png)
-*Dialog Label Hooked Up*
+[![对话框标签已连接完成](./resources/081_Display_a_Variable_to_the_Screen2.png)](./resources/081_Display_a_Variable_to_the_Screen2.png)
+*对话框标签已连接完成*
 
-## Timer
+## 计时器
 
-Now you can move on to creating the timer that will be displayed to screen space. Continuing in the trigger body, create an action of the type 'Start Timer.' Set the action's 'Timer' term to the 'Tutorial Timer' variable. Now configure the timer's additional terms. Set the 'Repeating' flag to 'Repeating,' set the 'Duration' to 60.0, and set the 'Time Type' to 'Real Time.' This will configure the timer to continually reset after intervals of 60 real world seconds. It will also be bound to the 'Tutorial Timer' variable for functional reference.
+现在可以继续创建要显示到屏幕上的计时器了。继续在触发器主体中添加一个“启动计时器”动作。将该动作中的“计时器”项设为变量 `Tutorial Timer`。然后配置计时器的其他参数：将“重复”标记设为“重复”，将“持续时间”设为 `60.0`，并将“时间类型”设为“真实时间”。这样会让计时器每经过 60 秒现实时间后不断重置。同时，它也会绑定到 `Tutorial Timer` 变量上，以便后续引用。
 
-## Displaying The Variable
+## 显示变量
 
-You'll need to make some provision to constantly update the dialog label with the timer's value. This is a common use of control statements, and in this case you'll find a loop appropriate. Assemble a loop by creating the action 'Repeat Forever.' In the body statement of the loop, denoted by a new 'Actions' heading, create the action 'Set Dialog Item Text.'
+你还需要让对话框标签持续更新为当前计时器的值。这是控制语句的常见用途，在这个例子里使用循环最合适。创建一个“永久重复”动作来搭建循环。在该循环的主体语句中，也就是新出现的“动作”标题下，创建“设置对话框项文本”动作。
 
-Note that, due to the function inputs, the prepared label must output to the screen in the 'Text' type. Since our timer is counting in a 'Real' type, a conversion is necessary. Click the 'Text' term of the 'Set Dialog Item Text' action. This will launch a window showing potential functional input. Navigate to 'Conversion' in the left-hand subview to see a list of possible conversion functions.
+请注意，由于这个函数的输入要求，准备好的标签必须以 `Text` 类型输出到屏幕上。而我们的计时器计数是 `Real` 类型，因此需要进行一次类型转换。点击“设置对话框项文本”动作中的“文本”项，这会打开一个窗口，展示可供使用的函数输入。切换到左侧子视图中的“转换”，你就会看到可用的转换函数列表。
 
-[![Text Conversion Options](./resources/081_Display_a_Variable_to_the_Screen3.png)](./resources/081_Display_a_Variable_to_the_Screen3.png)
-*Text Conversion Options*
+[![文本转换选项](./resources/081_Display_a_Variable_to_the_Screen3.png)](./resources/081_Display_a_Variable_to_the_Screen3.png)
+*文本转换选项*
 
-The 'Convert Real to Text' option is appropriate here. Select it, then click 'OK' to return to the trigger view. This function still requires an input, so select the 'Value' term and set it to 'Remaining Time of Timer' to give it that property. Once you've done that, set the timer to the variable 'Tutorial Timer.' Your trigger should now be complete, compare your result to the image below.
+这里应选择“将 Real 转换为 Text”。选中后点击“确定”返回触发器视图。这个函数仍然需要一个输入，因此请选择它的“值”项，并将其设为“计时器剩余时间”。完成后，再把该计时器指定为变量 `Tutorial Timer`。至此你的触发器应该已经完成，请将结果与下图对照。
 
-[![Completed Trigger](./resources/081_Display_a_Variable_to_the_Screen4.png)](./resources/081_Display_a_Variable_to_the_Screen4.png)
-*Completed Trigger*
+[![已完成的触发器](./resources/081_Display_a_Variable_to_the_Screen4.png)](./resources/081_Display_a_Variable_to_the_Screen4.png)
+*已完成的触发器*
 
-You can now launch the 'Test Document' and note your result. You should see the timer variable displayed to screen space, as shown below.
+现在你可以启动 `Test Document` 查看结果。你应当会看到计时器变量显示在屏幕上，如下图所示。
 
-![Timer Variable Displayed on Screen](./resources/081_Display_a_Variable_to_the_Screen5.png)
-*Timer Variable Displayed on Screen*
+![显示在屏幕上的计时器变量](./resources/081_Display_a_Variable_to_the_Screen5.png)
+*显示在屏幕上的计时器变量*
 
-## Attachments
+## 附件
 
  * [081_Display_a_Variable_to_the_Screen.SC2Map](./maps/081_Display_a_Variable_to_the_Screen.SC2Map)

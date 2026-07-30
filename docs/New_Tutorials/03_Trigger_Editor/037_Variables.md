@@ -1,32 +1,32 @@
-# Variables
+# 变量
 
-A Variable is a symbolic representation of a value, able to stand in for a number, a point, a model, or any possible type of data found in the StarCraft engine. By abstracting a data type into a symbol, variables can act as a container, storing or delivering any value of their chosen type.
+变量是对某个值的符号化表示，可以代替数字、点、模型，或《星际争霸 II》引擎中的任何其他数据类型。通过把数据类型抽象成一个符号，变量就能充当容器，用来存储或提供其所属类型的任意值。
 
-Variables can also be fit into larger constructs, like actions or conditions, where they'll transfer their ability to take and deliver data. Imbued with the ability to operate using constantly changing values, once-static statements will come to life, becoming the dynamic, central building blocks of game development.
+变量还可以嵌入更大的结构中，例如动作或条件，并把它们存取数据的能力传递进去。由于能够处理持续变化的值，原本静态的语句会因此“活”起来，成为游戏开发中动态而核心的基础积木。
 
-## Variable Scope
+## 变量作用域
 
-There are two different classifications of variables, Local and Global. Both possess the same properties mentioned above, but are available at different locations within the Trigger Editor. You can create global variables from the Triggers Panel, by navigating to New ▶︎ New Variable. Local variables are created from several locations, notably within triggers. Create a local variable within a trigger by right-clicking on the 'Local Variables' heading, then navigating to New ▶︎ New Variable. Creating one variable of each type in a new, blank project, will give you the following.
+变量分为两类：局部变量和全局变量。它们都具备上面提到的基本特性，但在触发编辑器中的可用位置不同。你可以在触发器面板中通过 新建 ▶︎ 新建变量 创建全局变量。局部变量则可以从多个位置创建，最典型的是在触发器内部：右键点击“局部变量”标题，然后选择 新建 ▶︎ 新建变量。在一个新的空白项目里各创建一个后，你会看到如下效果。
 
-[![Local and Global Variables](./resources/037_Variables1.png)](./resources/037_Variables1.png)
-*Local and Global Variables*
+[![局部变量与全局变量](./resources/037_Variables1.png)](./resources/037_Variables1.png)
+*局部变量与全局变量*
 
-Global variables are found in the Triggers Panel, while local variables are visible only in their parent trigger. This separation isn't just aesthetic, it signifies the characteristic difference between these two variable types, scope. Scope is a description of the level of availability of any component. Something available at Global scope, like global variables, can be accessed anywhere within a single project's triggers. There is only a single Global scope per project. By contrast, Local scopes are numerous, each trigger has its own. A local variable is a variable local to a particular trigger. It can't be accessed outside that trigger without a special operation.
+全局变量显示在触发器面板中，而局部变量只会显示在其所属触发器内部。这种区分不只是界面表现，它标志着两类变量的根本差异：作用域。作用域描述的是某个组件可被访问的范围。处于全局作用域中的内容，例如全局变量，可以在同一个项目的任意触发器中访问。每个项目只有一个全局作用域。相对地，局部作用域则有很多个，每个触发器各自拥有自己的局部作用域。局部变量只属于特定触发器，除非经过特殊处理，否则无法在该触发器之外访问。
 
-Global variables offer greater ease of use due to their universal accessibility, however they are constantly maintained in memory, which you can confirm using the Trigger Debugger. As you might expect, global variables have higher performance cost than their local equivalents. You should also note that local variables are recreated every time a trigger is run, and are instantiated to their initial value set within the trigger. Contrast this with the steady value of a global variable. Each classification offers different options for organization as well.
+由于到处都能访问，全局变量用起来更方便；但它们会一直常驻内存，这一点你可以通过触发调试器确认。正如你所料，全局变量的性能开销也高于局部变量。还要注意，局部变量会在每次触发器运行时重新创建，并以触发器中设置的初始值重新实例化；这与全局变量持续保持自身值的方式不同。两种类型在组织项目时也各有不同优势。
 
-## Variable Options
+## 变量选项
 
-Variables have several configurable options, which you can set by launching the variable subview and clicking on any variable. You can see that view in the image below, followed by a breakdown of its options.
+变量具有若干可配置选项。打开变量子视图并点击任一变量后即可设置。下图展示了这个界面，后面也对各个选项做了说明。
 
-[![Variable Options](./resources/037_Variables2.png)](./resources/037_Variables2.png)
-*Variable Options*
+[![变量选项](./resources/037_Variables2.png)](./resources/037_Variables2.png)
+*变量选项*
 
-| Option                | Description                                                                                                                                                                                                                                                                                                                                                                                                 |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Script Identifier     | The variable's name within Galaxy Code. Selecting Based on Name will generate the identifier based on the name in the GUI, deselecting this option will allow you to enter an identifier.                                                                                                                                                                                                                   |
-| Type                  | The data type of the variable. Highlighting some types will enable additional options for setting things like Records, Link Types, and File Types.                                                                                                                                                                                                                                                          |
-| Constant              | Determines if the initial value of the variable can be changed. Constants are a useful safety feature for pieces of data that do not need to be changed under any circumstances.                                                                                                                                                                                                                            |
-| Array                 | Selecting this will make the variable into an array of variables of the selected Type. Size controls the number of elements in each Dimension. While Dimension controls how many layers of elements there are. An array with a Size value of 5 and a Dimension of 3 will have 5\*5\*5, or 125 elements. The Constant option allows you to define the Size of an Array using a predefined constant variable. |
-| Defines Default Value | Selecting this will define the Initial Value of this variable as the default Initial Value for all other variables of the selected Type.                                                                                                                                                                                                                                                                    |
-| Initial Value         | Sets the initial value of the variable in its selected data type.                                                                                                                                                                                                                                                                                                                                           |
+| 选项 | 说明 |
+| --- | --- |
+| 脚本标识符 | 变量在 Galaxy 代码中的名称。勾选 Based on Name 时，会根据 GUI 中的名称自动生成标识符；取消勾选后，你可以手动输入标识符。 |
+| 类型 | 变量的数据类型。选中某些类型后，还会启用额外选项，用于设置记录、链接类型、文件类型等。 |
+| 常量 | 决定该变量的初始值能否被修改。对于那些无论如何都不应被改动的数据，常量是一项很有用的安全特性。 |
+| 数组 | 勾选后，变量会变成由所选类型构成的数组。Size 控制每个维度中的元素数量，Dimension 控制维度层数。若 Size 为 5、Dimension 为 3，则该数组共有 5\*5\*5，也就是 125 个元素。Constant 选项允许你使用预定义常量变量来定义数组的 Size。 |
+| 定义默认值 | 勾选后，该变量的 Initial Value 会被定义为同类型其他变量的默认 Initial Value。 |
+| 初始值 | 为变量在当前类型下设置初始值。 |

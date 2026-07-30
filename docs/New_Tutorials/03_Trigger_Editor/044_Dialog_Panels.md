@@ -1,57 +1,57 @@
-# Dialog Panels
+# 对话框面板
 
-Dialog Panels are a grouping option for dialog items. By creating a panel and hosting dialog items on it, individual items can be controlled together by applying alterations to the panel. Any changes you make will then be propagated to every item belonging to the panel. As such panels provide a level of hierarchy in between a dialog and other types of dialog items. This ends up operating much like a unit group or a player group. It is functionally equivalent to a dialog group.
+对话框面板是对话框项的一种分组方式。通过创建一个面板并在其上承载多个对话框项，你就可以通过修改面板本身来统一控制这些项目。你对面板做出的任何改动，都会传播到属于该面板的每个项目。因此，面板在对话框与其他对话框项之间提供了一层层级结构。它的工作方式很像单位组或玩家组，功能上相当于一个对话框分组。
 
-## Creating A Dialog Panel
+## 创建对话框面板
 
-As an example, you'll host a panel within a dialog, like any other dialog item.
+作为示例，你可以像放置普通对话框项一样，把一个面板放进某个对话框中。
 
-[![Creating a Host Dialog](./resources/044_Dialog_Panels1.png)](./resources/044_Dialog_Panels1.png)
-*Creating a Host Dialog*
+[![创建承载对话框](./resources/044_Dialog_Panels1.png)](./resources/044_Dialog_Panels1.png)
+*创建承载对话框*
 
-From here, create a panel by selecting the Create Dialog Item action, as shown below.
+然后，通过选择 Create Dialog Item 动作来创建一个面板，如下图所示。
 
-[![Creating Panel Dialog Item](./resources/044_Dialog_Panels2.png)](./resources/044_Dialog_Panels2.png)
-*Creating Panel Dialog Item*
+[![创建面板对话框项](./resources/044_Dialog_Panels2.png)](./resources/044_Dialog_Panels2.png)
+*创建面板对话框项*
 
-Select 'Panel' for the Type field of the Create Dialog Item.
+在 Create Dialog Item 的 Type 字段中选择 'Panel'。
 
-[![Selecting Panel Type for Creation](./resources/044_Dialog_Panels3.png)](./resources/044_Dialog_Panels3.png)
-*Selecting Panel Type for Creation*
+[![选择创建类型为 Panel](./resources/044_Dialog_Panels3.png)](./resources/044_Dialog_Panels3.png)
+*选择创建类型为 Panel*
 
-You can set the panel's properties to the Width, Height, and Position of its parent dialog through the Set Dialog Item Size to Parent action.
+你可以通过 Set Dialog Item Size to Parent 动作，把面板的属性设置为与其父对话框相同的 Width、Height 和 Position。
 
-[![Setting the Panel's Size](./resources/044_Dialog_Panels4.png)](./resources/044_Dialog_Panels4.png)
-*Setting the Panel's Size*
+[![设置面板大小](./resources/044_Dialog_Panels4.png)](./resources/044_Dialog_Panels4.png)
+*设置面板大小*
 
-This panel should now be saved to a variable to provide a consistent handle for any future operations. Together, these actions have resulted in what is essentially a finished panel. It should look as shown in the image below.
+此时应把这个面板保存到变量中，以便为后续操作提供稳定句柄。到这一步为止，这些动作实际上已经构成了一个完整面板，其效果应如下图所示。
 
-[![Panel Created](./resources/044_Dialog_Panels5.png)](./resources/044_Dialog_Panels5.png)
-*Panel Created*
+[![已创建的面板](./resources/044_Dialog_Panels5.png)](./resources/044_Dialog_Panels5.png)
+*已创建的面板*
 
-## Creating Items Within A Dialog Panel
+## 在对话框面板中创建项目
 
-With the dialog panel set up, you can test its functionality by creating some dialog items inside it. In the following update to the trigger, a pair of buttons has been created, sized, and oriented within the panel.
+面板搭好后，你可以在其中创建一些对话框项来测试其功能。下面这个触发器更新版里，就在面板中创建、调整并定位了一对按钮。
 
-[![Dialog Items Created Inside Panel](./resources/044_Dialog_Panels6.png)](./resources/044_Dialog_Panels6.png)
-*Dialog Items Created Inside Panel*
+[![在面板内创建的对话框项](./resources/044_Dialog_Panels6.png)](./resources/044_Dialog_Panels6.png)
+*在面板内创建的对话框项*
 
-The important distinction here is that, rather than being created within the dialog, these items have been created inside the panel. This is how dialog items are 'grouped' inside the panel and accept any alterations that are made to it. You should also note that the panel's variable handle is important here, as it ensures that the panel may be repeatedly referenced for each dialog item being created inside the panel. Sometimes dialog items are created without a handle, as they can be completely controlled by their hosting dialog or panel, but panels themselves will usually require a handle.
+这里最重要的区别在于，这些项目不是直接创建在对话框里，而是创建在面板内部。正因为如此，这些对话框项才会被“分组”到该面板中，并自动接受施加到面板上的任何改动。你还应注意，面板的变量句柄在这里非常重要，因为每创建一个内部对话框项时，都需要反复引用该面板。有时候对话框项本身不需要单独句柄，因为它们可以完全由所属对话框或面板控制；但面板本身通常都需要一个句柄。
 
-## Altering A Dialog Panel And Its Contained Items
+## 修改对话框面板及其内部项目
 
-Now that you have everything set up, you're ready for a quick demonstration of the utility of a dialog panel. In the trigger update shown below, the Set Dialog Item Color is used to target the panel.
+现在一切都准备好了，可以快速演示一下对话框面板的实际价值。在下图所示的触发器更新中，Set Dialog Item Color 被用来作用于这个面板。
 
-[![Altering Panel Property](./resources/044_Dialog_Panels7.png)](./resources/044_Dialog_Panels7.png)
-*Altering Panel Property*
+[![修改面板属性](./resources/044_Dialog_Panels7.png)](./resources/044_Dialog_Panels7.png)
+*修改面板属性*
 
-Altering the panel like this will end up with each dialog item, the two buttons in this case, being individually sent a Set Dialog Item Color action. Investigating the map with the 'Test Document' function, will show that each button has been set to Yellow. You can see the result in the image below.
+像这样修改面板后，系统最终会向每个对话框项发送单独的 Set Dialog Item Color 动作，这里也就是两个按钮。使用 “Test Document” 测试地图后，你会看到每个按钮都被设置成了 Yellow。效果如下图所示。
 
 ![](./resources/044_Dialog_Panels8.png)
-*Panel Changes Propagated to its Contained Items*
+*面板改动传播到其内部项目*
 
-This should give you an impression of how much effort you can save yourself by using dialog panels. They can be used to quickly group and manage large numbers of dialog items.
+这应该能让你体会到，使用对话框面板能节省多少操作量。它们非常适合快速分组并管理大量对话框项。
 
-## Attachments
+## 附件
 
  * [044_Dialog_Panels.SC2Map](./maps/044_Dialog_Panels.SC2Map)

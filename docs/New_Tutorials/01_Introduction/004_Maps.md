@@ -1,21 +1,21 @@
-# Map Types
+# 地图类型
 
-The Editor breaks files down into two main types, each of which serves different purposes. They are known as maps and mods.
+编辑器将文件分为两种主要类型，它们各自承担不同用途：地图和模组。
 
-Maps are likely the most intuitive type for those who are familiar with Blizzard's editing tools. Maps organize a single game type into a single file, combining terrain, code, and data. Whenever you play a game of StarCraft, you're launching a map file.
+对于熟悉暴雪编辑工具的人来说，地图大概是最直观的一类。地图会把一种单独的游戏类型组织进一个文件中，将地形、代码和数据整合在一起。每当你游玩一局《星际争霸》时，本质上就是在启动一个地图文件。
 
-All maps have at least some data running under the surface. Melee maps have a very basic set of default game instructions contained in the file. These spawn units and start any computer-controlled AIs, if needed. Arcade maps can contain extensive custom data to articulate entirely new types of gameplay. In both cases, the map's internal data is directly connected to the top level terrain data in a single package, the map.
+所有地图的底层都至少包含一些数据。对战地图内含一套非常基础的默认游戏指令，用于生成单位并在需要时启动电脑 AI。Arcade 地图则可以包含大量自定义数据，用来构建全新的玩法类型。在这两种情况下，地图内部数据都会与顶层地形数据打包在同一个整体中，也就是地图文件本身。
 
-This is not always the case. Sometimes it can be useful to create a separation between the data and map terrain, which is the main purpose of mods.
+但情况并不总是如此。有时，把数据与地图地形拆分开来会更加有用，而这正是模组存在的主要意义。
 
-## Map Types
+## 地图类型
 
-As mentioned above, Melee maps require a default set of game instructions. They are used to play the standard multiplayer StarCraft games. Due to its nature as a premier competitive game, the melee mode is kept to a specific Blizzard standard. Any changes to a map's data will mark it as unfit for melee usage. As a result, melee maps only describe components like terrain design and base layout. Designing these elements alone is quite an extensive discipline.
+如上所述，对战地图需要一套默认游戏指令，用于进行标准的《星际争霸》多人对局。由于它属于顶级竞技游戏，对战模式需要遵循暴雪制定的特定标准。只要对地图数据进行了任何修改，地图就会被标记为不适用于对战模式。因此，对战地图通常只描述地形设计、分矿布局之类的要素，而仅仅设计这些内容本身就是一门相当深入的学问。
 
-Once an alteration has been made in the data of a game, changing it from the melee map standards, it will be tagged as an Arcade map. These maps can make full use of the Editor's capacity to shape new experiences with StarCraft. Furthermore, Arcade maps are organized into a separate area of StarCraft II's Battle.net, dubbed the Arcade. In the Arcade, special organizational features allow creators to host, distribute, and publicize their game in a much more powerful fashion than for melee maps.
+一旦游戏数据被修改，偏离了对战地图标准，它就会被标记为 Arcade 地图。这类地图能够充分利用编辑器的能力，创造全新的《星际争霸》体验。此外，Arcade 地图会被归入《星际争霸 II》Battle.net 中一个独立区域，也就是 Arcade。在 Arcade 中，创作者拥有更强大的组织、托管、分发和宣传功能，远超对战地图。
 
-Other popular terms for maps include the titles 'Custom Maps' and 'Use Map Settings.' These refer to maps with customized rulesets from Warcraft III and StarCraft: Brood War respectively. Due to the cultural momentum of those games, these terms are often used interchangeably with the currently preferred term, Arcade Map.
+地图的其他常见叫法还包括 “Custom Maps” 和 “Use Map Settings”。它们分别指代《魔兽争霸 III》和《星际争霸：母巢之战》中带有自定义规则的地图。由于这些作品在文化上的延续影响，这些叫法常常会与当前更常用的术语 Arcade 地图 混用。
 
-It is worth noting that Custom Maps still exist in another context. The term now refers to the use of a melee map with what is known as an extension mod. The map design and mod data are slotted together within Battle.net's 'Custom Games' interface, giving users more control for collaboration and offering players more customization options.
+还需要注意的是，“Custom Maps” 在另一个语境下依然存在。如今这个术语也可以指一张对战地图配合所谓扩展模组来使用的情况。地图设计与模组数据会在 Battle.net 的 “Custom Games” 界面中组合在一起，使用户在协作时拥有更大控制力，也为玩家提供更多自定义选项。
 
-Another topic of interest is campaign maps. These are maps which form a unified campaign, made by linking overworld elements in a manner similar to the singe player mode. Campaign maps make alterations to data. As a result, if you were to upload any of the available Blizzard campaign maps to Battle.net, they would be labelled as Arcade maps. You can publish your own campaigns to the Arcade as a series of individual Arcade maps. Usually, they are labelled similarly and contain various pointers directing the player from one map to another. There are also options in the Editor for those who would like to build offline campaigns.
+另一个值得关注的话题是战役地图。这类地图通过类似单人模式世界地图的方式相互串联，组成统一战役。战役地图会修改数据，因此如果你把任何暴雪现成的战役地图上传到 Battle.net，它们也会被归类为 Arcade 地图。你可以把自己的战役作为一系列独立的 Arcade 地图发布到 Arcade。通常它们会采用相近命名，并通过各种指引将玩家从一张地图导向下一张地图。对于想制作离线战役的人来说，编辑器中也提供了相应选项。

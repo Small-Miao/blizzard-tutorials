@@ -1,16 +1,16 @@
-# Trigger Editor Introduction
+# 触发编辑器简介
 
-The Trigger Editor is where you'll build the logic underpinning your project. Triggers are what will turn your Editor project into an interactive, playable map. You can use this system to build games with plain-language elements, meaning you won't need to use a programming language. Using the Editor's pre-built library of these elements lets developers work quickly and easily when making games.
+触发编辑器是你为项目构建底层逻辑的地方。触发器会把编辑器项目变成可交互、可游玩的地图。你可以用这套系统通过自然语言式的元素来制作游戏，也就是说不必直接使用编程语言。借助编辑器预置的这些元素库，开发者能够更快速、更轻松地完成游戏制作。
 
-Acclaimed for its intuitive, visual approach to programming, the trigger system has been a long-standing favorite of amateurs and professionals throughout the history of Blizzard RTS games. As a tool, triggering can grow with its user, allowing them to eventually delve into programming by investigating Galaxy Script, the language that works behind the scenes of the system. Advanced use is supported through the Editor's extensive feature set, including a profiler for use in debugging and performance tuning.
+触发系统以直观、可视化的编程方式著称，长期以来一直深受暴雪 RTS 游戏社区中业余作者和专业开发者的喜爱。作为一种工具，触发系统会随着使用者的成长而扩展能力，让你最终可以通过研究其幕后语言 Galaxy Script 深入到编程层面。编辑器丰富的功能也支持更高级的用法，包括用于调试和性能调优的性能分析工具。
 
-[![Trigger Editor in Use](./resources/032_Trigger_Editor_Introduction1.png)](./resources/032_Trigger_Editor_Introduction1.png)
-*Trigger Editor in Use*
+[![正在使用的触发编辑器](./resources/032_Trigger_Editor_Introduction1.png)](./resources/032_Trigger_Editor_Introduction1.png)
+*正在使用的触发编辑器*
 
-## Elements
+## 基本元素
 
-The Trigger Editor operates through the construction of ![Image](./resources/032_Trigger_Editor_Introduction14.png) blocks of logic and occur in response to ![Image](./resources/032_Trigger_Editor_Introduction14.png) that the game is monitoring. Events can in turn be fitted with ![Image](./resources/032_Trigger_Editor_Introduction14.png) being monitored. Triggers themselves are essentially containers for ![Image](./resources/032_Trigger_Editor_Introduction14.png) changes in the game. The interplay of conditions, events, triggers, and actions creates the essential game loop that brings a project to life.
+触发编辑器通过构建 ![图像](./resources/032_Trigger_Editor_Introduction14.png) 逻辑块来运作，并在游戏正在监视的 ![图像](./resources/032_Trigger_Editor_Introduction14.png) 发生时作出响应。事件本身又可以附带要检测的 ![图像](./resources/032_Trigger_Editor_Introduction14.png) 。而触发器本质上则是容纳 ![图像](./resources/032_Trigger_Editor_Introduction14.png) 的容器，用来对游戏产生变化。条件、事件、触发器与动作之间的联动，构成了让项目真正运转起来的核心游戏循环。
 
-There are also ![Image](./resources/032_Trigger_Editor_Introduction14.png) when an event occurs. Then ![Image](./resources/032_Trigger_Editor_Introduction14.png) it, or modify it before reflecting it back to the game through an action. New varieties of any of the basic elements can also be made through the custom ![Image](./resources/032_Trigger_Editor_Introduction14.png) actions, or functions.
+此外还有 ![图像](./resources/032_Trigger_Editor_Introduction14.png) ，用于在事件发生时保存数据。随后你可以用 ![图像](./resources/032_Trigger_Editor_Introduction14.png) 读取它，或在通过动作把结果反馈回游戏之前先对其进行修改。任何基础元素也都可以通过自定义 ![图像](./resources/032_Trigger_Editor_Introduction14.png) 、动作或函数来扩展出新的种类。
 
-With ![Image](./resources/032_Trigger_Editor_Introduction14.png) compound data types and data can be named and sorted in ![Image](./resources/032_Trigger_Editor_Introduction14.png) documentation to maps with ![Image](./resources/032_Trigger_Editor_Introduction14.png) ![Image](./resources/032_Trigger_Editor_Introduction14.png) tame an expanding project. With ![Image](./resources/032_Trigger_Editor_Introduction14.png) into objects that are shareable between maps, friends, or team-mates. As a developer learns and grows, they can start to make use of custom ![Image](./resources/032_Trigger_Editor_Introduction14.png) the programming language that drives the whole engine.
+借助 ![图像](./resources/032_Trigger_Editor_Introduction14.png) ，你可以创建复合数据类型；借助 ![图像](./resources/032_Trigger_Editor_Introduction14.png) ，可以为数据命名并分类整理；再配合 ![图像](./resources/032_Trigger_Editor_Introduction14.png) 和 ![图像](./resources/032_Trigger_Editor_Introduction14.png) ，就能为地图补充说明并驯服不断扩张的项目规模。使用 ![图像](./resources/032_Trigger_Editor_Introduction14.png) ，你还可以把内容打包成可在不同地图、朋友或队友之间共享的对象。随着开发者不断成长，他们最终也可以开始使用自定义 ![图像](./resources/032_Trigger_Editor_Introduction14.png) ，也就是驱动整个引擎的编程语言。

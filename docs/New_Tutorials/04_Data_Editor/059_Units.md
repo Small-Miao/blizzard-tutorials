@@ -1,57 +1,57 @@
-# Units
+# 单位
 
-A Unit is an interactive game object. Despite the term being thrown around in a lot of contexts, in the Data Editor the term 'unit' refers very specifically to a data type placed directly into the game to be manipulated by players. Selecting a unit in the Data Editor will give you a breakdown like the one shown below.
+单位是可交互的游戏对象。虽然这个词在很多语境里都会出现，但在数据编辑器中，`unit` 特指一种会被直接放入游戏、供玩家操作的数据类型。在数据编辑器中选中一个单位后，你会看到如下所示的拆解视图。
 
-![Unit Data Object](./resources/059_Units1.png)
-*Unit Data Object*
+![单位数据对象](./resources/059_Units1.png)
+*单位数据对象*
 
-The unit shown above is the Archon, as displayed on the top of its fairly extensive data hierarchy. The length of the list shown here should give you an impression of the unit data type's main purpose, to serve as a container for various other types of Game Data, Art and Sound Data, and Actors. You can investigate units in the Data Editor by navigating to them via + ▶︎ Edit Game Data ▶︎ Units, as shown below.
+上图展示的是执政官，位于其相当庞大的数据层级顶部。这个列表的长度足以说明单位数据类型的主要作用：作为容器，承载各种其他游戏数据、美术与声音数据以及 Actor。你可以像下图这样，通过 `+ ▶︎ Edit Game Data ▶︎ 单位` 在数据编辑器中查看单位。
 
-[![Navigating to Units in Data](./resources/059_Units2.png)](./resources/059_Units2.png)
-*Navigating to Units in Data*
+[![在数据中导航到单位](./resources/059_Units2.png)](./resources/059_Units2.png)
+*在数据中导航到单位*
 
-The unit data type is distinguished from other data types by the fact that it can be placed into the game and receive inputs, things like player commands, interactions with other units, and orders from an AI. Communicating these interactions to its connected data types makes the unit one of the primary ways in which data is turned into gameplay. The data composition of a unit is shown in the image below.
+单位数据类型区别于其他数据类型的一点，在于它可以被放进游戏并接收输入，例如玩家命令、与其他单位的交互以及 AI 下达的指令。单位会把这些交互传递给与之关联的数据类型，因此它是把数据真正转化为玩法的主要途径之一。单位的数据构成如下图所示。
 
-[![Unit Composition](./resources/059_Units3.png)](./resources/059_Units3.png)
-*Unit Composition*
+[![单位构成](./resources/059_Units3.png)](./resources/059_Units3.png)
+*单位构成*
 
-As you can see, much of the data in the Editor ends up leading to a unit. The direct contributors are Abilities, Actors, Behavior, Movers, and Weapons. The relationship between these categories and the Units type is described below.
+如你所见，编辑器中的很多数据最终都会指向一个单位。直接参与的主要有技能、Actor、行为、移动器和武器。下面会分别说明这些类别与单位类型之间的关系。
 
-## Abilities
+## 技能
 
-A unit has space for up to 32 abilities. These abilities determine much of its functionality. Common abilities present in a unit include attack, move, stop, hold position, and patrol. These abilities are primarily added to a unit through the 'Abilities' field shown below.
+一个单位最多可以容纳 32 个技能。这些技能决定了单位的大部分功能。单位中常见的技能包括攻击、移动、停止、保持位置和巡逻。这些技能主要通过下图所示的“技能”字段添加到单位中。
 
-![Unit Composition](./resources/059_Units4.png)
-*Unit Composition*
+![单位构成](./resources/059_Units4.png)
+*单位构成*
 
-Once added, the abilities are tied into gameplay using the 'Command Card' field. Adding a button to the command card portion of the unit's UI allows player inputs to trigger abilities. You can see this procedure being used in the image below.
+添加之后，这些技能会通过“指令卡”字段接入实际玩法。在单位 UI 的指令卡部分添加按钮后，玩家输入就能触发对应技能。下图展示了这一流程。
 
-[![Custom Command and Effect](./resources/059_Units5.png)](./resources/059_Units5.png)
-*Custom Command and Effect*
+[![自定义命令与效果](./resources/059_Units5.png)](./resources/059_Units5.png)
+*自定义命令与效果*
 
-## Actors
+## Actor
 
-Actors mainly add art and sound assets into a unit. More specifically, each unit is home to an Actor that shares its name. These hook in the unit's 3D model, portrait, death animation, and operational sounds. Many units also have an attack actor that handles the visual and audio components of their weapons. These actors are linked to the unit in their actor messages. In the image below you'll one of these actors hooking art and sound into a unit.
+Actor 主要负责把美术和声音资源附加到单位上。更具体地说，每个单位都会有一个与其同名的 Actor。它们负责接入单位的 3D 模型、头像、死亡动画以及操作音效。很多单位还会有一个攻击 Actor，用来处理武器的视觉和音频表现。这些 Actor 通过各自的 Actor 消息与单位建立连接。下图展示了其中一个 Actor 如何把美术和声音接到单位上。
 
-[![Actor to Unit Data Connection](./resources/059_Units6.png)](./resources/059_Units6.png)
-*Actor to Unit Data Connection*
+[![Actor 与单位数据连接](./resources/059_Units6.png)](./resources/059_Units6.png)
+*Actor 与单位数据连接*
 
-## Behaviors
+## 行为
 
-Behaviors can exist in the scope of a unit, giving it passive abilities such as auras or timed life. Behaviors are added to a unit using the 'Behaviors' field, as shown below.
+行为可以存在于单位的作用域内，为单位提供光环、限时生命之类的被动能力。行为通过“行为”字段添加到单位中，如下图所示。
 
-![Mothership Behavior View](./resources/059_Units7.png)
-*Mothership Behavior View*
+![母舰行为视图](./resources/059_Units7.png)
+*母舰行为视图*
 
-## Movers
+## 移动器
 
-A unit will have a mover that that dictates its basic movement. Any unit without a mover cannot use move commands. Common movers for units include Ground, Fly, Burrowed, and Cliff Jumper. Projectiles also contain movers, typically more complex ones that simulate dynamic movement. You can customize a unit's movement further within the unit's movement fields, allowing you to set things like Speed, Turning Rate, and Acceleration. Movers are set up within a unit's 'Movers' field.
+单位会有一个移动器来决定其基础移动方式。没有移动器的单位无法使用移动命令。单位常见的移动器包括 Ground、Fly、Burrowed 和 Cliff Jumper。投射物也会包含移动器，而且通常是更复杂、用于模拟动态运动的类型。你还可以在单位的移动字段中进一步自定义移动方式，比如设置速度、转向速率和加速度。移动器通过单位的“移动器”字段进行配置。
 
-![Missile Mover](./resources/059_Units8.png)
-*Missile Mover*
+![导弹移动器](./resources/059_Units8.png)
+*导弹移动器*
 
-## Weapons And Turrets
+## 武器与炮塔
 
-Weapons grant a unit the ability to attack. Without a weapon, attack commands are unavailable. They operate in a relatively straightforward manner. It begins with a unit being targeted, either by a player or the AI. The weapon will then create an effect at the target. If the target unit is in range and the weapon's cooldown period has expired, the weapon will fire, playing an animation, applying its effects, and launching a missile if appropriate. Weapons can also be stacked, giving a unit multiple attacks that each have their own effects, range, cooldowns, and so forth.
+武器赋予单位攻击能力。没有武器时，攻击命令将不可用。它们的运作方式相对直接：首先，某个单位会被玩家或 AI 选为目标；接着，武器会在目标处创建一个效果；如果目标单位在射程内，且武器冷却已结束，武器就会开火，播放动画、应用自身效果，并在适用时发射导弹。武器也可以叠加，从而让一个单位拥有多种攻击，每种攻击都可以有各自不同的效果、射程、冷却等参数。
 
-Each weapon can also be configured with a turret. Turrets are a special data type responsible for aiming at their attack targets. This aiming creates a timed rotation of the turret before firing, which provides both a visual and gameplay element. Weapons and turrets are added to a unit using their respective fields, 'Weapons' and 'Turrets.'
+每个武器还可以配置一个炮塔。炮塔是一种特殊数据类型，负责朝攻击目标进行瞄准。这个瞄准过程会让炮塔在开火前进行一个带时序的旋转，从而同时带来视觉和玩法层面的表现。武器和炮塔分别通过对应字段“武器”和“炮塔”添加到单位中。

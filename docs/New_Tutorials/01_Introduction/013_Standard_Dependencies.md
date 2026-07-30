@@ -1,311 +1,311 @@
-# Standard Dependencies
+# 标准依赖项
 
-Every data asset used in the StarCraft II trilogy is distributed through a dependency mod. These Standard Dependencies build on the game's base Core.SC2Mod and supply assets relevant to a specific version of StarCraft. This article breaks down each standard dependency with information on its purpose and contents, both in terms of assets and other dependencies.
+《星际争霸 II》三部曲中使用的每一种数据资源，都是通过某个依赖模组分发的。这些标准依赖项建立在游戏基础模组 Core.SC2Mod 之上，并提供与《星际争霸》特定版本相关的资源。本文会逐一拆解每个标准依赖项，说明其用途、内容，以及它所依赖的其他依赖项。
 
-[![Standard Dependencies Selection](./resources/013_Standard_Dependencies01.png)](./resources/013_Standard_Dependencies01.png)
-*Standard Dependencies Selection*
+[![标准依赖项选择](./resources/013_Standard_Dependencies01.png)](./resources/013_Standard_Dependencies01.png)
+*标准依赖项选择界面*
 
-![Image](./resources/013_Standard_Dependencies02.png)
+![图像](./resources/013_Standard_Dependencies02.png)
 
-Contains the primary data assets supporting the Wings of Liberty melee game.
+包含支持 自由之翼 对战游戏的主要数据资源。
 
-Dependency Contents: Null
+依赖项内容： 无
 
-Data Counts:
+数据数量：
 
-Units 432 Abilities 227 Behaviors 139
+单位 432 技能 227 行为 139
 
-Effects 474 Weapons 57 Validators 636
+效果 474 武器 57 验证器 636
 
-Upgrades 111 Actors 1930 Movers 61
+升级 111 Actor 1930 移动器 61
 
-Models 2042 Textures 259 Sounds 3398
+模型 2042 纹理 259 声音 3398
 
-Buttons 496 Lights 134 Terrain Types 24
+按钮 496 灯光 134 地形类型 24
 
-![Image](./resources/013_Standard_Dependencies03.png)
+![图像](./resources/013_Standard_Dependencies03.png)
 
-Updates and balance changes made for the Wings of Liberty multiplayer melee game.
+对 自由之翼 多人对战游戏所做的更新与平衡性调整。
 
-Dependency Contents:
-
-![Liberty](./resources/013_Standard_Dependencies02.png)
-*Liberty*
-
-Data Counts:
-
-Units 2 Abilities 48 Behaviors 20
-
-Effects 55 Weapons 12 Validators 8
-
-Upgrades 49 Actors 32 Movers 2
-
-Models 1 Textures 1 Sounds 1
-
-Buttons 3 Lights 0 Terrain Types 0
-
-![Image](./resources/013_Standard_Dependencies04.png)
-
-Data and assets that are unique to the singleplayer campaign of Wings of Liberty.
-
-Dependency Contents:
+依赖项内容：
 
 ![Liberty](./resources/013_Standard_Dependencies02.png)
 *Liberty*
 
-Data Counts:
+数据数量：
 
-Units 950 Abilities 282 Behaviors 340
+单位 2 技能 48 行为 20
 
-Effects 913 Weapons 112 Validators 206
+效果 55 武器 12 验证器 8
 
-Upgrades 156 Actors 2571 Movers 71
+升级 49 Actor 32 移动器 2
 
-Models 2150 Textures 338 Sounds 1714
+模型 1 纹理 1 声音 1
 
-Buttons 320 Lights 294 Terrain Types 1
+按钮 3 灯光 0 地形类型 0
 
-![Image](./resources/013_Standard_Dependencies05.png)
+![图像](./resources/013_Standard_Dependencies04.png)
 
-Contains assets related to the story mode of Wings of Liberty, such as voiceover from the sequences aboard the Hyperion and a few campaign upgrades.
+自由之翼 单人战役专属的数据与资源。
 
-Dependency Contents:
+依赖项内容：
 
-![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png)
+![Liberty](./resources/013_Standard_Dependencies02.png)
+*Liberty*
+
+数据数量：
+
+单位 950 技能 282 行为 340
+
+效果 913 武器 112 验证器 206
+
+升级 156 Actor 2571 移动器 71
+
+模型 2150 纹理 338 声音 1714
+
+按钮 320 灯光 294 地形类型 1
+
+![图像](./resources/013_Standard_Dependencies05.png)
+
+包含与 自由之翼 剧情模式相关的资源，例如 Hyperion 船上过场中的语音，以及少量战役升级内容。
+
+依赖项内容：
+
+![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png)
 
 Liberty LibertyCampaign
 
-Data Counts:
+数据数量：
 
-Units 8 Abilities 37 Behaviors 3
+单位 8 技能 37 行为 3
 
-Effects 10 Weapons 5 Validators 2
+效果 10 武器 5 验证器 2
 
-Upgrades 91 Actors 119 Movers 0
+升级 91 Actor 119 移动器 0
 
-Models 31 Textures 0 Sounds 3215
+模型 31 纹理 0 声音 3215
 
-Buttons 1 Lights 0 Terrain Types 0
+按钮 1 灯光 0 地形类型 0
 
-![Image](./resources/013_Standard_Dependencies06.png)
+![图像](./resources/013_Standard_Dependencies06.png)
 
-Contains the primary data assets supporting the Heart of the Swarm melee game.
+包含支持 虫群之心 对战游戏的主要数据资源。
 
-Dependency Contents:
+依赖项内容：
 
 ![Liberty](./resources/013_Standard_Dependencies02.png)
 *Liberty*
 
-Data Counts:
+数据数量：
 
-Units 330 Abilities 383 Behaviors 187
+单位 330 技能 383 行为 187
 
-Effects 577 Weapons 32 Validators 291
+效果 577 武器 32 验证器 291
 
-Upgrades 84 Actors 1699 Movers 30
+升级 84 Actor 1699 移动器 30
 
-Models 1436 Textures 74 Sounds 1314
+模型 1436 纹理 74 声音 1314
 
-Buttons 129 Lights 43 Terrain Types 64
+按钮 129 灯光 43 地形类型 64
 
-![Image](./resources/013_Standard_Dependencies07.png)
+![图像](./resources/013_Standard_Dependencies07.png)
 
-Updates and balance changes made for the Heart of the Swarm multiplayer melee game.
+对 虫群之心 多人对战游戏所做的更新与平衡性调整。
 
-Dependency Contents:
+依赖项内容：
 
-![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png)
+![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png)
 
 Liberty Swarm
 
-Data Counts:
+数据数量：
 
-Units 4 Abilities 64 Behaviors 47
+单位 4 技能 64 行为 47
 
-Effects 144 Weapons 21 Validators 48
+效果 144 武器 21 验证器 48
 
-Upgrades 49 Actors 156 Movers 5
+升级 49 Actor 156 移动器 5
 
-Models 2 Textures 0 Sounds 14
+模型 2 纹理 0 声音 14
 
-Buttons 30 Lights 1 Terrain Types 0
+按钮 30 灯光 1 地形类型 0
 
-[![Image](./resources/013_Standard_Dependencies08.png)](./resources/013_Standard_Dependencies08.png)
+[![图像](./resources/013_Standard_Dependencies08.png)](./resources/013_Standard_Dependencies08.png)
 
-Data and assets that are unique to the singleplayer campaign of Heart of the Swarm.
+虫群之心 单人战役专属的数据与资源。
 
-Dependency Contents:
+依赖项内容：
 
-![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png)
+![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png)
 
 Liberty LibertyCampaign Swarm
 
-Data Counts:
+数据数量：
 
-Units 705 Abilities 554 Behaviors 492
+单位 705 技能 554 行为 492
 
-Effects 1722 Weapons 212 Validators 508
+效果 1722 武器 212 验证器 508
 
-Upgrades 111 Actors 2021 Movers 83
+升级 111 Actor 2021 移动器 83
 
-Models 1386 Textures 20 Sounds 1160
+模型 1386 纹理 20 声音 1160
 
-Buttons 573 Lights 82 Terrain Types 1
+按钮 573 灯光 82 地形类型 1
 
-![Image](./resources/013_Standard_Dependencies09.png)
+![图像](./resources/013_Standard_Dependencies09.png)
 
-Contains assets related to the story mode sequences of Heart of the Swarm, like being aboard Kerrigan's Leviathan.
+包含与 虫群之心 剧情模式过场相关的资源，例如凯瑞甘在 Leviathan 上的场景。
 
-Dependency Contents:
+依赖项内容：
 
-![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png)
+![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png)
 
 Liberty LibertyCampaign Swarm SwarmCampaign
 
-Data Counts:
+数据数量：
 
-Units 157 Abilities 0 Behaviors 0
+单位 157 技能 0 行为 0
 
-Effects 0 Weapons 0 Validators 0
+效果 0 武器 0 验证器 0
 
-Upgrades 0 Actors 258 Movers 0
+升级 0 Actor 258 移动器 0
 
-Models 320 Textures 59 Sounds 840
+模型 320 纹理 59 声音 840
 
-Buttons 0 Lights 84 Terrain Types 1
+按钮 0 灯光 84 地形类型 1
 
-![Image](./resources/013_Standard_Dependencies10.png)
+![图像](./resources/013_Standard_Dependencies10.png)
 
-Contains the primary data assets supporting the Legacy of the Void melee game.
+包含支持 虚空之遗 对战游戏的主要数据资源。
 
-Dependency Contents:
+依赖项内容：
 
-![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png)
+![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png)
 
 Liberty Swarm
 
-Data Counts:
+数据数量：
 
-Units 284 Abilities 428 Behaviors 133
+单位 284 技能 428 行为 133
 
-Effects 520 Weapons 37 Validators 227
+效果 520 武器 37 验证器 227
 
-Upgrades 75 Actors 1553 Movers 27
+升级 75 Actor 1553 移动器 27
 
-Models 1173 Textures 68 Sounds 1283
+模型 1173 纹理 68 声音 1283
 
-Buttons 110 Lights 46 Terrain Types 40
+按钮 110 灯光 46 地形类型 40
 
-![Image](./resources/013_Standard_Dependencies11.png)
+![图像](./resources/013_Standard_Dependencies11.png)
 
-Updates and balance changes made for the Legacy of the Void multiplayer melee game.
+对 虚空之遗 多人对战游戏所做的更新与平衡性调整。
 
-Dependency Contents:
+依赖项内容：
 
-![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png)
+![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png)
 
 Liberty Swarm Void
 
-Data Counts:
+数据数量：
 
-Units 8 Abilities 51 Behaviors 47
+单位 8 技能 51 行为 47
 
-Effects 122 Weapons 30 Validators 52
+效果 122 武器 30 验证器 52
 
-Upgrades 41 Actors 131 Movers 5
+升级 41 Actor 131 移动器 5
 
-Models 18 Textures 0 Sounds 4
+模型 18 纹理 0 声音 4
 
-Buttons 10 Lights 2 Terrain Types 0
+按钮 10 灯光 2 地形类型 0
 
-![Image](./resources/013_Standard_Dependencies12.png)
+![图像](./resources/013_Standard_Dependencies12.png)
 
-Contains data and assets unique to the singleplayer campaign of Legacy of the Void.
+虚空之遗 单人战役专属的数据与资源。
 
-Dependency Contents:
+依赖项内容：
 
-![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png)
+![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png)
 
 Liberty LibertyCampaign Swarm SwarmCampaign Void
 
-Data Counts:
+数据数量：
 
-Units 566 Abilities 700 Behaviors 767
+单位 566 技能 700 行为 767
 
-Effects 2977 Weapons 166 Validators 848
+效果 2977 武器 166 验证器 848
 
-Upgrades 327 Actors 2851 Movers 133
+升级 327 Actor 2851 移动器 133
 
-Models 1698 Textures 19 Sounds 2164
+模型 1698 纹理 19 声音 2164
 
-Buttons 740 Lights 48 Terrain Types 0
+按钮 740 灯光 48 地形类型 0
 
-![Image](./resources/013_Standard_Dependencies13.png)
+![图像](./resources/013_Standard_Dependencies13.png)
 
-Contains assets related to the story mode sequences of Heart of the Swarm, such as being aboard the Spear of Adun.
+包含与 虫群之心 剧情模式过场相关的资源，例如在 Spear of Adun 上的场景。
 
-Dependency Contents:
+依赖项内容：
 
-![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png)
+![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png)
 
 Liberty LibertyCampaign Swarm SwarmCampaign Void VoidCampaign
 
-Data Counts:
+数据数量：
 
-Units 217 Abilities 0 Behaviors 2
+单位 217 技能 0 行为 2
 
-Effects 1 Weapons 0 Validators 0
+效果 1 武器 0 验证器 0
 
-Upgrades 0 Actors 232 Movers 0
+升级 0 Actor 232 移动器 0
 
-Models 569 Textures 49 Sounds 4004
+模型 569 纹理 49 声音 4004
 
-Buttons 0 Lights 265 Terrain Types 0
+按钮 0 灯光 265 地形类型 0
 
 ![## War3.Sc2Mod](./resources/013_Standard_Dependencies14.png)
 *## War3.Sc2Mod*
 
-HD updates of model, art, interface and sound assets from Warcraft III.
+《魔兽争霸 III》模型、美术、界面与音效资源的高清更新版本。
 
-Dependency Contents: Null
+依赖项内容： 无
 
-Data Counts:
+数据数量：
 
-Units 0 Abilities 0 Behaviors 0
+单位 0 技能 0 行为 0
 
-Effects 0 Weapons 0 Validators 0
+效果 0 武器 0 验证器 0
 
-Upgrades 0 Actors 0 Movers 0
+升级 0 Actor 0 移动器 0
 
-Models 0 Textures 0 Sounds 0
+模型 0 纹理 0 声音 0
 
-Buttons 0 Lights 0 Terrain Types 0
+按钮 0 灯光 0 地形类型 0
 
-![Image](./resources/013_Standard_Dependencies15.png)
+![图像](./resources/013_Standard_Dependencies15.png)
 
-Data and assets supporting the Warcraft III art updates, making them into a playable version of the game.
+支持《魔兽争霸 III》美术更新的可游玩数据与资源，使这些内容能够在游戏中实际运作。
 
-Dependency Contents:
+依赖项内容：
 
-![Image](./resources/013_Standard_Dependencies14.png) ![Image](./resources/013_Standard_Dependencies14.png)
+![图像](./resources/013_Standard_Dependencies14.png) ![图像](./resources/013_Standard_Dependencies14.png)
 
 Liberty War3
 
-Data Counts:
+数据数量：
 
-Units 1595 Abilities 960 Behaviors 83
+单位 1595 技能 960 行为 83
 
-Effects 2092 Weapons 754 Validators 260
+效果 2092 武器 754 验证器 260
 
-Upgrades 0 Actors 3068 Movers 384
+升级 0 Actor 3068 移动器 384
 
-Models 2669 Textures 61 Sounds 2782
+模型 2669 纹理 61 声音 2782
 
-Buttons 2077 Lights 0 Terrain Types 2
+按钮 2077 灯光 0 地形类型 2
 
-## Dependency Conflicts
+## 依赖项冲突
 
-Populating a mod with dependencies that share the same dependency contents will result in a standard dependency conflict as shown in the image below.
+如果向模组中加入多个拥有相同依赖内容的依赖项，就会产生如下图所示的标准依赖项冲突。
 
-![Standard Dependency Conflicts](./resources/013_Standard_Dependencies16.png)
-*Standard Dependency Conflicts*
+![标准依赖项冲突](./resources/013_Standard_Dependencies16.png)
+*标准依赖项冲突*
