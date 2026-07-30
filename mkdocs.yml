@@ -1,6 +1,6 @@
 copyright: Maintained by <a href="https://sc2mapster.wiki.gg" rel="noopener" target="_blank">SC2Mapster</a> community.
 
-site_name: StarCraft II Editor Tutorials
+site_name: 《星际争霸 II》编辑器指南
 site_url: https://small-miao.github.io/blizzard-tutorials/
 repo_url: https://github.com/SC2Mapster/blizzard-tutorials
 repo_name: GitHub
@@ -22,6 +22,133 @@ markdown_extensions:
 
 extra_css:
     - css/custom.css
+
+nav:
+    - 首页: index.md
+    - 经典教程:
+        - 地形模块:
+            - 第 1 部分: Classic_Tutorials/01_Terrain_Module/1.md
+            - 第 2 部分: Classic_Tutorials/01_Terrain_Module/2.md
+            - 第 3 部分: Classic_Tutorials/01_Terrain_Module/3.md
+            - 第 4 部分: Classic_Tutorials/01_Terrain_Module/4.md
+            - 第 5 部分: Classic_Tutorials/01_Terrain_Module/5.md
+        - 触发器模块:
+            - 第 1 部分: Classic_Tutorials/02_Trigger_Module/1.md
+            - 第 2 部分: Classic_Tutorials/02_Trigger_Module/2.md
+            - 第 3 部分: Classic_Tutorials/02_Trigger_Module/3.md
+            - 第 4 部分: Classic_Tutorials/02_Trigger_Module/4.md
+        - 数据模块:
+            - 第 1 部分: Classic_Tutorials/03_Data_module/1.md
+            - 第 2 部分: Classic_Tutorials/03_Data_module/2.md
+            - 第 3 部分: Classic_Tutorials/03_Data_module/3.md
+            - 第 4 部分: Classic_Tutorials/03_Data_module/4.md
+        - 杂项:
+            - Actor 作弊码: Classic_Tutorials/04_Misc/actor-cheats.md
+            - 制图：美术与性能最佳实践: Classic_Tutorials/04_Misc/mapmaking-best-practices.md
+            - 精进制图：第二部分: Classic_Tutorials/04_Misc/mastering-mapmaking.md
+            - 导弹移动器: Classic_Tutorials/04_Misc/missile-movers.md
+            - 发布: Classic_Tutorials/04_Misc/publishing.md
+    - 数据入门:
+        - 简易 Firebolt:
+            - 数据入门 1 - 简易 Firebolt: Data_Primer/01_Simple_Firebolt/01_Firebolt.md
+    - 完整编辑器指南:
+        - 01 引言:
+            - 编辑器简介: New_Tutorials/01_Introduction/001_Editor_Introduction.md
+            - 进入编辑器: New_Tutorials/01_Introduction/002_Getting_to_the_Editor.md
+            - 界面导航: New_Tutorials/01_Introduction/003_Navigating_the_Interface.md
+            - 地图类型: New_Tutorials/01_Introduction/004_Maps.md
+            - 创建地图: New_Tutorials/01_Introduction/005_Creating_a_Map.md
+            - 模组: New_Tutorials/01_Introduction/006_Mods.md
+            - 创建模组: New_Tutorials/01_Introduction/007_Creating_Mods.md
+            - 地图属性: New_Tutorials/01_Introduction/008_Map_Properties.md
+            - 玩家属性: New_Tutorials/01_Introduction/009_Player_Properties.md
+            - 队伍放置: New_Tutorials/01_Introduction/010_Team_Placement.md
+            - Battle.net 信息: New_Tutorials/01_Introduction/011_BattleNet_Info.md
+            - 游戏变体: New_Tutorials/01_Introduction/012_Game_Variants.md
+            - 标准依赖项: New_Tutorials/01_Introduction/013_Standard_Dependencies.md
+            - 导入器: New_Tutorials/01_Introduction/014_The_Importer.md
+            - 寻求帮助: New_Tutorials/01_Introduction/015_Finding_Help.md
+            - 发布: New_Tutorials/01_Introduction/016_Publishing.md
+            - 编辑器历史: New_Tutorials/01_Introduction/017_Editor_History.md
+        - 02 地形编辑器:
+            - 地形编辑器简介: New_Tutorials/02_Terrain_Editor/018_Terrain_Editor_Introduction.md
+            - 地形编辑器界面: New_Tutorials/02_Terrain_Editor/019_Terrain_Editor_Interface.md
+            - 地形层: New_Tutorials/02_Terrain_Editor/020_Terrain_Layer.md
+            - 单位层: New_Tutorials/02_Terrain_Editor/021_Units_Layer.md
+            - 装饰物层: New_Tutorials/02_Terrain_Editor/022_Doodads_Layer.md
+            - 点层: New_Tutorials/02_Terrain_Editor/023_Points_Layer.md
+            - 区域层: New_Tutorials/02_Terrain_Editor/024_Regions_Layer.md
+            - 镜头层: New_Tutorials/02_Terrain_Editor/025_Cameras_Layer.md
+            - 寻路层: New_Tutorials/02_Terrain_Editor/026_Pathing_Layer.md
+            - 光照: New_Tutorials/02_Terrain_Editor/027_Lighting.md
+            - 光照窗口: New_Tutorials/02_Terrain_Editor/028_Lighting_Window.md
+            - 昼夜光照: New_Tutorials/02_Terrain_Editor/029_Time_of_Day_Lighting.md
+            - 纹理集: New_Tutorials/02_Terrain_Editor/030_Texture_Sets.md
+            - 动态寻路阻挡器: New_Tutorials/02_Terrain_Editor/031_Dynamic_Pathing_Blockers.md
+        - 03 触发编辑器:
+            - 触发编辑器简介: New_Tutorials/03_Trigger_Editor/032_Trigger_Editor_Introduction.md
+            - 触发编辑器界面: New_Tutorials/03_Trigger_Editor/033_Trigger_Editor_Interface.md
+            - 动作: New_Tutorials/03_Trigger_Editor/034_Actions.md
+            - 事件: New_Tutorials/03_Trigger_Editor/035_Events.md
+            - 条件: New_Tutorials/03_Trigger_Editor/036_Conditions.md
+            - 变量: New_Tutorials/03_Trigger_Editor/037_Variables.md
+            - 动作定义: New_Tutorials/03_Trigger_Editor/038_Action_Definitions.md
+            - 条件定义: New_Tutorials/03_Trigger_Editor/039_Condition_Definitions.md
+            - 记录: New_Tutorials/03_Trigger_Editor/040_Records.md
+            - 数据表: New_Tutorials/03_Trigger_Editor/041_Data_Tables.md
+            - 控制语句: New_Tutorials/03_Trigger_Editor/042_Control_Statements.md
+            - 对话框: New_Tutorials/03_Trigger_Editor/043_Dialogs.md
+            - 对话框面板: New_Tutorials/03_Trigger_Editor/044_Dialog_Panels.md
+            - 数学函数: New_Tutorials/03_Trigger_Editor/045_Math_Functions.md
+            - 摄像机动作: New_Tutorials/03_Trigger_Editor/046_Camera_Actions.md
+            - 文字标签: New_Tutorials/03_Trigger_Editor/047_Text_Tags.md
+            - 单位选择事件: New_Tutorials/03_Trigger_Editor/048_Unit_Selection_Events.md
+            - UI 事件: New_Tutorials/03_Trigger_Editor/049_UI_Events.md
+            - 自定义值: New_Tutorials/03_Trigger_Editor/050_Custom_Values.md
+            - Bank: New_Tutorials/03_Trigger_Editor/051_Banks.md
+            - 触发器组织: New_Tutorials/03_Trigger_Editor/052_Trigger_Organization.md
+            - 触发调试器: New_Tutorials/03_Trigger_Editor/053_Trigger_Debugger.md
+            - 日志记录器: New_Tutorials/03_Trigger_Editor/054_Loggers.md
+            - 调试作弊: New_Tutorials/03_Trigger_Editor/055_Debug_Cheats.md
+            - 代码优化: New_Tutorials/03_Trigger_Editor/056_Optimizing_Code.md
+            - 使用动作定义实现多线程: New_Tutorials/03_Trigger_Editor/057_Multithreading_with_Action_Definitions.md
+            - Galaxy 脚本: New_Tutorials/03_Trigger_Editor/058_GalaxyScript.md
+        - 04 数据编辑器:
+            - 数据编辑器简介: New_Tutorials/04_Data_Editor/058_Data_Editor_Introduction.md
+            - 单位: New_Tutorials/04_Data_Editor/059_Units.md
+            - Actor: New_Tutorials/04_Data_Editor/060_Actors.md
+            - Actor 消息概览: New_Tutorials/04_Data_Editor/061_Actor_Messages_Rundown.md
+            - Range Actor: New_Tutorials/04_Data_Editor/062_Range_Actors.md
+            - 声音 Actor: New_Tutorials/04_Data_Editor/063_Sound_Actors.md
+            - 装饰物 Actor: New_Tutorials/04_Data_Editor/064_Doodad_Actors.md
+            - 事件宏: New_Tutorials/04_Data_Editor/065_Event_Macros.md
+            - 站点操作: New_Tutorials/04_Data_Editor/066_Site_Operations.md
+            - 站点操作概览: New_Tutorials/04_Data_Editor/067_Site_Operations_Rundown.md
+            - 模型数据查看器: New_Tutorials/04_Data_Editor/068_Model_Data_Viewer.md
+            - 点击响应行为: New_Tutorials/04_Data_Editor/070_Click_Response_Behavior.md
+            - 验证器: New_Tutorials/04_Data_Editor/071_Validators.md
+            - 验证器概览: New_Tutorials/04_Data_Editor/072_Validators_Rundown.md
+            - 足迹: New_Tutorials/04_Data_Editor/073_Footprints.md
+            - 自定义足迹: New_Tutorials/04_Data_Editor/074_Custom_Footprints.md
+            - 按钮: New_Tutorials/04_Data_Editor/075_Buttons.md
+            - 声音: New_Tutorials/04_Data_Editor/076_Sounds.md
+            - 数据空间: New_Tutorials/04_Data_Editor/data-spaces.md
+        - 05 文本编辑器:
+            - 文本编辑器简介: New_Tutorials/05_Text_Editor/077_Text_Editor_Introduction.md
+            - 字体样式: New_Tutorials/05_Text_Editor/078_Font_Styles.md
+        - 06 过场动画编辑器:
+            - 过场动画编辑器简介: New_Tutorials/06_Cutscene_Editor/079_Cutscene_Editor_Introduction.md
+        - 07 课程与实例:
+            - 将变量显示到屏幕上: New_Tutorials/07_Lessons/081_Display_a_Variable_to_the_Screen.md
+            - 离线测试 Mod: New_Tutorials/07_Lessons/082_Test_a_Mod_Offline.md
+            - 导出游戏资源: New_Tutorials/07_Lessons/083_Export_Game_Assets.md
+            - 宣传素材: New_Tutorials/07_Lessons/084_Marketing.md
+            - 寻找测试者: New_Tutorials/07_Lessons/085_Finding_Testers.md
+            - 竞技玩法中的资源摆放: New_Tutorials/07_Lessons/086_Resource_Placement_for_Competitive_Play.md
+            - 创建一个光环技能: New_Tutorials/07_Lessons/087_Create_an_Aura_Ability.md
+            - 创建 WASD 键盘控制: New_Tutorials/07_Lessons/088_Create_WASD_Keyboard_Controls.md
+            - 设置第一人称镜头: New_Tutorials/07_Lessons/089_Set_Up_a_First_Person_Camera.md
+            - 基础技能切换系统: New_Tutorials/07_Lessons/090_Basic_Spellswap_System.md
 
 # this will be needed once we upgrade to mkdocs 1.6
 # https://github.com/mkdocs/mkdocs/blob/0998fec7eb32d269f02c6d87071d6163c251db30/docs/about/release-notes.md#mkdocs-theme
